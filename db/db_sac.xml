@@ -3,11 +3,477 @@
   <VerLbl/>
   <VerNotes/>
   <DefTblOpts/>
-  <DocFolder>/home/johnny/Documentos/proyectos_db</DocFolder>
+  <DocFolder>\home\johnny\Documentos\proyectos_db</DocFolder>
   <Sch Cm="" nm="public">
-    <Tbl UsSo="1" nm="grupos_tabgral">
+    <Tbl UsSo="1" nm="circuitos">
       <TblOpts/>
-      <Pk ClNs="id" nm="pkgrupos_tabgral"/>
+      <Pk ClNs="id" nm="pkcircuitos"/>
+      <Cl au="1" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="nombre" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="habilitado" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="now()" nm="created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="departamentos">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pkdepartamentos"/>
+      <Cl au="1" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="nombre" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="habilitado" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="circuito_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="now()" nm="created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="1" nm="departamentos_circuito_id" prLkCl="id" upAc="1">
+        <PrTb mn="0" nm="circuitos" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="departamentos" oe="1" sch="public" zr="0"/>
+        <ClPr cdCl="circuito_id" prCl="id"/>
+      </Fk>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="directores">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pkdirectores"/>
+      <Cl au="1" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="dni" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="apellido" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="nombre" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="telefono" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="email" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="habilitado" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="now()" nm="created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="docentes">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pkdocentes"/>
+      <Cl au="1" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="dni" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="apellido" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="nombre" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="telefono" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="email" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="titulo" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="habilitado" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="now()" nm="created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="docentes_escuelas">
+      <TblOpts/>
+      <Cl au="1" df="" nm="id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="docente_perfil_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="escuela_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="now()" nm="created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="1" nm="docentes_escuelas_docente_perfil_id" prLkCl="id" upAc="1">
+        <PrTb mn="0" nm="docentes_perfiles" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="docentes_escuelas" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="docente_perfil_id" prCl="id"/>
+      </Fk>
+      <Fk deAc="1" nm="docentes_escuelas_escuela_id" prLkCl="id" upAc="1">
+        <PrTb mn="0" nm="escuelas" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="docentes_escuelas" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="escuela_id" prCl="id"/>
+      </Fk>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="docentes_perfiles">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pkdocentes_perfiles"/>
+      <Cl au="1" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="docente_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="perfil_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="now()" nm="created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_docentes_perfiles_docentes" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="docentes" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="docentes_perfiles" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="docente_id" prCl="id"/>
+      </Fk>
+      <Fk deAc="3" nm="fk_docentes_perfiles_perfiles" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="perfiles" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="docentes_perfiles" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="perfil_id" prCl="id"/>
+      </Fk>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="escuelas">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pkescuelas"/>
+      <Cl au="1" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="cue" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="nombre" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="direccion" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="telefono" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="email" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="habilitado" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="localidad_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="director_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="now()" nm="created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_escuelas_directores" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="directores" oe="1" sch="public" zr="0"/>
+        <CdTb mn="0" nm="escuelas" oe="1" sch="public" zr="0"/>
+        <ClPr cdCl="director_id" prCl="id"/>
+      </Fk>
+      <Fk deAc="3" nm="fk_escuelas_localidades" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="localidades" oe="1" sch="public" zr="0"/>
+        <CdTb mn="0" nm="escuelas" oe="1" sch="public" zr="0"/>
+        <ClPr cdCl="localidad_id" prCl="id"/>
+      </Fk>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="horas_institucionales">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pkhoras_institucionales"/>
+      <Cl au="1" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="periodo_escuela_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="escuela_id_origen" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="escuela_id_destino" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="docente_perfil_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="linea_accion_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="cantidad_horas" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="mes_utilizacion" nu="1">
+        <DT arr="0" ds="Date" en="" id="91" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="now()" nm="created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_horas_institucionales_docentes_perfiles" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="docentes_perfiles" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="horas_institucionales" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="docente_perfil_id" prCl="id"/>
+      </Fk>
+      <Fk deAc="3" nm="fk_horas_institucionales_periodos_escuelas" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="periodos_escuelas" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="horas_institucionales" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="periodo_escuela_id" prCl="id"/>
+      </Fk>
+      <Fk deAc="1" nm="horas_institucionales_lineas_accion" prLkCl="id" upAc="1">
+        <PrTb mn="0" nm="lineas_accion" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="horas_institucionales" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="linea_accion_id" prCl="id"/>
+      </Fk>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="lineas_accion">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pklineas_accion"/>
+      <Cl au="1" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="nombre" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="descripcion" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="250" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="habilitado" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="ciclo" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="now()" nm="created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="1" nm="lineas_accion_ciclo" prLkCl="id" upAc="1">
+        <PrTb mn="0" nm="sys_tabgral" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="lineas_accion" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="ciclo" prCl="id"/>
+      </Fk>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="lineas_accion_docentes">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pklineas_accion_docentes"/>
+      <Cl au="1" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="linea_accion_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="docente_perfil_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="now()" nm="created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="1" nm="lineas_accion_docentes_docente_perfil_id" prLkCl="id" upAc="1">
+        <PrTb mn="0" nm="docentes_perfiles" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="lineas_accion_docentes" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="docente_perfil_id" prCl="id"/>
+      </Fk>
+      <Fk deAc="1" nm="lineas_accion_docentes_linea_accion_id" prLkCl="id" upAc="1">
+        <PrTb mn="0" nm="lineas_accion" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="lineas_accion_docentes" oe="1" sch="public" zr="0"/>
+        <ClPr cdCl="linea_accion_id" prCl="id"/>
+      </Fk>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="localidades">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pklocalidades"/>
+      <Cl au="1" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="nombre" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="habilitado" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="departamento_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="now()" nm="created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_localidades_departamentos" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="departamentos" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="localidades" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="departamento_id" prCl="id"/>
+      </Fk>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="perfiles">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pkperfiles"/>
+      <Cl au="1" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="nombre" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="descripcion" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="250" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="cantidad_hora" nu="0">
+        <DT arr="0" ds="Numeric" en="" id="2" ln="10" sc="2" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="habilitado" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="now()" nm="created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="periodos">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pkperiodos"/>
+      <Cl au="1" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="fecha_inicio" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="fecha_fin" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="costo_hora" nu="1">
+        <DT arr="0" ds="Float" en="" id="6" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="now()" nm="created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="periodos_escuelas">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pkperiodos_escuelas"/>
+      <Cl au="1" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="periodo_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="escuelas_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="matricula" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="resolucion" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="cantidad_horas" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="now()" nm="created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_periodos_escuelas_escuelas" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="escuelas" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="periodos_escuelas" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="escuelas_id" prCl="id"/>
+      </Fk>
+      <Fk deAc="3" nm="fk_periodos_escuelas_periodos" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="periodos" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="periodos_escuelas" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="periodo_id" prCl="id"/>
+      </Fk>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="sys_errores_sessiones">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pksys_errores_sessiones"/>
+      <Cl au="1" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="usuario" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="password" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="fecha" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="sys_grupos_tabgral">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pksys_grupos_tabgral"/>
       <Cl au="1" df="" nm="id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
@@ -22,37 +488,9 @@
       </Cl>
       <SchTrHis/>
     </Tbl>
-    <Tbl UsSo="1" nm="perfiles">
+    <Tbl UsSo="1" nm="sys_menu">
       <TblOpts/>
-      <Pk ClNs="id" nm="pkperfiles"/>
-      <Cl au="1" df="" nm="id" nu="0">
-        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="descripcion" nu="1">
-        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="0" nm="estado" nu="1">
-        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="now()" nm="created_at" nu="1">
-        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="updated_at" nu="0">
-        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Fk deAc="1" nm="perfiles_tabgral_id" prLkCl="id" upAc="1">
-        <PrTb mn="0" nm="tabgral" oe="1" sch="public" zr="0"/>
-        <CdTb mn="1" nm="perfiles" oe="0" sch="public" zr="1"/>
-        <ClPr cdCl="estado" prCl="id"/>
-      </Fk>
-      <Idx clu="0" nm="perfiles_tabgral_id" unq="0">
-        <ClNs>estado</ClNs>
-      </Idx>
-      <SchTrHis/>
-    </Tbl>
-    <Tbl UsSo="1" nm="sismenu">
-      <TblOpts/>
-      <Pk ClNs="id" nm="pksismenu"/>
+      <Pk ClNs="id" nm="pksys_menu"/>
       <Cl au="1" df="" nm="id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
@@ -75,8 +513,8 @@
         <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Fk deAc="1" nm="sismenu_tabgral_id" prLkCl="id" upAc="1">
-        <PrTb mn="0" nm="tabgral" oe="1" sch="public" zr="0"/>
-        <CdTb mn="1" nm="sismenu" oe="0" sch="public" zr="1"/>
+        <PrTb mn="0" nm="sys_tabgral" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="sys_menu" oe="0" sch="public" zr="1"/>
         <ClPr cdCl="estado" prCl="id"/>
       </Fk>
       <Idx clu="0" nm="sismenu_tabgral_id" unq="0">
@@ -84,9 +522,9 @@
       </Idx>
       <SchTrHis/>
     </Tbl>
-    <Tbl UsSo="1" nm="sisperfil">
+    <Tbl UsSo="1" nm="sys_perfil">
       <TblOpts/>
-      <Pk ClNs="id" nm="pksisperfil"/>
+      <Pk ClNs="id" nm="pksys_perfil"/>
       <Cl au="1" df="" nm="id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
@@ -106,18 +544,18 @@
         <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Fk deAc="1" nm="perfiles_id" prLkCl="id" upAc="1">
-        <PrTb mn="0" nm="perfiles" oe="1" sch="public" zr="0"/>
-        <CdTb mn="1" nm="sisperfil" oe="0" sch="public" zr="1"/>
+        <PrTb mn="0" nm="sys_perfiles" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="sys_perfil" oe="0" sch="public" zr="1"/>
         <ClPr cdCl="perfiles_id" prCl="id"/>
       </Fk>
       <Fk deAc="1" nm="sisperfil_sismenu_id" prLkCl="id" upAc="1">
-        <PrTb mn="0" nm="sismenu" oe="1" sch="public" zr="0"/>
-        <CdTb mn="1" nm="sisperfil" oe="0" sch="public" zr="1"/>
+        <PrTb mn="0" nm="sys_menu" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="sys_perfil" oe="0" sch="public" zr="1"/>
         <ClPr cdCl="sismenu_id" prCl="id"/>
       </Fk>
       <Fk deAc="1" nm="sisperfil_tabgral_id" prLkCl="id" upAc="1">
-        <PrTb mn="0" nm="tabgral" oe="1" sch="public" zr="0"/>
-        <CdTb mn="1" nm="sisperfil" oe="0" sch="public" zr="1"/>
+        <PrTb mn="0" nm="sys_tabgral" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="sys_perfil" oe="0" sch="public" zr="1"/>
         <ClPr cdCl="estado" prCl="id"/>
       </Fk>
       <Idx clu="0" nm="perfiles_id" unq="0">
@@ -134,7 +572,35 @@
       </Idx>
       <SchTrHis/>
     </Tbl>
-    <Tbl UsSo="1" nm="sispermisos">
+    <Tbl UsSo="1" nm="sys_perfiles">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pksys_perfiles"/>
+      <Cl au="1" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="descripcion" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="0" nm="estado" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="now()" nm="created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="0">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="1" nm="perfiles_tabgral_id" prLkCl="id" upAc="1">
+        <PrTb mn="0" nm="sys_tabgral" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="sys_perfiles" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="estado" prCl="id"/>
+      </Fk>
+      <Idx clu="0" nm="perfiles_tabgral_id" unq="0">
+        <ClNs>estado</ClNs>
+      </Idx>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="sys_permisos">
       <TblOpts/>
       <Cl au="1" df="" nm="id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
@@ -164,8 +630,8 @@
         <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Fk deAc="1" nm="sispermisos_perfiles_id" prLkCl="id" upAc="1">
-        <PrTb mn="0" nm="perfiles" oe="1" sch="public" zr="0"/>
-        <CdTb mn="1" nm="sispermisos" oe="0" sch="public" zr="1"/>
+        <PrTb mn="0" nm="sys_perfiles" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="sys_permisos" oe="0" sch="public" zr="1"/>
         <ClPr cdCl="perfiles_id" prCl="id"/>
       </Fk>
       <Idx clu="0" nm="perfiles_id" unq="0">
@@ -176,40 +642,28 @@
       </Idx>
       <SchTrHis/>
     </Tbl>
-    <Tbl UsSo="1" nm="sisvinculos">
+    <Tbl UsSo="1" nm="sys_sessiones">
       <TblOpts/>
-      <Pk ClNs="id" nm="pksisvinculos"/>
+      <Pk ClNs="id" nm="pksys_sessiones"/>
       <Cl au="1" df="" nm="id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="sismenu_id" nu="1">
+      <Cl au="0" df="" nm="usuario_id" nu="1">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="link" nu="1">
-        <DT arr="0" ds="VarChar" en="" id="12" ln="250" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="now()" nm="created_at" nu="1">
-        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="updated_at" nu="0">
+      <Cl au="0" df="" nm="fecha" nu="1">
         <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Fk deAc="0" nm="sisvinculos_sismenu_id" prLkCl="id" upAc="0">
-        <PrTb mn="0" nm="sismenu" oe="1" sch="public" zr="0"/>
-        <CdTb mn="0" nm="sisvinculos" oe="1" sch="public" zr="0"/>
-        <ClPr cdCl="sismenu_id" prCl="id"/>
+      <Fk deAc="3" nm="fk_sessiones_usuarios" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="sys_usuarios" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="sys_sessiones" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="usuario_id" prCl="id"/>
       </Fk>
-      <Idx clu="0" nm="sismenu_id" unq="0">
-        <ClNs>sismenu_id</ClNs>
-      </Idx>
-      <Idx clu="0" nm="sisvinculos_sismenu_id" unq="0">
-        <ClNs>sismenu_id</ClNs>
-      </Idx>
       <SchTrHis/>
     </Tbl>
-    <Tbl UsSo="1" nm="tabgral">
+    <Tbl UsSo="1" nm="sys_tabgral">
       <TblOpts/>
-      <Pk ClNs="id" nm="pktabgral"/>
+      <Pk ClNs="id" nm="pksys_tabgral"/>
       <Cl au="1" df="" nm="id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
@@ -226,8 +680,8 @@
         <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Fk deAc="1" nm="grupos_tabgral_id" prLkCl="id" upAc="1">
-        <PrTb mn="0" nm="grupos_tabgral" oe="1" sch="public" zr="0"/>
-        <CdTb mn="1" nm="tabgral" oe="0" sch="public" zr="1"/>
+        <PrTb mn="0" nm="sys_grupos_tabgral" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="sys_tabgral" oe="0" sch="public" zr="1"/>
         <ClPr cdCl="grupos_tabgral_id" prCl="id"/>
       </Fk>
       <Idx clu="0" nm="grupos_tabgral_id" unq="0">
@@ -235,9 +689,9 @@
       </Idx>
       <SchTrHis/>
     </Tbl>
-    <Tbl UsSo="1" nm="usuarios">
+    <Tbl UsSo="1" nm="sys_usuarios">
       <TblOpts/>
-      <Pk ClNs="id" nm="pkusuarios"/>
+      <Pk ClNs="id" nm="pksys_usuarios"/>
       <Cl au="1" df="" nm="id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
@@ -281,13 +735,13 @@
         <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Fk deAc="1" nm="usuarios_estado" prLkCl="id" upAc="1">
-        <PrTb mn="0" nm="tabgral" oe="1" sch="public" zr="0"/>
-        <CdTb mn="1" nm="usuarios" oe="0" sch="public" zr="1"/>
+        <PrTb mn="0" nm="sys_tabgral" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="sys_usuarios" oe="0" sch="public" zr="1"/>
         <ClPr cdCl="estado" prCl="id"/>
       </Fk>
       <Fk deAc="1" nm="usuarios_perfiles_id" prLkCl="id" upAc="1">
-        <PrTb mn="0" nm="perfiles" oe="1" sch="public" zr="0"/>
-        <CdTb mn="1" nm="usuarios" oe="0" sch="public" zr="1"/>
+        <PrTb mn="0" nm="sys_perfiles" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="sys_usuarios" oe="0" sch="public" zr="1"/>
         <ClPr cdCl="perfiles_id" prCl="id"/>
       </Fk>
       <Idx clu="0" nm="perfiles_id" unq="0">
@@ -304,6 +758,37 @@
       </Idx>
       <Idx clu="0" nm="usuarios_perfiles_id" unq="0">
         <ClNs>perfiles_id</ClNs>
+      </Idx>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="sys_vinculos">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pksys_vinculos"/>
+      <Cl au="1" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="sismenu_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="link" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="250" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="now()" nm="created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="updated_at" nu="0">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="0" nm="sisvinculos_sismenu_id" prLkCl="id" upAc="0">
+        <PrTb mn="0" nm="sys_menu" oe="1" sch="public" zr="0"/>
+        <CdTb mn="0" nm="sys_vinculos" oe="1" sch="public" zr="0"/>
+        <ClPr cdCl="sismenu_id" prCl="id"/>
+      </Fk>
+      <Idx clu="0" nm="sismenu_id" unq="0">
+        <ClNs>sismenu_id</ClNs>
+      </Idx>
+      <Idx clu="0" nm="sisvinculos_sismenu_id" unq="0">
+        <ClNs>sismenu_id</ClNs>
       </Idx>
       <SchTrHis/>
     </Tbl>
@@ -330,31 +815,64 @@
       <ErNotation>DbwErNotation</ErNotation>
       <svg path=""/>
     </DiaProps>
-    <TbGl bkCl="ffccccff" sch="public" tbl="sismenu" x="159" y="40"/>
-    <TbGl bkCl="ffccccff" sch="public" tbl="perfiles" x="617" y="43"/>
-    <TbGl bkCl="ffccccff" sch="public" tbl="usuarios" x="786" y="44"/>
-    <TbGl bkCl="ffccccff" sch="public" tbl="sisperfil" x="392" y="30"/>
-    <TbGl bkCl="ffccccff" sch="public" tbl="sisvinculos" x="162" y="169"/>
-    <TbGl bkCl="ffccccff" sch="public" tbl="sispermisos" x="164" y="261"/>
-    <TbGl bkCl="ffccccff" sch="public" tbl="tabgral" x="567" y="251"/>
-    <TbGl bkCl="ffccccff" sch="public" tbl="grupos_tabgral" x="381" y="275"/>
-    <FkGl bkCl="ff000000" nm="public.perfiles.perfiles_tabgral_id"/>
-    <FkGl bkCl="ff000000" nm="public.sismenu.sismenu_tabgral_id"/>
-    <FkGl bkCl="ff000000" nm="public.sisperfil.perfiles_id"/>
-    <FkGl bkCl="ff000000" nm="public.sisperfil.sisperfil_sismenu_id"/>
-    <FkGl bkCl="ff000000" nm="public.sisperfil.sisperfil_tabgral_id"/>
-    <FkGl bkCl="ff000000" nm="public.sispermisos.sispermisos_perfiles_id"/>
-    <FkGl bkCl="ff000000" nm="public.sisvinculos.sisvinculos_sismenu_id"/>
-    <FkGl bkCl="ff000000" nm="public.tabgral.grupos_tabgral_id"/>
-    <FkGl bkCl="ff000000" nm="public.usuarios.usuarios_estado"/>
-    <FkGl bkCl="ff000000" nm="public.usuarios.usuarios_perfiles_id"/>
+    <TbGl bkCl="ffccccff" sch="public" tbl="sys_menu" x="159" y="40"/>
+    <TbGl bkCl="ffccccff" sch="public" tbl="sys_perfiles" x="691" y="45"/>
+    <TbGl bkCl="ffccccff" sch="public" tbl="sys_usuarios" x="965" y="41"/>
+    <TbGl bkCl="ffccccff" sch="public" tbl="sys_perfil" x="420" y="43"/>
+    <TbGl bkCl="ffccccff" sch="public" tbl="sys_vinculos" x="162" y="169"/>
+    <TbGl bkCl="ffccccff" sch="public" tbl="sys_permisos" x="164" y="261"/>
+    <TbGl bkCl="ffccccff" sch="public" tbl="sys_tabgral" x="567" y="251"/>
+    <TbGl bkCl="ffccccff" sch="public" tbl="sys_grupos_tabgral" x="910" y="276"/>
+    <TbGl bkCl="ffccccff" sch="public" tbl="sys_sessiones" x="1316" y="51"/>
+    <TbGl bkCl="ffccccff" sch="public" tbl="sys_errores_sessiones" x="1318" y="142"/>
+    <TbGl bkCl="ffccccff" sch="public" tbl="escuelas" x="153" y="470"/>
+    <TbGl bkCl="ffccccff" sch="public" tbl="departamentos" x="614" y="473"/>
+    <TbGl bkCl="ffccccff" sch="public" tbl="localidades" x="379" y="467"/>
+    <TbGl bkCl="ffccccff" sch="public" tbl="circuitos" x="788" y="478"/>
+    <TbGl bkCl="ffccccff" sch="public" tbl="directores" x="150" y="717"/>
+    <TbGl bkCl="ffccccff" sch="public" tbl="docentes" x="1156" y="844"/>
+    <TbGl bkCl="ffccccff" sch="public" tbl="perfiles" x="832" y="1042"/>
+    <TbGl bkCl="ffccccff" sch="public" tbl="lineas_accion" x="238" y="1069"/>
+    <TbGl bkCl="ffccccff" sch="public" tbl="periodos" x="699" y="704"/>
+    <TbGl bkCl="ffccccff" sch="public" tbl="periodos_escuelas" x="477" y="684"/>
+    <TbGl bkCl="ffccccff" sch="public" tbl="horas_institucionales" x="467" y="869"/>
+    <TbGl bkCl="ffccccff" sch="public" tbl="docentes_perfiles" x="820" y="901"/>
+    <TbGl bkCl="ffccccff" sch="public" tbl="docentes_escuelas" x="717" y="595"/>
+    <TbGl bkCl="ffccccff" sch="public" tbl="lineas_accion_docentes" x="540" y="1071"/>
+    <FkGl bkCl="ff000000" nm="public.departamentos.departamentos_circuito_id"/>
+    <FkGl bkCl="ff000000" nm="public.docentes_escuelas.docentes_escuelas_docente_perfil_id"/>
+    <FkGl bkCl="ff000000" nm="public.docentes_escuelas.docentes_escuelas_escuela_id"/>
+    <FkGl bkCl="ff000000" nm="public.docentes_perfiles.fk_docentes_perfiles_docentes"/>
+    <FkGl bkCl="ff000000" nm="public.docentes_perfiles.fk_docentes_perfiles_perfiles"/>
+    <FkGl bkCl="ff000000" nm="public.escuelas.fk_escuelas_directores"/>
+    <FkGl bkCl="ff000000" nm="public.escuelas.fk_escuelas_localidades"/>
+    <FkGl bkCl="ff000000" nm="public.horas_institucionales.fk_horas_institucionales_docentes_perfiles"/>
+    <FkGl bkCl="ff000000" nm="public.horas_institucionales.fk_horas_institucionales_periodos_escuelas"/>
+    <FkGl bkCl="ff000000" nm="public.horas_institucionales.horas_institucionales_lineas_accion"/>
+    <FkGl bkCl="ff000000" nm="public.lineas_accion.lineas_accion_ciclo"/>
+    <FkGl bkCl="ff000000" nm="public.lineas_accion_docentes.lineas_accion_docentes_docente_perfil_id"/>
+    <FkGl bkCl="ff000000" nm="public.lineas_accion_docentes.lineas_accion_docentes_linea_accion_id"/>
+    <FkGl bkCl="ff000000" nm="public.localidades.fk_localidades_departamentos"/>
+    <FkGl bkCl="ff000000" nm="public.periodos_escuelas.fk_periodos_escuelas_escuelas"/>
+    <FkGl bkCl="ff000000" nm="public.periodos_escuelas.fk_periodos_escuelas_periodos"/>
+    <FkGl bkCl="ff000000" nm="public.sys_menu.sismenu_tabgral_id"/>
+    <FkGl bkCl="ff000000" nm="public.sys_perfil.perfiles_id"/>
+    <FkGl bkCl="ff000000" nm="public.sys_perfil.sisperfil_sismenu_id"/>
+    <FkGl bkCl="ff000000" nm="public.sys_perfil.sisperfil_tabgral_id"/>
+    <FkGl bkCl="ff000000" nm="public.sys_perfiles.perfiles_tabgral_id"/>
+    <FkGl bkCl="ff000000" nm="public.sys_permisos.sispermisos_perfiles_id"/>
+    <FkGl bkCl="ff000000" nm="public.sys_sessiones.fk_sessiones_usuarios"/>
+    <FkGl bkCl="ff000000" nm="public.sys_tabgral.grupos_tabgral_id"/>
+    <FkGl bkCl="ff000000" nm="public.sys_usuarios.usuarios_estado"/>
+    <FkGl bkCl="ff000000" nm="public.sys_usuarios.usuarios_perfiles_id"/>
+    <FkGl bkCl="ff000000" nm="public.sys_vinculos.sisvinculos_sismenu_id"/>
     <Notes/>
     <Zones>
-      <Zone bkCl="ffece9d8" h="1169" nm="Sección de autentificación de usuarios" w="394" x="131" y="7"/>
-      <Zone bkCl="ffece9d8" h="377" nm="Sección Principal" w="297" x="132" y="434"/>
+      <Zone bkCl="ffece9d8" h="1471" nm="Sección de autentificación de usuarios" w="394" x="131" y="7"/>
+      <Zone bkCl="ffece9d8" h="1471" nm="Sección Principal" w="763" x="132" y="435"/>
     </Zones>
   </Dgm>
-  <RnmMgr NxRnmId="235">
+  <RnmMgr NxRnmId="274">
     <RnmCh ObjCls="Schema" ParCls="Database" ParNme="callcenter" SupCls="" SupNme="">
       <Rnm id="1" nNm="public" oNm="schemaA"/>
     </RnmCh>
@@ -377,11 +895,11 @@
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="personas" SupCls="Schema" SupNme="public">
       <Rnm id="8" nNm="personas_telefono" oNm="deudores_telefono"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sismenu" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_menu" SupCls="Schema" SupNme="public">
       <Rnm id="174" nNm="estado" oNm="sismenu_estado"/>
       <Rnm id="9" nNm="sismenu_estado" oNm="sismenu_habilitado"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sispermisos" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_permisos" SupCls="Schema" SupNme="public">
       <Rnm id="233" nNm="id" oNm="_id"/>
       <Rnm id="202" nNm="_id" oNm="sispermisos_id"/>
       <Rnm id="10" nNm="sispermisos_id" oNm="sispermisos"/>
@@ -392,29 +910,29 @@
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="empleados" SupCls="Schema" SupNme="public">
       <Rnm id="12" nNm="empleados_fecha_alta" oNm="empleados_fecha_creacion"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sispermisos" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_permisos" SupCls="Schema" SupNme="public">
       <Rnm id="208" nNm="created_at" oNm="sispermisos_created_at"/>
       <Rnm id="93" nNm="sispermisos_created_at" oNm="sispermisos_fecha_alta"/>
       <Rnm id="13" nNm="sispermisos_fecha_alta" oNm="sispermisos_fecha_creacion"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sisvinculos" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_vinculos" SupCls="Schema" SupNme="public">
       <Rnm id="181" nNm="created_at" oNm="sisvinculos_created_at"/>
       <Rnm id="91" nNm="sisvinculos_created_at" oNm="sisvinculos_fecha_alta"/>
       <Rnm id="14" nNm="sisvinculos_fecha_alta" oNm="sisvinculos_fecha_creacion"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sismenu" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_menu" SupCls="Schema" SupNme="public">
       <Rnm id="176" nNm="iconpath" oNm="sismenu_iconpath"/>
       <Rnm id="142" nNm="sismenu_iconpath" oNm="sismenu_imagepath"/>
       <Rnm id="140" nNm="sismenu_imagepath" oNm="sismenu_created_at"/>
       <Rnm id="89" nNm="sismenu_created_at" oNm="sismenu_fecha_alta"/>
       <Rnm id="15" nNm="sismenu_fecha_alta" oNm="sismenu_fecha_creacion"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sisperfil" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_perfil" SupCls="Schema" SupNme="public">
       <Rnm id="212" nNm="created_at" oNm="sisperfil_created_at"/>
       <Rnm id="90" nNm="sisperfil_created_at" oNm="sisperfil_fecha_alta"/>
       <Rnm id="16" nNm="sisperfil_fecha_alta" oNm="sisperfil_fecha_creacion"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="perfiles" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_perfiles" SupCls="Schema" SupNme="public">
       <Rnm id="200" nNm="created_at" oNm="perfiles_created_at"/>
       <Rnm id="92" nNm="perfiles_created_at" oNm="perfiles_fecha_alta"/>
       <Rnm id="17" nNm="perfiles_fecha_alta" oNm="perfiles_fecha_creacion"/>
@@ -547,30 +1065,31 @@
       <Rnm id="64" nNm="tipodomicilios_id" oNm="domicilios_tipo"/>
     </RnmCh>
     <RnmCh ObjCls="Table" ParCls="Schema" ParNme="public" SupCls="" SupNme="">
+      <Rnm id="241" nNm="sys_tabgral" oNm="tabgral"/>
       <Rnm id="65" nNm="tabgral" oNm="estados"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="tabgral" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_tabgral" SupCls="Schema" SupNme="public">
       <Rnm id="231" nNm="id" oNm="_id"/>
       <Rnm id="214" nNm="_id" oNm="tabgral_id"/>
       <Rnm id="66" nNm="tabgral_id" oNm="estados_id"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="tabgral" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_tabgral" SupCls="Schema" SupNme="public">
       <Rnm id="215" nNm="descripcion" oNm="tabgral_descripcion"/>
       <Rnm id="67" nNm="tabgral_descripcion" oNm="estados_descripcion"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="usuarios" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_usuarios" SupCls="Schema" SupNme="public">
       <Rnm id="189" nNm="direccion" oNm="usuarios_direccion"/>
       <Rnm id="68" nNm="usuarios_direccion" oNm="usuarios_estado"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="usuarios" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_usuarios" SupCls="Schema" SupNme="public">
       <Rnm id="190" nNm="telefono" oNm="usuarios_telefono"/>
       <Rnm id="69" nNm="usuarios_telefono" oNm="perfiles_id"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="usuarios" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_usuarios" SupCls="Schema" SupNme="public">
       <Rnm id="191" nNm="estado" oNm="usuarios_estado"/>
       <Rnm id="70" nNm="usuarios_estado" oNm="usuarios_fecha_alta"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="usuarios" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_usuarios" SupCls="Schema" SupNme="public">
       <Rnm id="94" nNm="usuarios_" oNm="usuarios_fecha_alta"/>
       <Rnm id="76" nNm="usuarios_fecha_alta" oNm="usuarios_fecha_c"/>
       <Rnm id="71" nNm="usuarios_fecha_c" oNm="usuarios_fecha_alta"/>
@@ -598,7 +1117,7 @@
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="audit" SupCls="Schema" SupNme="public">
       <Rnm id="80" nNm="audit_evento" oNm="vento"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="usuarios" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_usuarios" SupCls="Schema" SupNme="public">
       <Rnm id="81" nNm="localidades_id" oNm="localidadades_id"/>
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="turnos" SupCls="Schema" SupNme="public">
@@ -734,7 +1253,7 @@
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="pedidos" SupCls="Schema" SupNme="public">
       <Rnm id="139" nNm="pedidos_created_at" oNm="pedidos_updated_at"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sismenu" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_menu" SupCls="Schema" SupNme="public">
       <Rnm id="177" nNm="created_at" oNm="sismenu_created_at"/>
       <Rnm id="141" nNm="sismenu_created_at" oNm="sismenu_updated_at"/>
     </RnmCh>
@@ -817,121 +1336,121 @@
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="ordenes" SupCls="Schema" SupNme="public">
       <Rnm id="169" nNm="created_at" oNm="updated_at"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sismenu" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_menu" SupCls="Schema" SupNme="public">
       <Rnm id="227" nNm="id" oNm="_id"/>
       <Rnm id="172" nNm="_id" oNm="sismenu_id"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sismenu" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_menu" SupCls="Schema" SupNme="public">
       <Rnm id="173" nNm="descripcion" oNm="sismenu_descripcion"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sismenu" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_menu" SupCls="Schema" SupNme="public">
       <Rnm id="175" nNm="parent" oNm="sismenu_parent"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sismenu" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_menu" SupCls="Schema" SupNme="public">
       <Rnm id="178" nNm="updated_at" oNm="sismenu_updated_at"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sisvinculos" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_vinculos" SupCls="Schema" SupNme="public">
       <Rnm id="234" nNm="id" oNm="_id"/>
       <Rnm id="179" nNm="_id" oNm="sisvinculos_id"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sisvinculos" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_vinculos" SupCls="Schema" SupNme="public">
       <Rnm id="180" nNm="link" oNm="sisvinculos_link"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sisvinculos" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_vinculos" SupCls="Schema" SupNme="public">
       <Rnm id="182" nNm="updated_at" oNm="sisvinculos_updated_at"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="usuarios" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_usuarios" SupCls="Schema" SupNme="public">
       <Rnm id="230" nNm="id" oNm="_id"/>
       <Rnm id="183" nNm="_id" oNm="usuarios_id"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="usuarios" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_usuarios" SupCls="Schema" SupNme="public">
       <Rnm id="184" nNm="username" oNm="usuarios_username"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="usuarios" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_usuarios" SupCls="Schema" SupNme="public">
       <Rnm id="185" nNm="password" oNm="usuarios_password"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="usuarios" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_usuarios" SupCls="Schema" SupNme="public">
       <Rnm id="186" nNm="nombre" oNm="usuarios_nombre"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="usuarios" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_usuarios" SupCls="Schema" SupNme="public">
       <Rnm id="187" nNm="apellido" oNm="usuarios_apellido"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="usuarios" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_usuarios" SupCls="Schema" SupNme="public">
       <Rnm id="188" nNm="email" oNm="usuarios_email"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="usuarios" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_usuarios" SupCls="Schema" SupNme="public">
       <Rnm id="192" nNm="legajo" oNm="usuarios_legajo"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="usuarios" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_usuarios" SupCls="Schema" SupNme="public">
       <Rnm id="193" nNm="activationcode" oNm="usuarios_activationcode"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="usuarios" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_usuarios" SupCls="Schema" SupNme="public">
       <Rnm id="194" nNm="tokenforgotpasswd" oNm="usuarios_tokenforgotpasswd"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="usuarios" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_usuarios" SupCls="Schema" SupNme="public">
       <Rnm id="195" nNm="created_at" oNm="usuarios_created_at"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="usuarios" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_usuarios" SupCls="Schema" SupNme="public">
       <Rnm id="196" nNm="updated_at" oNm="usuarios_updated_at"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="perfiles" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_perfiles" SupCls="Schema" SupNme="public">
       <Rnm id="229" nNm="id" oNm="_id"/>
       <Rnm id="197" nNm="_id" oNm="perfiles_id"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="perfiles" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_perfiles" SupCls="Schema" SupNme="public">
       <Rnm id="198" nNm="descripcion" oNm="perfiles_descripcion"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="perfiles" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_perfiles" SupCls="Schema" SupNme="public">
       <Rnm id="199" nNm="estado" oNm="perfiles_estado"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="perfiles" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_perfiles" SupCls="Schema" SupNme="public">
       <Rnm id="201" nNm="updated_at" oNm="perfiles_updated_at"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sispermisos" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_permisos" SupCls="Schema" SupNme="public">
       <Rnm id="203" nNm="tabla" oNm="sispermisos_tabla"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sispermisos" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_permisos" SupCls="Schema" SupNme="public">
       <Rnm id="204" nNm="flag_read" oNm="sispermisos_flag_read"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sispermisos" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_permisos" SupCls="Schema" SupNme="public">
       <Rnm id="205" nNm="flag_insert" oNm="sispermisos_flag_insert"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sispermisos" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_permisos" SupCls="Schema" SupNme="public">
       <Rnm id="206" nNm="flag_update" oNm="sispermisos_flag_update"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sispermisos" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_permisos" SupCls="Schema" SupNme="public">
       <Rnm id="207" nNm="flag_delete" oNm="sispermisos_flag_delete"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sispermisos" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_permisos" SupCls="Schema" SupNme="public">
       <Rnm id="209" nNm="updated_at" oNm="sispermisos_updated_at"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sisperfil" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_perfil" SupCls="Schema" SupNme="public">
       <Rnm id="228" nNm="id" oNm="_id"/>
       <Rnm id="210" nNm="_id" oNm="sisperfil_id"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sisperfil" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_perfil" SupCls="Schema" SupNme="public">
       <Rnm id="211" nNm="estado" oNm="sisperfil_estado"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sisperfil" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_perfil" SupCls="Schema" SupNme="public">
       <Rnm id="213" nNm="updated_at" oNm="sisperfil_updated_at"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="tabgral" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_tabgral" SupCls="Schema" SupNme="public">
       <Rnm id="216" nNm="created_at" oNm="tabgral_created_at"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="tabgral" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_tabgral" SupCls="Schema" SupNme="public">
       <Rnm id="217" nNm="updated_at" oNm="tabgral_updated_at"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="grupos_tabgral" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_grupos_tabgral" SupCls="Schema" SupNme="public">
       <Rnm id="232" nNm="id" oNm="_id"/>
       <Rnm id="218" nNm="_id" oNm="grupos_tabgral_id"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="grupos_tabgral" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_grupos_tabgral" SupCls="Schema" SupNme="public">
       <Rnm id="219" nNm="descripcion" oNm="grupos_tabgral_descripcion"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="grupos_tabgral" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_grupos_tabgral" SupCls="Schema" SupNme="public">
       <Rnm id="220" nNm="created_at" oNm="grupos_tabgral_created_at"/>
     </RnmCh>
-    <RnmCh ObjCls="Column" ParCls="Table" ParNme="grupos_tabgral" SupCls="Schema" SupNme="public">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_grupos_tabgral" SupCls="Schema" SupNme="public">
       <Rnm id="221" nNm="updated_at" oNm="grupos_tabgral_updated_at"/>
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="mesas" SupCls="Schema" SupNme="public">
@@ -942,6 +1461,108 @@
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="opmenu" SupCls="Schema" SupNme="public">
       <Rnm id="226" nNm="created_at" oNm="updated_at"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_sessiones" SupCls="Schema" SupNme="public">
+      <Rnm id="235" nNm="usuario_id" oNm="usuarios_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="localidades" SupCls="Schema" SupNme="public">
+      <Rnm id="236" nNm="departamento_id" oNm="departamentos_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="public" SupCls="" SupNme="">
+      <Rnm id="237" nNm="sys_menu" oNm="sismenu"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="public" SupCls="" SupNme="">
+      <Rnm id="238" nNm="sys_vinculos" oNm="sisvinculos"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="public" SupCls="" SupNme="">
+      <Rnm id="239" nNm="sys_permisos" oNm="sispermisos"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="public" SupCls="" SupNme="">
+      <Rnm id="240" nNm="sys_perfil" oNm="sisperfil"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="public" SupCls="" SupNme="">
+      <Rnm id="242" nNm="sys_perfiles" oNm="perfiles"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="public" SupCls="" SupNme="">
+      <Rnm id="243" nNm="sys_grupos_tabgral" oNm="grupos_tabgral"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="public" SupCls="" SupNme="">
+      <Rnm id="244" nNm="sys_usuarios" oNm="usuarios"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="public" SupCls="" SupNme="">
+      <Rnm id="245" nNm="sys_errores_sessiones" oNm="errores_sessiones"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="public" SupCls="" SupNme="">
+      <Rnm id="246" nNm="sys_sessiones" oNm="sessiones"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="lineas_acciones_ciclos" SupCls="Schema" SupNme="public">
+      <Rnm id="247" nNm="linea_accion_id" oNm="lineas_acciones_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="lineas_acciones_ciclos" SupCls="Schema" SupNme="public">
+      <Rnm id="248" nNm="ciclo_id" oNm="ciclos_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="periodos_escuelas" SupCls="Schema" SupNme="public">
+      <Rnm id="249" nNm="periodo_id" oNm="periodos_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="horas_institucionales" SupCls="Schema" SupNme="public">
+      <Rnm id="250" nNm="periodo_escuela_id" oNm="periodos_escuelas_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="horas_institucionales" SupCls="Schema" SupNme="public">
+      <Rnm id="272" nNm="escuela_id_origen" oNm="escuela_id_orgin"/>
+      <Rnm id="271" nNm="escuela_id_orgin" oNm="escuela_id"/>
+      <Rnm id="251" nNm="escuela_id" oNm="escuelas_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="escuelas" SupCls="Schema" SupNme="public">
+      <Rnm id="252" nNm="localidad_id" oNm="localidades_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="lineas_acciones_ciclos" SupCls="Schema" SupNme="public">
+      <Rnm id="253" nNm="departamento_id" oNm="departamentos_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="escuelas" SupCls="Schema" SupNme="public">
+      <Rnm id="254" nNm="director_id" oNm="directores_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="horas_institucionales" SupCls="Schema" SupNme="public">
+      <Rnm id="255" nNm="docente_perfil_id" oNm="docentes_perfiles_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="horas_institucionales" SupCls="Schema" SupNme="public">
+      <Rnm id="273" nNm="escuela_id_destino" oNm="necesidad_id"/>
+      <Rnm id="256" nNm="necesidad_id" oNm="necesidades_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="horas_institucionales" SupCls="Schema" SupNme="public">
+      <Rnm id="265" nNm="linea_accion_id" oNm="linea_accion"/>
+      <Rnm id="262" nNm="linea_accion" oNm="linea_accion_ciclo_id"/>
+      <Rnm id="257" nNm="linea_accion_ciclo_id" oNm="lineas_acciones_ciclos_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="circuitos" SupCls="Schema" SupNme="public">
+      <Rnm id="258" nNm="departamento_id" oNm="departamentos_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="depatamenos_circuitos" SupCls="Schema" SupNme="public">
+      <Rnm id="259" nNm="circuito_id" oNm="circuitos_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="depatamenos_circuitos" SupCls="Schema" SupNme="public">
+      <Rnm id="260" nNm="departamento_id" oNm="departamentos_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="periodos_escuelas" SupCls="Schema" SupNme="public">
+      <Rnm id="261" nNm="cantidad_horas" oNm="cantidad_hora"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="docentes_perfiles" SupCls="Schema" SupNme="public">
+      <Rnm id="263" nNm="docente_id" oNm="docentes_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="docentes_perfiles" SupCls="Schema" SupNme="public">
+      <Rnm id="264" nNm="perfil_id" oNm="perfiles_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="docentes_escuelas" SupCls="Schema" SupNme="public">
+      <Rnm id="266" nNm="docente_perfil_id" oNm="docente_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="periodos" SupCls="Schema" SupNme="public">
+      <Rnm id="267" nNm="fecha_fin" oNm="fecha_finalizacion"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="public" SupCls="" SupNme="">
+      <Rnm id="268" nNm="lineas_accion" oNm="lineas_acciones"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="perfiles" SupCls="Schema" SupNme="public">
+      <Rnm id="270" nNm="nombre" oNm="escuela_id_origen"/>
+      <Rnm id="269" nNm="escuela_id_origen" oNm="nombre"/>
     </RnmCh>
   </RnmMgr>
   <DbDocOptionMgr>
@@ -966,6 +1587,6 @@
     <TreePath/>
     <TreePath>/Schemas (1)</TreePath>
     <TreePath>/Schemas (1)/public</TreePath>
-    <TreePath>/Schemas (1)/public/Tables (8)</TreePath>
+    <TreePath>/Schemas (1)/public/Tables (24)</TreePath>
   </TreePaths>
 </Db>
