@@ -207,7 +207,7 @@ class BasiCrud {
 	    	
 	   	$CI->pagination->initialize($config);
 	   	$links = $CI->pagination->create_links();
-	   	$num_pages = $CI->pagination->num_pages;
+	   	//$num_pages = $CI->pagination->num_pages;
 	   
 	   	if($links) {
 	   		//$data= "Registros encontrados:&nbsp;".$config['total_rows']."&nbsp;|&nbsp;P&aacute;gina ".$CI->pagination->cur_page."&nbsp;de&nbsp;".$num_pages."&nbsp;|&nbsp;".$links;  

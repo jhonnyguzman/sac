@@ -24,10 +24,10 @@ $config['updated_at']='updated_at';
 
 /* Config fields for search */
 
-$config['search_by_id']= 1;
+$config['search_by_id']= 0;
 $config['search_by_dni']= 0;
-$config['search_by_apellido']= 0;
-$config['search_by_nombre']= 0;
+$config['search_by_apellido']= 1;
+$config['search_by_nombre']= 1;
 $config['search_by_telefono']= 0;
 $config['search_by_email']= 0;
 $config['search_by_titulo']= 0;
@@ -50,7 +50,7 @@ $config['show_updated_at']= 1;
 
 /* Config params of pagination */
 
-$config['pag_perpage']= 4;
+$config['pag_perpage']= 10;
 
 /* Config flash messages */
 

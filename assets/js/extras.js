@@ -27,7 +27,7 @@ function searchData(form,loader)
         success: function(data) {
         		$("#"+loader).html(data);
         }
-    	})        
+    	});        
       return false;
     });	  
 }

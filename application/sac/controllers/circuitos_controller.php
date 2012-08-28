@@ -167,7 +167,6 @@ class Circuitos_Controller extends CI_Controller {
 		$data_search_circuitos = array(); 
 		$data_search_pagination = array(); 
 		
-		$data['flag'] = $this->flags;
 		if($this->flagR)
 		{
 			$fieldSearch = $this->basicrud->getFieldSearch($this->circuitos_model->getFieldsTable_m());

@@ -211,6 +211,8 @@ class Docentes_Controller extends CI_Controller {
 			
 			$data['fieldShow'] = $this->basicrud->getFieldToShow($this->docentes_model->getFieldsTable_m());
 			$this->load->view('docentes_view/record_list_docentes',$data);
+
+
 		}
 
 	}
