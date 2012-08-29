@@ -11,7 +11,7 @@ class Admin extends CI_Controller {
 	function index()
 	{
 		//code here
-		$data['subtitle'] = 'Test';
+		//$data['subtitle'] = 'Test';
 		//$this->load->view('admin_view/admin_home', $data);
 		redirect('usuarios_controller','location');
 	}

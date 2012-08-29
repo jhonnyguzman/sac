@@ -506,6 +506,9 @@
       <Cl au="0" df="" nm="iconpath" nu="1">
         <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
+      <Cl au="0" df="" nm="active" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
       <Cl au="0" df="now()" nm="created_at" nu="1">
         <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
@@ -872,7 +875,7 @@
       <Zone bkCl="ffece9d8" h="1471" nm="Sección Principal" w="763" x="132" y="435"/>
     </Zones>
   </Dgm>
-  <RnmMgr NxRnmId="274">
+  <RnmMgr NxRnmId="276">
     <RnmCh ObjCls="Schema" ParCls="Database" ParNme="callcenter" SupCls="" SupNme="">
       <Rnm id="1" nNm="public" oNm="schemaA"/>
     </RnmCh>
@@ -1254,6 +1257,7 @@
       <Rnm id="139" nNm="pedidos_created_at" oNm="pedidos_updated_at"/>
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_menu" SupCls="Schema" SupNme="public">
+      <Rnm id="274" nNm="active" oNm="created_at"/>
       <Rnm id="177" nNm="created_at" oNm="sismenu_created_at"/>
       <Rnm id="141" nNm="sismenu_created_at" oNm="sismenu_updated_at"/>
     </RnmCh>
@@ -1347,6 +1351,7 @@
       <Rnm id="175" nNm="parent" oNm="sismenu_parent"/>
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_menu" SupCls="Schema" SupNme="public">
+      <Rnm id="275" nNm="created_at" oNm="updated_at"/>
       <Rnm id="178" nNm="updated_at" oNm="sismenu_updated_at"/>
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="sys_vinculos" SupCls="Schema" SupNme="public">

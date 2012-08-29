@@ -31,7 +31,7 @@
 			<div class="controls">
 				<select name="estado" id="estado" data-native-menu="false">
 					<?php foreach ($estados as $f): ?>
-						<?php if($f->_id == $perfiles->estado): ?>
+						<?php if($f->id == $perfiles->estado): ?>
 							<option value="<?=$f->id?>" selected ><?=$f->descripcion?></option>
 						<?php else: ?>
 							<option value="<?=$f->id?>"><?=$f->descripcion?></option>
