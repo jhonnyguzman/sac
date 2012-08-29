@@ -12,36 +12,51 @@
 			
 		</div>		
 	<?php endif; ?>
-<form action="<?=base_url()?>docentes_controller/edit_c/<?=$docentes->id?>" method="post" name="formEditdocentes" id="formEditdocentes">
-	<div class="control-group">
+	<form action="<?=base_url()?>docentes_controller/edit_c/<?=$docentes->id?>" method="post" name="formEditdocentes" id="formEditdocentes" class="form-horizontal">
+		<div class="control-group">
 			<label class="control-label" for="dni"></span><?=$this->config->item('dni')?>:</label>
-		<input type="text" value="<?=$docentes->dni?>" name="dni" id="dni"></input>
-	</div>
-	<div class="control-group">
+			<div class="controls">
+				<input type="text" value="<?=$docentes->dni?>" name="dni" id="dni"></input>
+			</div>
+		</div>
+		<div class="control-group">
 			<label class="control-label" for="apellido"><?=$this->config->item('apellido')?>:</label>
-		<input type="text" value="<?=$docentes->apellido?>" name="apellido" id="apellido"></input>
-	</div>
-	<div class="control-group">
+			<div class="controls">
+				<input type="text" value="<?=$docentes->apellido?>" name="apellido" id="apellido"></input>
+			</div>
+		</div>
+		<div class="control-group">
 			<label class="control-label" for="nombre"><?=$this->config->item('nombre')?>:</label>
-		<input type="text" value="<?=$docentes->nombre?>" name="nombre" id="nombre"></input>
-	</div>
-	<div class="control-group">
+			<div class="controls">
+				<input type="text" value="<?=$docentes->nombre?>" name="nombre" id="nombre"></input>
+			</div>
+		</div>
+		<div class="control-group">
 			<label class="control-label" for="telefono"><?=$this->config->item('telefono')?>:</label>
-		<input type="text" value="<?=$docentes->telefono?>" name="telefono" id="telefono"></input>
-	</div>
-	<div class="control-group">
+			<div class="controls">
+				<input type="text" value="<?=$docentes->telefono?>" name="telefono" id="telefono"></input>
+			</div>
+		</div>
+		<div class="control-group">
 			<label class="control-label" for="email"><?=$this->config->item('email')?>:</label>
-		<input type="text" value="<?=$docentes->email?>" name="email" id="email"></input>
-	</div>
-	<div class="control-group">
+			<div class="controls">
+				<input type="text" value="<?=$docentes->email?>" name="email" id="email"></input>
+			</div>
+		</div>
+		<div class="control-group">
 			<label class="control-label" for="titulo"><?=$this->config->item('titulo')?>:</label>
-		<input type="text" value="<?=$docentes->titulo?>" name="titulo" id="titulo"></input>
-	</div>
-	<div class="control-group">
+			<div class="controls">
+				<input type="text" value="<?=$docentes->titulo?>" name="titulo" id="titulo"></input>
+			</div>
+		</div>
+		<div class="control-group">
 			<label class="control-label" for="habilitado"><?=$this->config->item('habilitado')?>:</label>
-		<input type="text" value="<?=$docentes->habilitado?>" name="habilitado" id="habilitado"></input>
-	</div>
-	<div class="form-actions">
+			<div class="controls">
+				<input type="text" value="<?=$docentes->habilitado?>" name="habilitado" id="habilitado"></input>
+			</div>
+		</div>
+		
+		<div class="form-actions">
 			<a href="<?=base_url()?>docentes_controller/index" class="btn" >Cancelar</a>
 			<button type="submit" class="btn btn-primary">Modificar</button>
 		</div>

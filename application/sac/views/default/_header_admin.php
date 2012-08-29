@@ -1,11 +1,11 @@
 <!DOCTYPE html> 
 <html> 
-	<head> 
-	<meta charset="utf-8" />
-	<title>Sac</title> 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="<?=base_url()?>assets/css/bootstrap.css" rel="stylesheet">
-	<style type="text/css">
+  <head> 
+  <meta charset="utf-8" />
+  <title>Sac</title> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="<?=base_url()?>assets/css/bootstrap.css" rel="stylesheet">
+  <style type="text/css">
       body {
         padding-top: 50px;
         padding-bottom: 40px;
@@ -14,7 +14,7 @@
         height: 63px;
       }
     </style>
-	<link href="<?=base_url()?>assets/css/bootstrap-responsive.css" rel="stylesheet">
+  <link href="<?=base_url()?>assets/css/bootstrap-responsive.css" rel="stylesheet">
 
       <!-- Le javascript
     ================================================== -->
@@ -23,6 +23,7 @@
     <script src="<?=base_url()?>assets/js/bootstrap-transition.js"></script>
     <script src="<?=base_url()?>assets/js/bootstrap-alert.js"></script>
     <script src="<?=base_url()?>assets/js/bootstrap-dropdown.js"></script>
+    <script src="<?=base_url()?>assets/js/bootstrap-modal.js"></script>
     <script src="<?=base_url()?>assets/js/bootstrap-scrollspy.js"></script>
     <script src="<?=base_url()?>assets/js/bootstrap-tab.js"></script>
     <script src="<?=base_url()?>assets/js/bootstrap-popover.js"></script>
@@ -74,4 +75,4 @@
      
 
  
-		
+    

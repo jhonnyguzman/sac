@@ -25,7 +25,7 @@ $config['updated_at']='updated_at';
 /* Config fields for search */
 
 $config['search_by_id']= 0;
-$config['search_by_dni']= 0;
+$config['search_by_dni']= 1;
 $config['search_by_apellido']= 1;
 $config['search_by_nombre']= 1;
 $config['search_by_telefono']= 0;
