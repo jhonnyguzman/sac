@@ -56,16 +56,24 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="localidad_id"><?=$this->config->item('localidad_nombre')?>:</label>
+			<label class="control-label" for="departamento_id"><?=$this->config->item('departamento_nombre')?>:</label>
 			<div class="controls">
-				<select name="localidad_id" id="localidad_id" >
-					<?php foreach ($localidades as $f): ?>
-						<?php if($f->id == $escuelas->localidad_id): ?>
+				<select name="departamento_id" id="departamento_id" onChange="getLocalidades('<?=base_url()?>departamentos_controller/getLocalidades/')">
+					<?php foreach($departamentos as $f):?>
+						<?php if($f->id == $escuelas->departamento_id): ?>
 							<option value="<?=$f->id?>" selected ><?=$f->nombre?></option>
 						<?php else: ?>
 							<option value="<?=$f->id?>"><?=$f->nombre?></option>
 						<?php endif; ?>
-					<?php endforeach; ?>
+					<?php endforeach;?>
+				</select>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="localidad_id"><?=$this->config->item('localidad_nombre')?>:</label>
+			<div class="controls">
+				<select name="localidad_id" id="localidad_id" >
+	
 				</select>
 			</div>
 		</div>
@@ -104,5 +112,11 @@
 	</form>
 
 </div><!--/span10-->
+
+<script type="text/javascript">
+	$(document).ready(function(){ 
+		getLocalidades('<?=base_url()?>departamentos_controller/getLocalidades/','<?=$escuelas->localidad_id?>');
+	});
+</script>
 
 <?=$this->load->view('default/_footer_admin')?>

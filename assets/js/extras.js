@@ -32,16 +32,33 @@ function searchData(form,loader)
     });	  
 }
 
-function calcTotal(price){
-    if($("#cantidad").val() != ''){
-        $("#montotal").val($("#cantidad").val() * price);
-    }
-}
-
 
 function updateContent(url,div)
 {
     $.get(url, function(data){
         $('#'+div).html(data);
+    });
+}
+
+function getLocalidades(url, loc_selected)
+{
+    var options = '';
+    var url_f = url + $("#departamento_id").val()
+    $.getJSON(url_f, function(data) {
+        $("#localidad_id").find("option").remove();
+        if(data != 'none'){
+            $.each(data, function(key, val) {
+                if(loc_selected){
+                    if(loc_selected == val.id){
+                        options = options + "<option value='"+val.id+"' selected>"+ val.nombre +"</options>";
+                    }else{
+                        options = options + "<option value='"+val.id+"'>"+ val.nombre +"</options>";
+                    }
+                }else{
+                    options = options + "<option value='"+val.id+"'>"+ val.nombre +"</options>";
+                }
+            });
+            $("#localidad_id").append(options);
+        }
     });
 }

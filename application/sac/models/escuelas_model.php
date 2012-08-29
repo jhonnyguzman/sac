@@ -54,6 +54,8 @@ class Escuelas_Model extends CI_Model {
 			$this->db->set('created_at', $options['created_at']);
 		if(isset($options['updated_at']))
 			$this->db->set('updated_at', $options['updated_at']);
+		if(isset($options['departamento_id']))
+			$this->db->set('departamento_id', $options['departamento_id']);
 
 		$this->db->where('id', $options['id']);
 
@@ -92,27 +94,29 @@ class Escuelas_Model extends CI_Model {
 	{
 		//code here
 		if(isset($options['id']))
-			$this->db->where('id', $options['id']);
+			$this->db->where('e.id', $options['id']);
 		if(isset($options['cue']))
-			$this->db->where('cue', $options['cue']);
+			$this->db->where('e.cue', $options['cue']);
 		if(isset($options['nombre']))
-			$this->db->like('nombre', $options['nombre']);
+			$this->db->like('e.nombre', $options['nombre']);
 		if(isset($options['direccion']))
-			$this->db->like('direccion', $options['direccion']);
+			$this->db->like('e.direccion', $options['direccion']);
 		if(isset($options['telefono']))
-			$this->db->like('telefono', $options['telefono']);
+			$this->db->like('e.telefono', $options['telefono']);
 		if(isset($options['email']))
-			$this->db->like('email', $options['email']);
+			$this->db->like('e.email', $options['email']);
 		if(isset($options['habilitado']))
-			$this->db->where('habilitado', $options['habilitado']);
+			$this->db->where('e.habilitado', $options['habilitado']);
 		if(isset($options['localidad_id']))
-			$this->db->where('localidad_id', $options['localidad_id']);
+			$this->db->where('e.localidad_id', $options['localidad_id']);
 		if(isset($options['director_id']))
-			$this->db->where('director_id', $options['director_id']);
+			$this->db->where('e.director_id', $options['director_id']);
 		if(isset($options['created_at']))
-			$this->db->where('created_at', $options['created_at']);
+			$this->db->where('e.created_at', $options['created_at']);
 		if(isset($options['updated_at']))
-			$this->db->where('updated_at', $options['updated_at']);
+			$this->db->where('e.updated_at', $options['updated_at']);
+		if(isset($options['departamento_id']))
+			$this->db->where('e.departamento_id', $options['departamento_id']);
 
 		//limit / offset
 		if(isset($options['limit']) && isset($options['offset']))
@@ -124,7 +128,10 @@ class Escuelas_Model extends CI_Model {
 		if(isset($options['sortBy']) && isset($options['sortDirection']))
 			$this->db->order_by($options['sortBy'],$options['sortDirection']);
 
-		$query = $this->db->get('escuelas');
+		$this->db->select("e.*, d.nombre as departamento_nombre");
+		$this->db->from("escuelas as e");
+		$this->db->join("departamentos as d","d.id = e.departamento_id");
+		$query = $this->db->get();
 
 		if(isset($options['count'])) return $query->num_rows();
 
@@ -164,6 +171,7 @@ class Escuelas_Model extends CI_Model {
 		$fields[]='email';
 		$fields[]='habilitado';
 		$fields[]='localidad_id';
+		$fields[]='departamento_id';
 		$fields[]='director_id';
 		$fields[]='created_at';
 		$fields[]='updated_at';

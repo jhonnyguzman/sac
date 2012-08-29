@@ -15,6 +15,7 @@ class Escuelas_Controller extends CI_Controller {
 		if($this->session->userdata('logged_in') == true) { 
 			$this->load->model('escuelas_model');
 			$this->load->model('localidades_model');
+			$this->load->model('departamentos_model');
 			$this->load->model('directores_model');
 			$this->config->load('escuelas_settings');
 			$data['flags'] = $this->basicauth->getPermissions('escuelas');
@@ -78,6 +79,7 @@ class Escuelas_Controller extends CI_Controller {
 			$data_escuelas['localidad_id'] = $this->input->post('localidad_id');
 			$data_escuelas['director_id'] = $this->input->post('director_id');
 			$data_escuelas['updated_at'] = $this->basicrud->formatDateToBD();
+			$data_escuelas['departamento_id'] = $this->input->post('departamento_id');
 
 			$id_escuelas = $this->escuelas_model->add_m($data_escuelas);
 			if($id_escuelas){ 
@@ -88,6 +90,7 @@ class Escuelas_Controller extends CI_Controller {
 				redirect('escuelas_controller','location');
 			}
 		}else{
+			$data['departamentos'] = $this->departamentos_model->get_m();
 			$data['localidades'] = $this->localidades_model->get_m();
 			$data['directores'] = $this->directores_model->get_m();
 			$this->load->view('escuelas_view/form_add_escuelas',$data);
@@ -108,8 +111,8 @@ class Escuelas_Controller extends CI_Controller {
 	{
 		//code here
 		if(!$this->flagU){
-			echo $this->config->item('accessTitle');
-			exit();
+			$this->session->set_flashdata('flashError', $this->config->item('accessTitle')); 
+			redirect('escuelas_controller','location');
 		}
 
 		$data = array();
@@ -137,6 +140,7 @@ class Escuelas_Controller extends CI_Controller {
 			$data_escuelas['localidad_id'] = $this->input->post('localidad_id');
 			$data_escuelas['director_id'] = $this->input->post('director_id');
 			$data_escuelas['updated_at'] = $this->basicrud->formatDateToBD();
+			$data_escuelas['departamento_id'] = $this->input->post('departamento_id');
 
 			if($this->escuelas_model->edit_m($data_escuelas)){ 
 				$this->session->set_flashdata('flashConfirm', $this->config->item('escuelas_flash_edit_message')); 
@@ -146,6 +150,7 @@ class Escuelas_Controller extends CI_Controller {
 				redirect('escuelas_controller','location');
 			}
 		}else{
+			$data['departamentos'] = $this->departamentos_model->get_m();
 			$data['localidades'] = $this->localidades_model->get_m();
 			$data['directores'] = $this->directores_model->get_m();
 			$this->load->view('escuelas_view/form_edit_escuelas',$data);

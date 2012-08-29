@@ -197,4 +197,15 @@ class Departamentos_Controller extends CI_Controller {
 
 	}
 
+
+	function getLocalidades($departamento_id)
+	{
+		$this->load->model('localidades_model');
+		$localidades = $this->localidades_model->get_m(array('departamento_id' => $departamento_id));
+		if($localidades){
+			echo json_encode($localidades);
+		}else{
+			echo json_encode("none");
+		}
+	}
 }

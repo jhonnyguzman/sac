@@ -50,12 +50,19 @@
 			</div>
 		</div>
 		<div class="control-group">
+			<label class="control-label" for="departamento_id"><?=$this->config->item('departamento_nombre')?>:</label>
+			<div class="controls">
+				<select name="departamento_id" id="departamento_id" onChange="getLocalidades('<?=base_url()?>departamentos_controller/getLocalidades/')">
+					<?php foreach($departamentos as $f):?>
+						<option value="<?=$f->id?>"><?=$f->nombre?></option>
+					<?php endforeach;?>
+				</select>
+			</div>
+		</div>
+		<div class="control-group">
 			<label class="control-label" for="localidad_id"><?=$this->config->item('localidad_nombre')?>:</label>
 			<div class="controls">
 				<select name="localidad_id" id="localidad_id">
-					<?php foreach($localidades as $f):?>
-						<option value="<?=$f->id?>"><?=$f->nombre?></option>
-					<?php endforeach;?>
 				</select>
 			</div>
 		</div>
@@ -79,4 +86,11 @@
 
 </div><!--/span10-->
 
+<script type="text/javascript">
+	$(document).ready(function(){ 
+		getLocalidades('<?=base_url()?>departamentos_controller/getLocalidades/');
+	});
+</script>
+
 <?=$this->load->view('default/_footer_admin')?>
+

@@ -209,12 +209,20 @@
       <Cl au="0" df="" nm="director_id" nu="1">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
+      <Cl au="0" df="" nm="departamento_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
       <Cl au="0" df="now()" nm="created_at" nu="1">
         <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="updated_at" nu="1">
         <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
+      <Fk deAc="1" nm="escuelas_departamento_id" prLkCl="id" upAc="1">
+        <PrTb mn="0" nm="departamentos" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="escuelas" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="departamento_id" prCl="id"/>
+      </Fk>
       <Fk deAc="3" nm="fk_escuelas_directores" prLkCl="id" upAc="3">
         <PrTb mn="0" nm="directores" oe="1" sch="public" zr="0"/>
         <CdTb mn="0" nm="escuelas" oe="1" sch="public" zr="0"/>
@@ -828,11 +836,11 @@
     <TbGl bkCl="ffccccff" sch="public" tbl="sys_grupos_tabgral" x="910" y="276"/>
     <TbGl bkCl="ffccccff" sch="public" tbl="sys_sessiones" x="1316" y="51"/>
     <TbGl bkCl="ffccccff" sch="public" tbl="sys_errores_sessiones" x="1318" y="142"/>
-    <TbGl bkCl="ffccccff" sch="public" tbl="escuelas" x="153" y="470"/>
+    <TbGl bkCl="ffccccff" sch="public" tbl="escuelas" x="146" y="563"/>
     <TbGl bkCl="ffccccff" sch="public" tbl="departamentos" x="614" y="473"/>
-    <TbGl bkCl="ffccccff" sch="public" tbl="localidades" x="379" y="467"/>
+    <TbGl bkCl="ffccccff" sch="public" tbl="localidades" x="329" y="459"/>
     <TbGl bkCl="ffccccff" sch="public" tbl="circuitos" x="788" y="478"/>
-    <TbGl bkCl="ffccccff" sch="public" tbl="directores" x="150" y="717"/>
+    <TbGl bkCl="ffccccff" sch="public" tbl="directores" x="151" y="792"/>
     <TbGl bkCl="ffccccff" sch="public" tbl="docentes" x="1156" y="844"/>
     <TbGl bkCl="ffccccff" sch="public" tbl="perfiles" x="832" y="1042"/>
     <TbGl bkCl="ffccccff" sch="public" tbl="lineas_accion" x="238" y="1069"/>
@@ -847,6 +855,7 @@
     <FkGl bkCl="ff000000" nm="public.docentes_escuelas.docentes_escuelas_escuela_id"/>
     <FkGl bkCl="ff000000" nm="public.docentes_perfiles.fk_docentes_perfiles_docentes"/>
     <FkGl bkCl="ff000000" nm="public.docentes_perfiles.fk_docentes_perfiles_perfiles"/>
+    <FkGl bkCl="ff000000" nm="public.escuelas.escuelas_departamento_id"/>
     <FkGl bkCl="ff000000" nm="public.escuelas.fk_escuelas_directores"/>
     <FkGl bkCl="ff000000" nm="public.escuelas.fk_escuelas_localidades"/>
     <FkGl bkCl="ff000000" nm="public.horas_institucionales.fk_horas_institucionales_docentes_perfiles"/>
@@ -875,7 +884,7 @@
       <Zone bkCl="ffece9d8" h="1471" nm="Sección Principal" w="763" x="132" y="435"/>
     </Zones>
   </Dgm>
-  <RnmMgr NxRnmId="276">
+  <RnmMgr NxRnmId="278">
     <RnmCh ObjCls="Schema" ParCls="Database" ParNme="callcenter" SupCls="" SupNme="">
       <Rnm id="1" nNm="public" oNm="schemaA"/>
     </RnmCh>
@@ -1568,6 +1577,12 @@
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="perfiles" SupCls="Schema" SupNme="public">
       <Rnm id="270" nNm="nombre" oNm="escuela_id_origen"/>
       <Rnm id="269" nNm="escuela_id_origen" oNm="nombre"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="escuelas" SupCls="Schema" SupNme="public">
+      <Rnm id="276" nNm="departamento_id" oNm="created_at"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="escuelas" SupCls="Schema" SupNme="public">
+      <Rnm id="277" nNm="created_at" oNm="updated_at"/>
     </RnmCh>
   </RnmMgr>
   <DbDocOptionMgr>
