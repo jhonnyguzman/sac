@@ -1,15 +1,3 @@
-
-        </div>  <!-- end row-fluid-->
-
-      <hr>
-
-      <footer>
-        <p>&copy; NFC Admin 2012</p>
-      </footer>
-
-    </div><!--/.fluid-container-->
-
-
-
+	</div></div></div></div><!--<div class="footer">&copy; 2012 - Development by ElektraInformatica</div>-->
   </body>
 </html>

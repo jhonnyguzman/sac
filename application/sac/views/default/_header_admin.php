@@ -1,20 +1,26 @@
 <!DOCTYPE html> 
 <html> 
-  <head> 
-  <meta charset="utf-8" />
-  <title>Sac</title> 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="<?=base_url()?>assets/css/bootstrap.css" rel="stylesheet">
-  <style type="text/css">
-      body {
-        padding-top: 50px;
-        padding-bottom: 40px;
-      }
-      .c-content-height{
-        height: 63px;
-      }
-    </style>
-  <link href="<?=base_url()?>assets/css/bootstrap-responsive.css" rel="stylesheet">
+	<head> 
+	<meta charset="utf-8" />
+	<title>SAC - Sistema Administrativo Contable</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="<?=base_url()?>assets/css/bootstrap.css" rel="stylesheet">
+  <link href="<?=base_url()?>assets/css/template.css" rel="stylesheet">
+  <link href="<?=base_url()?>assets/css/menu.css" rel="stylesheet">
+  <!--[if IE 9]>
+      <link rel="stylesheet" media="screen" href="css/ie9.css"/>
+  <![endif]-->
+
+  <!--[if IE 8]>
+      <link rel="stylesheet" media="screen" href="css/ie8.css"/>
+  <![endif]-->
+
+  <!--[if IE 7]>
+      <link rel="stylesheet" media="screen" href="css/ie7.css"/>
+  <![endif]-->
+
+
+	<link href="<?=base_url()?>assets/css/bootstrap-responsive.css" rel="stylesheet">
 
       <!-- Le javascript
     ================================================== -->
@@ -23,7 +29,6 @@
     <script src="<?=base_url()?>assets/js/bootstrap-transition.js"></script>
     <script src="<?=base_url()?>assets/js/bootstrap-alert.js"></script>
     <script src="<?=base_url()?>assets/js/bootstrap-dropdown.js"></script>
-    <script src="<?=base_url()?>assets/js/bootstrap-modal.js"></script>
     <script src="<?=base_url()?>assets/js/bootstrap-scrollspy.js"></script>
     <script src="<?=base_url()?>assets/js/bootstrap-tab.js"></script>
     <script src="<?=base_url()?>assets/js/bootstrap-popover.js"></script>
@@ -31,48 +36,48 @@
     <script src="<?=base_url()?>assets/js/bootstrap-collapse.js"></script>
     <script src="<?=base_url()?>assets/js/extras.js"></script>
 
+    <script type="text/javascript" src="<?=base_url()?>assets/js/template/plugins/jquery-1.7.min.js"></script>
+    <script type="text/javascript" src="<?=base_url()?>assets/js/template/plugins/jquery-ui-1.8.16.custom.min.js"></script>
+    <script type="text/javascript" src="<?=base_url()?>assets/js/template/plugins/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="<?=base_url()?>assets/js/template/custom/general.js"></script>
+    <script type="text/javascript" src="<?=base_url()?>assets/js/template/custom/form.js"></script>
+    <!--[if lt IE 9]>
+      <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+    <![endif]-->
 </head> 
-<body> 
 
-<div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#">Sistema Administrativo Contable</a>
-          <div class="btn-group pull-right">
-            <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
-              <i class="icon-user"></i> <?=$this->session->userdata('username')?>
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Profile</a></li>
-              <li class="divider"></li>
-              <li><a href="<?=base_url()?>a/logout">Salir</a></li>
-            </ul>
-          </div>
-          <div class="nav-collapse">
-            <ul class="nav">
-            </ul>
-          </div><!--/.nav-collapse -->
+<body class="loggedin"> 
+
+<!-- START OF HEADER -->
+  <div class="header radius3">
+      <div class="headerinner">
+            <a href=""><img src="<?=base_url()?>assets/img/login/logo_dos.png" alt="" /></a>
+            <div class="headright">
+                <div id="userPanel" class="headercolumn">
+                    <a href="" class="userinfo radius2">
+                        <img src="<?=base_url()?>assets/img/template/avatar.png" alt="" class="radius2" />
+                        <span><strong><?=$this->session->userdata('username')?></strong></span>
+                    </a>
+                    <div class="userdrop">
+                        <ul>
+                          <li><a href="#">Profile</a></li>
+                          <li><a href="<?=base_url()?>a/logout">Salir</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="cssmenu"><?=$this->basicauth->getMenu()?></div>
         </div>
-      </div>
-</div>
+  </div>
 
-    <div class="container-fluid">
-      
-        <div class="row-fluid">
-                <div class="span2">
-                  <div class="well sidebar-nav">
-                    <?=$this->basicauth->getMenu()?>
-                  </div><!--/.well -->
-                </div><!--/span-->
+
+  <div class="mainwrapper">
+    <div class="mainwrapperinner">
+      <div class="maincontent noright">
+        <div class="maincontentinner">                
 
 
      
 
  
-    
+		
