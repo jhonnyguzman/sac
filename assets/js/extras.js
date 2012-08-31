@@ -16,6 +16,16 @@ function deleteRow(url)
 
 }
 
+function deletePeriodoActivo(url, div)
+{
+    if(confirm("¿Estás seguro de eliminar este item?")){
+        $.get(url, function(data){
+            $('#'+div).html(data);
+        });
+    }
+
+}
+
 function searchData(form,loader)
 {    
 	$("#"+form).submit(function() 
@@ -40,6 +50,24 @@ function updateContent(url,div)
     });
 }
 
+
+// function to send form through ajax
+function submitData(idform,loader_div)
+{    
+    $("#"+idform).submit(function() 
+    {
+     $.ajax({
+        type: 'POST',
+        url: $(this).attr('action'),
+        data: $(this).serialize(),
+        success: function(data) {
+               $("#"+loader_div).html(data);
+        }
+        })        
+    return false;
+    }); 
+}
+
 function getLocalidades(url, loc_selected)
 {
     var options = '';
@@ -61,4 +89,14 @@ function getLocalidades(url, loc_selected)
             $("#localidad_id").append(options);
         }
     });
+}
+
+function loadModal(url)
+{
+    $('div#myModal').load(url,function(){
+        $(this).modal({
+            keyboard:true,
+            backdrop:false
+        });
+    }).modal('show'); 
 }

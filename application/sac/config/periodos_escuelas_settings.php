@@ -11,14 +11,16 @@ $config['accessTitle']='<div class="accessTitle"> No tienes permiso para realiza
 
 /* Config labels of the form fields */
 
-$config['id']='id';
+$config['id']='Id';
 $config['periodo_id']='periodo_id';
+$config['periodo_nombre']='Periodo';
 $config['escuelas_id']='escuelas_id';
-$config['matricula']='matricula';
-$config['resolucion']='resolucion';
-$config['cantidad_horas']='cantidad_horas';
-$config['created_at']='created_at';
-$config['updated_at']='updated_at';
+$config['escuelas_nombre']='Escuela';
+$config['matricula']='Matricula';
+$config['resolucion']='Resoluci&oacute;n';
+$config['cantidad_horas']='Cantidad de horas';
+$config['created_at']='Fecha de alta';
+$config['updated_at']='Actualizado el';
 
 /* Config fields for search */
 

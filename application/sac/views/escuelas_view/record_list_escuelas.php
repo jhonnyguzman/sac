@@ -24,6 +24,7 @@
 								<?php if($flag['d']):?>
 									<a href="#"  onClick="deleteRow('<?=base_url()?>escuelas_controller/delete_c/<?=$f->id?>')" title="Eliminar">Eliminar</a>
 								<?php endif;?>
+									<a href="javascript:void(0)" onClick="loadModal('<?=base_url()?>periodos_escuelas_controller/showModal_c/<?=$f->id?>')">Periodos</a>
 							</td>
 						</tr>
 					<?php endforeach; ?>
@@ -38,6 +39,11 @@
 		<?php else: ?>
 			<p>No results!</p>
 		<?php endif; ?>
+
+
+<div class="modal hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+</div>
 
 <script>
 	$(document).ready(function(){ 
