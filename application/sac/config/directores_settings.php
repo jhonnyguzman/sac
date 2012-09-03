@@ -23,10 +23,10 @@ $config['updated_at']='updated_at';
 
 /* Config fields for search */
 
-$config['search_by_id']= 1;
-$config['search_by_dni']= 0;
-$config['search_by_apellido']= 0;
-$config['search_by_nombre']= 0;
+$config['search_by_id']= 0;
+$config['search_by_dni']= 1;
+$config['search_by_apellido']= 1;
+$config['search_by_nombre']= 1;
 $config['search_by_telefono']= 0;
 $config['search_by_email']= 0;
 $config['search_by_habilitado']= 0;
@@ -51,9 +51,9 @@ $config['pag_perpage']= 10;
 
 /* Config flash messages */
 
-$config['directores_flash_add_message']= 'The directores has been successfully added.';
-$config['directores_flash_edit_message']= 'The directores has been successfully updated.';
-$config['directores_flash_delete_message']= 'The directores has been successfully deleted';
+$config['directores_flash_add_message']= 'Registro agregado correctamente.';
+$config['directores_flash_edit_message']= 'Registro editado correctamente.';
+$config['directores_flash_delete_message']= 'Registro eliminado correctamente';
 $config['directores_flash_error_delete_message']= 'The directores hasn\'t been deletedd';
 $config['directores_flash_error_message']= 'A database error has occured, please contact your administrator.';
 

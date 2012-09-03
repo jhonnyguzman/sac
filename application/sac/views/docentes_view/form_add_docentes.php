@@ -52,7 +52,8 @@
 		<div class="control-group">
 			<label class="control-label" for="habilitado"><?=$this->config->item('habilitado')?>:</label>
 			<div class="controls">
-				<input type="text" name="habilitado" id="habilitado"></input>
+				Si <input type='radio' name='habilitado' id='habilitado' value='1' />
+            	No <input type='radio' name='habilitado' id='habilitado' value='0' checked='checked' />
 			</div>
 		</div>
 	
@@ -64,5 +65,14 @@
 		</form>
 		
 </div><!--/span10-->
+
+<SCRIPT LANGUAGE='JavaScript'>
+	var dni = new LiveValidation('dni'); dni.add( Validate.Presence ); dni.add( Validate.Numericality ); dni.add( Validate.Length, { is: 8 } );
+	var apellido = new LiveValidation('apellido'); apellido.add( Validate.Presence ); apellido.add( Validate.Length, { maximum: 10 } );
+	var nombre = new LiveValidation('nombre'); nombre.add( Validate.Presence ); nombre.add( Validate.Length, { maximum: 15 } );
+	var telefono = new LiveValidation('telefono'); telefono.add( Validate.Numericality ); telefono.add( Validate.Length, { maximum: 15 } );
+	var email = new LiveValidation('email'); email.add( Validate.Email ); email.add( Validate.Length, { maximum: 45 } );
+	var titulo = new LiveValidation('titulo'); titulo.add( Validate.Presence ); titulo.add( Validate.Length, { maximum: 50 } );
+</SCRIPT>
 
 <?=$this->load->view('default/_footer_admin')?>

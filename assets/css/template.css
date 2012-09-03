@@ -286,7 +286,7 @@ button,input,select,textarea { font-size: 12px; font-family: Arial, Helvetica, s
 .lefticon .leftmenu ul li { width: 250px; }
 .lefticon .leftmenu ul li a { width: 2px; height: 32px; }
 .lefticon .leftmenu ul li a span { display: none; }
-.lefticon .maincontent { margin-left: 45px; }
+.lefticon .maincontent { /*margin-left: 45px;*/ }
 
 #togglemenuleft { border-top: 1px solid #eee; margin-top: 20px; text-align: center; }
 #togglemenuleft a { 

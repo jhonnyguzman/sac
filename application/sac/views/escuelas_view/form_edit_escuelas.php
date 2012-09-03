@@ -14,12 +14,6 @@
 	<?php endif; ?>
 	<form action="<?=base_url()?>escuelas_controller/edit_c/<?=$escuelas->id?>" method="post" name="formEditescuelas" id="formEditescuelas"  class="form-horizontal">
 		<div class="control-group">
-			<label class="control-label" for="id"><?=$this->config->item('id')?>:</label>
-			<div class="controls">
-				<input type="text" value="<?=$escuelas->id?>" name="id" id="id"  readonly="readonly"></input>
-			</div>
-		</div>
-		<div class="control-group">
 			<label class="control-label" for="cue"><?=$this->config->item('cue')?>:</label>
 			<div class="controls">
 				<input type="text" value="<?=$escuelas->cue?>" name="cue" id="cue"></input>
@@ -52,7 +46,8 @@
 		<div class="control-group">
 			<label class="control-label" for="habilitado"><?=$this->config->item('habilitado')?>:</label>
 			<div class="controls">
-				<input type="text" value="<?=$escuelas->habilitado?>" name="habilitado" id="habilitado"></input>
+				Si <input type='radio' name='habilitado' id='habilitado' value='1' <?php if ($escuelas->habilitado=="1") { echo "checked='checked'"; } ?> />
+            	No <input type='radio' name='habilitado' id='habilitado' value='0' <?php if ($escuelas->habilitado=="0") { echo "checked='checked'"; } ?> />
 			</div>
 		</div>
 		<div class="control-group">
@@ -91,19 +86,7 @@
 				</select>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label" for="created_at"><?=$this->config->item('created_at')?>:</label>
-			<div class="controls">
-				<input type="text" value="<?=$escuelas->created_at?>" name="created_at" id="created_at" readonly="true"></input>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label" for="updated_at"><?=$this->config->item('updated_at')?>:</label>
-			<div class="controls">
-				<input type="text" value="<?=$escuelas->updated_at?>" name="updated_at" id="updated_at" readonly="true"></input>
-			</div>
-		</div>
-		
+	
 		<div class="form-actions">
 			<a href="<?=base_url()?>escuelas_controller/index" class="btn" >Cancelar</a>
 			<button type="submit" class="btn btn-primary">Modificar</button>
@@ -118,5 +101,14 @@
 		getLocalidades('<?=base_url()?>departamentos_controller/getLocalidades/','<?=$escuelas->localidad_id?>');
 	});
 </script>
+
+<SCRIPT LANGUAGE='JavaScript'>
+	var cue = new LiveValidation('cue'); cue.add( Validate.Presence ); cue.add( Validate.Numericality ); cue.add( Validate.Numericality, { minimum: 900000000, maximum: 999999999 } );
+	var nombre = new LiveValidation('nombre'); nombre.add( Validate.Presence ); nombre.add( Validate.Length, { maximum: 80 } );
+	var direccion = new LiveValidation('direccion'); direccion.add( Validate.Presence ); direccion.add( Validate.Length, { maximum: 40 } );
+	var telefono = new LiveValidation('telefono'); telefono.add( Validate.Numericality ); telefono.add( Validate.Length, { maximum: 15 } );
+	var email = new LiveValidation('email'); email.add( Validate.Email ); email.add( Validate.Length, { maximum: 50 } );
+	var habilitado = new LiveValidation('habilitado'); habilitado.add( Validate.Presence );
+</SCRIPT>
 
 <?=$this->load->view('default/_footer_admin')?>

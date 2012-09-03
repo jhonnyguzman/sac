@@ -1,37 +1,40 @@
-<script> setDatePicker(new Array('created_at'));</script>
-<div id="title-level2"><?=$subtitle?></div>
-<div id="form">
-<div class="fields-required">Campos obligatorios (*)</div>
+<?=$this->load->view('default/_header_admin')?>
+
+<div class="span10">
+	<div class="page-header">
+	  <h1><?=$title_header?></h1>
+	</div>
+	
+	<?php if(validation_errors() || isset($error)): ?>
+		<div class="alert alert-error">
+			<a class="close" data-dismiss="alert" href="#">×</a>
+			<?=validation_errors()?>
+			
+		</div>		
+	<?php endif; ?>
 <form action="<?=base_url()?>localidades_controller/add_c" method="post" name="formAddlocalidades" id="formAddlocalidades">
-	<p>
-		<label><span class='required'>*</span><?=$this->config->item('nombre')?>:</label>
+	<div class="control-group">
+			<label class="control-label" for="nombre"><?=$this->config->item('nombre')?>:</label>
 		<input type="text" name="nombre" id="nombre"></input>
-	</p>
-	<p>
-		<label><span class='required'>*</span><?=$this->config->item('habilitado')?>:</label>
-		<input type="text" name="habilitado" id="habilitado"></input>
-	</p>
-	<p>
-		<label><span class='required'>*</span><?=$this->config->item('departamento_id')?>:</label>
-		<input type="text" name="departamento_id" id="departamento_id"></input>
-	</p>
-	<p>
-		<label><span class='required'>*</span><?=$this->config->item('created_at')?>:</label>
-		<input type="text" name="created_at" id="created_at"></input>
-	</p>
-	<p>
-		<label><span class='required'>*</span><?=$this->config->item('updated_at')?>:</label>
-		<input type="text" name="updated_at" id="updated_at"></input>
-	</p>
-	<div class="botonera">
-		<input type="submit" name="guardar" value="Guardar" class="crudtest-button" id="btn-save" onClick="submitData('formAddlocalidades',new Array('right-content','right-content'))"></input>
-		<input type="button" name="cancelar" value="Cancelar" class="crudtest-button" id="btn-cancel" onClick="loadPage('<?=base_url()?>localidades_controller/index','right-content')"></input>
 	</div>
-	<div class="errors" id="errors">
-	<?php
-		echo validation_errors();
-		if(isset($error)) echo $error;
-	?>
-	</div>
-	<div id="busy"><img src="<?=base_url()?>css/images/ajax-loader.gif" /></div></form>
-</div>
+
+	<div class="control-group">
+			<label class="control-label" for="habilitado"><?=$this->config->item('habilitado')?>:</label>
+			<div class="controls">
+				Si <input type='radio' name='habilitado' id='habilitado' value='1' />
+            	No <input type='radio' name='habilitado' id='habilitado' value='0' checked='checked' />
+			</div>
+		</div>
+	<div class="form-actions">
+			<a href="<?=base_url()?>localidades_controller/index" class="btn" >Cancelar</a>
+			<button type="submit" class="btn btn-primary">Guardar</button>
+		</div>
+	</form>
+
+
+</div><!--/span10-->
+<SCRIPT LANGUAGE='JavaScript'>
+	var nombre = new LiveValidation('nombre'); nombre.add( Validate.Presence ); nombre.add( Validate.Length, { maximum: 16 } );
+	var departamento_id = new LiveValidation('departamento_id'); departamento_id.add( Validate.Presence );
+</SCRIPT>
+<?=$this->load->view('default/_footer_admin')?>

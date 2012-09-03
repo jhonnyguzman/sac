@@ -22,9 +22,9 @@ $config['estado_descripcion']='Estado';
 
 /* Config fields for search */
 
-$config['search_by_id']= 1;
-$config['search_by_fecha_inicio']= 0;
-$config['search_by_fecha_fin']= 0;
+$config['search_by_id']= 0;
+$config['search_by_fecha_inicio']= 1;
+$config['search_by_fecha_fin']= 1;
 $config['search_by_costo_hora']= 0;
 $config['search_by_created_at']= 0;
 $config['search_by_updated_at']= 0;
@@ -44,13 +44,13 @@ $config['show_estado_descripcion']= 1;
 
 /* Config params of pagination */
 
-$config['pag_perpage']= 4;
+$config['pag_perpage']= 10;
 
 /* Config flash messages */
 
-$config['periodos_flash_add_message']= 'The periodos has been successfully added.';
-$config['periodos_flash_edit_message']= 'The periodos has been successfully updated.';
-$config['periodos_flash_delete_message']= 'The periodos has been successfully deleted';
+$config['periodos_flash_add_message']= 'Registro agregado correctamente.';
+$config['periodos_flash_edit_message']= 'Registro editado correctamente.';
+$config['periodos_flash_delete_message']= 'Registro eliminado correctamente';
 $config['periodos_flash_error_delete_message']= 'The periodos hasn\'t been deletedd';
 $config['periodos_flash_error_change_state_message']= 'El periodo se dio de alta  correctamente pero nose pudo 
 														cambiar el estado a historico de los periodos existentes previamente';

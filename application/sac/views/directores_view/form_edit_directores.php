@@ -36,8 +36,11 @@
 	</div>
 	<div class="control-group">
 			<label class="control-label" for="habilitado"><?=$this->config->item('habilitado')?>:</label>
-		<input type="text" value="<?=$directores->habilitado?>" name="habilitado" id="habilitado"></input>
-	</div>
+			<div class="controls">
+				Si <input type='radio' name='habilitado' id='habilitado' value='1' <?php if ($directores->habilitado=="1") { echo "checked='checked'"; } ?> />
+            	No <input type='radio' name='habilitado' id='habilitado' value='0' <?php if ($directores->habilitado=="0") { echo "checked='checked'"; } ?> />
+			</div>
+		</div>
 	<div class="form-actions">
 			<a href="<?=base_url()?>directores_controller/index" class="btn" >Cancelar</a>
 			<button type="submit" class="btn btn-primary">Modificar</button>
@@ -46,6 +49,12 @@
 	</form>
 
 </div><!--/span10-->
-
+<SCRIPT LANGUAGE='JavaScript'>
+	var dni = new LiveValidation('dni'); dni.add( Validate.Presence ); dni.add( Validate.Numericality ); dni.add( Validate.Length, { is: 8 } );
+	var apellido = new LiveValidation('apellido'); apellido.add( Validate.Presence );
+	var nombre = new LiveValidation('nombre'); nombre.add( Validate.Presence );
+	var telefono = new LiveValidation('telefono'); telefono.add( Validate.Numericality );
+	var email = new LiveValidation('email'); email.add( Validate.Email );
+</SCRIPT>
 <?=$this->load->view('default/_footer_admin')?>
 

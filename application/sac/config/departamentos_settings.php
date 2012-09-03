@@ -42,9 +42,9 @@ $config['pag_perpage']= 10;
 
 /* Config flash messages */
 
-$config['departamentos_flash_add_message']= 'The departamentos has been successfully added.';
-$config['departamentos_flash_edit_message']= 'The departamentos has been successfully updated.';
-$config['departamentos_flash_delete_message']= 'The departamentos has been successfully deleted';
+$config['departamentos_flash_add_message']= 'Registro agregado correctamente.';
+$config['departamentos_flash_edit_message']= 'Registro editado correctamente.';
+$config['departamentos_flash_delete_message']= 'Registro eliminado correctamente';
 $config['departamentos_flash_error_delete_message']= 'The departamentos hasn\'t been deletedd';
 $config['departamentos_flash_error_message']= 'A database error has occured, please contact your administrator.';
 

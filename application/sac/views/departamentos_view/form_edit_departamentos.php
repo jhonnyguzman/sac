@@ -19,8 +19,11 @@
 	</div>
 	<div class="control-group">
 			<label class="control-label" for="habilitado"><?=$this->config->item('habilitado')?>:</label>
-		<input type="text" value="<?=$departamentos->habilitado?>" name="habilitado" id="habilitado"></input>
-	</div>
+			<div class="controls">
+				Si <input type='radio' name='habilitado' id='habilitado' value='1' <?php if ($departamentos->habilitado=="1") { echo "checked='checked'"; } ?> />
+            	No <input type='radio' name='habilitado' id='habilitado' value='0' <?php if ($departamentos->habilitado=="0") { echo "checked='checked'"; } ?> />
+			</div>
+		</div>
 	<div class="control-group">
 			<label class="control-label" for="circuito_id"><?=$this->config->item('circuito_id')?>:</label>
 		<input type="text" value="<?=$departamentos->circuito_id?>" name="circuito_id" id="circuito_id"></input>
@@ -34,5 +37,8 @@
 	</form>
 
 </div><!--/span10-->
-
+<SCRIPT LANGUAGE='JavaScript'>
+	var nombre = new LiveValidation('nombre'); nombre.add( Validate.Presence ); nombre.add( Validate.Length, { maximum: 16 } );
+	var circuito_id = new LiveValidation('circuito_id'); circuito_id.add( Validate.Presence );
+</SCRIPT>
 <?=$this->load->view('default/_footer_admin')?>

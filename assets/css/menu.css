@@ -111,7 +111,7 @@
 }
 
 
-#cssmenu ul ul > li:hover > ul { opacity: 1; left: 196px; visibility: visible;}
+#cssmenu ul ul > li:hover > ul { opacity: 1; left: 196px; visibility: visible; z-index: 9999999;}
 
 
 #cssmenu ul ul a:hover{

@@ -44,13 +44,13 @@ $config['show_updated_at']= 1;
 
 /* Config params of pagination */
 
-$config['pag_perpage']= 4;
+$config['pag_perpage']= 10;
 
 /* Config flash messages */
 
-$config['periodos_escuelas_flash_add_message']= 'The periodos_escuelas has been successfully added.';
-$config['periodos_escuelas_flash_edit_message']= 'The periodos_escuelas has been successfully updated.';
-$config['periodos_escuelas_flash_delete_message']= 'The periodos_escuelas has been successfully deleted';
+$config['periodos_escuelas_flash_add_message']= 'Registro agregado correctamente.';
+$config['periodos_escuelas_flash_edit_message']= 'Registro editado correctamente.';
+$config['periodos_escuelas_flash_delete_message']= 'Registro eliminado correctamente';
 $config['periodos_escuelas_flash_error_delete_message']= 'The periodos_escuelas hasn\'t been deletedd';
 $config['periodos_escuelas_flash_error_message']= 'A database error has occured, please contact your administrator.';
 

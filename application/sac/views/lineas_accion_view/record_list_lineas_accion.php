@@ -15,7 +15,13 @@
 						<tr>
 							<td><?=$f->nombre?></td>
 							<td><?=$f->descripcion?></td>
-							<td><?=$f->habilitado?></td>
+							<td>
+								<?php if($f->habilitado == 1):  ?>
+									<span class="label label-success">Habilitado</span>
+								<?php elseif($f->habilitado == 0):  ?>
+									<span class="label">Desabilitado</span>
+								<?php endif;  ?>
+							</td>
 							<td><?=$f->ciclo?></td>
 							<td>
 								<?php if($flag['u']):?>

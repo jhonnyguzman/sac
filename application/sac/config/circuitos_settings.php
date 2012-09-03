@@ -35,13 +35,13 @@ $config['show_updated_at']= 1;
 
 /* Config params of pagination */
 
-$config['pag_perpage']= 4;
+$config['pag_perpage']= 10;
 
 /* Config flash messages */
 
-$config['circuitos_flash_add_message']= 'The circuitos has been successfully added.';
-$config['circuitos_flash_edit_message']= 'The circuitos has been successfully updated.';
-$config['circuitos_flash_delete_message']= 'The circuitos has been successfully deleted';
+$config['circuitos_flash_add_message']= 'Registro agregado correctamente.';
+$config['circuitos_flash_edit_message']= 'Registro editado correctamente.';
+$config['circuitos_flash_delete_message']= 'Registro eliminado correctamente';
 $config['circuitos_flash_error_delete_message']= 'The circuitos hasn\'t been deletedd';
 $config['circuitos_flash_error_message']= 'A database error has occured, please contact your administrator.';
 

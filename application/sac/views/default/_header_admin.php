@@ -7,6 +7,7 @@
 	<link href="<?=base_url()?>assets/css/bootstrap.css" rel="stylesheet">
   <link href="<?=base_url()?>assets/css/template.css" rel="stylesheet">
   <link href="<?=base_url()?>assets/css/menu.css" rel="stylesheet">
+  <link href="<?=base_url()?>assets/css/validacion.css" rel="stylesheet">
   <!--[if IE 9]>
       <link rel="stylesheet" media="screen" href="css/ie9.css"/>
   <![endif]-->
@@ -41,6 +42,7 @@
     <script type="text/javascript" src="<?=base_url()?>assets/js/template/plugins/jquery.validate.min.js"></script>
     <script type="text/javascript" src="<?=base_url()?>assets/js/template/custom/general.js"></script>
     <script type="text/javascript" src="<?=base_url()?>assets/js/template/custom/form.js"></script>
+    <script type="text/javascript" src="<?=base_url()?>assets/js/validacion.js"></script>
     <!--[if lt IE 9]>
       <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
     <![endif]-->

@@ -22,12 +22,18 @@
 		<input type="text" name="descripcion" id="descripcion"></input>
 	</div>
 	<div class="control-group">
-		<label class="control-label" for="habilitado"><?=$this->config->item('habilitado')?>:</label>
-		<input type="text" name="habilitado" id="habilitado"></input>
-	</div>
+			<label class="control-label" for="habilitado"><?=$this->config->item('habilitado')?>:</label>
+			<div class="controls">
+				Si <input type='radio' name='habilitado' id='habilitado' value='1' />
+            	No <input type='radio' name='habilitado' id='habilitado' value='0' checked='checked' />
+			</div>
+		</div>
 	<div class="control-group">
 		<label class="control-label" for="ciclo"><?=$this->config->item('ciclo')?>:</label>
-		<input type="text" name="ciclo" id="ciclo"></input>
+		<div class="controls">
+				Basico <input type='radio' name='ciclo' id='ciclo' value='1' />
+            	Orientado <input type='radio' name='ciclo' id='ciclo' value='0' checked='checked' />
+			</div>
 	</div>
 	<div class="form-actions">
 			<a href="<?=base_url()?>lineas_accion_controller/index" class="btn" >Cancelar</a>
@@ -36,4 +42,9 @@
 	</form>
 		
 </div><!--/span10-->
-
+<SCRIPT LANGUAGE='JavaScript'>
+	var nombre = new LiveValidation('nombre'); nombre.add( Validate.Presence ); nombre.add( Validate.Length, { maximum: 15 } );
+	var descripcion = new LiveValidation('descripcion'); descripcion.add( Validate.Length, { maximum: 45 } );
+	var ciclo = new LiveValidation('ciclo'); ciclo.add( Validate.Presence ); 
+</SCRIPT>
+<?=$this->load->view('default/_footer_admin')?>

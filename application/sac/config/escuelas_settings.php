@@ -61,13 +61,13 @@ $config['show_updated_at']= 1;
 
 /* Config params of pagination */
 
-$config['pag_perpage']= 4;
+$config['pag_perpage']= 10;
 
 /* Config flash messages */
 
-$config['escuelas_flash_add_message']= 'The escuelas has been successfully added.';
-$config['escuelas_flash_edit_message']= 'The escuelas has been successfully updated.';
-$config['escuelas_flash_delete_message']= 'The escuelas has been successfully deleted';
+$config['escuelas_flash_add_message']= 'Registro agregado correctamente.';
+$config['escuelas_flash_edit_message']= 'Registro editado correctamente.';
+$config['escuelas_flash_delete_message']= 'Registro eliminado correctamente';
 $config['escuelas_flash_error_delete_message']= 'The escuelas hasn\'t been deletedd';
 $config['escuelas_flash_error_message']= 'A database error has occured, please contact your administrator.';
 

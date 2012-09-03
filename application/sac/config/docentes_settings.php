@@ -54,9 +54,9 @@ $config['pag_perpage']= 10;
 
 /* Config flash messages */
 
-$config['docentes_flash_add_message']= 'The docentes has been successfully added.';
-$config['docentes_flash_edit_message']= 'The docentes has been successfully updated.';
-$config['docentes_flash_delete_message']= 'The docentes has been successfully deleted';
+$config['docentes_flash_add_message']= 'Registro agregado correctamente.';
+$config['docentes_flash_edit_message']= 'Registro editado correctamente.';
+$config['docentes_flash_delete_message']= 'Registro eliminado correctamente';
 $config['docentes_flash_error_delete_message']= 'The docentes hasn\'t been deletedd';
 $config['docentes_flash_error_message']= 'A database error has occured, please contact your administrator.';
 

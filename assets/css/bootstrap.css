@@ -186,8 +186,8 @@ a:hover {
 }
 
 [class*="span"] {
-  float: left;
-  margin-left: 5px;
+ /* float: left;
+  margin-left: 5px;*/
 }
 
 .container,
@@ -205,7 +205,7 @@ a:hover {
 }
 
 .span10 {
-  width: 645px;
+  /*width: 645px;*/
 }
 
 .span9 {

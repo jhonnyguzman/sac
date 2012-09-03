@@ -14,7 +14,13 @@
 						<tr>
 							<td><?=$f->nombre?></td>
 							<td><?=$f->circuito_id?></td>
-							<td><?=$f->habilitado?></td>
+							<td>
+								<?php if($f->habilitado == 1):  ?>
+									<span class="label label-success">Habilitado</span>
+								<?php elseif($f->habilitado == 0):  ?>
+									<span class="label">Desabilitado</span>
+								<?php endif;  ?>
+							</td>
 							<td>
 								<?php if($flag['u']):?>
 									<a href="<?=base_url()?>departamentos_controller/edit_c/<?=$f->id?>" title="Modificar">Modificar</a>

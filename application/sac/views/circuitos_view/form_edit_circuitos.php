@@ -1,37 +1,44 @@
-<script> setDatePicker(new Array('created_at'));</script>
-<div id="title-level2"><?=$subtitle?></div>
-<div id="form">
-<div class="fields-required">Campos obligatorios (*)</div>
+<?=$this->load->view('default/_header_admin')?>
+
+<div class="span10">
+	<div class="page-header">
+	  <h1><?=$title_header?></h1>
+	</div>
+	
+	<?php if(validation_errors() || isset($error)): ?>
+		<div class="alert alert-error">
+			<a class="close" data-dismiss="alert" href="#">×</a>
+			<?=validation_errors()?>
+			
+		</div>		
+	<?php endif; ?>
 <form action="<?=base_url()?>circuitos_controller/edit_c/<?=$circuitos->id?>" method="post" name="formEditcircuitos" id="formEditcircuitos">
-	<p>
-		<label><span class='required'>*</span><?=$this->config->item('id')?>:</label>
-		<input type="text" value="<?=$circuitos->id?>" name="id" id="id"  readonly="readonly"></input>
-	</p>
-	<p>
-		<label><span class='required'>*</span><?=$this->config->item('nombre')?>:</label>
-		<input type="text" value="<?=$circuitos->nombre?>" name="nombre" id="nombre"></input>
-	</p>
-	<p>
-		<label><span class='required'>*</span><?=$this->config->item('habilitado')?>:</label>
-		<input type="text" value="<?=$circuitos->habilitado?>" name="habilitado" id="habilitado"></input>
-	</p>
-	<p>
-		<label><span class='required'>*</span><?=$this->config->item('created_at')?>:</label>
-		<input type="text" value="<?=$circuitos->created_at?>" name="created_at" id="created_at"></input>
-	</p>
-	<p>
-		<label><span class='required'>*</span><?=$this->config->item('updated_at')?>:</label>
-		<input type="text" value="<?=$circuitos->updated_at?>" name="updated_at" id="updated_at"></input>
-	</p>
-	<div class="botonera">
-		<input type="submit" name="modificar" value="Modificar" class="crudtest-button" id="btn-save" onClick="submitData('formEditcircuitos',new Array('right-content','right-content'))"></input>
-		<input type="button" name="cancelar" value="Cancelar" class="crudtest-button" id="btn-cancel" onClick="loadPage('<?=base_url()?>circuitos_controller/index','right-content')"></input>
+
+	<div class="control-group">
+		<label class="control-label" for="nombre"><?=$this->config->item('nombre')?>:</label>
+		<div class="controls">
+			<input type="text" value="<?=$circuitos->nombre?>" name="nombre" id="nombre"></input>
+		</div>
 	</div>
-	<div class="errors" id="errors">
-	<?php
-		echo validation_errors();
-		if(isset($error)) echo $error;
-	?>
+	<div class="control-group">
+		<label class="control-label" for="habilitado"><?=$this->config->item('habilitado')?>:</label>
+		<div class="controls">
+			Si <input type='radio' name='habilitado' id='habilitado' value='1' <?php if ($circuitos->habilitado=="1") { echo "checked='checked'"; } ?> />
+        	No <input type='radio' name='habilitado' id='habilitado' value='0' <?php if ($circuitos->habilitado=="0") { echo "checked='checked'"; } ?> />
+		</div>
 	</div>
-	<div id="busy"><img src="<?=base_url()?>css/images/ajax-loader.gif" /></div></form>
-</div>
+
+	<div class="form-actions">
+			<a href="<?=base_url()?>circuitos_controller/index" class="btn" >Cancelar</a>
+			<button type="submit" class="btn btn-primary">Modificar</button>
+		</div>
+		
+	</form>
+
+</div><!--/span10-->
+
+
+<SCRIPT LANGUAGE='JavaScript'>
+	var nombre = new LiveValidation('nombre'); nombre.add( Validate.Presence ); nombre.add( Validate.Length, { maximum: 10 } );
+</SCRIPT>
+<?=$this->load->view('default/_footer_admin')?>

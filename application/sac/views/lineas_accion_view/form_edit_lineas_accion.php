@@ -23,11 +23,17 @@
 	</div>
 	<div class="control-group">
 			<label class="control-label" for="habilitado"><?=$this->config->item('habilitado')?>:</label>
-		<input type="text" value="<?=$lineas_accion->habilitado?>" name="habilitado" id="habilitado"></input>
-	</div>
+			<div class="controls">
+				Si <input type='radio' name='habilitado' id='habilitado' value='1' <?php if ($lineas_accion->habilitado=="1") { echo "checked='checked'"; } ?> />
+            	No <input type='radio' name='habilitado' id='habilitado' value='0' <?php if ($lineas_accion->habilitado=="0") { echo "checked='checked'"; } ?> />
+			</div>
+		</div>
 	<div class="control-group">
 			<label class="control-label" for="ciclo"><?=$this->config->item('ciclo')?>:</label>
-		<input type="text" value="<?=$lineas_accion->ciclo?>" name="ciclo" id="ciclo"></input>
+			<div class="controls">
+				Basico <input type='radio' name='ciclo' id='ciclo' value='1' <?php if ($lineas_accion->ciclo=="1") { echo "checked='checked'"; } ?> />
+            	Orientado <input type='radio' name='ciclo' id='ciclo' value='0' <?php if ($lineas_accion->ciclo=="0") { echo "checked='checked'"; } ?> />
+			</div>
 	</div>
 	<div class="form-actions">
 			<a href="<?=base_url()?>lineas_accion_controller/index" class="btn" >Cancelar</a>
@@ -37,5 +43,9 @@
 	</form>
 
 </div><!--/span10-->
-
+<SCRIPT LANGUAGE='JavaScript'>
+	var nombre = new LiveValidation('nombre'); nombre.add( Validate.Presence ); nombre.add( Validate.Length, { maximum: 15 } );
+	var descripcion = new LiveValidation('descripcion'); descripcion.add( Validate.Length, { maximum: 45 } );
+	var ciclo = new LiveValidation('ciclo'); ciclo.add( Validate.Presence ); 
+</SCRIPT>
 <?=$this->load->view('default/_footer_admin')?>

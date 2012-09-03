@@ -1,32 +1,43 @@
-<?php if($this->session->flashdata('flashConfirm')) echo "<script type='text/javascript'>showFlash('".$this->session->flashdata('flashConfirm')."',1)</script>";?>
-<?php if($this->session->flashdata('flashError')) echo "<script type='text/javascript'>showFlash('".$this->session->flashdata('flashError')."',2)</script>";?>
-<div id="controller-panel">
-	<div id="controller-panel-left">
-		<div id="title-level2"><?=$subtitle?></div>
+<?=$this->load->view('default/_header_admin')?>
+
+<div class="span10">
+	<div class="page-header">
+	  <h1><?=$title_header?></h1>
 	</div>
-	<div id="controller-panel-right">
-		<div id="controller-botonera">
-		<?php if(!$flag['i']):?>
-			<div class='block-item2'><a href="#" id="icon-new" title='Nuevo'>Nuevo</a><div class='mask-item2'></div></div>
-		<?php else: ?>
-			<a href="#" onClick="loadPage('<?=base_url()?>index.php/localidades_controller/add_c','right-content')" id="icon-new" title='Nuevo'>Nuevo</a>
-		<?php endif; ?>
-		</div>
-	</div>
-</div>
-<div id="form-search">
-	<form action="<?=base_url()?>index.php/localidades_controller/search_c" method="post" name="formSearchlocalidades" id="formSearchlocalidades">
-	<fieldset>
-		<legend>Filtrar por:</legend>
-		<?php foreach($fieldSearch as $field):?>
-		<p>
-			<label><?=$this->config->item($field)?>:</label>
-			<input type="text" name="<?=$field?>" id="<?=$field?>"></input>
-		</p>
-		<?php endforeach; ?>
-		<p>
-		<input type="submit" name="btn-search" id="btn-search" value="Buscar" onClick="submitData('formSearchlocalidades',new Array('result-list','result-list'))"></input>
-		</p>
-	</fieldset>
-	</form>
-</div>
+	
+	<?=$this->load->view("default/_result_messages")?>
+
+	 <div class="row-fluid">
+            <div class="span10">
+            	<form action="<?=base_url()?>localidades_controller/search_c" method="post" name="formSearchlocalidades" id="formSearchlocalidades" class="well form-search">
+					<input type="search" name="nombre" id="nombre" placeholder="nombre" class="input-medium search-query"/>
+					<button type="submit" class="btn" onClick="searchData('formSearchlocalidades','result-list')">Buscar</button>
+				</form>	    
+
+            </div>
+            <div class="span2">
+            	<div class="btn-group">
+				  <button class="btn">Acciones</button>
+				  <button class="btn dropdown-toggle" data-toggle="dropdown">
+				    <span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu">
+				    <?php if($flag['i']):?>
+						<li><a href="<?=base_url()?>localidades_controller/add_c" title='Nuevo'>Nuevo</a></li>
+					<?php endif; ?>
+				  </ul>
+				</div>
+            </div>
+     </div>
+     <div class="row-fluid" id="result-list"> </div>
+
+ </div><!--/span10-->
+
+
+ <script>
+    $(document).ready(function(){ 
+        $("#result-list").load("<?=base_url()?>localidades_controller/search_c");
+    });
+</script>
+
+ <?=$this->load->view('default/_footer_admin')?>
