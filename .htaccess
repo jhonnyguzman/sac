@@ -1,3 +1,0 @@
-RewriteEngine on
-RewriteCond $1 !^(index\.php|assets|thumbs|robots\.txt)
-RewriteRule ^(.*)$ /repositorios/sac/index.php/$1 [L]

@@ -86,21 +86,21 @@ class Periodos_escuelas_Model extends CI_Model {
 	{
 		//code here
 		if(isset($options['id']))
-			$this->db->where('id', $options['id']);
+			$this->db->where('pe.id', $options['id']);
 		if(isset($options['periodo_id']))
-			$this->db->where('periodo_id', $options['periodo_id']);
+			$this->db->where('pe.periodo_id', $options['periodo_id']);
 		if(isset($options['escuelas_id']))
-			$this->db->where('escuelas_id', $options['escuelas_id']);
+			$this->db->where('pe.escuelas_id', $options['escuelas_id']);
 		if(isset($options['matricula']))
-			$this->db->where('matricula', $options['matricula']);
+			$this->db->where('pe.matricula', $options['matricula']);
 		if(isset($options['resolucion']))
-			$this->db->where('resolucion', $options['resolucion']);
+			$this->db->where('pe.resolucion', $options['resolucion']);
 		if(isset($options['cantidad_horas']))
-			$this->db->where('cantidad_horas', $options['cantidad_horas']);
+			$this->db->where('pe.cantidad_horas', $options['cantidad_horas']);
 		if(isset($options['created_at']))
-			$this->db->where('created_at', $options['created_at']);
+			$this->db->where('pe.created_at', $options['created_at']);
 		if(isset($options['updated_at']))
-			$this->db->where('updated_at', $options['updated_at']);
+			$this->db->where('pe.updated_at', $options['updated_at']);
 
 		//limit / offset
 		if(isset($options['limit']) && isset($options['offset']))
@@ -112,7 +112,11 @@ class Periodos_escuelas_Model extends CI_Model {
 		if(isset($options['sortBy']) && isset($options['sortDirection']))
 			$this->db->order_by($options['sortBy'],$options['sortDirection']);
 
-		$query = $this->db->get('periodos_escuelas');
+		$this->db->select("pe.*, p.fecha_inicio as periodo_fecha_inicio, p.fecha_fin as periodo_fecha_fin , e.nombre as escuela_nombre");
+		$this->db->from("periodos_escuelas as pe");
+		$this->db->join("periodos as p","p.id = pe.periodo_id");
+		$this->db->join("escuelas as e","e.id = pe.escuelas_id");
+		$query = $this->db->get();
 
 		if(isset($options['count'])) return $query->num_rows();
 
@@ -121,11 +125,15 @@ class Periodos_escuelas_Model extends CI_Model {
 			if(isset($options['id']) && $flag==1){
 				$query->row(0)->created_at = $this->basicrud->formatDateToHuman($query->row(0)->created_at);
 				$query->row(0)->updated_at = $this->basicrud->formatDateToHuman($query->row(0)->updated_at);
+				$query->row(0)->periodo_fecha_inicio = $this->basicrud->formatDateToHuman($query->row(0)->periodo_fecha_inicio);
+				$query->row(0)->periodo_fecha_fin = $this->basicrud->formatDateToHuman($query->row(0)->periodo_fecha_fin);
 				return $query->row(0);
 			}else{
 				foreach($query->result() as $row){ 
 					$row->created_at = $this->basicrud->formatDateToHuman($row->created_at);
 					$row->updated_at = $this->basicrud->formatDateToHuman($row->updated_at);
+					$row->periodo_fecha_inicio = $this->basicrud->formatDateToHuman($row->periodo_fecha_inicio);
+					$row->periodo_fecha_fin = $this->basicrud->formatDateToHuman($row->periodo_fecha_fin);
 				}
 				return $query->result();
 			}
@@ -147,6 +155,9 @@ class Periodos_escuelas_Model extends CI_Model {
 		$fields[]='id';
 		$fields[]='periodo_id';
 		$fields[]='escuelas_id';
+		$fields[]='periodo_fecha_inicio';
+		$fields[]='periodo_fecha_fin';
+		$fields[]='escuela_nombre';
 		$fields[]='matricula';
 		$fields[]='resolucion';
 		$fields[]='cantidad_horas';

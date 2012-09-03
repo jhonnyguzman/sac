@@ -25,7 +25,6 @@
 				    <?php if($flag['i']):?>
 						<li><a href="<?=base_url()?>escuelas_controller/add_c" title='Nuevo'>Nuevo</a></li>
 					<?php endif; ?>
-					<li><a href="<?=base_url()?>periodos_escuelas_controller/asign_c" data-toggle="modal" data-target="#myModal" >Asignar Periodos</a></li>
 				  </ul>
 				</div>
             </div>
@@ -46,16 +45,3 @@
 
  <?=$this->load->view('default/_footer_admin')?>
 
-<div class="modal hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Asignar Periodos</h3>
-  </div>
-  <div class="modal-body">
-    <p></p>
-  </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-    <button class="btn btn-primary">Asignar</button>
-  </div>
-</div>
