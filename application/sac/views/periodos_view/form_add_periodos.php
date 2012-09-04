@@ -4,15 +4,7 @@
 	<div class="page-header">
 	  <h1><?=$title_header?></h1>
 	</div>
-	
-	<?php if(validation_errors() || isset($error)): ?>
-		<div class="alert alert-error">
-			<a class="close" data-dismiss="alert" href="#">×</a>
-			<?=validation_errors()?>
-			
-		</div>		
-	<?php endif; ?>
-	<form action="<?=base_url()?>periodos_controller/add_c" method="post" name="formAddperiodos" id="formAddperiodos" class="form-horizontal">
+	<form action="<?=base_url()?>periodos_controller/add_c" method="post" name="formAddperiodos" id="formAddperiodos" class="stdform">
 		<div class="control-group">
 			<label class="control-label" for="fecha_inicio"><?=$this->config->item('fecha_inicio')?>:</label>
 			<div class="controls">
@@ -32,11 +24,10 @@
 			</div>
 		</div>
 		
-		<div class="form-actions">
-			<a href="<?=base_url()?>periodos_controller/index" class="btn" >Cancelar</a>
-			<button type="submit" class="btn btn-primary">Guardar</button>
-		</div>
-
+		<p class="stdformbutton">
+	    	<a href="<?=base_url()?>periodos_controller/index" class="btn" >Cancelar</a>
+	    	<button type="submit" class="submit radius2">Guardar</button>
+	    </p>
 	</form>
 
 </div><!--/span10-->

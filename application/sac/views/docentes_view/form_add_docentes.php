@@ -4,15 +4,7 @@
 	<div class="page-header">
 	  <h1><?=$title_header?></h1>
 	</div>
-	
-	<?php if(validation_errors() || isset($error)): ?>
-		<div class="alert alert-error">
-			<a class="close" data-dismiss="alert" href="#">×</a>
-			<?=validation_errors()?>
-			
-		</div>		
-	<?php endif; ?>
-	<form action="<?=base_url()?>docentes_controller/add_c" method="post" name="formAdddocentes" id="formAdddocentes" class="form-horizontal">
+	<form action="<?=base_url()?>docentes_controller/add_c" method="post" name="formAdddocentes" id="formAdddocentes" class="stdform">
 		<div class="control-group">
 			<label class="control-label" for="dni"><?=$this->config->item('dni')?>:</label>
 			<div class="controls">
@@ -57,15 +49,13 @@
 			</div>
 		</div>
 	
-		<div class="form-actions">
-			<a href="<?=base_url()?>docentes_controller/index" class="btn" >Cancelar</a>
-			<button type="submit" class="btn btn-primary">Guardar</button>
-		</div>
+		<p class="stdformbutton">
+	    	<a href="<?=base_url()?>docentes_controller/index" class="btn" >Cancelar</a>
+	    	<button type="submit" class="submit radius2">Guardar</button>
+	    </p>
 
 		</form>
-		
 </div><!--/span10-->
-
 <SCRIPT LANGUAGE='JavaScript'>
 	var dni = new LiveValidation('dni'); dni.add( Validate.Presence ); dni.add( Validate.Numericality ); dni.add( Validate.Length, { is: 8 } );
 	var apellido = new LiveValidation('apellido'); apellido.add( Validate.Presence ); apellido.add( Validate.Length, { maximum: 10 } );

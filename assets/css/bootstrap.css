@@ -2711,8 +2711,14 @@ button.close {
 }
 
 .btn {
-  border-color: #ccc;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  background: #e9e9e9;
+  border: 1px solid #e6e6e6;
+  color: black;
+  cursor: pointer;
+  padding: 7px 10px;
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
 }
 
 .btn-primary {
