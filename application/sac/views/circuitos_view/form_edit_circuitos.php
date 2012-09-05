@@ -5,6 +5,7 @@
 	  <h1><?=$title_header?></h1>
 	</div>
 	<form action="<?=base_url()?>circuitos_controller/edit_c/<?=$circuitos->id?>" method="post" name="formEditcircuitos" id="formEditcircuitos" class="stdform">
+		<input type="hidden" value="<?=$circuitos->id?>" name="id" id="id"/>
 		<p>
 			<label for="nombre"><?=$this->config->item('nombre')?></label>
 		    <span class="field"><input type="text" value="<?=$circuitos->nombre?>" name="nombre" id="nombre"></input></span>

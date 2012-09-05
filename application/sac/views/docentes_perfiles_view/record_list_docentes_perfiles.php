@@ -19,10 +19,10 @@
 							<td><?=$f->telefono?></td>
 							<td>
 								<?php if($flag['u']):?>
-									<a href="<?=base_url()?>docentes_perfiles_controller/edit_c/<?=$f->id?>" title="Modificar">Modificar</a>
+									<a href="<?=base_url()?>docentes_perfiles_controller/edit_c/<?=$f->id?>" title="Modificar" class="btn boton_rojo">Modificar</a>
 								<?php endif;?>
 								<?php if($flag['d']):?>
-									<a href="#"  onClick="deleteRow('<?=base_url()?>docentes_perfiles_controller/delete_c/<?=$f->id?>')" title="Eliminar">Eliminar</a>
+									<a href="#"  onClick="deleteRow('<?=base_url()?>docentes_perfiles_controller/delete_c/<?=$f->id?>')" title="Eliminar" class="btn boton_rojo">Eliminar</a>
 								<?php endif;?>
 							</td>
 						</tr>

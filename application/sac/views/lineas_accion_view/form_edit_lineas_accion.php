@@ -5,6 +5,7 @@
 	  <h1><?=$title_header?></h1>
 	</div>
 	<form action="<?=base_url()?>lineas_accion_controller/edit_c/<?=$lineas_accion->id?>" method="post" name="formEditlineas_accion" id="formEditlineas_accion" class="stdform">
+		<input type="hidden" value="<?=$lineas_accion->id?>" name="id" id="id"/>
 		<div class="control-group">
 				<label class="control-label" for="nombre"><?=$this->config->item('nombre')?>:</label>
 			<input type="text" value="<?=$lineas_accion->nombre?>" name="nombre" id="nombre"></input>

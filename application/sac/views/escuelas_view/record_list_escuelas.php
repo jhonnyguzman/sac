@@ -19,12 +19,12 @@
 							<td><?=$f->email?></td>
 							<td>
 								<?php if($flag['u']):?>
-									<a href="<?=base_url()?>escuelas_controller/edit_c/<?=$f->id?>" title="Modificar">Modificar</a>
+									<a href="<?=base_url()?>escuelas_controller/edit_c/<?=$f->id?>" title="Modificar" class="btn boton_rojo">Modificar</a>
 								<?php endif;?>
 								<?php if($flag['d']):?>
-									<a href="#"  onClick="deleteRow('<?=base_url()?>escuelas_controller/delete_c/<?=$f->id?>')" title="Eliminar">Eliminar</a>
+									<a href="#"  onClick="deleteRow('<?=base_url()?>escuelas_controller/delete_c/<?=$f->id?>')" title="Eliminar" class="btn boton_rojo">Eliminar</a>
 								<?php endif;?>
-									<a href="javascript:void(0)" onClick="loadModal('<?=base_url()?>periodos_escuelas_controller/showModal_c/<?=$f->id?>')">Periodos</a>
+									<a href="javascript:void(0)" onClick="loadModal('<?=base_url()?>periodos_escuelas_controller/showModal_c/<?=$f->id?>')"  class="btn boton_rojo">Periodos</a>
 							</td>
 						</tr>
 					<?php endforeach; ?>

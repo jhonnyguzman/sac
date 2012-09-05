@@ -5,6 +5,7 @@
 	  <h1><?=$title_header?></h1>
 	</div>
 	<form action="<?=base_url()?>docentes_controller/edit_c/<?=$docentes->id?>" method="post" name="formEditdocentes" id="formEditdocentes" class="stdform">
+		<input type="hidden" value="<?=$docentes->id?>" name="id" id="id"/>
 		<div class="control-group">
 			<label class="control-label" for="dni"></span><?=$this->config->item('dni')?>:</label>
 			<div class="controls">

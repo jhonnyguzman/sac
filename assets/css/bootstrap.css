@@ -2721,6 +2721,18 @@ button.close {
   margin: 0;
 }
 
+.boton_rojo{
+  background: #ccc !important;
+  color: #555 !important;
+  padding: 5px !important;
+}
+
+.boton_rojo:hover{
+  background: #CD2C24 !important;
+  color: white !important;
+  padding: 5px !important;
+}
+
 .btn-primary {
   background-color: #0074cc;
   *background-color: #0055cc;

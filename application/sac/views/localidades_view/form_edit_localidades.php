@@ -5,6 +5,7 @@
 	  <h1><?=$title_header?></h1>
 	</div>
 	<form action="<?=base_url()?>localidades_controller/edit_c/<?=$localidades->id?>" method="post" name="formEditlocalidades" id="formEditlocalidades" class="stdform">
+		<input type="hidden" value="<?=$localidades->id?>" name="id" id="id"/>
 		<p>
 	    	<label for="nombre"><?=$this->config->item('nombre')?></label>
 	        <span class="field"><input type="text" name="nombre" id="nombre" value="<?=$localidades->nombre?>"></input></span>

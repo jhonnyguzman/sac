@@ -5,6 +5,7 @@
 	  <h1><?=$title_header?></h1>
 	</div>
 	<form action="<?=base_url()?>directores_controller/edit_c/<?=$directores->id?>" method="post" name="formEditdirectores" id="formEditdirectores" class="stdform">
+		<input type="hidden" value="<?=$directores->id?>" name="id" id="id"/>
 		<p>
 			<label for="dni"><?=$this->config->item('dni')?></label>
 		    <span class="field"><input type="text" value="<?=$directores->dni?>" name="dni" id="dni"></input></span>
