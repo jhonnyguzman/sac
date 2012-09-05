@@ -55,9 +55,13 @@
 <!-- START OF HEADER -->
   <div class="header radius3">
       <div class="headerinner">
-            <a href=""><img src="<?=base_url()?>assets/img/login/logo_dos.png" alt="" /></a>
+            <a href="<?=base_url()?>admin"><img src="<?=base_url()?>assets/img/login/logo_dos.png" alt="" /></a>
             <div class="headright">
                 <div id="userPanel" class="headercolumn">
+                    <a href="<?=base_url()?>admin" class="btn boton_dashboard">
+                        <img src="<?=base_url()?>assets/img/template/dashboard.png" alt="" class="" />
+                        <span><strong>Dashboard</strong></span>
+                    </a>
                     <a href="" class="userinfo radius2">
                         <img src="<?=base_url()?>assets/img/template/avatar.png" alt="" class="radius2" />
                         <span><strong><?=$this->session->userdata('username')?></strong></span>

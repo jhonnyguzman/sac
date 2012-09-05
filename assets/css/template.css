@@ -3197,3 +3197,23 @@ background-color:#fff; padding:0; margin:5px; display:block; width: 98.8% !impor
 .wysiwyg-dialog-content input.submit { background: url('../../assets/img/template/buttonbg3.png') repeat-x top left; border: 1px solid #314a78; color: #fff;  }
 .wysiwyg-dialog-content input.reset { background: url('../../assets/img/template/thead.png') repeat-x top left; border: 1px solid #bbb; color: #333; }
 .wysiwyg-dialog-content label { float: left; width: 120px; }
+
+
+
+
+.dash_menu {
+	background-color: #bbb !important;
+	color: #fff !important;
+	width: 100px !important;
+	height: 30px !important;
+}
+.dash_menu:hover {
+	background-color: #888 !important;
+	color: #fff !important;
+	width: 100px !important;
+	height: 30px !important;
+}
+
+.linea_roja{
+	border-bottom: 2px solid #CD2C24 !important;
+}
