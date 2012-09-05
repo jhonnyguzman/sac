@@ -19,7 +19,7 @@ class Perfiles_Model extends CI_Model {
 	function add_m($options = array())
 	{
 		//code here
-		$this->db->insert('sys_perfiles', $options);
+		$this->db->insert('perfiles', $options);
 		return $this->db->insert_id();
 	}
 
@@ -34,10 +34,14 @@ class Perfiles_Model extends CI_Model {
 	function edit_m($options = array())
 	{
 		//code here
+		if(isset($options['nombre']))
+			$this->db->set('nombre', $options['nombre']);
 		if(isset($options['descripcion']))
 			$this->db->set('descripcion', $options['descripcion']);
-		if(isset($options['estado']))
-			$this->db->set('estado', $options['estado']);
+		if(isset($options['cantidad_hora']))
+			$this->db->set('cantidad_hora', $options['cantidad_hora']);
+		if(isset($options['habilitado']))
+			$this->db->set('habilitado', $options['habilitado']);
 		if(isset($options['created_at']))
 			$this->db->set('created_at', $options['created_at']);
 		if(isset($options['updated_at']))
@@ -45,7 +49,7 @@ class Perfiles_Model extends CI_Model {
 
 		$this->db->where('id', $options['id']);
 
-		$this->db->update('sys_perfiles');
+		$this->db->update('perfiles');
 
 		if($this->db->affected_rows()>0) return $this->db->affected_rows();
 		else return $this->db->affected_rows() + 1;
@@ -63,7 +67,7 @@ class Perfiles_Model extends CI_Model {
 	{
 		//code here
 		$this->db->where('id', $id);
-		$this->db->delete('sys_perfiles');
+		$this->db->delete('perfiles');
 		return $this->db->affected_rows();
 	}
 
@@ -80,15 +84,19 @@ class Perfiles_Model extends CI_Model {
 	{
 		//code here
 		if(isset($options['id']))
-			$this->db->where('p.id', $options['id']);
+			$this->db->where('id', $options['id']);
+		if(isset($options['nombre']))
+			$this->db->like('nombre', $options['nombre']);
 		if(isset($options['descripcion']))
-			$this->db->like('p.descripcion', $options['descripcion']);
-		if(isset($options['estado']))
-			$this->db->where('p.estado', $options['estado']);
+			$this->db->like('descripcion', $options['descripcion']);
+		if(isset($options['cantidad_hora']))
+			$this->db->where('cantidad_hora', $options['cantidad_hora']);
+		if(isset($options['habilitado']))
+			$this->db->where('habilitado', $options['habilitado']);
 		if(isset($options['created_at']))
-			$this->db->where('p.created_at', $options['created_at']);
+			$this->db->where('created_at', $options['created_at']);
 		if(isset($options['updated_at']))
-			$this->db->where('p.updated_at', $options['updated_at']);
+			$this->db->where('updated_at', $options['updated_at']);
 
 		//limit / offset
 		if(isset($options['limit']) && isset($options['offset']))
@@ -100,10 +108,7 @@ class Perfiles_Model extends CI_Model {
 		if(isset($options['sortBy']) && isset($options['sortDirection']))
 			$this->db->order_by($options['sortBy'],$options['sortDirection']);
 
-		$this->db->select("p.*, tg.descripcion as estado_descripcion");
-		$this->db->from("sys_perfiles as p");
-		$this->db->join("sys_tabgral as tg", "tg.id = p.estado");
-		$query = $this->db->get();
+		$query = $this->db->get('perfiles');
 
 		if(isset($options['count'])) return $query->num_rows();
 
@@ -136,9 +141,10 @@ class Perfiles_Model extends CI_Model {
 		//code here
 		$fields=array();
 		$fields[]='id';
+		$fields[]='nombre';
 		$fields[]='descripcion';
-		$fields[]='estado';
-		$fields[]='estado_descripcion';
+		$fields[]='cantidad_hora';
+		$fields[]='habilitado';
 		$fields[]='created_at';
 		$fields[]='updated_at';
 		return $fields;

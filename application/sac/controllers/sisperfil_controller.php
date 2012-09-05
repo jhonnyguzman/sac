@@ -14,7 +14,7 @@ class Sisperfil_Controller extends CI_Controller {
 		parent::__construct();
 		if($this->session->userdata('logged_in') == true) { 
 			$this->load->model('sisperfil_model');
-			$this->load->model('perfiles_model');
+			$this->load->model('sys_perfiles_model');
 			$this->config->load('sisperfil_settings');
 			$data['flags'] = $this->basicauth->getPermissions('sys_perfil');
 			$this->flagR = $data['flags']['flag-read'];
@@ -31,7 +31,7 @@ class Sisperfil_Controller extends CI_Controller {
 		if($this->flagR){
 			$data['flag'] = $this->flags;
 			$data['title_header'] = $this->config->item('recordListTitle');
-			$data['perfiles'] = $this->perfiles_model->get_m();
+			$data['perfiles'] = $this->sys_perfiles_model->get_m();
 			$this->load->view('sisperfil_view/home_sisperfil', $data);
 		}
 

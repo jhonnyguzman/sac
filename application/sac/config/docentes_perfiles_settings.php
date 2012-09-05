@@ -11,11 +11,11 @@ $config['accessTitle']='<div class="accessTitle"> No tienes permiso para realiza
 
 /* Config labels of the form fields */
 
-$config['id']='id';
-$config['docente_id']='docente_id';
-$config['perfil_id']='perfil_id';
-$config['created_at']='created_at';
-$config['updated_at']='updated_at';
+$config['id']='Id';
+$config['docente_id']='Docente';
+$config['perfil_id']='Perfil';
+$config['created_at']='Fecha de alta';
+$config['updated_at']='Actualizado el';
 
 /* Config fields for search */
 

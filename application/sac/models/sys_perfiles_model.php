@@ -1,7 +1,7 @@
 <?php
  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Docentes_perfiles_Model extends CI_Model {
+class Sys_Perfiles_Model extends CI_Model {
 
 	function __construct()
 	{
@@ -19,7 +19,7 @@ class Docentes_perfiles_Model extends CI_Model {
 	function add_m($options = array())
 	{
 		//code here
-		$this->db->insert('docentes_perfiles', $options);
+		$this->db->insert('sys_perfiles', $options);
 		return $this->db->insert_id();
 	}
 
@@ -34,10 +34,10 @@ class Docentes_perfiles_Model extends CI_Model {
 	function edit_m($options = array())
 	{
 		//code here
-		if(isset($options['docente_id']))
-			$this->db->set('docente_id', $options['docente_id']);
-		if(isset($options['perfil_id']))
-			$this->db->set('perfil_id', $options['perfil_id']);
+		if(isset($options['descripcion']))
+			$this->db->set('descripcion', $options['descripcion']);
+		if(isset($options['estado']))
+			$this->db->set('estado', $options['estado']);
 		if(isset($options['created_at']))
 			$this->db->set('created_at', $options['created_at']);
 		if(isset($options['updated_at']))
@@ -45,7 +45,7 @@ class Docentes_perfiles_Model extends CI_Model {
 
 		$this->db->where('id', $options['id']);
 
-		$this->db->update('docentes_perfiles');
+		$this->db->update('sys_perfiles');
 
 		if($this->db->affected_rows()>0) return $this->db->affected_rows();
 		else return $this->db->affected_rows() + 1;
@@ -63,7 +63,7 @@ class Docentes_perfiles_Model extends CI_Model {
 	{
 		//code here
 		$this->db->where('id', $id);
-		$this->db->delete('docentes_perfiles');
+		$this->db->delete('sys_perfiles');
 		return $this->db->affected_rows();
 	}
 
@@ -80,15 +80,15 @@ class Docentes_perfiles_Model extends CI_Model {
 	{
 		//code here
 		if(isset($options['id']))
-			$this->db->where('id', $options['id']);
-		if(isset($options['docente_id']))
-			$this->db->where('docente_id', $options['docente_id']);
-		if(isset($options['perfil_id']))
-			$this->db->where('perfil_id', $options['perfil_id']);
+			$this->db->where('p.id', $options['id']);
+		if(isset($options['descripcion']))
+			$this->db->like('p.descripcion', $options['descripcion']);
+		if(isset($options['estado']))
+			$this->db->where('p.estado', $options['estado']);
 		if(isset($options['created_at']))
-			$this->db->where('created_at', $options['created_at']);
+			$this->db->where('p.created_at', $options['created_at']);
 		if(isset($options['updated_at']))
-			$this->db->where('updated_at', $options['updated_at']);
+			$this->db->where('p.updated_at', $options['updated_at']);
 
 		//limit / offset
 		if(isset($options['limit']) && isset($options['offset']))
@@ -100,7 +100,10 @@ class Docentes_perfiles_Model extends CI_Model {
 		if(isset($options['sortBy']) && isset($options['sortDirection']))
 			$this->db->order_by($options['sortBy'],$options['sortDirection']);
 
-		$query = $this->db->get('docentes_perfiles');
+		$this->db->select("p.*, tg.descripcion as estado_descripcion");
+		$this->db->from("sys_perfiles as p");
+		$this->db->join("sys_tabgral as tg", "tg.id = p.estado");
+		$query = $this->db->get();
 
 		if(isset($options['count'])) return $query->num_rows();
 
@@ -123,42 +126,6 @@ class Docentes_perfiles_Model extends CI_Model {
 
 
 	/**
-	 * This function gets all the perfiles  assigned of the docentes_perfiles table for a particular docente
-	 *
-	 * @access public
-	 * @return array  fields of table
-	 */
-	function getPerfilesAssignedToDocente_m($docente_id)
-	{
-		//code here
-		$query_str = "select dp.id,p.nombre, p.cantidad_hora, dp.docente_id from docentes_perfiles as dp 
-		inner join perfiles as p on dp.perfil_id = p.id where dp.docente_id = ?";
-		$query = $this->db->query($query_str,$docente_id);
-		if($query->num_rows()>0){
-			return $query->result();
-		}
-	}
-
-
-	/**
-	 * This function gets all the perfiles not assigned of the perfiles table for a particular docente
-	 *
-	 * @access public
-	 * @return array  fields of table
-	 */
-	function getPerfilesNotAssignedToDocente_m($docente_id)
-	{
-		//code here
-		$query_str = "select p.id, p.habilitado, p.nombre,p.cantidad_hora from perfiles as p 
-		where (select count(*) as cantidad from docentes_perfiles as dp where dp.docente_id= ? and dp.perfil_id = p.id) = 0";
-		$query = $this->db->query($query_str,$docente_id);
-		if($query->num_rows()>0){
-			return $query->result();
-		}
-	}
-
-
-	/**
 	 * This function getting all the fields of the table
 	 *
 	 * @access public
@@ -169,8 +136,9 @@ class Docentes_perfiles_Model extends CI_Model {
 		//code here
 		$fields=array();
 		$fields[]='id';
-		$fields[]='docente_id';
-		$fields[]='perfil_id';
+		$fields[]='descripcion';
+		$fields[]='estado';
+		$fields[]='estado_descripcion';
 		$fields[]='created_at';
 		$fields[]='updated_at';
 		return $fields;

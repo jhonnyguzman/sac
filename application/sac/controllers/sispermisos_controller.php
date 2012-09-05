@@ -14,7 +14,7 @@ class Sispermisos_Controller extends CI_Controller {
 		parent::__construct();
 		if($this->session->userdata('logged_in') == true) { 
 			$this->load->model('sispermisos_model');
-			$this->load->model('perfiles_model');
+			$this->load->model('sys_perfiles_model');
 			$this->config->load('sispermisos_settings');
 			$data['flags'] = $this->basicauth->getPermissions('sys_permisos');
 			$this->flagR = $data['flags']['flag-read'];
@@ -78,7 +78,7 @@ class Sispermisos_Controller extends CI_Controller {
 				redirect('sispermisos_controller','location');
 			}
 		}else{
-			$data["perfiles"] = $this->perfiles_model->get_m();
+			$data["perfiles"] = $this->sys_perfiles_model->get_m();
 			$data["tablas"] = $this->getTables();
 			$this->load->view('sispermisos_view/form_add_sispermisos',$data);
 		}

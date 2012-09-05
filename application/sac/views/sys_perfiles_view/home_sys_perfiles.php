@@ -9,9 +9,9 @@
 
 	 <div class="row-fluid">
             <div class="span10">
-            	<form action="<?=base_url()?>perfiles_controller/search_c" method="post" name="formSearchsyspermisos" id="formSearchsyspermisos" class="well form-search">
-					<input type="search" name="nombre" id="nombre" placeholder="Nombre" class="input-medium search-query"/>
-					<button type="submit" class="btn" onClick="searchData('formSearchsyspermisos','contentsyspermisos')">Buscar</button>
+            	<form action="<?=base_url()?>sys_perfiles_controller/search_c" method="post" name="formSearchperfiles" id="formSearchperfiles" class="well form-search">
+					<input type="search" name="descripcion" id="descripcion" placeholder="descripción" class="input-medium search-query"/>
+					<button type="submit" class="btn" onClick="searchData('formSearchperfiles','result-list')">Buscar</button>
 				</form>	    
 
             </div>
@@ -23,23 +23,20 @@
 				  </button>
 				  <ul class="dropdown-menu">
 				    <?php if($flag['i']):?>
-						<li><a href="<?=base_url()?>perfiles_controller/add_c" title='Nuevo'>Nuevo</a></li>
+						<li><a href="<?=base_url()?>sys_perfiles_controller/add_c" title='Nuevo'>Nuevo</a></li>
 					<?php endif; ?>
 				  </ul>
 				</div>
             </div>
      </div>
-     <div class="row-fluid" id="contentsyspermisos"> </div>
-
-
+     <div class="row-fluid" id="result-list"> </div>
 
  </div><!--/span10-->
 
 
  <script>
     $(document).ready(function(){ 
-        $("#contentsyspermisos").load("<?=base_url()?>perfiles_controller/search_c");
-
+        $("#result-list").load("<?=base_url()?>sys_perfiles_controller/search_c");
     });
 </script>
 

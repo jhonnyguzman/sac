@@ -14,7 +14,7 @@ class Usuarios_Controller extends CI_Controller {
 		parent::__construct();
 		if($this->session->userdata('logged_in') == true) { 
 			$this->load->model('usuarios_model');
-			$this->load->model('perfiles_model');
+			$this->load->model('sys_perfiles_model');
 			$this->load->model('tabgral_model');
 			$this->config->load('usuarios_settings');
 			$data['flags'] = $this->basicauth->getPermissions("sys_usuarios");
@@ -52,7 +52,7 @@ class Usuarios_Controller extends CI_Controller {
 		$data = array();
 		$data['title_header'] = $this->config->item('recordAddTitle');
 		$data['estados'] = $this->tabgral_model->get_m(array("grupos_tabgral_id" => 1));
-		$data['perfiles'] = $this->perfiles_model->get_m();
+		$data['perfiles'] = $this->sys_perfiles_model->get_m();
 
 		$this->form_validation->set_rules('username', 'username', 'trim|required|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('password', 'password', 'trim|required|alpha_numeric|md5|xss_clean');
@@ -111,7 +111,7 @@ class Usuarios_Controller extends CI_Controller {
 		$data['title_header'] = $this->config->item('recordEditTitle');
 		$data['usuarios'] = $this->usuarios_model->get_m(array('id' => $usuarios_id),$flag=1);
 		$data['estados'] = $this->tabgral_model->get_m(array("grupos_tabgral_id" => 1));
-		$data['perfiles'] = $this->perfiles_model->get_m();
+		$data['perfiles'] = $this->sys_perfiles_model->get_m();
 		
 		$this->form_validation->set_rules('id', 'id', 'trim|required|integer|xss_clean');
 		$this->form_validation->set_rules('username', 'username', 'trim|required|alpha_numeric|xss_clean');

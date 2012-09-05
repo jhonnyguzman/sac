@@ -56,7 +56,7 @@ class Sismenu_Controller extends CI_Controller {
 		$this->form_validation->set_rules('descripcion', 'descripcion', 'trim|required|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('estado', 'estado', 'trim|integer|xss_clean');
 		$this->form_validation->set_rules('parent', 'parent', 'trim|integer|xss_clean');
-		$this->form_validation->set_rules('sisvinculos_link', 'sisvinculos_link', 'trim|required|alpha_numeric|xss_clean');
+		$this->form_validation->set_rules('link', 'link', 'trim|required|alpha_numeric|xss_clean');
 		if($this->form_validation->run())
 		{	
 			$data_sismenu  = array();

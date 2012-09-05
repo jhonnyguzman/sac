@@ -17,7 +17,7 @@
 					<td><?=$f->resolucion?></td>
 					<td><?=$f->cantidad_horas?></td>
 					<td>
-						<a href="#" onClick="deletePeriodoActivo('<?=base_url()?>periodos_escuelas_controller/delete_c/<?=$f->id?>/<?=$f->escuelas_id?>','contentModal')">Eliminar</a>
+						<a href="#" onClick="deleteItemModal('<?=base_url()?>periodos_escuelas_controller/delete_c/<?=$f->id?>/<?=$f->escuelas_id?>','contentModal')">Eliminar</a>
 						<a href="#" onClick="updateContent('<?=base_url()?>periodos_escuelas_controller/edit_c/<?=$f->id?>','contentModal')">Modificar</a>
 					</td>
 				</tr>

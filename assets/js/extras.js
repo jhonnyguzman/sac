@@ -16,7 +16,7 @@ function deleteRow(url)
 
 }
 
-function deletePeriodoActivo(url, div)
+function deleteItemModal(url, div)
 {
     if(confirm("¿Estás seguro de eliminar este item?")){
         $.get(url, function(data){
@@ -91,9 +91,9 @@ function getLocalidades(url, loc_selected)
     });
 }
 
-function loadModal(url)
+function loadModal(url,div)
 {
-    $('div#myModal').load(url,function(){
+    $('div#'+div).load(url,function(){
         $(this).modal({
             keyboard:true,
             backdrop:false
