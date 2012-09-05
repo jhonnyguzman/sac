@@ -1,45 +1,84 @@
-<script> setDatePicker(new Array('created_at'));</script>
-<div id="title-level2"><?=$subtitle?></div>
-<div id="form">
-<div class="fields-required">Campos obligatorios (*)</div>
-<form action="<?=base_url()?>index.php/sismenu_controller/edit_c/<?=$sismenu->id?>" method="post" name="formEditsismenu" id="formEditsismenu">
-	<p>
-		<label><span class='required'>*</span><?=$this->config->item('_id')?>:</label>
-		<input type="text" value="<?=$sismenu->_id?>" name="_id" id="_id"  readonly="readonly"></input>
-	</p>
-	<p>
-		<label><span class='required'>*</span><?=$this->config->item('descripcion')?>:</label>
-		<input type="text" value="<?=$sismenu->descripcion?>" name="descripcion" id="descripcion"></input>
-	</p>
-	<p>
-		<label><span class='required'>*</span><?=$this->config->item('estado')?>:</label>
-		<input type="text" value="<?=$sismenu->estado?>" name="estado" id="estado"></input>
-	</p>
-	<p>
-		<label><span class='required'>*</span><?=$this->config->item('parent')?>:</label>
-		<input type="text" value="<?=$sismenu->parent?>" name="parent" id="parent"></input>
-	</p>
-	<p>
-		<label><span class='required'>*</span><?=$this->config->item('created_at')?>:</label>
-		<input type="text" value="<?=$sismenu->created_at?>" name="created_at" id="created_at"></input>
-	</p>
-	<p>
-		<label><span class='required'>*</span><?=$this->config->item('updated_at')?>:</label>
-		<input type="text" value="<?=$sismenu->updated_at?>" name="updated_at" id="updated_at"></input>
-	</p>
-	<p>
-		<label><?=$this->config->item('link')?>:</label>
-		<input type="text" value="<?=$sismenu->link?>" name="link" id="link"></input>
-	</p>
-	<div class="botonera">
-		<input type="submit" name="modificar" value="Modificar" class="crudtest-button" id="btn-save" onClick="submitData('formEditsismenu',new Array('right-content','right-content'))"></input>
-		<input type="button" name="cancelar" value="Cancelar" class="crudtest-button" id="btn-cancel" onClick="loadPage('<?=base_url()?>sismenu_controller/index','right-content')"></input>
+<?=$this->load->view('default/_header_admin')?>
+
+<div class="span10">
+	<div class="page-header">
+	  <h1><?=$title_header?></h1>
 	</div>
-	<div class="errors" id="errors">
-	<?php
-		echo validation_errors();
-		if(isset($error)) echo $error;
-	?>
-	</div>
-	<div id="busy"><img src="<?=base_url()?>css/images/ajax-loader.gif" /></div></form>
+
+	<?php if(validation_errors() || isset($error)): ?>
+		<div class="alert alert-error">
+			<a class="close" data-dismiss="alert" href="#">×</a>
+			<?=validation_errors()?>
+			
+		</div>		
+	<?php endif; ?>
+	<form action="<?=base_url()?>sismenu_controller/edit_c/<?=$sismenu->id?>" 
+		method="post" name="formEditsismenu" id="formEditsismenu" class="stdform">
+		
+		<input type="hidden" value="<?=$sismenu->id?>" name="id" id="id"></input>
+		
+		<div class="control-group">
+			<label class="control-label" for="descripcion"><?=$this->config->item('descripcion')?>:</label>
+			<div class="controls">
+				<input type="text" value="<?=$sismenu->descripcion?>" name="descripcion" id="descripcion"></input>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="estado"><?=$this->config->item('estado')?>:</label>
+			<div class="controls">
+				<?php foreach($estados as $f): ?>
+					<?php if($f->id == $sismenu->estado): ?>
+						<?=$f->descripcion?><input type="radio" name="estado" value="<?=$f->id?>" checked>
+					<?php else: ?>
+						<?=$f->descripcion?><input type="radio" name="estado" value="<?=$f->id?>" >
+					<?php endif; ?>
+				<?php endforeach; ?>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="parent"><?=$this->config->item('parent')?>:</label>
+			<div class="controls">
+				<select  name="parent" id="parent">
+					<?php if($sismenu->parent != 0): ?>
+						<?php foreach($parents as $f): ?>
+							<?php if($f->id == $sismenu->parent): ?>
+								<option value="<?=$f->id?>" selected><?=$f->descripcion?></option>
+							<?php else: ?>
+								<option value="<?=$f->id?>" ><?=$f->descripcion?></option>
+							<?php endif; ?>
+						<?php endforeach; ?>
+					<?php else: ?>
+						<option value="0" selected>Sin Padre</option>
+						<?php foreach($parents as $f): ?>
+								<option value="<?=$f->id?>" ><?=$f->descripcion?></option>
+						<?php endforeach; ?>
+					<?php endif; ?>
+				</select>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="link"><?=$this->config->item('link')?>:</label>
+			<div class="controls">
+				<input type="text" value="<?=$sismenu->link?>" name="link" id="link"></input>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="created_at"><?=$this->config->item('created_at')?>:</label>
+			<div class="controls">
+				<input type="text" value="<?=$sismenu->created_at?>" name="created_at" id="created_at" readonly="readonly"></input>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="updated_at"><?=$this->config->item('updated_at')?>:</label>
+			<div class="controls">
+				<input type="text" value="<?=$sismenu->updated_at?>" name="updated_at" id="updated_at" readonly="readonly"></input>
+			</div>
+		</div>
+
+		<p class="stdformbutton">
+	    	<a href="<?=base_url()?>sismenu_controller/index" class="btn" >Cancelar</a>
+	    	<button type="submit" class="submit radius2">Modificar</button>
+	    </p>
+
+	</form>
 </div>

@@ -12,10 +12,11 @@ class Sisperfil_Controller extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('sisperfil_model');
-		$this->config->load('sisperfil_settings');
 		if($this->session->userdata('logged_in') == true) { 
-			$data['flags'] = $this->basicauth->getPermissions('sisperfil');
+			$this->load->model('sisperfil_model');
+			$this->load->model('perfiles_model');
+			$this->config->load('sisperfil_settings');
+			$data['flags'] = $this->basicauth->getPermissions('sys_perfil');
 			$this->flagR = $data['flags']['flag-read'];
 			$this->flagI = $data['flags']['flag-insert'];
 			$this->flagU = $data['flags']['flag-update'];
@@ -29,10 +30,9 @@ class Sisperfil_Controller extends CI_Controller {
 		//code here
 		if($this->flagR){
 			$data['flag'] = $this->flags;
-			$data['subtitle'] = $this->config->item('recordListTitle');
-			$data['fieldSearch'] = $this->basicrud->getFieldSearch($this->sisperfil_model->getFieldsTable_m());
-			$this->load->view('view/home_sisperfil', $data);
-			$this->search_c();
+			$data['title_header'] = $this->config->item('recordListTitle');
+			$data['perfiles'] = $this->perfiles_model->get_m();
+			$this->load->view('sisperfil_view/home_sisperfil', $data);
 		}
 
 	}
@@ -46,46 +46,29 @@ class Sisperfil_Controller extends CI_Controller {
 	 * @access public
 	 * @return void
 	 */
-	function add_c()
+	function add_c($sismenu_id, $perfiles_id)
 	{
 		//code here
 		if(!$this->flagI){
 			echo $this->config->item('accessTitle');
 			exit();
 		}
+		
+		$data_sisperfil  = array();
+		$data_sisperfil['sismenu_id'] = $sismenu_id;
+		$data_sisperfil['perfiles_id'] = $perfiles_id;
+		$data_sisperfil['estado'] = 1;
+		$data_sisperfil['updated_at'] = $this->basicrud->formatDateToBD();
 
-		$data = array();
-		$data['subtitle'] = $this->config->item('recordAddTitle');
-		$this->form_validation->set_rules('_id', '_id', 'trim|integer|xss_clean');
-		$this->form_validation->set_rules('sismenu_id', 'sismenu_id', 'trim|integer|xss_clean');
-		$this->form_validation->set_rules('perfiles_id', 'perfiles_id', 'trim|integer|xss_clean');
-		$this->form_validation->set_rules('estado', 'estado', 'trim|integer|xss_clean');
-		$this->form_validation->set_rules('created_at', 'created_at', 'trim|alpha_numeric|xss_clean');
-		$this->form_validation->set_rules('updated_at', 'updated_at', 'trim|alpha_numeric|xss_clean');
-		if($this->form_validation->run())
-		{	
-			$data_sisperfil  = array();
-			if($this->input->post('sismenu_id'))
-				$data_sisperfil['sismenu_id'] = $this->input->post('sismenu_id');
-			if($this->input->post('perfiles_id'))
-				$data_sisperfil['perfiles_id'] = $this->input->post('perfiles_id');
-			if($this->input->post('estado'))
-				$data_sisperfil['estado'] = $this->input->post('estado');
-			if($this->input->post('created_at'))
-				$data_sisperfil['created_at'] = $this->basicrud->getFormatDateToBD($this->input->post('created_at'));
-			if($this->input->post('updated_at'))
-				$data_sisperfil['updated_at'] = $this->basicrud->getFormatDateToBD($this->input->post('updated_at'));
-
-			$id_sisperfil = $this->sisperfil_model->add_m($data_sisperfil);
-			if($id_sisperfil){ 
-				$this->session->set_flashdata('flashConfirm', $this->config->item('flash_add_message')); 
-				redirect('controller','location');
-			}else{
-				$this->session->set_flashdata('flashError', $this->config->item('flash_error_message')); 
-				redirect('controller','location');
-			}
+		$id_sisperfil = $this->sisperfil_model->add_m($data_sisperfil);
+		if($id_sisperfil){ 
+			$this->session->set_flashdata('flashConfirm', $this->config->item('flash_add_message')); 
+			redirect('sisperfil_controller','location');
+		}else{
+			$this->session->set_flashdata('flashError', $this->config->item('flash_error_message')); 
+			redirect('sisperfil_controller','location');
 		}
-		$this->load->view('view/form_add_sisperfil',$data);
+		
 
 	}
 
@@ -107,38 +90,32 @@ class Sisperfil_Controller extends CI_Controller {
 		}
 
 		$data = array();
-		$data['subtitle'] = $this->config->item('recordEditTitle');
-		$data['sisperfil'] = $this->sisperfil_model->get_m(array('_id' => $sisperfil_id),$flag=1);
-		$this->form_validation->set_rules('_id', '_id', 'trim|integer|xss_clean');
-		$this->form_validation->set_rules('sismenu_id', 'sismenu_id', 'trim|integer|xss_clean');
-		$this->form_validation->set_rules('perfiles_id', 'perfiles_id', 'trim|integer|xss_clean');
+		$data['title_header'] = $this->config->item('recordEditTitle');
+		$data['sisperfil'] = $this->sisperfil_model->get_m(array('id' => $sisperfil_id),$flag=1);
+		
+		$this->form_validation->set_rules('id', 'id', 'trim|required|integer|xss_clean');
+		$this->form_validation->set_rules('sismenu_id', 'sismenu_id', 'trim|required|integer|xss_clean');
+		$this->form_validation->set_rules('perfiles_id', 'perfiles_id', 'trim|required|integer|xss_clean');
 		$this->form_validation->set_rules('estado', 'estado', 'trim|integer|xss_clean');
-		$this->form_validation->set_rules('created_at', 'created_at', 'trim|alpha_numeric|xss_clean');
-		$this->form_validation->set_rules('updated_at', 'updated_at', 'trim|alpha_numeric|xss_clean');
+	
 		if($this->form_validation->run()){
 			$data_sisperfil  = array();
-			if($this->input->post('_id'))
-				$data_sisperfil['_id'] = $this->input->post('_id');
-			if($this->input->post('sismenu_id'))
-				$data_sisperfil['sismenu_id'] = $this->input->post('sismenu_id');
-			if($this->input->post('perfiles_id'))
-				$data_sisperfil['perfiles_id'] = $this->input->post('perfiles_id');
-			if($this->input->post('estado'))
-				$data_sisperfil['estado'] = $this->input->post('estado');
-			if($this->input->post('created_at'))
-				$data_sisperfil['created_at'] = $this->basicrud->getFormatDateToBD($this->input->post('created_at'));
-			if($this->input->post('updated_at'))
-				$data_sisperfil['updated_at'] = $this->basicrud->getFormatDateToBD($this->input->post('updated_at'));
+			
+			$data_sisperfil['id'] = $this->input->post('id');
+			$data_sisperfil['sismenu_id'] = $this->input->post('sismenu_id');
+			$data_sisperfil['perfiles_id'] = $this->input->post('perfiles_id');
+			$data_sisperfil['estado'] = $this->input->post('estado');
+			$data_sisperfil['updated_at'] = $this->basicrud->formatDateToBD();
 
 			if($this->sisperfil_model->edit_m($data_sisperfil)){ 
 				$this->session->set_flashdata('flashConfirm', $this->config->item('flash_edit_message')); 
-				redirect('controller','location');
+				redirect('sispermisos_controller','location');
 			}else{
 				$this->session->set_flashdata('flashError', $this->config->item('flash_error_message')); 
-				redirect('controller','location');
+				redirect('sispermisos_controller','location');
 			}
 		}
-		$this->load->view('view/form_edit_sisperfil',$data);
+		$this->load->view('sispermisos_view/form_edit_sisperfil',$data);
 
 	}
 
@@ -152,7 +129,7 @@ class Sisperfil_Controller extends CI_Controller {
 	 * @param $sisperfil_id id of record
 	 * @return void
 	 */
-	function delete_c($sisperfil_id)
+	function delete_c($id)
 	{
 		//code here
 		if(!$this->flagD){
@@ -160,12 +137,12 @@ class Sisperfil_Controller extends CI_Controller {
 			exit();
 		}
 
-		if($this->sisperfil_model->delete_m($sisperfil_id)){ 
+		if($this->sisperfil_model->delete_m($id)){ 
 			$this->session->set_flashdata('flashConfirm', $this->config->item('flash_delete_message')); 
-			redirect('controller','location');
+			redirect('sisperfil_controller','location');
 		}else{
 			$this->session->set_flashdata('flashError', $this->config->item('flash_error_delete_message')); 
-			redirect('controller','location');
+			redirect('sisperfil_controller','location');
 		}
 
 	}
@@ -185,9 +162,9 @@ class Sisperfil_Controller extends CI_Controller {
 		$fieldSearch = array(); 
 		$data_search_sisperfil = array(); 
 		$data_search_pagination = array(); 
-		$flag = 0; 
+		
 		$data_search_sisperfil  = array();
-		$data['flag'] = $this->flags;
+		
 		if($this->flagR)
 		{
 			$fieldSearch = $this->basicrud->getFieldSearch($this->sisperfil_model->getFieldsTable_m());
@@ -197,27 +174,44 @@ class Sisperfil_Controller extends CI_Controller {
 				{
 					$data_search_sisperfil[$field] = $this->input->post($field);
 					$data_search_pagination[$field] = $this->input->post($field);
-					$flag = 1;
 				}
 			}
 
 			$data_search_pagination['count'] = true;
 			$data_search_sisperfil['limit'] = $this->config->item('pag_perpage');
 			$data_search_sisperfil['offset'] = $offset;
-			$data_search_sisperfil['sortBy'] = '_id';
+			$data_search_sisperfil['sortBy'] = 'id';
 			$data_search_sisperfil['sortDirection'] = 'asc';
 
-			if($flag==1){
-				$data['pagination'] = $this->basicrud->getPagination(array('nameModel'=>'model','perpage'=>$this->config->item('pag_perpage')),$data_search_pagination);
-				$data['sisperfil'] = $this->sisperfil_model->get_m($data_search_sisperfil);
-			}else{
-				$data['pagination'] = $this->basicrud->getPagination(array('nameModel'=>'model','perpage'=>$this->config->item('pag_perpage'),$data_search_pagination));
-				$data['sisperfil'] = $this->sisperfil_model->get_m($data_search_sisperfil);
-			}
-			$data['fieldShow'] = $this->basicrud->getFieldToShow($this->sisperfil_model->getFieldsTable_m());
-			$this->load->view('view/record_list_sisperfil',$data);
+			$data['pagination'] = $this->basicrud->getPagination(array('nameModel'=>'model','perpage'=>$this->config->item('pag_perpage')),$data_search_pagination);
+			$data['sisperfil'] = $this->sisperfil_model->get_m($data_search_sisperfil);
+			$data['flag'] = $this->flags;
+
+			$this->load->view('sispermisos_view/record_list_sisperfil',$data);
 		}
 
+	}
+
+
+	public function getMenuAsignados_c($perfiles_id)
+	{
+		if($this->flagR)
+		{
+			$data['flag'] = $this->flags;
+			$data['menuasignados'] = $this->sisperfil_model->getMenuAssignedToPerfil_m($perfiles_id);
+			$this->load->view('sisperfil_view/record_list_menu_asignados',$data);
+		}
+	}
+
+
+	public function getMenuSinAsignar_c($perfiles_id)
+	{
+		if($this->flagR)
+		{
+			$data['flag'] = $this->flags;
+			$data['menusinasignar'] = $this->sisperfil_model->getMenuNotAssignedToPerfil_m($perfiles_id);
+			$this->load->view('sisperfil_view/record_list_menu_no_asignados',$data);
+		}
 	}
 
 }

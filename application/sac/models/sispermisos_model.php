@@ -19,7 +19,7 @@ class Sispermisos_Model extends CI_Model {
 	function add_m($options = array())
 	{
 		//code here
-		$this->db->insert('sispermisos', $options);
+		$this->db->insert('sys_permisos', $options);
 		return $this->db->insert_id();
 	}
 
@@ -51,9 +51,9 @@ class Sispermisos_Model extends CI_Model {
 		if(isset($options['updated_at']))
 			$this->db->set('updated_at', $options['updated_at']);
 
-		$this->db->where('_id', $options['_id']);
+		$this->db->where('id', $options['id']);
 
-		$this->db->update('sispermisos');
+		$this->db->update('sys_permisos');
 
 		if($this->db->affected_rows()>0) return $this->db->affected_rows();
 		else return $this->db->affected_rows() + 1;
@@ -70,8 +70,8 @@ class Sispermisos_Model extends CI_Model {
 	function delete_m($id)
 	{
 		//code here
-		$this->db->where('_id', $id);
-		$this->db->delete('sispermisos');
+		$this->db->where('id', $id);
+		$this->db->delete('sys_permisos');
 		return $this->db->affected_rows();
 	}
 
@@ -87,24 +87,24 @@ class Sispermisos_Model extends CI_Model {
 	function get_m($options = array(),$flag=0)
 	{
 		//code here
-		if(isset($options['_id']))
-			$this->db->where('_id', $options['_id']);
+		if(isset($options['id']))
+			$this->db->where('sp.id', $options['id']);
 		if(isset($options['tabla']))
-			$this->db->like('tabla', $options['tabla']);
+			$this->db->where('sp.tabla', $options['tabla']);
 		if(isset($options['flag_read']))
-			$this->db->where('flag_read', $options['flag_read']);
+			$this->db->where('sp.flag_read', $options['flag_read']);
 		if(isset($options['flag_insert']))
-			$this->db->where('flag_insert', $options['flag_insert']);
+			$this->db->where('sp.flag_insert', $options['flag_insert']);
 		if(isset($options['flag_update']))
-			$this->db->where('flag_update', $options['flag_update']);
+			$this->db->where('sp.flag_update', $options['flag_update']);
 		if(isset($options['flag_delete']))
-			$this->db->where('flag_delete', $options['flag_delete']);
+			$this->db->where('sp.flag_delete', $options['flag_delete']);
 		if(isset($options['perfiles_id']))
-			$this->db->where('perfiles_id', $options['perfiles_id']);
+			$this->db->where('sp.perfiles_id', $options['perfiles_id']);
 		if(isset($options['created_at']))
-			$this->db->where('created_at', $options['created_at']);
+			$this->db->where('sp.created_at', $options['created_at']);
 		if(isset($options['updated_at']))
-			$this->db->where('updated_at', $options['updated_at']);
+			$this->db->where('sp.updated_at', $options['updated_at']);
 
 		//limit / offset
 		if(isset($options['limit']) && isset($options['offset']))
@@ -116,13 +116,16 @@ class Sispermisos_Model extends CI_Model {
 		if(isset($options['sortBy']) && isset($options['sortDirection']))
 			$this->db->order_by($options['sortBy'],$options['sortDirection']);
 
-		$query = $this->db->get('sispermisos');
+		$this->db->select("sp.*, sper.descripcion as perfil_descripcion");
+		$this->db->from("sys_permisos as sp");
+		$this->db->join("sys_perfiles as sper","sper.id = sp.perfiles_id");
+		$query = $this->db->get();
 
 		if(isset($options['count'])) return $query->num_rows();
 
 		//format field of type date if it exist for human 
 		if($query->num_rows()>0){ 
-			if(isset($options['_id']) && $flag==1){
+			if(isset($options['id']) && $flag==1){
 				$query->row(0)->created_at = $this->basicrud->formatDateToHuman($query->row(0)->created_at);
 				$query->row(0)->updated_at = $this->basicrud->formatDateToHuman($query->row(0)->updated_at);
 				return $query->row(0);
@@ -148,13 +151,14 @@ class Sispermisos_Model extends CI_Model {
 	{
 		//code here
 		$fields=array();
-		$fields[]='_id';
+		$fields[]='id';
 		$fields[]='tabla';
 		$fields[]='flag_read';
 		$fields[]='flag_insert';
 		$fields[]='flag_update';
 		$fields[]='flag_delete';
 		$fields[]='perfiles_id';
+		$fields[]='perfil_descripcion';
 		$fields[]='created_at';
 		$fields[]='updated_at';
 		return $fields;

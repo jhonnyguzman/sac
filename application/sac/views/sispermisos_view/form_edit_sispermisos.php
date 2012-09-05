@@ -1,53 +1,99 @@
-<script> setDatePicker(new Array('created_at'));</script>
-<div id="title-level2"><?=$subtitle?></div>
-<div id="form">
-<div class="fields-required">Campos obligatorios (*)</div>
-<form action="<?=base_url()?>sispermisos_controller/edit_c/<?=$sispermisos->_id?>" method="post" name="formEditsispermisos" id="formEditsispermisos">
-	<p>
-		<label><span class='required'>*</span><?=$this->config->item('_id')?>:</label>
-		<input type="text" value="<?=$sispermisos->_id?>" name="_id" id="_id"  readonly="readonly"></input>
-	</p>
-	<p>
-		<label><span class='required'>*</span><?=$this->config->item('tabla')?>:</label>
-		<input type="text" value="<?=$sispermisos->tabla?>" name="tabla" id="tabla"></input>
-	</p>
-	<p>
-		<label><span class='required'>*</span><?=$this->config->item('flag_read')?>:</label>
-		<input type="text" value="<?=$sispermisos->flag_read?>" name="flag_read" id="flag_read"></input>
-	</p>
-	<p>
-		<label><span class='required'>*</span><?=$this->config->item('flag_insert')?>:</label>
-		<input type="text" value="<?=$sispermisos->flag_insert?>" name="flag_insert" id="flag_insert"></input>
-	</p>
-	<p>
-		<label><span class='required'>*</span><?=$this->config->item('flag_update')?>:</label>
-		<input type="text" value="<?=$sispermisos->flag_update?>" name="flag_update" id="flag_update"></input>
-	</p>
-	<p>
-		<label><span class='required'>*</span><?=$this->config->item('flag_delete')?>:</label>
-		<input type="text" value="<?=$sispermisos->flag_delete?>" name="flag_delete" id="flag_delete"></input>
-	</p>
-	<p>
-		<label><span class='required'>*</span><?=$this->config->item('perfiles_id')?>:</label>
-		<input type="text" value="<?=$sispermisos->perfiles_id?>" name="perfiles_id" id="perfiles_id"></input>
-	</p>
-	<p>
-		<label><span class='required'>*</span><?=$this->config->item('created_at')?>:</label>
-		<input type="text" value="<?=$sispermisos->created_at?>" name="created_at" id="created_at"></input>
-	</p>
-	<p>
-		<label><span class='required'>*</span><?=$this->config->item('updated_at')?>:</label>
-		<input type="text" value="<?=$sispermisos->updated_at?>" name="updated_at" id="updated_at"></input>
-	</p>
-	<div class="botonera">
-		<input type="submit" name="modificar" value="Modificar" class="crudtest-button" id="btn-save" onClick="submitData('formEditsispermisos',new Array('right-content','right-content'))"></input>
-		<input type="button" name="cancelar" value="Cancelar" class="crudtest-button" id="btn-cancel" onClick="loadPage('<?=base_url()?>sispermisos_controller/index','right-content')"></input>
+<?=$this->load->view('default/_header_admin')?>
+
+<div class="span10">
+	<div class="page-header">
+	  <h1><?=$title_header?></h1>
 	</div>
-	<div class="errors" id="errors">
-	<?php
-		echo validation_errors();
-		if(isset($error)) echo $error;
-	?>
-	</div>
-	<div id="busy"><img src="<?=base_url()?>css/images/ajax-loader.gif" /></div></form>
-</div>
+
+	<?php if(validation_errors() || isset($error)): ?>
+		<div class="alert alert-error">
+			<a class="close" data-dismiss="alert" href="#">×</a>
+			<?=validation_errors()?>
+			
+		</div>		
+	<?php endif; ?>
+	<form action="<?=base_url()?>sispermisos_controller/edit_c/<?=$sispermisos->id?>" method="post" name="formEditsispermisos" 
+		id="formEditsispermisos" class="stdform">
+		
+		<input type="hidden" value="<?=$sispermisos->id?>" name="id" id="id"  ></input>
+		
+		<div class="control-group">
+			<label class="control-label" for="perfiles_id"><?=$this->config->item('perfiles_id')?>:</label>
+			<div class="controls">
+				<input type="text" name="perfiles_id"  value="<?=$sispermisos->perfil_descripcion?>" readonly="true">
+				<input type="hidden" name="perfiles_id"  value="<?=$sispermisos->perfiles_id?>" >
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="tabla"><?=$this->config->item('tabla')?>:</label>
+			<div class="controls">
+				<input type="text" name="tabla"  value="<?=$sispermisos->tabla?>" readonly="true">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="flag_read"><?=$this->config->item('flag_read')?>:</label>
+			<div class="controls">
+				<span class="formwrapper">
+				  <input type="radio" name="flag_read" value="1" <?php if($sispermisos->flag_read == 1) echo "checked"; ?> >
+				  Si
+				  <input type="radio" name="flag_read" value="0" <?php if($sispermisos->flag_read == 0) echo "checked"; ?> >
+				  No
+				</span>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="flag_insert"><?=$this->config->item('flag_insert')?>:</label>
+			<div class="controls">
+				<span class="formwrapper">
+				  <input type="radio" name="flag_insert" value="1" <?php if($sispermisos->flag_insert == 1) echo "checked"; ?> >
+				  Si
+				  <input type="radio" name="flag_insert" value="0" <?php if($sispermisos->flag_insert == 0) echo "checked"; ?>>
+				  No
+				</span>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="flag_update"><?=$this->config->item('flag_update')?>:</label>
+			<div class="controls">
+				<span class="formwrapper">
+				  <input type="radio" name="flag_update" value="1" <?php if($sispermisos->flag_update == 1) echo "checked"; ?> >
+				  Si
+				  <input type="radio" name="flag_update" value="0" <?php if($sispermisos->flag_update == 0) echo "checked"; ?>>
+				  No
+				</span>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="flag_delete"><?=$this->config->item('flag_delete')?>:</label>
+			<div class="controls">
+				<span class="formwrapper">
+				  <input type="radio" name="flag_delete" value="1" <?php if($sispermisos->flag_delete == 1) echo "checked"; ?> >
+				  Si
+				  <input type="radio" name="flag_delete" value="0" <?php if($sispermisos->flag_delete == 0) echo "checked"; ?>>
+				  No
+				</span>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="created_at"><?=$this->config->item('created_at')?>:</label>
+			<div class="controls">
+				<input type="text" value="<?=$sispermisos->created_at?>" name="created_at" id="created_at" readonly="true"></input>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="updated_at"><?=$this->config->item('updated_at')?>:</label>
+			<div class="controls">
+				<input type="text" value="<?=$sispermisos->updated_at?>" name="updated_at" id="updated_at" readonly="true"></input>
+			</div>
+		</div>
+		
+		<p class="stdformbutton">
+	    	<a href="<?=base_url()?>sispermisos_controller/index" class="btn" >Cancelar</a>
+	    	<button type="submit" class="submit radius2">Modificar</button>
+	    </p>
+
+	</form>
+
+</div><!--/span10-->
+
+<?=$this->load->view('default/_footer_admin')?>

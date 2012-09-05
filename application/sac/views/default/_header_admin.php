@@ -33,6 +33,7 @@
     <script src="<?=base_url()?>assets/js/bootstrap-scrollspy.js"></script>
     <script src="<?=base_url()?>assets/js/bootstrap-tab.js"></script>
     <script src="<?=base_url()?>assets/js/bootstrap-popover.js"></script>
+    <script src="<?=base_url()?>assets/js/bootstrap-modal.js"></script>
     <script src="<?=base_url()?>assets/js/bootstrap-button.js"></script>
     <script src="<?=base_url()?>assets/js/bootstrap-collapse.js"></script>
     <script src="<?=base_url()?>assets/js/extras.js"></script>

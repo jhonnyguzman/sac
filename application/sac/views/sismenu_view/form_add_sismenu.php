@@ -1,41 +1,59 @@
-<script> setDatePicker(new Array('created_at'));</script>
-<div id="title-level2"><?=$subtitle?></div>
-<div id="form">
-<div class="fields-required">Campos obligatorios (*)</div>
-<form action="<?=base_url()?>index.php/sismenu_controller/add_c" method="post" name="formAddsismenu" id="formAddsismenu">
-	<p>
-		<label><span class='required'>*</span><?=$this->config->item('descripcion')?>:</label>
-		<input type="text" name="descripcion" id="descripcion"></input>
-	</p>
-	<p>
-		<label><span class='required'>*</span><?=$this->config->item('estado')?>:</label>
-		<input type="text" name="estado" id="estado"></input>
-	</p>
-	<p>
-		<label><span class='required'>*</span><?=$this->config->item('parent')?>:</label>
-		<input type="text" name="parent" id="parent"></input>
-	</p>
-	<p>
-		<label><span class='required'>*</span><?=$this->config->item('created_at')?>:</label>
-		<input type="text" name="created_at" id="created_at"></input>
-	</p>
-	<p>
-		<label><span class='required'>*</span><?=$this->config->item('updated_at')?>:</label>
-		<input type="text" name="updated_at" id="updated_at"></input>
-	</p>
-	<p>
-		<label><?=$this->config->item('sisvinculos_link')?>:</label>
-		<input type="text" name="sisvinculos_link" id="sisvinculos_link"></input>
-	</p>
-	<div class="botonera">
-		<input type="submit" name="guardar" value="Guardar" class="crudtest-button" id="btn-save" onClick="submitData('formAddsismenu',new Array('right-content','right-content'))"></input>
-		<input type="button" name="cancelar" value="Cancelar" class="crudtest-button" id="btn-cancel" onClick="loadPage('<?=base_url()?>sismenu_controller/index','right-content')"></input>
+<?=$this->load->view('default/_header_admin')?>
+
+<div class="span10">
+	<div class="page-header">
+	  <h1><?=$title_header?></h1>
 	</div>
-	<div class="errors" id="errors">
-	<?php
-		echo validation_errors();
-		if(isset($error)) echo $error;
-	?>
-	</div>
-	<div id="busy"><img src="<?=base_url()?>css/images/ajax-loader.gif" /></div></form>
-</div>
+
+	<?php if(validation_errors() || isset($error)): ?>
+		<div class="alert alert-error">
+			<a class="close" data-dismiss="alert" href="#">×</a>
+			<?=validation_errors()?>
+			
+		</div>		
+	<?php endif; ?>
+	<form action="<?=base_url()?>index.php/sismenu_controller/add_c" method="post" name="formAddsismenu" id="formAddsismenu" class="stdform">
+		<div class="control-group">
+			<label class="control-label" for="descripcion"><?=$this->config->item('descripcion')?>:</label>
+			<div class="controls">
+				<input type="text" name="descripcion" id="descripcion"></input>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="estado"><?=$this->config->item('estado')?>:</label>
+			<div class="controls">
+				<span class="formwrapper">
+					<?php foreach($estados as $f): ?>
+						<?=$f->descripcion?><input type="radio" name="estado" value="<?=$f->id?>" checked>
+					<?php endforeach; ?>
+				</span>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="parent"><?=$this->config->item('parent')?>:</label>
+			<div class="controls">
+				<select  name="parent" id="parent">
+					<option value="0" selected>Sin Padre</option>
+					<?php foreach($parents as $f): ?>
+						<option value="<?=$f->id?>"><?=$f->descripcion?></option>
+					<?php endforeach; ?>
+				</select>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="link"><?=$this->config->item('link')?>:</label>
+			<div class="controls">
+				<input type="text" name="link" id="link"></input>
+			</div>
+		</div>
+		
+		<p class="stdformbutton">
+	    	<a href="<?=base_url()?>sismenu_controller/index" class="btn" >Cancelar</a>
+	    	<button type="submit" class="submit radius2">Guardar</button>
+	    </p>
+
+	</form>
+
+</div><!--/span10-->
+
+<?=$this->load->view('default/_footer_admin')?>

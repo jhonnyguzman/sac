@@ -4,7 +4,7 @@
 
 /* Config general titles */
 
-$config['recordListTitle']=' Listado de sispermisos';
+$config['recordListTitle']=' Listado de Permisos';
 $config['recordAddTitle']=' Nuevo permiso';
 $config['recordEditTitle']=' Editar permiso';
 $config['accessTitle']='<div class="accessTitle"> No tienes permiso para realizar esta operaci&oacute;n </div>';
@@ -18,13 +18,14 @@ $config['flag_insert']='¿Puede insertar?';
 $config['flag_update']='¿Puede modificar?';
 $config['flag_delete']='¿Puede eliminar?';
 $config['perfiles_id']='Perfil';
+$config['perfil_descripcion']='Perfil';
 $config['created_at']='Fecha de alta';
-$config['updated_at']='Actualizado';
+$config['updated_at']='Actualizado el';
 
 /* Config fields for search */
 
-$config['search_by_id']= 1;
-$config['search_by_tabla']= 0;
+$config['search_by_id']= 0;
+$config['search_by_tabla']= 1;
 $config['search_by_flag_read']= 0;
 $config['search_by_flag_insert']= 0;
 $config['search_by_flag_update']= 0;

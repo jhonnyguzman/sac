@@ -118,7 +118,7 @@ class Escuelas_Controller extends CI_Controller {
 		$data = array();
 		$data['title_header'] = $this->config->item('recordEditTitle');
 		$data['escuelas'] = $this->escuelas_model->get_m(array('id' => $id),$flag=1);
-		$this->form_validation->set_rules('id', 'id', 'trim|required|integer|xss_clean');
+		$this->form_validation->set_rules('id', 'id', 'trim|integer|xss_clean');
 		$this->form_validation->set_rules('cue', 'cue', 'trim|required|integer|xss_clean');
 		$this->form_validation->set_rules('nombre', 'nombre', 'trim|required|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('direccion', 'direccion', 'trim|alpha_numeric|xss_clean');

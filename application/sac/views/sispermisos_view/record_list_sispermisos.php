@@ -1,42 +1,75 @@
-<script type="text/javascript">
-$(document).ready(function(){ setPagination('<?=base_url()?>sispermisos_controller/search_c','right-content'); });
+
+		<?php if(isset($syspermisos) && is_array($syspermisos) && count($syspermisos)>0):?>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Tabla</th>
+						<th>Perfil</th>
+						<th>¿Puede leer?</th>
+						<th>¿Puede insertar?</th>
+						<th>¿Puede editar?</th>
+						<th>¿Puede eliminar?</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbodoy>
+					<?php foreach($syspermisos as $f):?>
+						<tr>
+							<td><?=$f->tabla?></td>
+							<td><?=$f->perfil_descripcion?></td>
+							<td>
+								<?php if($f->flag_read == 1 ): ?>
+									<img src="..." class="icon-ok">
+								<?php elseif($f->flag_read == 0 ): ?>
+									<img src="..." class="icon-remove">
+								<?php endif; ?>
+							</td>
+							<td>
+								<?php if($f->flag_insert == 1 ): ?>
+									<img src="..." class="icon-ok">
+								<?php elseif($f->flag_insert == 0 ): ?>
+									<img src="..." class="icon-remove">
+								<?php endif; ?>
+							</td>
+							<td>
+								<?php if($f->flag_update == 1 ): ?>
+									<img src="..." class="icon-ok">
+								<?php elseif($f->flag_update == 0 ): ?>
+									<img src="..." class="icon-remove">
+								<?php endif; ?>
+							</td>
+							<td>
+								<?php if($f->flag_delete == 1 ): ?>
+									<img src="..." class="icon-ok">
+								<?php elseif($f->flag_delete == 0 ): ?>
+									<img src="..." class="icon-remove">
+								<?php endif; ?>
+							</td>
+							<td>
+								<?php if($flag['u']):?>
+									<a href="<?=base_url()?>sispermisos_controller/edit_c/<?=$f->id?>" title="Modificar">Modificar</a>
+								<?php endif;?>
+								<?php if($flag['d']):?>
+									<a href="#"  onClick="deleteRow('<?=base_url()?>sispermisos_controller/delete_c/<?=$f->id?>')" title="Eliminar">Eliminar</a>
+								<?php endif;?>
+							</td>
+						</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+			
+			<?php if(isset($pagination)):?>
+				<div class="pagination pagination-right" id="pag-syspermisos">
+					<?=$pagination?>
+				</div>
+			<?php endif; ?>
+		<?php else: ?>
+			<p>No results!</p>
+		<?php endif; ?>
+
+<script>
+	$(document).ready(function(){ 
+		setPagination('pag-syspermisos','result-list'); 
+	});
 </script>
-<div id="result-list">
-<?php if(isset($sispermisos) && is_array($sispermisos) && count($sispermisos)>0):?>
-<table id="result-set">
-	<tr>
-		<?php foreach($fieldShow as $field):?>
-		<th><?=$this->config->item($field)?></th>
-		<?php endforeach; ?>
-		<th></th>
-		<th></th>
-	</tr>
-	<?php foreach($sispermisos as $f):?>
-		<tr>
-			<?php foreach($fieldShow as $field):?>
-			<?php if($f->$field==1 && ($field=='flag_read' || $field=='flag_insert' || $field=='flag_update' || $field=='flag_delete')):?>
-				<td><img src="<?=base_url()?>css/images/icon-ok.png"></td>
-			<?php elseif($f->$field==0 && ($field=='flag_read' || $field=='flag_insert' || $field=='flag_update' || $field=='flag_delete')):?>
-				<td><img src="<?=base_url()?>css/images/icon-not.png"></td>
-			<?php else:?>
-				<td><?=$f->$field?></td>
-			<?php endif;?>
-			<?php endforeach; ?>
-			<?php if($flag['u']):?>
-				<td><a href="#" onClick="loadPage('<?=base_url()?>index.php/sispermisos_controller/edit_c/<?=$f->_id?>','right-content')" id="icon-edit">Modificar</a></td>
-			<?php endif;?>
-			<?php if($flag['d']):?>
-				<td><a href="#" onClick="deleteData('<?=base_url()?>index.php/sispermisos_controller/delete_c/<?=$f->_id?>','right-content','¿Estás seguro de eliminar este item?')" id="icon-delete">Eliminar</a></td>
-			<?php endif;?>
-		</tr>
-	<?php endforeach; ?>
-</table>
-<?php if(isset($pagination)):?>
-<div class='pagination'>
-<?=$pagination?>
-</div>
-<?php endif; ?>
-<?php else: ?>
-	<p>No results!</p>
-<?php endif; ?>
-</div>
+

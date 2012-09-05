@@ -4,25 +4,27 @@
 
 /* Config general titles */
 
-$config['recordListTitle']=' Listado de Controller';
-$config['recordAddTitle']=' Nuevo Controller';
-$config['recordEditTitle']=' Editar Controller';
+$config['recordListTitle']=' Listado de Menus del Sistema';
+$config['recordAddTitle']=' Nuevo Menu';
+$config['recordEditTitle']=' Editar Menu';
 
 /* Config labels of the form fields */
 
-$config['id']='id';
-$config['descripcion']='descripcion';
-$config['estado']='estado';
-$config['parent']='parent';
-$config['iconpath']='iconpath';
-$config['created_at']='created_at';
-$config['updated_at']='updated_at';
-$config['sisvinculos_link']='Link';
+$config['id']='Id';
+$config['descripcion']='Descripci&oacute;n';
+$config['estado']='Estado';
+$config['estado_descripcion']='Estado';
+$config['parent']='Menu Padre';
+$config['descripcion_parent']='Menu Padre';
+$config['iconpath']='Icono';
+$config['created_at']='Fecha de alta';
+$config['updated_at']='Actualizado el';
+$config['link']='Link';
 
 /* Config fields for search */
 
-$config['search_by_id']= 1;
-$config['search_by_descripcion']= 0;
+$config['search_by_id']= 0;
+$config['search_by_descripcion']= 1;
 $config['search_by_estado']= 0;
 $config['search_by_parent']= 0;
 $config['search_by_iconpath']= 0;
@@ -38,7 +40,7 @@ $config['show_parent']= 1;
 $config['show_iconpath']= 1;
 $config['show_created_at']= 1;
 $config['show_updated_at']= 1;
-$config['show_sisvinculos_link']= 1;
+$config['show_link']= 1;
 
 /* Config params of pagination */
 

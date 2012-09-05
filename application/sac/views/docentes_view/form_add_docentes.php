@@ -56,6 +56,7 @@
 
 		</form>
 </div><!--/span10-->
+
 <SCRIPT LANGUAGE='JavaScript'>
 	var dni = new LiveValidation('dni'); dni.add( Validate.Presence ); dni.add( Validate.Numericality ); dni.add( Validate.Length, { is: 8 } );
 	var apellido = new LiveValidation('apellido'); apellido.add( Validate.Presence ); apellido.add( Validate.Length, { maximum: 10 } );

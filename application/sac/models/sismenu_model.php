@@ -108,9 +108,11 @@ class Sismenu_Model extends CI_Model {
 		if(isset($options['sortBy']) && isset($options['sortDirection']))
 			$this->db->order_by($options['sortBy'],$options['sortDirection']);
 
-		$this->db->select('sm._id, sm.descripcion, sm.estado, sm.parent, sm.iconpath, sm.created_at, sv.link');
+		$this->db->select('sm.*,tg.descripcion as estado_descripcion, sv.link, 
+			(select smp.descripcion from sys_menu as smp where smp.id = sm.parent) as parent_descripcion', false);
 		$this->db->from('sys_menu as sm');
-		$this->db->join('sys_vinculos as sv', 'sm._id = sv.sismenu_id');
+		$this->db->join('sys_vinculos as sv', 'sm.id = sv.sismenu_id');
+		$this->db->join('sys_tabgral as tg', 'tg.id = sm.estado');
 		$query = $this->db->get();
 
 		if(isset($options['count'])) return $query->num_rows();
@@ -146,7 +148,9 @@ class Sismenu_Model extends CI_Model {
 		$fields[]='id';
 		$fields[]='descripcion';
 		$fields[]='estado';
+		$fields[]='estado_descripcion';
 		$fields[]='parent';
+		$fields[]='parent_descripcion';
 		$fields[]='iconpath';
 		$fields[]='created_at';
 		$fields[]='updated_at';

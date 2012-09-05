@@ -100,3 +100,13 @@ function loadModal(url)
         });
     }).modal('show'); 
 }
+
+function showContentTabMenus(url, div)
+{
+    $("#"+div).load(url + $("#perfiles_id").val());
+}
+
+function asignMenu(url)
+{
+    document.location.href =url + $("#perfiles_id").val();
+}

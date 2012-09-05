@@ -4,7 +4,7 @@
 
 /* Config general titles */
 
-$config['recordListTitle']=' Listado de sisperfil';
+$config['recordListTitle']=' Menus asignados a los perfiles de usuario';
 $config['recordAddTitle']=' Nuevo sisperfil';
 $config['recordEditTitle']=' Editar sisperfil';
 $config['accessTitle']='<div class="accessTitle"> No tienes permiso para realizar esta operaci&oacute;n </div>';
@@ -15,12 +15,13 @@ $config['id']='id';
 $config['sismenu_id']='sismenu_id';
 $config['perfiles_id']='perfiles_id';
 $config['estado']='estado';
+$config['estado_descripcion']='estado_descripcion';
 $config['created_at']='created_at';
 $config['updated_at']='updated_at';
 
 /* Config fields for search */
 
-$config['search_by_id']= 1;
+$config['search_by_id']= 0;
 $config['search_by_sismenu_id']= 0;
 $config['search_by_perfiles_id']= 0;
 $config['search_by_estado']= 0;

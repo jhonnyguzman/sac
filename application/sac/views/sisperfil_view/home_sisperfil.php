@@ -1,32 +1,52 @@
-<?php if($this->session->flashdata('flashConfirm')) echo "<script type='text/javascript'>showFlash('".$this->session->flashdata('flashConfirm')."',1)</script>";?>
-<?php if($this->session->flashdata('flashError')) echo "<script type='text/javascript'>showFlash('".$this->session->flashdata('flashError')."',2)</script>";?>
-<div id="controller-panel">
-	<div id="controller-panel-left">
-		<div id="title-level2"><?=$subtitle?></div>
+<?=$this->load->view('default/_header_admin')?>
+
+<div class="span10">
+	<div class="page-header">
+	  <h1><?=$title_header?></h1>
 	</div>
-	<div id="controller-panel-right">
-		<div id="controller-botonera">
-		<?php if(!$flag['i']):?>
-			<div class='block-item2'><a href="#" id="icon-new" title='Nuevo'>Nuevo</a><div class='mask-item2'></div></div>
-		<?php else: ?>
-			<a href="#" onClick="loadPage('<?=base_url()?>index.php/sisperfil_controller/add_c','right-content')" id="icon-new" title='Nuevo'>Nuevo</a>
-		<?php endif; ?>
+	
+	<?=$this->load->view("default/_result_messages")?>
+
+	 <div class="row-fluid">
+	 	<div class="span12">
+	        <form action="<?=base_url()?>sispermisos_controller/add_c" method="post" name="formAddsispermisos" 
+			id="formAddsispermisos" >
+	  			<legend>Seleccione un perfil:</legend>
+
+	  			<select name="perfiles_id" id="perfiles_id" 
+	  				onChange="showContentTabMenus('<?=base_url()?>sisperfil_controller/getMenuAsignados_c/','menusAsignados')">
+	  				<?php foreach($perfiles as $f): ?>
+	  					<option value="<?=$f->id?>"><?=$f->descripcion?></option>
+	  				<?php endforeach; ?>
+	  			</select>
+			</form>
+			<br>
 		</div>
 	</div>
-</div>
-<div id="form-search">
-	<form action="<?=base_url()?>index.php/sisperfil_controller/search_c" method="post" name="formSearchsisperfil" id="formSearchsisperfil">
-	<fieldset>
-		<legend>Filtrar por:</legend>
-		<?php foreach($fieldSearch as $field):?>
-		<p>
-			<label><?=$this->config->item($field)?>:</label>
-			<input type="text" name="<?=$field?>" id="<?=$field?>"></input>
-		</p>
-		<?php endforeach; ?>
-		<p>
-		<input type="submit" name="btn-search" id="btn-search" value="Buscar" onClick="submitData('formSearchsisperfil',new Array('result-list','result-list'))"></input>
-		</p>
-	</fieldset>
-	</form>
-</div>
+	<div class="row-fluid">
+		<div class="span12">
+			<ul class="nav nav-tabs" id="tabMenus">
+			  <li class="active"><a href="#menusAsignados" data-toggle="tab" 
+			  	onClick="showContentTabMenus('<?=base_url()?>sisperfil_controller/getMenuAsignados_c/','menusAsignados')">Menus Asignados</a></li>
+			  <li><a href="#menusSinAsignar" data-toggle="tab"
+			  	onClick="showContentTabMenus('<?=base_url()?>sisperfil_controller/getMenuSinAsignar_c/','menusSinAsignar')">Menus sin asignar</a></li>
+			</ul>
+			 
+			<div class="tab-content">
+			  <div class="tab-pane active" id="menusAsignados"></div>
+			  <div class="tab-pane" id="menusSinAsignar"></div>
+			</div>
+		</div>
+     </div>
+
+
+ </div><!--/span10-->
+
+
+ <script>
+    $(document).ready(function(){ 
+    	showContentTabMenus("<?=base_url()?>sisperfil_controller/getMenuAsignados_c/", "menusAsignados");
+    });
+</script>
+
+ <?=$this->load->view('default/_footer_admin')?>

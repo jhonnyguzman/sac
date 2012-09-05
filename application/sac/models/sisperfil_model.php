@@ -132,11 +132,12 @@ class Sisperfil_Model extends CI_Model {
 	 * @access public
 	 * @return array  fields of table
 	 */
-	function getMenuAssignedToPerfil_m()
+	function getMenuAssignedToPerfil_m($perfiles_id)
 	{
 		//code here
-		$query_str = "select sm.id, sm.descripcion from sys_perfil as sp inner join sys_menu as sm on sp.sismenu_id = sm.id where sp.perfiles_id = ?";
-		$query = $this->db->query($query_str,$options['perfiles_id']);
+		$query_str = "select sp.id,sp.estado,sm.descripcion, tg.descripcion as estado_descripcion from sys_perfil as sp 
+		inner join sys_menu as sm on sp.sismenu_id = sm.id inner join sys_tabgral as tg on tg.id = sp.estado where sp.estado = 1 and sp.perfiles_id = ?";
+		$query = $this->db->query($query_str,$perfiles_id);
 		if($query->num_rows()>0){
 			return $query->result();
 		}
@@ -149,11 +150,12 @@ class Sisperfil_Model extends CI_Model {
 	 * @access public
 	 * @return array  fields of table
 	 */
-	function getMenuNotAssignedToPerfil_m()
+	function getMenuNotAssignedToPerfil_m($perfiles_id)
 	{
 		//code here
-		$query_str = "select sm.id, sm.descripcion from sys_menu as sm where (select count(*) as cantidad from sys_perfil as sp where sp.perfiles_id= ? and sp.sismenu_id = sm.id) =  0";
-		$query = $this->db->query($query_str,$options['perfiles_id']);
+		$query_str = "select sm.id, sm.estado, sm.descripcion, tg.descripcion as estado_descripcion from sys_menu as sm inner join sys_tabgral as tg on tg.id = sm.estado
+		where (select count(*) as cantidad from sys_perfil as sp where sp.perfiles_id= ? and sp.sismenu_id = sm.id and sp.estado = 1) =  0";
+		$query = $this->db->query($query_str,$perfiles_id);
 		if($query->num_rows()>0){
 			return $query->result();
 		}
@@ -174,6 +176,7 @@ class Sisperfil_Model extends CI_Model {
 		$fields[]='sismenu_id';
 		$fields[]='perfiles_id';
 		$fields[]='estado';
+		$fields[]='estado_descripcion';
 		$fields[]='created_at';
 		$fields[]='updated_at';
 		return $fields;

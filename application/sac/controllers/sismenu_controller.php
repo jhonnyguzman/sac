@@ -12,27 +12,27 @@ class Sismenu_Controller extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('sismenu_model');
-		$this->load->model('sisvinculos_model');
-		$this->load->model('tabgral_model');
-		$this->config->load('sismenu_settings');
-		$data['flags'] = $this->basicauth->getPermissions('sismenu');
-		$this->flagR = $data['flags']['flag-read'];
-		$this->flagI = $data['flags']['flag-insert'];
-		$this->flagU = $data['flags']['flag-update'];
-		$this->flagD = $data['flags']['flag-delete'];
-		$this->flags = array('i'=>$this->flagI,'u'=>$this->flagU,'d'=>$this->flagD);
+		if($this->session->userdata('logged_in') == true) { 
+			$this->load->model('sismenu_model');
+			$this->load->model('sisvinculos_model');
+			$this->load->model('tabgral_model');
+			$this->config->load('sismenu_settings');
+			$data['flags'] = $this->basicauth->getPermissions('sys_menu');
+			$this->flagR = $data['flags']['flag-read'];
+			$this->flagI = $data['flags']['flag-insert'];
+			$this->flagU = $data['flags']['flag-update'];
+			$this->flagD = $data['flags']['flag-delete'];
+			$this->flags = array('i'=>$this->flagI,'u'=>$this->flagU,'d'=>$this->flagD);
+		}
 	}
 
 	function index()
 	{
 		//code here
 		if($this->flagR){
-			$data['subtitle'] = $this->config->item('recordListTitle');
+			$data['title_header'] = $this->config->item('recordListTitle');
 			$data['flag'] = $this->flags;
-			$data['fieldSearch'] = $this->basicrud->getFieldSearch($this->sismenu_model->getFieldsTable_m());
-			$this->load->view('view/home_sismenu', $data);
-			$this->search_c();
+			$this->load->view('sismenu_view/home_sismenu', $data);
 		}
 	
 
@@ -51,39 +51,40 @@ class Sismenu_Controller extends CI_Controller {
 	{
 		//code here
 		$data = array();
-		$data['subtitle'] = $this->config->item('recordAddTitle');
-		$this->form_validation->set_rules('descripcion', 'descripcion', 'trim|alpha_numeric|xss_clean');
+		$data['title_header'] = $this->config->item('recordAddTitle');
+
+		$this->form_validation->set_rules('descripcion', 'descripcion', 'trim|required|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('estado', 'estado', 'trim|integer|xss_clean');
 		$this->form_validation->set_rules('parent', 'parent', 'trim|integer|xss_clean');
-		$this->form_validation->set_rules('created_at', 'created_at', 'trim|alpha_numeric|xss_clean');
-		$this->form_validation->set_rules('sisvinculos_link', 'sisvinculos_link', 'trim|alpha_numeric|xss_clean');
+		$this->form_validation->set_rules('sisvinculos_link', 'sisvinculos_link', 'trim|required|alpha_numeric|xss_clean');
 		if($this->form_validation->run())
 		{	
 			$data_sismenu  = array();
 			$data_sismenu['descripcion'] = $this->input->post('descripcion');
 			$data_sismenu['estado'] = $this->input->post('estado');
-			if($this->input->post('parent'))
-				$data_sismenu['parent'] = $this->input->post('parent');
-			if($this->input->post('iconpath'))
-				$data_sismenu['iconpath'] = $this->input->post('iconpath');
-			$data_sismenu['updated_at'] = $this->basicrud->getFormatDateToBD($this->input->post('updated_at'));
+			$data_sismenu['parent'] = $this->input->post('parent');
+			$data_sismenu['iconpath'] = $this->input->post('iconpath');
+			$data_sismenu['updated_at'] = $this->basicrud->formatDateToBD();
 
 			$id_sismenu = $this->sismenu_model->add_m($data_sismenu);
 			if($id_sismenu){ 
-				$id_sisvinculos = $this->sisvinculos_model->add_m(array('id'=>$id_sismenu,'sisvinculos_link'=>$this->input->post('sisvinculos_link'))); 
+				$id_sisvinculos = $this->sisvinculos_model->add_m(array('sismenu_id'=>$id_sismenu,'link'=>$this->input->post('link'))); 
 				if($id_sisvinculos){ 
 					$this->session->set_flashdata('flashConfirm', $this->config->item('flash_add_message')); 
-					redirect('controller','location');
+					redirect('sismenu_controller','location');
 				}else{ 
 					$this->session->set_flashdata('flashError', $this->config->item('flash_error_message')); 
-					redirect('controller','location');
+					redirect('sismenu_controller','location');
 				}
 			}else{
 				$this->session->set_flashdata('flashError', $this->config->item('flash_error_message')); 
-				redirect('controller','location');
+				redirect('sismenu_controller','location');
 			}
+		}else{
+			$data['parents'] = $this->sismenu_model->get_m(array('estado'=>1));
+			$data['estados'] = $this->tabgral_model->get_m(array('grupos_tabgral_id'=>1));
+			$this->load->view('sismenu_view/form_add_sismenu',$data);
 		}
-		$this->load->view('view/form_add_sismenu',$data);
 
 	}
 
@@ -100,41 +101,42 @@ class Sismenu_Controller extends CI_Controller {
 	{
 		//code here
 		$data = array();
-		$data['subtitle'] = $this->config->item('recordEditTitle');
-		$data['sismenu'] = $this->sismenu_model->get_m(array('_id' => $sismenu_id),$flag=1);
-		$this->form_validation->set_rules('_id', '_id', 'trim|integer|xss_clean');
-		$this->form_validation->set_rules('descripcion', 'descripcion', 'trim|alpha_numeric|xss_clean');
+		$data['title_header'] = $this->config->item('recordEditTitle');
+
+		$data['sismenu'] = $this->sismenu_model->get_m(array('id' => $sismenu_id),$flag=1);
+
+		$this->form_validation->set_rules('id', 'id', 'trim|required|integer|xss_clean');
+		$this->form_validation->set_rules('descripcion', 'descripcion', 'trim|required|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('estado', 'estado', 'trim|integer|xss_clean');
 		$this->form_validation->set_rules('parent', 'parent', 'trim|integer|xss_clean');
-		$this->form_validation->set_rules('created_at', 'created_at', 'trim|alpha_numeric|xss_clean');
-		$this->form_validation->set_rules('sisvinculos_link', 'sisvinculos_link', 'trim|alpha_numeric|xss_clean');
+		$this->form_validation->set_rules('link', 'link', 'trim|required|alpha_numeric|xss_clean');
+		
 		if($this->form_validation->run()){
 			$data_sismenu  = array();
-			$data_sismenu['_id'] = $this->input->post('_id');
+			$data_sismenu['id'] = $this->input->post('id');
 			$data_sismenu['descripcion'] = $this->input->post('descripcion');
-			if($this->input->post('estado'))
-				$data_sismenu['estado'] = $this->input->post('estado');
-			if($this->input->post('parent'))
-				$data_sismenu['parent'] = $this->input->post('parent');
-			if($this->input->post('iconpath'))
-				$data_sismenu['iconpath'] = $this->input->post('iconpath');
-			
-			$data_sismenu['updated_at'] = $this->basicrud->getFormatDateToBD($this->input->post('updated_at'));
+			$data_sismenu['estado'] = $this->input->post('estado');
+			$data_sismenu['parent'] = $this->input->post('parent');
+			$data_sismenu['iconpath'] = $this->input->post('iconpath');
+			$data_sismenu['updated_at'] = $this->basicrud->formatDateToBD();
 
 			if($this->sismenu_model->edit_m($data_sismenu)){ 
-				if($this->sisvinculos_model->edit_m(array('sismenu_id'=>$this->input->post('_id'),'link'=>$this->input->post('link')))){ 
+				if($this->sisvinculos_model->edit_m(array('sismenu_id'=>$this->input->post('id'),'link'=>$this->input->post('link')))){ 
 					$this->session->set_flashdata('flashConfirm', $this->config->item('flash_edit_message')); 
-					redirect('controller','location');
+					redirect('sismenu_controller','location');
 				}else{
 					$this->session->set_flashdata('flashError', $this->config->item('flash_error_message')); 
-					redirect('controller','location');
+					redirect('sismenu_controller','location');
 				}
 			}else{
 				$this->session->set_flashdata('flashError', $this->config->item('flash_error_message')); 
-				redirect('controller','location');
+				redirect('sismenu_controller','location');
 			}
+		}else{
+			$data['parents'] = $this->sismenu_model->get_m(array('estado'=>1));
+			$data['estados'] = $this->tabgral_model->get_m(array('grupos_tabgral_id'=>1));
+			$this->load->view('sismenu_view/form_edit_sismenu',$data);
 		}
-		$this->load->view('view/form_edit_sismenu',$data);
 
 	}
 
@@ -148,15 +150,15 @@ class Sismenu_Controller extends CI_Controller {
 	 * @param $sismenu_id id of record
 	 * @return void
 	 */
-	function delete_c($sismenu_id)
+	function delete_c($id)
 	{
 		//code here
-		if($this->sismenu_model->delete_m($sismenu_id)){ 
+		if($this->sismenu_model->delete_m($id)){ 
 			$this->session->set_flashdata('flashConfirm', $this->config->item('flash_delete_message')); 
-			redirect('controller','location');
+			redirect('sismenu_controller','location');
 		}else{
 			$this->session->set_flashdata('flashError', $this->config->item('flash_error_delete_message')); 
-			redirect('controller','location');
+			redirect('sismenu_controller','location');
 		}
 
 	}
@@ -168,7 +170,6 @@ class Sismenu_Controller extends CI_Controller {
 		$fieldSearch = array(); 
 		$data_search_sismenu  = array();
 		$data_search_pagination  = array();
-		$flag = 0;
 		
 		if($this->flagR)
 		{
@@ -179,27 +180,20 @@ class Sismenu_Controller extends CI_Controller {
 				{ 
 					$data_search_sismenu[$field] = $this->input->post($field);
 					$data_search_pagination[$field] = $this->input->post($field);
-					$flag = 1;
 				}
 			}
 			
 			$data_search_pagination['count'] = true;
 			$data_search_sismenu['limit'] = $this->config->item('pag_perpage');
 			$data_search_sismenu['offset'] = $offset;
-			$data_search_sismenu['sortBy'] = '_id';
+			$data_search_sismenu['sortBy'] = 'parent';
 			$data_search_sismenu['sortDirection'] = 'asc';
 
-			if($flag==1){
-				$data['pagination'] = $this->basicrud->getPagination(array('nameModel'=>'model','perpage'=>$this->config->item('pag_perpage')),$data_search_pagination);
-				$data['sismenu'] = $this->sismenu_model->get_m($data_search_sismenu);
-			}else{
-				$data['pagination'] = $this->basicrud->getPagination(array('nameModel'=>'model','perpage'=>$this->config->item('pag_perpage')),$data_search_pagination);
-				$data['sismenu'] = $this->sismenu_model->get_m($data_search_sismenu);
-			}
-					
-			$data['fieldShow'] = $this->basicrud->getFieldToShow($this->sismenu_model->getFieldsTable_m());
+			$data['pagination'] = $this->basicrud->getPagination(array('nameModel'=>'sismenu_model','perpage'=>$this->config->item('pag_perpage')),$data_search_pagination);
+			$data['sismenu'] = $this->sismenu_model->get_m($data_search_sismenu);
+		
 			$data['flag'] = $this->flags;
-			$this->load->view('view/record_list_sismenu',$data);
+			$this->load->view('sismenu_view/record_list_sismenu',$data);
 		}
 
 	}
