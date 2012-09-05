@@ -35,6 +35,7 @@
     <script src="<?=base_url()?>assets/js/bootstrap-popover.js"></script>
     <script src="<?=base_url()?>assets/js/bootstrap-button.js"></script>
     <script src="<?=base_url()?>assets/js/bootstrap-collapse.js"></script>
+    <script src="<?=base_url()?>assets/js/bootstrap-modal.js"></script>
     <script src="<?=base_url()?>assets/js/extras.js"></script>
 
     <script type="text/javascript" src="<?=base_url()?>assets/js/template/plugins/jquery-1.7.min.js"></script>
