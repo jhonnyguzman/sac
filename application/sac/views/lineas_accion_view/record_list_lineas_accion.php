@@ -22,7 +22,7 @@
 									<span class="label">Desabilitado</span>
 								<?php endif;  ?>
 							</td>
-							<td><?=$f->ciclo?></td>
+							<td><?=$f->ciclo_descripcion?></td>
 							<td>
 								<?php if($flag['u']):?>
 									<a href="<?=base_url()?>lineas_accion_controller/edit_c/<?=$f->id?>" title="Modificar" class="btn boton_rojo">Modificar</a>

@@ -1,7 +1,7 @@
 <?php
  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Lineas_accion_Model extends CI_Model {
+class Lineas_periodos_escuelas_Model extends CI_Model {
 
 	function __construct()
 	{
@@ -19,7 +19,7 @@ class Lineas_accion_Model extends CI_Model {
 	function add_m($options = array())
 	{
 		//code here
-		$this->db->insert('lineas_accion', $options);
+		$this->db->insert('lineas_periodos_escuelas', $options);
 		return $this->db->insert_id();
 	}
 
@@ -34,22 +34,22 @@ class Lineas_accion_Model extends CI_Model {
 	function edit_m($options = array())
 	{
 		//code here
-		if(isset($options['nombre']))
-			$this->db->set('nombre', $options['nombre']);
-		if(isset($options['descripcion']))
-			$this->db->set('descripcion', $options['descripcion']);
-		if(isset($options['habilitado']))
-			$this->db->set('habilitado', $options['habilitado']);
-		if(isset($options['ciclo']))
-			$this->db->set('ciclo', $options['ciclo']);
+		if(isset($options['periodo_escuela_id']))
+			$this->db->set('periodo_escuela_id', $options['periodo_escuela_id']);
+		if(isset($options['mes']))
+			$this->db->set('mes', $options['mes']);
+		if(isset($options['horas_por_mes']))
+			$this->db->set('horas_por_mes', $options['horas_por_mes']);
 		if(isset($options['created_at']))
 			$this->db->set('created_at', $options['created_at']);
 		if(isset($options['updated_at']))
 			$this->db->set('updated_at', $options['updated_at']);
+		if(isset($options['horas_restantes']))
+			$this->db->set('horas_restantes', $options['horas_restantes']);
 
 		$this->db->where('id', $options['id']);
 
-		$this->db->update('lineas_accion');
+		$this->db->update('lineas_periodos_escuelas');
 
 		if($this->db->affected_rows()>0) return $this->db->affected_rows();
 		else return $this->db->affected_rows() + 1;
@@ -67,7 +67,7 @@ class Lineas_accion_Model extends CI_Model {
 	{
 		//code here
 		$this->db->where('id', $id);
-		$this->db->delete('lineas_accion');
+		$this->db->delete('lineas_periodos_escuelas');
 		return $this->db->affected_rows();
 	}
 
@@ -84,19 +84,19 @@ class Lineas_accion_Model extends CI_Model {
 	{
 		//code here
 		if(isset($options['id']))
-			$this->db->where('la.id', $options['id']);
-		if(isset($options['nombre']))
-			$this->db->like('la.nombre', $options['nombre']);
-		if(isset($options['descripcion']))
-			$this->db->like('la.descripcion', $options['descripcion']);
-		if(isset($options['habilitado']))
-			$this->db->where('la.habilitado', $options['habilitado']);
-		if(isset($options['ciclo']))
-			$this->db->where('la.ciclo', $options['ciclo']);
+			$this->db->where('id', $options['id']);
+		if(isset($options['periodo_escuela_id']))
+			$this->db->where('periodo_escuela_id', $options['periodo_escuela_id']);
+		if(isset($options['mes']))
+			$this->db->where('mes', $options['mes']);
+		if(isset($options['horas_por_mes']))
+			$this->db->where('horas_por_mes', $options['horas_por_mes']);
 		if(isset($options['created_at']))
-			$this->db->where('la.created_at', $options['created_at']);
+			$this->db->where('created_at', $options['created_at']);
 		if(isset($options['updated_at']))
-			$this->db->where('la.updated_at', $options['updated_at']);
+			$this->db->where('updated_at', $options['updated_at']);
+		if(isset($options['horas_restantes']))
+			$this->db->where('horas_restantes', $options['horas_restantes']);
 
 		//limit / offset
 		if(isset($options['limit']) && isset($options['offset']))
@@ -108,10 +108,7 @@ class Lineas_accion_Model extends CI_Model {
 		if(isset($options['sortBy']) && isset($options['sortDirection']))
 			$this->db->order_by($options['sortBy'],$options['sortDirection']);
 
-		$this->db->select("la.*, tg.descripcion as ciclo_descripcion");
-		$this->db->from("lineas_accion as la");
-		$this->db->join("sys_tabgral as tg","tg.id = la.ciclo");
-		$query = $this->db->get();
+		$query = $this->db->get('lineas_periodos_escuelas');
 
 		if(isset($options['count'])) return $query->num_rows();
 
@@ -144,13 +141,12 @@ class Lineas_accion_Model extends CI_Model {
 		//code here
 		$fields=array();
 		$fields[]='id';
-		$fields[]='nombre';
-		$fields[]='descripcion';
-		$fields[]='habilitado';
-		$fields[]='ciclo';
-		$fields[]='ciclo_descripcion';
+		$fields[]='periodo_escuela_id';
+		$fields[]='mes';
+		$fields[]='horas_por_mes';
 		$fields[]='created_at';
 		$fields[]='updated_at';
+		$fields[]='horas_restantes';
 		return $fields;
 	}
 

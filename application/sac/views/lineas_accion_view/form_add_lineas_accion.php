@@ -14,18 +14,18 @@
 			<input type="text" name="descripcion" id="descripcion"></input>
 		</div>
 		<div class="control-group">
-				<label class="control-label" for="habilitado"><?=$this->config->item('habilitado')?>:</label>
-				<div class="controls">
-					Si <input type='radio' name='habilitado' id='habilitado' value='1' />
-	            	No <input type='radio' name='habilitado' id='habilitado' value='0' checked='checked' />
-				</div>
-			</div>
+			<label class="control-label" for="habilitado"><?=$this->config->item('habilitado')?>:</label>
+			<span class="formwrapper">
+				Si <input type='radio' name='habilitado' id='habilitado' value='1' />
+            	No <input type='radio' name='habilitado' id='habilitado' value='0' checked='checked' />
+			</span>
 		<div class="control-group">
-			<label class="control-label" for="ciclo"><?=$this->config->item('ciclo')?>:</label>
-			<div class="controls">
-					Basico <input type='radio' name='ciclo' id='ciclo' value='1' />
-	            	Orientado <input type='radio' name='ciclo' id='ciclo' value='0' checked='checked' />
-				</div>
+			<label class="control-label" for="ciclo"><?=$this->config->item('ciclo_descripcion')?>:</label>
+			<span class="formwrapper">
+				<?php foreach($ciclos as $f): ?>
+					<?=$f->descripcion?><input type='radio' name='ciclo' id='ciclo' value='<?=$f->id?>' checked/>
+	            <?php endforeach; ?>
+			</span>
 		</div>
 		<p class="stdformbutton">
 	    	<a href="<?=base_url()?>lineas_accion_controller/index" class="btn" >Cancelar</a>

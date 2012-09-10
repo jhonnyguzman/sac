@@ -48,6 +48,8 @@ class Periodos_escuelas_Model extends CI_Model {
 			$this->db->set('created_at', $options['created_at']);
 		if(isset($options['updated_at']))
 			$this->db->set('updated_at', $options['updated_at']);
+		if(isset($options['estado']))
+			$this->db->set('estado', $options['estado']);
 
 		$this->db->where('id', $options['id']);
 
@@ -101,6 +103,8 @@ class Periodos_escuelas_Model extends CI_Model {
 			$this->db->where('pe.created_at', $options['created_at']);
 		if(isset($options['updated_at']))
 			$this->db->where('pe.updated_at', $options['updated_at']);
+		if(isset($options['estado']))
+			$this->db->where('pe.estado', $options['estado']);
 
 		//limit / offset
 		if(isset($options['limit']) && isset($options['offset']))
@@ -112,10 +116,12 @@ class Periodos_escuelas_Model extends CI_Model {
 		if(isset($options['sortBy']) && isset($options['sortDirection']))
 			$this->db->order_by($options['sortBy'],$options['sortDirection']);
 
-		$this->db->select("pe.*, p.fecha_inicio as periodo_fecha_inicio, p.fecha_fin as periodo_fecha_fin , e.nombre as escuela_nombre");
+		$this->db->select("pe.*, p.fecha_inicio as periodo_fecha_inicio, p.fecha_fin as periodo_fecha_fin , 
+			e.nombre as escuela_nombre, tg.descripcion as estado_descripcion");
 		$this->db->from("periodos_escuelas as pe");
 		$this->db->join("periodos as p","p.id = pe.periodo_id");
 		$this->db->join("escuelas as e","e.id = pe.escuelas_id");
+		$this->db->join("sys_tabgral as tg","tg.id = pe.estado");
 		$query = $this->db->get();
 
 		if(isset($options['count'])) return $query->num_rows();
@@ -143,6 +149,29 @@ class Periodos_escuelas_Model extends CI_Model {
 
 
 	/**
+	 * Esta funcion cambia el estado de todos los periodos escuelas existenes a 'historico'.
+	 * El unico periodo escuela  que no cambia el estado es el pasado como parametro
+	 *
+	 * @access public
+	 * @param integer $id   periodo_escuela que se acaba de dar de alta
+	 * @param integer $escuela_id   escuela de la cual se quiere cambiar el estado 
+	 * @return boolean true or false  
+	 */
+	function cambiarEstado_m($id,  $escuelas_id)
+	{
+		$this->db->set('estado', 4); //estado 'historico'
+		$this->db->where('escuelas_id', $escuelas_id);
+		$this->db->where_not_in('id', $id);
+
+		$this->db->update('periodos_escuelas');
+
+		if($this->db->affected_rows()>0) return true;
+		else return true;
+
+	}
+
+
+	/**
 	 * This function getting all the fields of the table
 	 *
 	 * @access public
@@ -163,6 +192,8 @@ class Periodos_escuelas_Model extends CI_Model {
 		$fields[]='cantidad_horas';
 		$fields[]='created_at';
 		$fields[]='updated_at';
+		$fields[]='estado';
+		$fields[]='estado_descripcion';
 		return $fields;
 	}
 

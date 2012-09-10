@@ -7,26 +7,31 @@
 	<form action="<?=base_url()?>lineas_accion_controller/edit_c/<?=$lineas_accion->id?>" method="post" name="formEditlineas_accion" id="formEditlineas_accion" class="stdform">
 		<input type="hidden" value="<?=$lineas_accion->id?>" name="id" id="id"/>
 		<div class="control-group">
-				<label class="control-label" for="nombre"><?=$this->config->item('nombre')?>:</label>
+			<label class="control-label" for="nombre"><?=$this->config->item('nombre')?>:</label>
 			<input type="text" value="<?=$lineas_accion->nombre?>" name="nombre" id="nombre"></input>
 		</div>
 		<div class="control-group">
-				<label class="control-label" for="descripcion"><?=$this->config->item('descripcion')?>:</label>
+			<label class="control-label" for="descripcion"><?=$this->config->item('descripcion')?>:</label>
 			<input type="text" value="<?=$lineas_accion->descripcion?>" name="descripcion" id="descripcion"></input>
 		</div>
 		<div class="control-group">
-				<label class="control-label" for="habilitado"><?=$this->config->item('habilitado')?>:</label>
-				<div class="controls">
-					Si <input type='radio' name='habilitado' id='habilitado' value='1' <?php if ($lineas_accion->habilitado=="1") { echo "checked='checked'"; } ?> />
-	            	No <input type='radio' name='habilitado' id='habilitado' value='0' <?php if ($lineas_accion->habilitado=="0") { echo "checked='checked'"; } ?> />
-				</div>
+			<label class="control-label" for="habilitado"><?=$this->config->item('habilitado')?>:</label>
+			<div class="controls">
+				Si <input type='radio' name='habilitado' id='habilitado' value='1' <?php if ($lineas_accion->habilitado=="1") { echo "checked='checked'"; } ?> />
+            	No <input type='radio' name='habilitado' id='habilitado' value='0' <?php if ($lineas_accion->habilitado=="0") { echo "checked='checked'"; } ?> />
 			</div>
+		</div>
 		<div class="control-group">
-				<label class="control-label" for="ciclo"><?=$this->config->item('ciclo')?>:</label>
-				<div class="controls">
-					Basico <input type='radio' name='ciclo' id='ciclo' value='1' <?php if ($lineas_accion->ciclo=="1") { echo "checked='checked'"; } ?> />
-	            	Orientado <input type='radio' name='ciclo' id='ciclo' value='0' <?php if ($lineas_accion->ciclo=="0") { echo "checked='checked'"; } ?> />
-				</div>
+			<label class="control-label" for="ciclo"><?=$this->config->item('ciclo_descripcion')?>:</label>
+			<span class="formwrapper">
+				<?php foreach($ciclos as $f): ?>
+					<?php if($f->id == $lineas_accion->ciclo): ?>
+						<?=$f->descripcion?><input type='radio' name='ciclo' id='ciclo' value='<?=$f->id?>' checked />
+					<?php else: ?>
+            			<?=$f->descripcion?><input type='radio' name='ciclo' id='ciclo' value='<?=$f->id?>' />
+            		<?php endif; ?>
+            	<?php endforeach; ?>	
+			</span>
 		</div>
 		<p class="stdformbutton">
 	    	<a href="<?=base_url()?>lineas_accion_controller/index" class="btn" >Cancelar</a>

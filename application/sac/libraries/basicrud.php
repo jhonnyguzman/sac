@@ -573,4 +573,45 @@ class BasiCrud {
 		}
 		return $res;
 	}
+
+
+	function getMeses()
+	{
+		$meses = array(
+			'01' => 'enero',
+			'02' => 'febrero',
+			'03' => 'marzo',
+			'04' => 'abril',
+			'05' => 'mayo',
+			'06' => 'junio',
+			'07' => 'julio',
+			'08' => 'agosto',
+			'09' => 'septiembre',
+			'10' => 'octubre',
+			'11' => 'noviembre',
+			'12' => 'diciembre');
+		return $$meses;
+	}
+
+
+
+	function calcularMeses($fecha_inicio, $fecha_fin)
+	{
+		$meses = array();
+
+		$periodo_inicio_seg = strtotime($fecha_inicio);
+		$periodo_fin_seg = strtotime($fecha_fin);
+
+
+		$contador=$periodo_inicio_seg;
+		while ($contador<=$periodo_fin_seg) 
+		{	
+			$meses[] = date("m", $contador);
+			$fecha_parcial = date("d-m-Y", $contador);
+		    $parcial = strtotime("$fecha_parcial +1 month");
+		    $contador = $contador + ($parcial - strtotime("$fecha_parcial"));
+		}	
+
+		return $meses;
+	}
 }

@@ -108,7 +108,7 @@ class Periodos_Model extends CI_Model {
 		if(isset($options['sortBy']) && isset($options['sortDirection']))
 			$this->db->order_by($options['sortBy'],$options['sortDirection']);
 
-		$this->db->select("p.*, tg.descripcion as estado_descripcion");
+		$this->db->select("p.*, tg.descripcion as estado_descripcion, p.fecha_inicio as fecha_inicio_default,p.fecha_fin as fecha_fin_default ");
 		$this->db->from("periodos as p");
 		$this->db->join("sys_tabgral as tg", "tg.id = p.estado");
 		$query = $this->db->get();
@@ -149,7 +149,9 @@ class Periodos_Model extends CI_Model {
 		$fields=array();
 		$fields[]='id';
 		$fields[]='fecha_inicio';
+		$fields[]='fecha_inicio_default';
 		$fields[]='fecha_fin';
+		$fields[]='fecha_fin_default';
 		$fields[]='costo_hora';
 		$fields[]='estado';
 		$fields[]='estado_descripcion';

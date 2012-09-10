@@ -6,6 +6,7 @@
 				<th>Matricula</th>
 				<th>Resol.</th>
 				<th>Cant. horas</th>
+				<th>Estado</th>
 				<th></th>
 			</tr>
 		</thead>
@@ -16,6 +17,7 @@
 					<td><?=$f->matricula?></td>
 					<td><?=$f->resolucion?></td>
 					<td><?=$f->cantidad_horas?></td>
+					<td><span class="label label-success"><?=$f->estado_descripcion?></span></td>
 					<td>
 						<a href="#" onClick="deleteItemModal('<?=base_url()?>periodos_escuelas_controller/delete_c/<?=$f->id?>/<?=$f->escuelas_id?>','contentModal')">Eliminar</a>
 						<a href="#" onClick="updateContent('<?=base_url()?>periodos_escuelas_controller/edit_c/<?=$f->id?>','contentModal')">Modificar</a>

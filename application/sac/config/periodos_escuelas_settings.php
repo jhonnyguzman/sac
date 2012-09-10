@@ -21,6 +21,8 @@ $config['resolucion']='Resoluci&oacute;n';
 $config['cantidad_horas']='Cantidad de horas';
 $config['created_at']='Fecha de alta';
 $config['updated_at']='Actualizado el';
+$config['estado']='Estado';
+$config['estado_descripcion']='Estado';
 
 /* Config fields for search */
 
@@ -32,6 +34,7 @@ $config['search_by_resolucion']= 0;
 $config['search_by_cantidad_horas']= 0;
 $config['search_by_created_at']= 0;
 $config['search_by_updated_at']= 0;
+$config['search_by_estado']= 0;
 
 /* Config fields for show in the result list */
 
@@ -43,6 +46,7 @@ $config['show_resolucion']= 1;
 $config['show_cantidad_horas']= 1;
 $config['show_created_at']= 1;
 $config['show_updated_at']= 1;
+$config['show_estado']= 1;
 
 /* Config params of pagination */
 

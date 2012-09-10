@@ -8,5 +8,5 @@
 <div class="tab-content">
   <div class="tab-pane active" id="periodos"><?=$this->load->view('periodos_escuelas_view/list_periodos_activo')?></div>
   <div class="tab-pane" id="asign"><?=$this->load->view('periodos_escuelas_view/list_periodos_to_asign')?></div>
-  <div class="tab-pane" id="historico">...</div>
+  <div class="tab-pane" id="historico"><?=$this->load->view('periodos_escuelas_view/list_periodos_historicos')?></div>
 </div>

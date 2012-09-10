@@ -7,12 +7,9 @@
 <?php endif; ?>
 <form action="<?=base_url()?>periodos_escuelas_controller/edit_c/<?=$periodos_escuelas->id?>" 
 	method="post" name="formEditperiodos_escuelas" id="formEditperiodos_escuelas" class="form-horizontal">
-	<div class="control-group">
-		<label class="control-label" for="id"><?=$this->config->item('id')?>:</label>
-		<div class="controls">
-			<input type="text" value="<?=$periodos_escuelas->id?>" name="id" id="id"  readonly="readonly"></input>
-		</div>
-	</div>
+	
+	<input type="hidden" value="<?=$periodos_escuelas->id?>" name="id" id="id" ></input>
+	
 	<div class="control-group">
 		<label class="control-label" for="periodo_id"><?=$this->config->item('periodo_nombre')?>:</label>
 		<div class="controls">

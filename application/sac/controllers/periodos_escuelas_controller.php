@@ -16,6 +16,7 @@ class Periodos_escuelas_Controller extends CI_Controller {
 			$this->load->model('periodos_escuelas_model');
 			$this->load->model('periodos_model');
 			$this->load->model('escuelas_model');
+			$this->load->model('lineas_periodos_escuelas_model');
 			$this->config->load('periodos_escuelas_settings');
 			$data['flags'] = $this->basicauth->getPermissions('periodos_escuelas');
 			$this->flagR = $data['flags']['flag-read'];
@@ -74,11 +75,22 @@ class Periodos_escuelas_Controller extends CI_Controller {
 			$data_periodos_escuelas['resolucion'] = $this->input->post('resolucion');
 			$data_periodos_escuelas['cantidad_horas'] = $this->input->post('cantidad_horas');
 			$data_periodos_escuelas['updated_at'] = $this->basicrud->formatDateToBD();
+			$data_periodos_escuelas['estado'] = 3; // estado 'activo' por defecto
 
 			$id_periodos_escuelas = $this->periodos_escuelas_model->add_m($data_periodos_escuelas);
-			if($id_periodos_escuelas){ 
-				$this->session->set_flashdata('flashConfirmModal', $this->config->item('periodos_escuelas_flash_add_message')); 
-				redirect('periodos_escuelas_controller/show_c/'.$escuela_id,'location');
+			if($id_periodos_escuelas){
+				if($this->periodos_escuelas_model->cambiarEstado_m($id_periodos_escuelas,$this->input->post('escuelas_id'))){ 
+					if($this->cargarLineasPeriodosEscuelas($this->input->post('periodo_id'),$id_periodos_escuelas)){
+						$this->session->set_flashdata('flashConfirmModal', $this->config->item('periodos_escuelas_flash_add_message')); 
+						redirect('periodos_escuelas_controller/show_c/'.$escuela_id,'location');
+					}else{
+						$this->session->set_flashdata('flashErrorModal', $this->config->item('periodos_escuelas_flash_error_message')); 
+						redirect('periodos_escuelas_controller/show_c/'.$escuela_id,'location');
+					}
+				}else{
+					$this->session->set_flashdata('flashErrorModal', $this->config->item('periodos_escuelas_flash_error_message')); 
+					redirect('periodos_escuelas_controller/show_c/'.$escuela_id,'location');	
+				}
 			}else{
 				$this->session->set_flashdata('flashErrorModal', $this->config->item('periodos_escuelas_flash_error_message')); 
 				redirect('periodos_escuelas_controller/show_c/'.$escuela_id,'location');
@@ -184,7 +196,12 @@ class Periodos_escuelas_Controller extends CI_Controller {
 	{
 		$data['escuela_id'] = $escuelas_id;
 		$data['periodos'] = $this->periodos_model->get_m(array('estado' => 3)); //traer periodo con estado activo
-		$data['periodos_activos'] = $this->periodos_escuelas_model->get_m(array('escuelas_id' => $escuelas_id)); //traer periodo activo de una escuela
+		$data['periodos_activos'] = $this->periodos_escuelas_model->get_m(array('escuelas_id' => $escuelas_id, 'estado' => 3)); //traer periodo activo de una escuela
+		$data['periodos_historicos'] = $this->periodos_escuelas_model->get_m(
+										array('escuelas_id' => $escuelas_id, 
+										'estado' => 4,
+										'sortBy' => 'created_at',
+										'sortDirection' => 'desc')); //traer periodo historicos de una escuela
 		$this->load->view("periodos_escuelas_view/form_show_periodos_escuelas",$data);
 	}
 
@@ -268,5 +285,44 @@ class Periodos_escuelas_Controller extends CI_Controller {
 		}
 	}
 
+
+
+	function cargarLineasPeriodosEscuelas($periodo_id,$periodo_escuela_id)
+	{
+		$periodo = $this->periodos_model->get_m(array('id' => $periodo_id));
+		$periodo_escuela = $this->periodos_escuelas_model->get_m(array('id' => $periodo_escuela_id));
+		if($periodo){
+			$meses = $this->basicrud->calcularMeses($periodo[0]->fecha_inicio_default, $periodo[0]->fecha_fin_default);
+			for($i=0; $i<count($meses); $i++){
+				$data['periodo_escuela_id'] = $periodo_escuela_id;
+				$data['mes'] = $meses[$i];
+				$data['horas_por_mes'] = $periodo_escuela[0]->cantidad_horas / count($meses);
+				$data['updated_at'] = $this->basicrud->formatDateToBD();
+				$data['horas_restantes'] = $data['horas_por_mes'];
+				$id_lineas_periodos_escuelas = $this->lineas_periodos_escuelas_model->add_m($data);
+			}
+			/*echo "<pre>";
+			print_r($periodo);
+			echo "</pre>";
+
+			echo "<pre>";
+			print_r($periodo_escuela);
+			echo "</pre>";*/
+
+			return true;
+		}
+
+		return false;
+
+	}
+
+	function verMeses(){
+
+		$meses = $this->basicrud->calcularMeses("2012-05-01 00:00:00", "2013-02-01 00:00:00");
+		echo "<pre>";
+		print_r($meses);
+		echo "</pre>";
+
+	}
 
 }

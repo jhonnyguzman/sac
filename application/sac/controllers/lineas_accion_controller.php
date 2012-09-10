@@ -14,6 +14,7 @@ class Lineas_accion_Controller extends CI_Controller {
 		parent::__construct();
 		if($this->session->userdata('logged_in') == true) { 
 			$this->load->model('lineas_accion_model');
+			$this->load->model('tabgral_model');
 			$this->config->load('lineas_accion_settings');
 			$data['flags'] = $this->basicauth->getPermissions('lineas_accion');
 			$this->flagR = $data['flags']['flag-read'];
@@ -78,8 +79,10 @@ class Lineas_accion_Controller extends CI_Controller {
 				$this->session->set_flashdata('flashError', $this->config->item('lineas_accion_flash_error_message')); 
 				redirect('lineas_accion_controller','location');
 			}
+		}else{
+			$data['ciclos'] = $this->tabgral_model->get_m(array('grupos_tabgral_id' => 3)); //obtener todos los ciclos
+			$this->load->view('lineas_accion_view/form_add_lineas_accion',$data);
 		}
-		$this->load->view('lineas_accion_view/form_add_lineas_accion',$data);
 
 	}
 
@@ -125,8 +128,10 @@ class Lineas_accion_Controller extends CI_Controller {
 				$this->session->set_flashdata('flashError', $this->config->item('lineas_accion_flash_error_message')); 
 				redirect('lineas_accion_controller','location');
 			}
+		}else{
+			$data['ciclos'] = $this->tabgral_model->get_m(array('grupos_tabgral_id' => 3)); //obtener todos los ciclos
+			$this->load->view('lineas_accion_view/form_edit_lineas_accion',$data);
 		}
-		$this->load->view('lineas_accion_view/form_edit_lineas_accion',$data);
 
 	}
 
