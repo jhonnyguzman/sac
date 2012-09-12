@@ -177,7 +177,8 @@ class Basicauth {
 		sys_vinculos as sv on s.id = sv.sismenu_id where 
 		s.parent = $parent and 
 		s.estado=1
-		and sp.perfiles_id = ".$this->CI->session->userdata('perfil_id')."";
+		and sp.perfiles_id = ".$this->CI->session->userdata('perfil_id')."
+		ORDER BY s.parent, s.iconpath, s.descripcion";
 		
 		$query_a = $this->CI->db->query($query_str);
 		

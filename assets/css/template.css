@@ -1014,7 +1014,7 @@ a.btn_table { background-position: -82px -480px; }
 	background: #333; text-decoration: none; color: #fff; text-shadow: none; font-weight: bold; 
 }
 
-@media screen and (max-width: 1024px) {
+/*@media screen and (max-width: 1024px) {
 	.maincontent { margin-right: 260px; margin-left: 230px; }
 	.mainright { width: 250px; }
 	.contenttitle, .widgetbox .title { height: 32px; overflow: hidden; }
@@ -1075,10 +1075,10 @@ a.btn_table { background-position: -82px -480px; }
 	.imagelist li { margin: 0 10px 10px 0; }
 	.imagelist li img { width: 150px; }
 	.imagelist li span a.name { font-size: 11px; }
-	.imagelist li span a.edit, .imagelist li span a.view, .imagelist li span a.delete { display: none; }
+	.imagelist li span a.edit, .imagelist li span a.view, .imagelist li span a.delete { display: none; }*/
 	
 	/* CALENDAR STYLES */
-	.fc-header-left { font-size: 11px; }
+	/*.fc-header-left { font-size: 11px; }
 	.fc-button, .fc-button-content { height: auto; }
 	.fc-button-month .fc-button-content, 
 	.fc-button-agendaWeek .fc-button-content, 
@@ -1153,7 +1153,7 @@ a.btn_table { background-position: -82px -480px; }
 	.errorWrapper span { display: block; margin-bottom: 20px; }
 	.footer { font-size: 10px; }
 	
-}
+}*/
 
 
 /** theme **/
