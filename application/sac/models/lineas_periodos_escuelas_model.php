@@ -46,6 +46,8 @@ class Lineas_periodos_escuelas_Model extends CI_Model {
 			$this->db->set('updated_at', $options['updated_at']);
 		if(isset($options['horas_restantes']))
 			$this->db->set('horas_restantes', $options['horas_restantes']);
+		if(isset($options['anio']))
+			$this->db->set('anio', $options['anio']);
 
 		$this->db->where('id', $options['id']);
 
@@ -97,6 +99,8 @@ class Lineas_periodos_escuelas_Model extends CI_Model {
 			$this->db->where('updated_at', $options['updated_at']);
 		if(isset($options['horas_restantes']))
 			$this->db->where('horas_restantes', $options['horas_restantes']);
+		if(isset($options['anio']))
+			$this->db->where('anio', $options['anio']);
 
 		//limit / offset
 		if(isset($options['limit']) && isset($options['offset']))
@@ -143,6 +147,7 @@ class Lineas_periodos_escuelas_Model extends CI_Model {
 		$fields[]='id';
 		$fields[]='periodo_escuela_id';
 		$fields[]='mes';
+		$fields[]='anio';
 		$fields[]='horas_por_mes';
 		$fields[]='created_at';
 		$fields[]='updated_at';

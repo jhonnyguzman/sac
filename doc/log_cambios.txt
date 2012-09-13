@@ -1,0 +1,3 @@
+Log:
+
+- Se agrego campo 'anio' a la tabla 'lineas_periodos_escuelas'

@@ -295,18 +295,19 @@ class Periodos_escuelas_Controller extends CI_Controller {
 			$meses = $this->basicrud->calcularMeses($periodo[0]->fecha_inicio_default, $periodo[0]->fecha_fin_default);
 			for($i=0; $i<count($meses); $i++){
 				$data['periodo_escuela_id'] = $periodo_escuela_id;
-				$data['mes'] = $meses[$i];
+				$data['mes'] = $meses[$i]['mes'];
 				$data['horas_por_mes'] = $periodo_escuela[0]->cantidad_horas / count($meses);
 				$data['updated_at'] = $this->basicrud->formatDateToBD();
+				$data['anio'] = $meses[$i]['anio'];
 				$data['horas_restantes'] = $data['horas_por_mes'];
 				$id_lineas_periodos_escuelas = $this->lineas_periodos_escuelas_model->add_m($data);
 			}
 			/*echo "<pre>";
-			print_r($periodo);
+			print_r($meses);
 			echo "</pre>";
 
 			echo "<pre>";
-			print_r($periodo_escuela);
+			print_r($periodo);
 			echo "</pre>";*/
 
 			return true;
@@ -319,9 +320,12 @@ class Periodos_escuelas_Controller extends CI_Controller {
 	function verMeses(){
 
 		$meses = $this->basicrud->calcularMeses("2012-05-01 00:00:00", "2013-02-01 00:00:00");
-		echo "<pre>";
-		print_r($meses);
-		echo "</pre>";
+		
+		for($i=0; $i < count($meses); $i++){
+			echo "mes: ".$meses[$i]['mes']."  año: ".$meses[$i]['anio']."<br>";
+			
+		}
+		
 
 	}
 

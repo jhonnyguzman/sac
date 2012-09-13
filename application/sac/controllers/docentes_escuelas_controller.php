@@ -151,6 +151,40 @@ class Docentes_escuelas_Controller extends CI_Controller {
 
 
 	/**
+	 * Esta funcion muestra la interfaz para consultar los docentes asignados 
+	 * a una escuela, ademas en esa interfaz tambien se puede
+	 * asignar docentes a una escuela
+	 *
+	 * @access public
+	 * @param integer $escuela_id 
+	 * @return void
+	 */
+	function show_c($escuelas_id)
+	{
+		$data['escuela_id'] = $escuelas_id;
+		$data['docentes_asignados'] = $this->docentes_escuelas_model->get_m(array('escuelas_id' => $escuelas_id)); //traer docentes asignados a una escuela
+		$data['docentes_no_asignados'] = $this->docentes_escuelas_model->get_m(
+										array('escuelas_id' => $escuelas_id)); //traer docentes no asignados a una escuela
+		$this->load->view("docentes_escuelas_view/form_show_docentes_escuelas",$data);
+	}
+
+
+	/**
+	 * Esta funcion muestra la vista donde se encuentra la estructura
+	 * html de la ventana modal 
+	 *
+	 * @access public
+	 * @param integer $escuela_id 
+	 * @return void
+	 */
+	function showModal_c($escuelas_id)
+	{
+		$data['escuelas_id'] = $escuelas_id;
+		$this->load->view("docentes_escuelas_view/modal_docentes_escuelas",$data);
+	}
+
+
+	/**
 	 * This function filter and sends the data to the view
 	 * to shows the found result
 	 *

@@ -23,7 +23,6 @@
       <Cl au="0" df="" nm="updated_at" nu="1">
         <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="departamentos">
@@ -52,7 +51,6 @@
         <CdTb mn="1" nm="departamentos" oe="1" sch="public" zr="0"/>
         <ClPr cdCl="circuito_id" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="directores">
@@ -85,7 +83,6 @@
       <Cl au="0" df="" nm="updated_at" nu="1">
         <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="docentes">
@@ -118,7 +115,6 @@
       <Cl au="0" df="" nm="updated_at" nu="1">
         <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="docentes_escuelas">
@@ -148,7 +144,6 @@
         <CdTb mn="1" nm="docentes_escuelas" oe="0" sch="public" zr="1"/>
         <ClPr cdCl="escuela_id" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="docentes_perfiles">
@@ -179,7 +174,6 @@
         <CdTb mn="1" nm="docentes_perfiles" oe="0" sch="public" zr="1"/>
         <ClPr cdCl="perfil_id" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="docentes_titulos">
@@ -210,7 +204,6 @@
         <CdTb mn="1" nm="docentes_titulos" oe="0" sch="public" zr="1"/>
         <ClPr cdCl="titulo_id" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="escuelas">
@@ -267,7 +260,6 @@
         <CdTb mn="0" nm="escuelas" oe="1" sch="public" zr="0"/>
         <ClPr cdCl="localidad_id" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="fondo_comun">
@@ -294,7 +286,6 @@
       <Cl au="0" df="" nm="updated_at" nu="1">
         <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="horas_institucionales">
@@ -336,7 +327,6 @@
         <CdTb mn="1" nm="horas_institucionales" oe="0" sch="public" zr="1"/>
         <ClPr cdCl="linea_accion_docente_id" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="lineas_accion">
@@ -368,7 +358,6 @@
         <CdTb mn="1" nm="lineas_accion" oe="0" sch="public" zr="1"/>
         <ClPr cdCl="ciclo" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="lineas_accion_docentes">
@@ -399,7 +388,6 @@
         <CdTb mn="1" nm="lineas_accion_docentes" oe="1" sch="public" zr="0"/>
         <ClPr cdCl="linea_accion_id" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="lineas_periodos_escuelas">
@@ -412,6 +400,9 @@
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="mes" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="anio" nu="1">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="horas_por_mes" nu="1">
@@ -431,7 +422,6 @@
         <CdTb mn="1" nm="lineas_periodos_escuelas" oe="0" sch="public" zr="1"/>
         <ClPr cdCl="periodo_escuela_id" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="localidades">
@@ -460,7 +450,6 @@
         <CdTb mn="1" nm="localidades" oe="0" sch="public" zr="1"/>
         <ClPr cdCl="departamento_id" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="perfiles">
@@ -487,7 +476,6 @@
       <Cl au="0" df="" nm="updated_at" nu="1">
         <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="periodos">
@@ -519,7 +507,6 @@
         <CdTb mn="1" nm="periodos" oe="0" sch="public" zr="1"/>
         <ClPr cdCl="estado" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="periodos_escuelas">
@@ -567,7 +554,6 @@
         <CdTb mn="1" nm="periodos_escuelas" oe="0" sch="public" zr="1"/>
         <ClPr cdCl="estado" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="sys_errores_sessiones">
@@ -585,7 +571,6 @@
       <Cl au="0" df="" nm="fecha" nu="1">
         <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="sys_grupos_tabgral">
@@ -603,7 +588,6 @@
       <Cl au="0" df="" nm="updated_at" nu="0">
         <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="sys_menu">
@@ -641,7 +625,6 @@
       <Idx clu="0" nm="sismenu_tabgral_id" unq="0">
         <ClNs>estado</ClNs>
       </Idx>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="sys_perfil">
@@ -692,7 +675,6 @@
       <Idx clu="0" nm="tabgral_id" unq="0">
         <ClNs>estado</ClNs>
       </Idx>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="sys_perfiles">
@@ -721,7 +703,6 @@
       <Idx clu="0" nm="perfiles_tabgral_id" unq="0">
         <ClNs>estado</ClNs>
       </Idx>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="sys_permisos">
@@ -764,7 +745,6 @@
       <Idx clu="0" nm="sispermisos_perfiles_id" unq="0">
         <ClNs>perfiles_id</ClNs>
       </Idx>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="sys_sessiones">
@@ -784,7 +764,6 @@
         <CdTb mn="1" nm="sys_sessiones" oe="0" sch="public" zr="1"/>
         <ClPr cdCl="usuario_id" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="sys_tabgral">
@@ -813,7 +792,6 @@
       <Idx clu="0" nm="grupos_tabgral_id" unq="0">
         <ClNs>grupos_tabgral_id</ClNs>
       </Idx>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="sys_usuarios">
@@ -886,7 +864,6 @@
       <Idx clu="0" nm="usuarios_perfiles_id" unq="0">
         <ClNs>perfiles_id</ClNs>
       </Idx>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="sys_vinculos">
@@ -918,7 +895,6 @@
       <Idx clu="0" nm="sisvinculos_sismenu_id" unq="0">
         <ClNs>sismenu_id</ClNs>
       </Idx>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <Tbl UsSo="1" nm="titulos">
@@ -944,13 +920,12 @@
         <CdTb mn="1" nm="titulos" oe="0" sch="public" zr="1"/>
         <ClPr cdCl="tipo" prCl="id"/>
       </Fk>
-      <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
     <CustomTypes/>
   </Sch>
   <Dgm nm="public">
-    <RnCf ClkAct="true" FtSz="10" lkStgy="OffsetDirect" zm="1.0">
+    <RnCf FtSz="10" lkStgy="OffsetDirect" zm="1.0">
       <VbCfg>
         <Fg ky="Auto Number" vl="1"/>
         <Fg ky="Check" vl="0"/>
@@ -993,7 +968,7 @@
     <TbGl bkCl="ffccccff" sch="public" tbl="horas_institucionales" x="471" y="901"/>
     <TbGl bkCl="ffccccff" sch="public" tbl="docentes_perfiles" x="820" y="901"/>
     <TbGl bkCl="ffccccff" sch="public" tbl="docentes_escuelas" x="969" y="579"/>
-    <TbGl bkCl="ffccccff" sch="public" tbl="lineas_accion_docentes" x="482" y="1089"/>
+    <TbGl bkCl="ffccccff" sch="public" tbl="lineas_accion_docentes" x="482" y="1074"/>
     <TbGl bkCl="ffccccff" sch="public" tbl="lineas_periodos_escuelas" x="1000" y="762"/>
     <TbGl bkCl="ffccccff" sch="public" tbl="fondo_comun" x="1092" y="1044"/>
     <TbGl bkCl="ffccccff" sch="public" tbl="titulos" x="1335" y="577"/>
@@ -1038,7 +1013,7 @@
       <Zone bkCl="ffece9d8" h="1471" nm="Sección Principal" w="763" x="132" y="435"/>
     </Zones>
   </Dgm>
-  <RnmMgr NxRnmId="298">
+  <RnmMgr NxRnmId="307">
     <RnmCh ObjCls="Schema" ParCls="Database" ParNme="callcenter" SupCls="" SupNme="">
       <Rnm id="1" nNm="public" oNm="schemaA"/>
     </RnmCh>
@@ -1758,6 +1733,7 @@
       <Rnm id="282" nNm="linea_accion_docente_id" oNm="linea_accion_id"/>
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="lineas_periodos_escuelas" SupCls="Schema" SupNme="public">
+      <Rnm id="301" nNm="anio" oNm="horas_por_mes"/>
       <Rnm id="285" nNm="horas_por_mes" oNm="cantidad_horas"/>
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="horas_institucionales" SupCls="Schema" SupNme="public">
@@ -1774,9 +1750,16 @@
       <Rnm id="289" nNm="fondo_comun" oNm="fondocomun"/>
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="lineas_periodos_escuelas" SupCls="Schema" SupNme="public">
+      <Rnm id="304" nNm="horas_por_mes" oNm="horas_restantes"/>
       <Rnm id="290" nNm="horas_restantes" oNm="created_at"/>
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="lineas_periodos_escuelas" SupCls="Schema" SupNme="public">
+      <Rnm id="306" nNm="horas_restantes" oNm="horas_por_restantes"/>
+      <Rnm id="305" nNm="horas_por_restantes" oNm="horas_por_mes1"/>
+      <Rnm id="303" nNm="horas_por_mes1" oNm="horas_por_mes"/>
+      <Rnm id="302" nNm="horas_por_mes" oNm="anios"/>
+      <Rnm id="300" nNm="anios" oNm="anio"/>
+      <Rnm id="298" nNm="anio" oNm="created_at"/>
       <Rnm id="291" nNm="created_at" oNm="updated_at"/>
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="titulos" SupCls="Schema" SupNme="public">
@@ -1787,6 +1770,9 @@
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="docentes_titulos" SupCls="Schema" SupNme="public">
       <Rnm id="297" nNm="titulo_id" oNm="titulos_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="lineas_periodos_escuelas" SupCls="Schema" SupNme="public">
+      <Rnm id="299" nNm="created_at" oNm="updated_at"/>
     </RnmCh>
   </RnmMgr>
   <DbDocOptionMgr>

@@ -25,6 +25,7 @@
 									<a href="#"  onClick="deleteRow('<?=base_url()?>escuelas_controller/delete_c/<?=$f->id?>')" title="Eliminar" class="btn boton_rojo">Eliminar</a>
 								<?php endif;?>
 									<a href="javascript:void(0)" onClick="loadModal('<?=base_url()?>periodos_escuelas_controller/showModal_c/<?=$f->id?>','myModal')"  class="btn boton_rojo">Periodos</a>
+									<a href="javascript:void(0)" onClick="loadModal('<?=base_url()?>docentes_escuelas_controller/showModal_c/<?=$f->id?>','myModal')"  class="btn boton_rojo">Docentes</a>
 							</td>
 						</tr>
 					<?php endforeach; ?>

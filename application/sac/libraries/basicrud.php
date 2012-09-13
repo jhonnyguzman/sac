@@ -597,7 +597,7 @@ class BasiCrud {
 
 	function calcularMeses($fecha_inicio, $fecha_fin)
 	{
-		$meses = array();
+		$fechas = array();
 
 		$periodo_inicio_seg = strtotime($fecha_inicio);
 		$periodo_fin_seg = strtotime($fecha_fin);
@@ -606,12 +606,13 @@ class BasiCrud {
 		$contador=$periodo_inicio_seg;
 		while ($contador<=$periodo_fin_seg) 
 		{	
-			$meses[] = date("m", $contador);
+			$fecha = array('mes' => date("m", $contador), 'anio' => date("Y", $contador));
+			$fechas[] = $fecha;
 			$fecha_parcial = date("d-m-Y", $contador);
 		    $parcial = strtotime("$fecha_parcial +1 month");
 		    $contador = $contador + ($parcial - strtotime("$fecha_parcial"));
 		}	
 
-		return $meses;
+		return $fechas;
 	}
 }
