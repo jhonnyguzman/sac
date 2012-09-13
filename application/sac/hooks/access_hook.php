@@ -23,7 +23,8 @@ class Access_Hook {
 			'sispermisos_controller',
 			'perfiles_controller',
 			'docentes_perfiles_controller',
-			'departamentos_controller');
+			'departamentos_controller',
+			'titulos_controller');
 		if($CI->session->userdata('logged_in') == true && $CI->router->method == 'login') redirect('admin','location');
 		if($CI->session->userdata('logged_in') != true && $CI->router->method != 'login' && in_array($CI->router->class, $privatecontrollers))
 		{
