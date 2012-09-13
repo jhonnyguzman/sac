@@ -189,8 +189,8 @@ class Basicauth {
 				if($field->link == "#"){
 					echo " <li><a href='#' >".$field->descripcion."</a>";		
 				}else{
-			   	echo " <li><a href='".base_url()."".$field->link."'>".$field->descripcion."</a>";
-			   }
+			   		echo " <li><a href='".base_url()."".$field->link."'>".$field->descripcion."</a>";
+			    }	
 				$this->getMenu($field->id,$ul_start="<ul>"); 	
 			}
 			echo "</ul>";

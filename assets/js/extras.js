@@ -110,3 +110,4 @@ function asignMenu(url)
 {
     document.location.href =url + $("#perfiles_id").val();
 }
+
