@@ -34,8 +34,8 @@ class Docentes_escuelas_Model extends CI_Model {
 	function edit_m($options = array())
 	{
 		//code here
-		if(isset($options['docente_perfil_id']))
-			$this->db->set('docente_perfil_id', $options['docente_perfil_id']);
+		if(isset($options['docente_id']))
+			$this->db->set('docente_id', $options['docente_id']);
 		if(isset($options['escuela_id']))
 			$this->db->set('escuela_id', $options['escuela_id']);
 		if(isset($options['created_at']))
@@ -80,15 +80,15 @@ class Docentes_escuelas_Model extends CI_Model {
 	{
 		//code here
 		if(isset($options['id']))
-			$this->db->where('id', $options['id']);
-		if(isset($options['docente_perfil_id']))
-			$this->db->where('docente_perfil_id', $options['docente_perfil_id']);
+			$this->db->where('de.id', $options['id']);
+		if(isset($options['docente_id']))
+			$this->db->where('de.docente_id', $options['docente_id']);
 		if(isset($options['escuela_id']))
-			$this->db->where('escuela_id', $options['escuela_id']);
+			$this->db->where('de.escuela_id', $options['escuela_id']);
 		if(isset($options['created_at']))
-			$this->db->where('created_at', $options['created_at']);
+			$this->db->where('de.created_at', $options['created_at']);
 		if(isset($options['updated_at']))
-			$this->db->where('updated_at', $options['updated_at']);
+			$this->db->where('de.updated_at', $options['updated_at']);
 
 		//limit / offset
 		if(isset($options['limit']) && isset($options['offset']))
@@ -100,7 +100,12 @@ class Docentes_escuelas_Model extends CI_Model {
 		if(isset($options['sortBy']) && isset($options['sortDirection']))
 			$this->db->order_by($options['sortBy'],$options['sortDirection']);
 
-		$query = $this->db->get('docentes_escuelas');
+		$this->db->select("de.*, e.nombre as escuela_nombre, d.apellido as docente_apellido, d.nombre as docente_nombre");
+		$this->db->from("docentes_escuelas as de");
+		$this->db->join("escuelas as e","e.id = de.escuela_id");
+		$this->db->join("docentes as d","d.id = de.docente_id");
+
+		$query = $this->db->get();
 
 		if(isset($options['count'])) return $query->num_rows();
 
@@ -123,6 +128,42 @@ class Docentes_escuelas_Model extends CI_Model {
 
 
 	/**
+	 * This function gets all the docentes  assigned of the docentes_escuelas table for a particular escuela
+	 *
+	 * @access public
+	 * @return array  fields of table
+	 */
+	function getDocentesAssignedToEscuelas_m($escuela_id)
+	{
+		//code here
+		$query_str = "select de.id, d.apellido, d.nombre from docentes_escuelas as de 
+		inner join docentes as d on d.id = de.docente_id where de.escuela_id = ?";
+		$query = $this->db->query($query_str,$escuela_id);
+		if($query->num_rows()>0){
+			return $query->result();
+		}
+	}
+
+
+	/**
+	 * This function gets all the perfiles not assigned of the perfiles table for a particular docente
+	 *
+	 * @access public
+	 * @return array  fields of table
+	 */
+	function getDocentesNotAssignedToEscuelas_m($escuela_id)
+	{
+		//code here
+		$query_str = "select d.id, d.apellido, d.nombre from docentes as d 
+		where (select count(*) as cantidad from docentes_escuelas as de where de.escuela_id= ? and de.docente_id = d.id) = 0";
+		$query = $this->db->query($query_str,$escuela_id);
+		if($query->num_rows()>0){
+			return $query->result();
+		}
+	}
+
+
+	/**
 	 * This function getting all the fields of the table
 	 *
 	 * @access public
@@ -133,8 +174,11 @@ class Docentes_escuelas_Model extends CI_Model {
 		//code here
 		$fields=array();
 		$fields[]='id';
-		$fields[]='docente_perfil_id';
+		$fields[]='docente_id';
+		$fields[]='docente_apellido';
+		$fields[]='docente_nombre';
 		$fields[]='escuela_id';
+		$fields[]='escuela_nombre';
 		$fields[]='created_at';
 		$fields[]='updated_at';
 		return $fields;

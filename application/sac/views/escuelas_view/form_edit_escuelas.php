@@ -55,7 +55,9 @@
 		<div class="control-group">
 			<label class="control-label" for="departamento_id"><?=$this->config->item('departamento_nombre')?>:</label>
 			<div class="controls">
-				<select name="departamento_id" id="departamento_id" onChange="getLocalidades('<?=base_url()?>departamentos_controller/getLocalidades/')">
+				<select name="departamento_id" id="departamento_id" 
+				onChange="getLocalidades('<?=base_url()?>departamentos_controller/getLocalidades/')"
+				class="chzn-select">
 					<?php foreach($departamentos as $f):?>
 						<?php if($f->id == $escuelas->departamento_id): ?>
 							<option value="<?=$f->id?>" selected ><?=$f->nombre?></option>
@@ -69,7 +71,7 @@
 		<div class="control-group">
 			<label class="control-label" for="localidad_id"><?=$this->config->item('localidad_nombre')?>:</label>
 			<div class="controls">
-				<select name="localidad_id" id="localidad_id" >
+				<select name="localidad_id" id="localidad_id" class="chzn-select">
 	
 				</select>
 			</div>
@@ -77,7 +79,7 @@
 		<div class="control-group">
 			<label class="control-label" for="director_id"><?=$this->config->item('director_nombre')?>:</label>
 			<div class="controls">
-				<select name="director_id" id="director_id" >
+				<select name="director_id" id="director_id" class="chzn-select">
 					<?php foreach ($directores as $f): ?>
 						<?php if($f->id == $escuelas->director_id): ?>
 							<option value="<?=$f->id?>" selected ><?=$f->apellido." ".$f->nombre?></option>
@@ -99,6 +101,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){ 
 		getLocalidades('<?=base_url()?>departamentos_controller/getLocalidades/','<?=$escuelas->localidad_id?>');
+		$(".chzn-select").chosen();
 	});
 
 	var cue = new LiveValidation('cue'); cue.add( Validate.Presence ); cue.add( Validate.Numericality ); cue.add( Validate.Numericality, { minimum: 900000000, maximum: 999999999 } );

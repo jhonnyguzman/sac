@@ -578,22 +578,27 @@ class BasiCrud {
 	function getMeses()
 	{
 		$meses = array(
-			'01' => 'enero',
-			'02' => 'febrero',
-			'03' => 'marzo',
-			'04' => 'abril',
-			'05' => 'mayo',
-			'06' => 'junio',
-			'07' => 'julio',
-			'08' => 'agosto',
-			'09' => 'septiembre',
+			'1' => 'enero',
+			'2' => 'febrero',
+			'3' => 'marzo',
+			'4' => 'abril',
+			'5' => 'mayo',
+			'6' => 'junio',
+			'7' => 'julio',
+			'8' => 'agosto',
+			'9' => 'septiembre',
 			'10' => 'octubre',
 			'11' => 'noviembre',
 			'12' => 'diciembre');
-		return $$meses;
+		return $meses;
 	}
 
+	function getMesDescripcion($mes = '')
+	{
+		$meses = $this->getMeses();
+		return $meses[$mes];
 
+	}
 
 	function calcularMeses($fecha_inicio, $fecha_fin)
 	{
@@ -614,5 +619,34 @@ class BasiCrud {
 		}	
 
 		return $fechas;
+	}
+
+
+	/**
+	 * Esta funcion obtiene los perfiles de docentes sin asignar 
+	 *
+	 * @param  array		$array1    array de todos los perfiles de docentes cargados en el sistema
+	 * @param  array		$array2    array de los perfiles asignados a un docente
+	 * @return array 		      	perfiles sin asignar 
+	 */
+	function getPerfilesSinAsignar($array1 = array(), $array2 = array())
+	{
+		$arrayR = $array1;
+		$indices = array();
+		foreach ($arrayR as $keyR => $valueR) {
+			foreach ($array2 as $key => $value) {
+				if($value->perfil_id == $valueR->id)
+				{
+					$indices[] = $keyR; 
+				}
+			}		
+		}
+
+		for ($i=0; $i < count($indices); $i++) { 
+			unset($arrayR[$indices[$i]]);
+		}
+
+		return $arrayR;
+
 	}
 }

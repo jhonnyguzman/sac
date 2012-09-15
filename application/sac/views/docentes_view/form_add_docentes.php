@@ -4,6 +4,13 @@
 	<div class="page-header">
 	  <h1><?=$title_header?></h1>
 	</div>
+	<?php if(validation_errors() || isset($error)): ?>
+		<div class="alert alert-error">
+			<a class="close" data-dismiss="alert" href="#">×</a>
+			<?=validation_errors()?>
+			
+		</div>		
+	<?php endif; ?>
 	<form action="<?=base_url()?>docentes_controller/add_c" method="post" name="formAdddocentes" id="formAdddocentes" class="stdform">
 		<div class="control-group">
 			<label class="control-label" for="dni"><?=$this->config->item('dni')?>:</label>

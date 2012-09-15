@@ -8,6 +8,8 @@
   <link href="<?=base_url()?>assets/css/template.css" rel="stylesheet">
   <link href="<?=base_url()?>assets/css/menu.css" rel="stylesheet">
   <link href="<?=base_url()?>assets/css/validacion.css" rel="stylesheet">
+  <link href="<?=base_url()?>assets/css/general.css" rel="stylesheet">
+  <link href="<?=base_url()?>assets/css/chosen/chosen.css" rel="stylesheet">
   <!--[if IE 9]>
       <link rel="stylesheet" media="screen" href="css/ie9.css"/>
   <![endif]-->
@@ -38,6 +40,7 @@
     <script src="<?=base_url()?>assets/js/bootstrap-collapse.js"></script>
     <script src="<?=base_url()?>assets/js/bootstrap-modal.js"></script>
     <script src="<?=base_url()?>assets/js/extras.js"></script>
+    <script src="<?=base_url()?>assets/js/chosen/chosen.jquery.min.js"></script>
 
     <script type="text/javascript" src="<?=base_url()?>assets/js/template/plugins/jquery-1.7.min.js"></script>
     <script type="text/javascript" src="<?=base_url()?>assets/js/template/plugins/jquery-ui-1.8.16.custom.min.js"></script>

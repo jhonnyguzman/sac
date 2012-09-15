@@ -18,14 +18,23 @@
 							<td><?=$f->telefono?></td>
 							<td><?=$f->email?></td>
 							<td>
-								<?php if($flag['u']):?>
-									<a href="<?=base_url()?>escuelas_controller/edit_c/<?=$f->id?>" title="Modificar" class="btn boton_rojo">Modificar</a>
-								<?php endif;?>
-								<?php if($flag['d']):?>
-									<a href="#"  onClick="deleteRow('<?=base_url()?>escuelas_controller/delete_c/<?=$f->id?>')" title="Eliminar" class="btn boton_rojo">Eliminar</a>
-								<?php endif;?>
-									<a href="javascript:void(0)" onClick="loadModal('<?=base_url()?>periodos_escuelas_controller/showModal_c/<?=$f->id?>','myModal')"  class="btn boton_rojo">Periodos</a>
-									<a href="javascript:void(0)" onClick="loadModal('<?=base_url()?>docentes_escuelas_controller/showModal_c/<?=$f->id?>','myModal')"  class="btn boton_rojo">Docentes</a>
+								<div class="btn-group">
+								  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+								    Acciones
+								    <span class="caret"></span>
+								  </a>
+								  <ul class="dropdown-menu">
+								   		<?php if($flag['u']):?>
+											<li><a href="<?=base_url()?>escuelas_controller/edit_c/<?=$f->id?>" title="Modificar"><i class="icon-pencil"></i> Modificar</a></li>
+										<?php endif;?>
+										<?php if($flag['d']):?>
+											<li><a href="#" onClick="deleteRow('<?=base_url()?>escuelas_controller/delete_c/<?=$f->id?>')" title="Eliminar"><i class="icon-trash"></i> Eliminar</a></li>
+										<?php endif;?>
+										<li><a href="javascript:void(0)" onClick="loadModal('<?=base_url()?>periodos_escuelas_controller/showModal_c/<?=$f->id?>','myModal')"><i class="icon-calendar"></i> Periodos</a></li>
+										<li><a href="javascript:void(0)" onClick="loadModal('<?=base_url()?>docentes_escuelas_controller/showModal_c/<?=$f->id?>','myModal')"><i class="icon-user"></i> Docentes</a></li>
+
+								  </ul>
+								</div>
 							</td>
 						</tr>
 					<?php endforeach; ?>

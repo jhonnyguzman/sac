@@ -22,9 +22,12 @@ class Access_Hook {
 			'sisperfil_controller',
 			'sispermisos_controller',
 			'perfiles_controller',
-			'docentes_perfiles_controller',
+			'docentes_perfiles_escuelas_controller',
 			'departamentos_controller',
-			'titulos_controller');
+			'titulos_controller',
+			'horas_institucionales',
+			'lineas_accion_docentes_controller',
+			'lineas_accion_escuelas_controller');
 		if($CI->session->userdata('logged_in') == true && $CI->router->method == 'login') redirect('admin','location');
 		if($CI->session->userdata('logged_in') != true && $CI->router->method != 'login' && in_array($CI->router->class, $privatecontrollers))
 		{

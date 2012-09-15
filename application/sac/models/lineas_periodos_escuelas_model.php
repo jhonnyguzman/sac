@@ -112,7 +112,9 @@ class Lineas_periodos_escuelas_Model extends CI_Model {
 		if(isset($options['sortBy']) && isset($options['sortDirection']))
 			$this->db->order_by($options['sortBy'],$options['sortDirection']);
 
-		$query = $this->db->get('lineas_periodos_escuelas');
+		$this->db->select("lpe.*, lpe.mes as mes_descripcion");
+		$this->db->from("lineas_periodos_escuelas as lpe");
+		$query = $this->db->get();
 
 		if(isset($options['count'])) return $query->num_rows();
 
@@ -121,11 +123,13 @@ class Lineas_periodos_escuelas_Model extends CI_Model {
 			if(isset($options['id']) && $flag==1){
 				$query->row(0)->created_at = $this->basicrud->formatDateToHuman($query->row(0)->created_at);
 				$query->row(0)->updated_at = $this->basicrud->formatDateToHuman($query->row(0)->updated_at);
+				$query->row(0)->mes_descripcion = $this->basicrud->getMesDescripcion($query->row(0)->mes_descripcion);
 				return $query->row(0);
 			}else{
 				foreach($query->result() as $row){ 
 					$row->created_at = $this->basicrud->formatDateToHuman($row->created_at);
 					$row->updated_at = $this->basicrud->formatDateToHuman($row->updated_at);
+					$row->mes_descripcion = $this->basicrud->getMesDescripcion($row->mes_descripcion);
 				}
 				return $query->result();
 			}
@@ -147,6 +151,7 @@ class Lineas_periodos_escuelas_Model extends CI_Model {
 		$fields[]='id';
 		$fields[]='periodo_escuela_id';
 		$fields[]='mes';
+		$fields[]='mes_descripcion';
 		$fields[]='anio';
 		$fields[]='horas_por_mes';
 		$fields[]='created_at';

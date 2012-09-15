@@ -14,7 +14,7 @@
 	  			<legend>Seleccione un perfil:</legend>
 
 	  			<select name="perfiles_id" id="perfiles_id" 
-	  				onChange="showContentTabMenus('<?=base_url()?>sisperfil_controller/getMenuAsignados_c/','menusAsignados')">
+	  				onChange="showContentTabMenu('<?=base_url()?>sisperfil_controller/getMenuAsignados_c/','menusAsignados')">
 	  				<?php foreach($perfiles as $f): ?>
 	  					<option value="<?=$f->id?>"><?=$f->descripcion?></option>
 	  				<?php endforeach; ?>
@@ -27,9 +27,9 @@
 		<div class="span12">
 			<ul class="nav nav-tabs" id="tabMenus">
 			  <li class="active"><a href="#menusAsignados" data-toggle="tab" 
-			  	onClick="showContentTabMenus('<?=base_url()?>sisperfil_controller/getMenuAsignados_c/','menusAsignados')">Menus Asignados</a></li>
+			  	onClick="showContentTabMenu('<?=base_url()?>sisperfil_controller/getMenuAsignados_c/','menusAsignados')">Menus Asignados</a></li>
 			  <li><a href="#menusSinAsignar" data-toggle="tab"
-			  	onClick="showContentTabMenus('<?=base_url()?>sisperfil_controller/getMenuSinAsignar_c/','menusSinAsignar')">Menus sin asignar</a></li>
+			  	onClick="showContentTabMenu('<?=base_url()?>sisperfil_controller/getMenuSinAsignar_c/','menusSinAsignar')">Menus sin asignar</a></li>
 			</ul>
 			 
 			<div class="tab-content">
@@ -45,7 +45,7 @@
 
  <script>
     $(document).ready(function(){ 
-    	showContentTabMenus("<?=base_url()?>sisperfil_controller/getMenuAsignados_c/", "menusAsignados");
+    	showContentTabMenu("<?=base_url()?>sisperfil_controller/getMenuAsignados_c/", "menusAsignados");
     });
 </script>
 

@@ -45,7 +45,9 @@
 		<div class="control-group">
 			<label class="control-label" for="departamento_id"><?=$this->config->item('departamento_nombre')?>:</label>
 			<div class="controls">
-				<select name="departamento_id" id="departamento_id" onChange="getLocalidades('<?=base_url()?>departamentos_controller/getLocalidades/')">
+				<select name="departamento_id" id="departamento_id" 
+				onChange="getLocalidades('<?=base_url()?>departamentos_controller/getLocalidades/')"
+				class="chzn-select" >
 					<?php foreach($departamentos as $f):?>
 						<option value="<?=$f->id?>"><?=$f->nombre?></option>
 					<?php endforeach;?>
@@ -55,14 +57,14 @@
 		<div class="control-group">
 			<label class="control-label" for="localidad_id"><?=$this->config->item('localidad_nombre')?>:</label>
 			<div class="controls">
-				<select name="localidad_id" id="localidad_id">
+				<select name="localidad_id" id="localidad_id" class="chzn-select">
 				</select>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="director_id"><?=$this->config->item('director_nombre')?>:</label>
 			<div class="controls">
-				<select name="director_id" id="director_id">
+				<select name="director_id" id="director_id" class="chzn-select">
 					<?php foreach($directores as $f):?>
 						<option value="<?=$f->id?>"><?=$f->apellido." ".$f->nombre?></option>
 					<?php endforeach;?>
@@ -80,6 +82,8 @@
 <script type="text/javascript">
 	$(document).ready(function(){ 
 		getLocalidades('<?=base_url()?>departamentos_controller/getLocalidades/');
+		$(".chzn-select").chosen();
+
 	});
 </script>
 
@@ -89,7 +93,6 @@
 	var direccion = new LiveValidation('direccion'); direccion.add( Validate.Presence ); direccion.add( Validate.Length, { maximum: 40 } );
 	var telefono = new LiveValidation('telefono'); telefono.add( Validate.Numericality ); telefono.add( Validate.Length, { maximum: 15 } );
 	var email = new LiveValidation('email'); email.add( Validate.Email ); email.add( Validate.Length, { maximum: 50 } );
-	var habilitado = new LiveValidation('habilitado'); habilitado.add( Validate.Presence );
 </SCRIPT>
 <?=$this->load->view('default/_footer_admin')?>
 

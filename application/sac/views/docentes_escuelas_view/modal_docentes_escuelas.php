@@ -10,6 +10,7 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-	$("#contentModal").load("<?=base_url()?>docentes_escuelas_controller/show_c/<?=$escuelas_id?>");
+	$("#contentModal").load("<?=base_url()?>docentes_escuelas_controller/show_c/<?=$escuela_id?>");
 });
 </script>
+

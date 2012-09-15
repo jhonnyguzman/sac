@@ -87,6 +87,7 @@ function getLocalidades(url, loc_selected)
                 }
             });
             $("#localidad_id").append(options);
+            $("#localidad_id").trigger("liszt:updated");
         }
     });
 }
@@ -101,9 +102,14 @@ function loadModal(url,div)
     }).modal('show'); 
 }
 
-function showContentTabMenus(url, div)
+function showContentTabMenu(url, div)
 {
     $("#"+div).load(url + $("#perfiles_id").val());
+}
+
+function showContentTabLineaAccion(url, div)
+{
+    $("#"+div).load(url + $("#escuela_id").val());
 }
 
 function asignMenu(url)
