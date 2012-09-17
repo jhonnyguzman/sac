@@ -23,7 +23,7 @@
   <![endif]-->
 
 
-	<link href="<?=base_url()?>assets/css/bootstrap-responsive.css" rel="stylesheet">
+	<!--<link href="<?=base_url()?>assets/css/bootstrap-responsive.css" rel="stylesheet">-->
 
       <!-- Le javascript
     ================================================== -->

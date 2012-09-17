@@ -62,12 +62,12 @@ class Docentes_perfiles_Controller extends CI_Controller {
 		$this->form_validation->set_rules('perfil_id', 'perfil_id', 'trim|required|integer|callback_perfil_check|xss_clean');
 		if($this->form_validation->run())
 		{	
-			$data_docentes_perfiles  = array();
-			$data_docentes_perfiles['docente_id'] = $this->input->post('docente_id');
-			$data_docentes_perfiles['perfil_id'] = $this->input->post('perfil_id');
-			$data_docentes_perfiles['updated_at'] = $this->basicrud->formatDateToBD();
+			$data_docentes_perfiles_escuelas  = array();
+			$data_docentes_perfiles_escuelas['docente_id'] = $this->input->post('docente_id');
+			$data_docentes_perfiles_escuelas['perfil_id'] = $this->input->post('perfil_id');
+			$data_docentes_perfiles_escuelas['updated_at'] = $this->basicrud->formatDateToBD();
 
-			$id_docentes_perfiles = $this->docentes_perfiles_model->add_m($data_docentes_perfiles);
+			$id_docentes_perfiles = $this->docentes_perfiles_model->add_m($data_docentes_perfiles_escuelas);
 			if($id_docentes_perfiles){ 
 				$this->session->set_flashdata('flashConfirmModal', $this->config->item('docentes_perfiles_flash_add_message')); 
 				redirect('docentes_perfiles_controller/show_c/'.$docente_id,'location');
@@ -108,13 +108,13 @@ class Docentes_perfiles_Controller extends CI_Controller {
 		$this->form_validation->set_rules('docente_id', 'docente_id', 'trim|required|integer|xss_clean');
 		$this->form_validation->set_rules('perfil_id', 'perfil_id', 'trim|required|integer|xss_clean');
 		if($this->form_validation->run()){
-			$data_docentes_perfiles  = array();
-			$data_docentes_perfiles['id'] = $this->input->post('id');
-			$data_docentes_perfiles['docente_id'] = $this->input->post('docente_id');
-			$data_docentes_perfiles['perfil_id'] = $this->input->post('perfil_id');
-			$data_docentes_perfiles['updated_at'] = $this->basicrud->formatDateToBD();
+			$data_docentes_perfiles_escuelas  = array();
+			$data_docentes_perfiles_escuelas['id'] = $this->input->post('id');
+			$data_docentes_perfiles_escuelas['docente_id'] = $this->input->post('docente_id');
+			$data_docentes_perfiles_escuelas['perfil_id'] = $this->input->post('perfil_id');
+			$data_docentes_perfiles_escuelas['updated_at'] = $this->basicrud->formatDateToBD();
 
-			if($this->docentes_perfiles_model->edit_m($data_docentes_perfiles)){ 
+			if($this->docentes_perfiles_model->edit_m($data_docentes_perfiles_escuelas)){ 
 				$this->session->set_flashdata('flashConfirmModal', $this->config->item('docentes_perfiles_flash_edit_message')); 
 				redirect('docentes_perfiles_controller/show_c/'.$this->input->post('docente_id'),'location');
 			}else{
@@ -228,7 +228,6 @@ class Docentes_perfiles_Controller extends CI_Controller {
 			$data['pagination'] = $this->basicrud->getPagination(array('nameModel'=>'docentes_perfiles_model','perpage'=>$this->config->item('pag_perpage')),$data_search_pagination);
 			$data['docentes_perfiles'] = $this->docentes_perfiles_model->get_m($data_search_docentes_perfiles);
 			
-			$data['fieldShow'] = $this->basicrud->getFieldToShow($this->docentes_perfiles_model->getFieldsTable_m());
 			$this->load->view('docentes_perfiles_view/record_list_docentes_perfiles',$data);
 		}
 

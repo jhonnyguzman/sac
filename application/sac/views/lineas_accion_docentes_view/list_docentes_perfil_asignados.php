@@ -3,8 +3,8 @@
 		<thead>
 			<tr>
 				<th>Id</th>
-				<th>Docente</th>
-				<th>Perfil</th>
+				<th>Linea Acci&oacute;n escuela id</th>
+				<th>docente perfil id</th>
 				<th>cantidad horas</th>
 				<th></th>
 			</tr>
@@ -13,16 +13,16 @@
 			<?php foreach($lineas_accion_docentes as $f):?>
 				<tr>
 					<td><?=$f->id?></td>
-					<td><?=$f->docente_apellido." ".$f->docente_nombre?></td>
-					<td><?=$f->perfil_nombre?></td>
+					<td><?=$f->linea_accion_escuela_id?></td>
+					<td><?=$f->docente_perfil_id?></td>
 					<td><?=$f->cantidad_horas?></td>
 					<td>
 
 						<?php if($flag['u']):?>
-							<a href="#" onClick="updateContent('<?=base_url()?>lineas_accion_docentes_controller/edit_c/<?=$f->id?>/<?=$f->linea_accion_escuela_id?>','contentModal')" title="Modificar">Modificar</a>
+							<a href="#" onClick="updateContent('<?=base_url()?>lineas_accion_docentes_controller/show_c/<?=$f->id?>','contentModal')" title="Docentes">Docentes</a>
 						<?php endif;?>
 						<?php if($flag['d']):?>
-							<a href="#"  onClick="deleteItemModal('<?=base_url()?>lineas_accion_docentes_controller/delete_c/<?=$f->id?>/<?=$f->linea_accion_escuela_id?>','contentModal')" title="Eliminar">Eliminar</a>
+							<a href="#"  onClick="deleteRow('<?=base_url()?>lineas_accion_docentes_controller/delete_c/<?=$f->id?>')" title="Eliminar">Eliminar</a>
 						<?php endif;?>
 						   
 					</td>

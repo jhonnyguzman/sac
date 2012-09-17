@@ -78,16 +78,40 @@ function getLocalidades(url, loc_selected)
             $.each(data, function(key, val) {
                 if(loc_selected){
                     if(loc_selected == val.id){
-                        options = options + "<option value='"+val.id+"' selected>"+ val.nombre +"</options>";
+                        options = options + "<option value='"+val.id+"' selected>"+ val.nombre +"</option>";
                     }else{
-                        options = options + "<option value='"+val.id+"'>"+ val.nombre +"</options>";
+                        options = options + "<option value='"+val.id+"'>"+ val.nombre +"</option>";
                     }
                 }else{
-                    options = options + "<option value='"+val.id+"'>"+ val.nombre +"</options>";
+                    options = options + "<option value='"+val.id+"'>"+ val.nombre +"</option>";
                 }
             });
             $("#localidad_id").append(options);
             $("#localidad_id").trigger("liszt:updated");
+        }
+    });
+}
+
+function getMeses(url, mes_selected)
+{
+    var options = '';
+    var url_f = url + $("#periodo_escuela_id").val()
+    $.getJSON(url_f, function(data) {
+        $("#linea_periodo_escuela_id").find("option").remove();
+        if(data != 'none'){
+            options = options + "<option value='' >Todos</option>";
+            $.each(data, function(key, val) {
+                if(mes_selected){
+                    if(mes_selected == val.id){
+                        options = options + "<option value='"+val.id+"' selected>"+ val.mes_descripcion +"</option>";
+                    }else{
+                        options = options + "<option value='"+val.id+"'>"+ val.mes_descripcion +"</option>";
+                    }
+                }else{
+                    options = options + "<option value='"+val.id+"'>"+ val.mes_descripcion +"</option>";
+                }
+            });
+            $("#linea_periodo_escuela_id").append(options);
         }
     });
 }

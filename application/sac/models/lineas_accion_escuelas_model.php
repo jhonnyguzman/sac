@@ -34,8 +34,8 @@ class Lineas_accion_escuelas_Model extends CI_Model {
 	function edit_m($options = array())
 	{
 		//code here
-		if(isset($options['periodo_escuela_id']))
-			$this->db->set('periodo_escuela_id', $options['periodo_escuela_id']);
+		if(isset($options['linea_periodo_escuela_id']))
+			$this->db->set('linea_periodo_escuela_id', $options['linea_periodo_escuela_id']);
 		if(isset($options['linea_accion_id']))
 			$this->db->set('linea_accion_id', $options['linea_accion_id']);
 		if(isset($options['created_at']))
@@ -62,9 +62,11 @@ class Lineas_accion_escuelas_Model extends CI_Model {
 	function delete_m($id)
 	{
 		//code here
+		$this->db->trans_start();
 		$this->db->where('id', $id);
 		$this->db->delete('lineas_accion_escuelas');
 		return $this->db->affected_rows();
+
 	}
 
 
@@ -81,14 +83,21 @@ class Lineas_accion_escuelas_Model extends CI_Model {
 		//code here
 		if(isset($options['id']))
 			$this->db->where('lae.id', $options['id']);
-		if(isset($options['periodo_escuela_id']))
-			$this->db->where('lae.periodo_escuela_id', $options['periodo_escuela_id']);
+		if(isset($options['linea_periodo_escuela_id']))
+			$this->db->where('lae.linea_periodo_escuela_id', $options['linea_periodo_escuela_id']);
 		if(isset($options['linea_accion_id']))
 			$this->db->where('lae.linea_accion_id', $options['linea_accion_id']);
 		if(isset($options['created_at']))
 			$this->db->where('lae.created_at', $options['created_at']);
 		if(isset($options['updated_at']))
 			$this->db->where('lae.updated_at', $options['updated_at']);
+		
+		//este atributo no es propio de la tabla principal pero
+		//se puede dar el caso de querer filtrar todas lineas de acciones
+		//de un periodo y no solo por mes.
+		if(isset($options['periodo_escuela_id']))
+			$this->db->where('lpe.periodo_escuela_id', $options['periodo_escuela_id']);
+
 
 		//limit / offset
 		if(isset($options['limit']) && isset($options['offset']))
@@ -100,11 +109,11 @@ class Lineas_accion_escuelas_Model extends CI_Model {
 		if(isset($options['sortBy']) && isset($options['sortDirection']))
 			$this->db->order_by($options['sortBy'],$options['sortDirection']);
 
-		$this->db->select("lae.*, la.nombre as linea_accion_nombre, p.created_at as periodo_created_at");
+		$this->db->select("lae.*, la.nombre as linea_accion_nombre, lpe.mes, lpe.mes as mes_descripcion, lpe.anio");
 		$this->db->from("lineas_accion_escuelas as lae");
+		$this->db->join("lineas_periodos_escuelas as lpe", "lpe.id = lae.linea_periodo_escuela_id");
 		$this->db->join("lineas_accion as la", "la.id = lae.linea_accion_id");
-		$this->db->join("periodos_escuelas as pe", "pe.id = lae.periodo_escuela_id");
-		$this->db->join("periodos as p", "p.id = pe.periodo_id");
+		
 		
 		$query = $this->db->get();
 
@@ -115,11 +124,13 @@ class Lineas_accion_escuelas_Model extends CI_Model {
 			if(isset($options['id']) && $flag==1){
 				$query->row(0)->created_at = $this->basicrud->formatDateToHuman($query->row(0)->created_at);
 				$query->row(0)->updated_at = $this->basicrud->formatDateToHuman($query->row(0)->updated_at);
+				$query->row(0)->mes_descripcion = $this->basicrud->getMesDescripcion($query->row(0)->mes_descripcion);
 				return $query->row(0);
 			}else{
 				foreach($query->result() as $row){ 
 					$row->created_at = $this->basicrud->formatDateToHuman($row->created_at);
 					$row->updated_at = $this->basicrud->formatDateToHuman($row->updated_at);
+					$row->mes_descripcion = $this->basicrud->getMesDescripcion($row->mes_descripcion);
 				}
 				return $query->result();
 			}
@@ -139,10 +150,14 @@ class Lineas_accion_escuelas_Model extends CI_Model {
 		//code here
 		$fields=array();
 		$fields[]='id';
-		$fields[]='periodo_escuela_id';
+		$fields[]='linea_periodo_escuela_id';
+		$fields[]='mes';
+		$fields[]='mes_descripcion';
+		$fields[]='anio';
 		$fields[]='linea_accion_id';
 		$fields[]='created_at';
 		$fields[]='updated_at';
+		$fields[]='periodo_escuela_id'; //este campo es solo para finalidad de busqueda
 		return $fields;
 	}
 

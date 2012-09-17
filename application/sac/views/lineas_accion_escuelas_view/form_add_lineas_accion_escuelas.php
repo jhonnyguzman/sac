@@ -1,4 +1,3 @@
-
 <?php if(validation_errors() || isset($error)): ?>
 	<div class="alert alert-error">
 		<a class="close" data-dismiss="alert" href="#">×</a>
@@ -6,13 +5,16 @@
 		
 	</div>		
 <?php endif; ?>
-<form action="<?=base_url()?>lineas_accion_escuelas_controller/add_c" method="post" 
+<form action="<?=base_url()?>lineas_accion_escuelas_controller/add_c/<?=$periodo_escuela_id?>/<?=$escuela_id?>" method="post" 
 	name="formAddlineas_accion_escuelas" id="formAddlineas_accion_escuelas" class="form-inline">
 	<div class="control-group">
-		<h5><?=$this->config->item('periodo_escuela_id')?>:</h5>
+		<h5><?=$this->config->item('linea_periodo_escuela_id')?>:</h5>
 		<div class="controls">
-			<span class="input-xlarge uneditable-input">De&nbsp;<strong><?=$periodo_escuela[0]->periodo_fecha_inicio?></strong>&nbsp;a&nbsp;<strong><?=$periodo_escuela[0]->periodo_fecha_fin?></strong></span>
-			<input type="hidden" name="periodo_escuela_id" id="periodo_escuela_id"  value="<?=$periodo_escuela[0]->id?>"></input>
+			<select name="linea_periodo_escuela_id" id="linea_periodo_escuela_id">
+		  		<?php foreach($lineas_periodo_escuelas as $f):?>
+		  			<option value="<?=$f->id?>"><?=$f->mes_descripcion." del ".$f->anio?></option>
+		  		<?php endforeach; ?>
+		  </select>
 		</div>
 	</div>
 	<div class="control-group">
@@ -27,9 +29,7 @@
 	</div>
 	
 	<p class="stdformbutton">
-    	<button type="submit" class="btn">Guardar</button>
-    </div>
+    	<button type="submit" class="btn" onClick="submitData('formAddlineas_accion_escuelas','contentModal')">Guardar</button>
+    </p>
 
 </form>
-
-<br>

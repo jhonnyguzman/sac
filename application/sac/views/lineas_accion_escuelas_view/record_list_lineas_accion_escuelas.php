@@ -4,8 +4,8 @@
 		<thead>
 			<tr>
 				<th>Id</th>
-				<th>Periodo escuela id</th>
-				<th>Linea accion id</th>
+				<th>Linea de Acci&oacute;n</th>
+				<th>Mes</th>
 				<th></th>
 			</tr>
 		</thead>
@@ -13,16 +13,15 @@
 			<?php foreach($lineas_accion_escuelas as $f):?>
 				<tr>
 					<td><?=$f->id?></td>
-					<td><?=$f->periodo_escuela_id?></td>
-					<td><?=$f->linea_accion_id?></td>
+					<td><?=$f->linea_accion_nombre?></td>
+					<td><?=$f->mes_descripcion?></td>
 					<td>
-						<?php if($flag['u']):?>
-							<a href="<?=base_url()?>lineas_accion_escuelas_controller/edit_c/<?=$f->id?>" title="Modificar" class="btn boton_rojo">Modificar</a>
-						<?php endif;?>
 						<?php if($flag['d']):?>
-							<a href="#"  onClick="deleteRow('<?=base_url()?>lineas_accion_escuelas_controller/delete_c/<?=$f->id?>')" title="Eliminar" class="btn boton_rojo">Eliminar</a>
+							<a href="#"  onClick="deleteItemModal('<?=base_url()?>lineas_accion_escuelas_controller/delete_c/<?=$f->id?>/<?=$f->linea_periodo_escuela_id?>','contentModal')" title="Eliminar">Eliminar</a>
 						<?php endif;?>
-						   
+						<?php if($flag['u']):?>
+							<a href="#" onClick="updateContent('<?=base_url()?>lineas_accion_docentes_controller/show_c/<?=$f->id?>','contentModal')" title="Docentes">Docentes</a>
+						<?php endif;?>   
 					</td>
 				</tr>
 			<?php endforeach; ?>

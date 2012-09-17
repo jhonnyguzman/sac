@@ -1,7 +1,7 @@
 <?php
  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Docentes_perfiles_Model extends CI_Model {
+class docentes_perfiles_Model extends CI_Model {
 
 	function __construct()
 	{
@@ -59,10 +59,16 @@ class Docentes_perfiles_Model extends CI_Model {
 	 * @param  integer $id primary key of record
 	 * @return integer  affected rows
 	 */
-	function delete_m($id)
+	function delete_m($options = array())
 	{
 		//code here
-		$this->db->where('id', $id);
+		if(isset($options['id']))
+			$this->db->where('id', $options["id"]);
+		if(isset($options['docente_id']))
+			$this->db->where('docente_id', $options["docente_id"]);
+		if(isset($options['perfil_id']))
+			$this->db->where('perfil_id', $options["perfil_id"]);
+		
 		$this->db->delete('docentes_perfiles');
 		return $this->db->affected_rows();
 	}
@@ -80,15 +86,16 @@ class Docentes_perfiles_Model extends CI_Model {
 	{
 		//code here
 		if(isset($options['id']))
-			$this->db->where('id', $options['id']);
+			$this->db->where('dp.id', $options['id']);
 		if(isset($options['docente_id']))
-			$this->db->where('docente_id', $options['docente_id']);
+			$this->db->where('dp.docente_id', $options['docente_id']);
 		if(isset($options['perfil_id']))
-			$this->db->where('perfil_id', $options['perfil_id']);
+			$this->db->where('dp.perfil_id', $options['perfil_id']);
 		if(isset($options['created_at']))
-			$this->db->where('created_at', $options['created_at']);
+			$this->db->where('dp.created_at', $options['created_at']);
 		if(isset($options['updated_at']))
-			$this->db->where('updated_at', $options['updated_at']);
+			$this->db->where('dp.updated_at', $options['updated_at']);
+
 
 		//limit / offset
 		if(isset($options['limit']) && isset($options['offset']))
@@ -100,7 +107,11 @@ class Docentes_perfiles_Model extends CI_Model {
 		if(isset($options['sortBy']) && isset($options['sortDirection']))
 			$this->db->order_by($options['sortBy'],$options['sortDirection']);
 
-		$query = $this->db->get('docentes_perfiles');
+		$this->db->select("dp.*, d.apellido as docente_apellido, d.nombre as docente_nombre, p.nombre as perfil_nombre");
+		$this->db->from("docentes_perfiles as dp");
+		$this->db->join("docentes as d", "d.id = dp.docente_id");
+		$this->db->join("perfiles as p", "p.id = dp.perfil_id");
+		$query = $this->db->get();
 
 		if(isset($options['count'])) return $query->num_rows();
 
@@ -170,7 +181,10 @@ class Docentes_perfiles_Model extends CI_Model {
 		$fields=array();
 		$fields[]='id';
 		$fields[]='docente_id';
+		$fields[]='docente_apellido';
+		$fields[]='docente_nombre';
 		$fields[]='perfil_id';
+		$fields[]='perfil_nombre';
 		$fields[]='created_at';
 		$fields[]='updated_at';
 		return $fields;

@@ -17,9 +17,9 @@
 		<input type="hidden" value="<?=$lineas_accion_escuelas->id?>" name="id" id="id" ></input>
 		
 		<div class="control-group">
-			<label class="control-label" for="periodo_escuela_id"><?=$this->config->item('periodo_escuela_id')?>:</label>
+			<label class="control-label" for="linea_periodo_escuela_id"><?=$this->config->item('linea_periodo_escuela_id')?>:</label>
 			<div class="controls">
-				<input type="text" value="<?=$lineas_accion_escuelas->periodo_escuela_id?>" name="periodo_escuela_id" id="periodo_escuela_id"></input>
+				<input type="text" value="<?=$lineas_accion_escuelas->linea_periodo_escuela_id?>" name="linea_periodo_escuela_id" id="linea_periodo_escuela_id"></input>
 			</div>
 		</div>
 		<div class="control-group">

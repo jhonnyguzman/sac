@@ -23,9 +23,9 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="docente_perfil_escuela_id"><?=$this->config->item('docente_perfil_escuela_id')?>:</label>
+			<label class="control-label" for="docente_perfil_id"><?=$this->config->item('docente_perfil_id')?>:</label>
 			<div class="controls">
-				<input type="text" value="<?=$lineas_accion_docentes->docente_perfil_escuela_id?>" name="docente_perfil_escuela_id" id="docente_perfil_escuela_id"></input>
+				<input type="text" value="<?=$lineas_accion_docentes->docente_perfil_id?>" name="docente_perfil_id" id="docente_perfil_id"></input>
 			</div>
 		</div>
 		<div class="control-group">

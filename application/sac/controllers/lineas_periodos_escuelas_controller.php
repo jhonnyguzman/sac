@@ -212,4 +212,15 @@ class Lineas_periodos_escuelas_Controller extends CI_Controller {
 
 	}
 
+
+	function getMeses($periodo_escuela_id)
+	{
+		$meses = $this->lineas_periodos_escuelas_model->get_m(array('periodo_escuela_id' => $periodo_escuela_id));
+		if($meses){
+			echo json_encode($meses);
+		}else{
+			echo json_encode("none");
+		}
+	}
+
 }

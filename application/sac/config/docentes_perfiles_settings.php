@@ -12,8 +12,11 @@ $config['accessTitle']='<div class="accessTitle"> No tienes permiso para realiza
 /* Config labels of the form fields */
 
 $config['id']='Id';
-$config['docente_id']='Docente';
+$config['docente_id']='Docente escuela id';
+$config['docente_apellido']='Docente';
+$config['docente_nombre']='Docente';
 $config['perfil_id']='Perfil';
+$config['perfil_nombre']='Perfil';
 $config['created_at']='Fecha de alta';
 $config['updated_at']='Actualizado el';
 
@@ -29,7 +32,10 @@ $config['search_by_updated_at']= 0;
 
 $config['show_id']= 1;
 $config['show_docente_id']= 1;
+$config['show_docente_apellido']= 1;
+$config['show_docente_nombre']= 1;
 $config['show_perfil_id']= 1;
+$config['show_perfil_nombre']= 1;
 $config['show_created_at']= 1;
 $config['show_updated_at']= 1;
 

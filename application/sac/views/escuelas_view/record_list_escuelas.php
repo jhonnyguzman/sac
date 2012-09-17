@@ -31,8 +31,7 @@
 											<li><a href="#" onClick="deleteRow('<?=base_url()?>escuelas_controller/delete_c/<?=$f->id?>')" title="Eliminar"><i class="icon-trash"></i> Eliminar</a></li>
 										<?php endif;?>
 										<li><a href="javascript:void(0)" onClick="loadModal('<?=base_url()?>periodos_escuelas_controller/showModal_c/<?=$f->id?>','myModal')"><i class="icon-calendar"></i> Periodos</a></li>
-										<li><a href="javascript:void(0)" onClick="loadModal('<?=base_url()?>docentes_escuelas_controller/showModal_c/<?=$f->id?>','myModal')"><i class="icon-user"></i> Docentes</a></li>
-
+										<li><a href="javascript:void(0)" onClick="loadModal('<?=base_url()?>lineas_accion_escuelas_controller/showModal_c/<?=$f->id?>','myModal')"><i class="icon-align-justify"></i> Lineas de Acciones</a></li>
 								  </ul>
 								</div>
 							</td>
