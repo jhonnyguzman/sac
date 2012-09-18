@@ -134,6 +134,21 @@ class Lineas_accion_docentes_Model extends CI_Model {
 	}
 
 
+	function getCiclosDocentes_m($linea_periodo_escuela_id, $docente_id, $ciclo)
+	{
+		$result = array();
+		$query_str = "select la.ciclo, tg.descripcion as ciclo_descripcion from lineas_accion_docentes as lad 
+		inner join lineas_accion_escuelas as lae on lae.id = lad.linea_accion_escuela_id 
+		inner join lineas_accion as la on la.id = lae.linea_accion_id
+		inner join sys_tabgral as tg on tg.id = la.ciclo 
+		where  lae.linea_periodo_escuela_id = ? and lad.docente_id = ? and la.ciclo = ?";
+		$query = $this->db->query($query_str,array($linea_periodo_escuela_id, $docente_id, $ciclo));
+		if($query->num_rows()>0){
+			return $result = $query->result();
+		}
+	}
+
+
 	/**
 	 * This function getting all the fields of the table
 	 *

@@ -108,10 +108,11 @@ class Lineas_accion_escuelas_Model extends CI_Model {
 		if(isset($options['sortBy']) && isset($options['sortDirection']))
 			$this->db->order_by($options['sortBy'],$options['sortDirection']);
 
-		$this->db->select("lae.*, la.nombre as linea_accion_nombre, lpe.mes, lpe.mes as mes_descripcion, lpe.anio");
+		$this->db->select("lae.*, la.nombre as linea_accion_nombre, la.ciclo, tg.descripcion as ciclo_descripcion, lpe.mes, lpe.mes as mes_descripcion, lpe.anio");
 		$this->db->from("lineas_accion_escuelas as lae");
 		$this->db->join("lineas_periodos_escuelas as lpe", "lpe.id = lae.linea_periodo_escuela_id");
 		$this->db->join("lineas_accion as la", "la.id = lae.linea_accion_id");
+		$this->db->join("sys_tabgral as tg", "tg.id = la.ciclo");
 		
 		
 		$query = $this->db->get();
@@ -153,6 +154,8 @@ class Lineas_accion_escuelas_Model extends CI_Model {
 		$fields[]='mes';
 		$fields[]='mes_descripcion';
 		$fields[]='anio';
+		$fields[]='cliclo';
+		$fields[]='ciclo_descripcion';
 		$fields[]='linea_accion_id';
 		$fields[]='created_at';
 		$fields[]='updated_at';

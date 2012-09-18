@@ -59,7 +59,7 @@ class Lineas_accion_docentes_Controller extends CI_Controller {
 		$data['title_header'] = $this->config->item('recordAddTitle');
 		
 		$this->form_validation->set_rules('linea_accion_escuela_id', 'linea_accion_escuela_id', 'trim|required|integer|xss_clean');
-		$this->form_validation->set_rules('docente_id', 'docente_id', 'trim|required|integer|callback_checkDocente|xss_clean');
+		$this->form_validation->set_rules('docente_id', 'docente_id', 'trim|required|integer|callback_checkDocente|callback_checkCiclo|xss_clean');
 		$this->form_validation->set_rules('perfil_id', 'perfil_id', 'trim|required|integer|xss_clean');
 		$this->form_validation->set_rules('cantidad_horas', 'cantidad_horas', 'trim|required|integer|xss_clean');
 		
@@ -249,6 +249,30 @@ class Lineas_accion_docentes_Controller extends CI_Controller {
 
 		if(count($linea_accion_docente) > 0){
 			$this->form_validation->set_message('checkDocente', 'El Docente seleccionado ya ha sido asignado a esta linea de acci&oacute;n');
+			return FALSE;
+		}else{
+			return TRUE;
+		}
+	}
+
+
+	public function checkCiclo($docente_id)
+	{
+		$this->load->model('lineas_accion_model');
+
+		$linea_accion_escuela = $this->lineas_accion_escuelas_model->get_m(array('id' => $this->input->post('linea_accion_escuela_id')));
+		$linea_accion = $this->lineas_accion_model->get_m(array('id' => $linea_accion_escuela[0]->linea_accion_id));
+		$ciclos = $this->lineas_accion_docentes_model->getCiclosDocentes_m(
+			$linea_accion_escuela[0]->linea_periodo_escuela_id,
+			$docente_id,
+			$linea_accion[0]->ciclo);
+
+		if(count($ciclos) > 0){
+			$this->form_validation->set_message('checkCiclo', 
+				"El Docente seleccionado ya ha sido dado de alta en 
+				una linea de acci&oacute;n cuyo ciclo '".$ciclos[0]->ciclo_descripcion."' es igual al de 
+				la linea de acci&oacute;n en la cual esta intentando 
+				dar de alta este docente.");
 			return FALSE;
 		}else{
 			return TRUE;

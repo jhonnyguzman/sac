@@ -5,6 +5,7 @@
 			<tr>
 				<th>Id</th>
 				<th>Linea de Acci&oacute;n</th>
+				<th>Ciclo</th>
 				<th>Mes</th>
 				<th></th>
 			</tr>
@@ -14,6 +15,7 @@
 				<tr>
 					<td><?=$f->id?></td>
 					<td><?=$f->linea_accion_nombre?></td>
+					<td><?=$f->ciclo_descripcion?></td>
 					<td><?=$f->mes_descripcion?></td>
 					<td>
 						<?php if($flag['d']):?>

@@ -13,7 +13,7 @@ $config['accessTitle']='<div class="accessTitle"> No tienes permiso para realiza
 
 $config['id']='Id';
 $config['linea_accion_escuela_id']='Linea de acci&oacute;n';
-$config['docente_id']='Asignar Docentes';
+$config['docente_id']='Docente';
 $config['docente_apellido']='Docente';
 $config['docente_nombre']='Docente';
 $config['perfil_id']='Perfil';
