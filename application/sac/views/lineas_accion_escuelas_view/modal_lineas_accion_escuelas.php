@@ -1,10 +1,11 @@
 <?php if(count($periodo_escuela)>0): ?>
 	
-	<div class="modal-header">
+	<div class="modal-header" id="contentModalHeader">
 	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 	    <h5 id="myModalLabel" >
 	    	<span>Esc. <?=$escuela->nombre?></span>&nbsp;&nbsp;&nbsp;&nbsp;
 	    	<span>Periodo Activo: <?=$periodo_escuela[0]->periodo_fecha_inicio.' - '.$periodo_escuela[0]->periodo_fecha_fin?></span>
+	    	<span id="extraContentHeader"></span>
 	    </h5>
 	</div>
 	<div class="modal-body" id="contentModal">

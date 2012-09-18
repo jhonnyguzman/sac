@@ -5,7 +5,7 @@
 				<th>Id</th>
 				<th>Docente</th>
 				<th>Perfil</th>
-				<th>cantidad horas</th>
+				<th>Cantidad de horas</th>
 				<th></th>
 			</tr>
 		</thead>

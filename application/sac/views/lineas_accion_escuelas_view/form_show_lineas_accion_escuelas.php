@@ -15,5 +15,6 @@
 	
 	$(document).ready(function(){
 		$("#contentModalFooter").find(".btnBack").remove();
+		$("#extraContentHeader").find(".extraContentHeaderP").remove();
 	});
 </script>

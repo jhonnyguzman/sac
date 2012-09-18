@@ -36,12 +36,16 @@ class Lineas_accion_docentes_Model extends CI_Model {
 		//code here
 		if(isset($options['linea_accion_escuela_id']))
 			$this->db->set('linea_accion_escuela_id', $options['linea_accion_escuela_id']);
-		if(isset($options['docente_perfil_id']))
-			$this->db->set('docente_perfil_id', $options['docente_perfil_id']);
+		if(isset($options['docente_id']))
+			$this->db->set('docente_id', $options['docente_id']);
 		if(isset($options['created_at']))
 			$this->db->set('created_at', $options['created_at']);
 		if(isset($options['updated_at']))
 			$this->db->set('updated_at', $options['updated_at']);
+		if(isset($options['cantidad_horas']))
+			$this->db->set('cantidad_horas', $options['cantidad_horas']);
+		if(isset($options['perfil_id']))
+			$this->db->set('perfil_id', $options['perfil_id']);
 
 		$this->db->where('id', $options['id']);
 
@@ -83,12 +87,16 @@ class Lineas_accion_docentes_Model extends CI_Model {
 			$this->db->where('lad.id', $options['id']);
 		if(isset($options['linea_accion_escuela_id']))
 			$this->db->where('lad.linea_accion_escuela_id', $options['linea_accion_escuela_id']);
-		if(isset($options['docente_perfil_id']))
-			$this->db->where('lad.docente_perfil_id', $options['docente_perfil_id']);
+		if(isset($options['docente_id']))
+			$this->db->where('lad.docente_id', $options['docente_id']);
 		if(isset($options['created_at']))
 			$this->db->where('lad.created_at', $options['created_at']);
 		if(isset($options['updated_at']))
 			$this->db->where('lad.updated_at', $options['updated_at']);
+		if(isset($options['cantidad_horas']))
+			$this->db->where('lad.cantidad_horas', $options['cantidad_horas']);
+		if(isset($options['perfil_id']))
+			$this->db->where('lad.perfil_id', $options['perfil_id']);
 
 		//limit / offset
 		if(isset($options['limit']) && isset($options['offset']))
@@ -102,9 +110,8 @@ class Lineas_accion_docentes_Model extends CI_Model {
 
 		$this->db->select("lad.*, d.apellido as docente_apellido, d.nombre as docente_nombre, p.nombre as perfil_nombre");
 		$this->db->from("lineas_accion_docentes as lad");
-		$this->db->join("docentes_perfiles as dp","dp.id = lad.docente_perfil_id");
-		$this->db->join("docentes as d","d.id = dp.docente_id");
-		$this->db->join("perfiles as p","p.id=dp.perfil_id");
+		$this->db->join("docentes as d","d.id = lad.docente_id");
+		$this->db->join("perfiles as p","p.id= lad.perfil_id");
 		$query = $this->db->get();
 
 		if(isset($options['count'])) return $query->num_rows();
@@ -139,7 +146,12 @@ class Lineas_accion_docentes_Model extends CI_Model {
 		$fields=array();
 		$fields[]='id';
 		$fields[]='linea_accion_escuela_id';
-		$fields[]='docente_perfil_id';
+		$fields[]='docente_id';
+		$fields[]='docente_apellido';
+		$fields[]='docente_nombre';
+		$fields[]='perfil_id';
+		$fields[]='perfil_nombre';
+		$fields[]='cantidad_horas';
 		$fields[]='created_at';
 		$fields[]='updated_at';
 		return $fields;

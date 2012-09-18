@@ -27,3 +27,9 @@ Log de cambios:
 - Se renombro el atributo "docente_perfil_escuela_id" a "docente_perfil_id" de la tabla "lineas_accion_docentes"
 - Se elimino la relacion entre las tablas "docentes_perfiles" y "lineas_periodos_escuelas"
 - Se elimino el atributo "linea_periodo_escuela_id" de la tabla "docentes_perfiles"
+
+- Se elimino tabla 'docentes_perfiles'
+- Se cambio el atributo 'docente_perfil_id' a 'docente_id' de la tabla 'lineas_accion_docentes'
+- Se agrego el atributo 'perfil_id' a la tabla 'lineas_accion_escuelas'
+- Se agrego una relacion entre las tablas 'lineas_accion_docentes' y 'docentes'
+- Se agrego una relacion entre las tablas 'lineas_accion_docentes' y 'perfiles'

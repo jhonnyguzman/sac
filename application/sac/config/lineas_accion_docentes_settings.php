@@ -13,7 +13,12 @@ $config['accessTitle']='<div class="accessTitle"> No tienes permiso para realiza
 
 $config['id']='Id';
 $config['linea_accion_escuela_id']='Linea de acci&oacute;n';
-$config['docente_perfil_id']='Asignar Docentes';
+$config['docente_id']='Asignar Docentes';
+$config['docente_apellido']='Docente';
+$config['docente_nombre']='Docente';
+$config['perfil_id']='Perfil';
+$config['perfil_nombre']='Perfil';
+$config['cantidad_horas']='Cantidad de horas';
 $config['created_at']='Fecha de alta';
 $config['updated_at']='Actualizado el ';
 
@@ -21,7 +26,9 @@ $config['updated_at']='Actualizado el ';
 
 $config['search_by_id']= 0;
 $config['search_by_linea_accion_escuela_id']= 1;
-$config['search_by_docente_perfil_id']= 0;
+$config['search_by_docente_id']= 0;
+$config['search_by_perfil_id']= 0;
+$config['search_by_cantidad_horas']= 0;
 $config['search_by_created_at']= 0;
 $config['search_by_updated_at']= 0;
 
@@ -29,7 +36,12 @@ $config['search_by_updated_at']= 0;
 
 $config['show_id']= 1;
 $config['show_linea_accion_escuela_id']= 1;
-$config['show_docente_perfil_id']= 1;
+$config['show_docente_id']= 1;
+$config['show_docente_apellido']= 1;
+$config['show_docente_nombre']= 1;
+$config['show_perfil_id']= 1;
+$config['show_perfil_nombre']= 1;
+$config['show_cantidad_horas']= 1;
 $config['show_created_at']= 1;
 $config['show_updated_at']= 1;
 

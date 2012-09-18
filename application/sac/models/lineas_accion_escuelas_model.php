@@ -62,7 +62,6 @@ class Lineas_accion_escuelas_Model extends CI_Model {
 	function delete_m($id)
 	{
 		//code here
-		$this->db->trans_start();
 		$this->db->where('id', $id);
 		$this->db->delete('lineas_accion_escuelas');
 		return $this->db->affected_rows();

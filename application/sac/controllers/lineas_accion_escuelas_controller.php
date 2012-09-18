@@ -59,8 +59,8 @@ class Lineas_accion_escuelas_Controller extends CI_Controller {
 		$data = array();
 		$data['title_header'] = $this->config->item('recordAddTitle');
 		
-		$this->form_validation->set_rules('linea_periodo_escuela_id', 'linea_periodo_escuela_id', 'trim|integer|xss_clean');
-		$this->form_validation->set_rules('linea_accion_id', 'linea_accion_id', 'trim|integer|xss_clean');
+		$this->form_validation->set_rules('linea_periodo_escuela_id', 'linea_periodo_escuela_id', 'trim|required|integer|xss_clean');
+		$this->form_validation->set_rules('linea_accion_id', 'linea_accion_id', 'trim|required|integer|callback_checkLinea|xss_clean');
 
 		if($this->form_validation->run())
 		{	
@@ -250,5 +250,20 @@ class Lineas_accion_escuelas_Controller extends CI_Controller {
 		$linea_periodo_escuela = $this->lineas_periodos_escuelas_model->get_m(array('id' => $linea_periodo_escuela_id));
 		$periodo_escuela = $this->periodos_escuelas_model->get_m(array('id' => $linea_periodo_escuela[0]->periodo_escuela_id));
 		return $periodo_escuela[0]->escuelas_id;
+	}
+
+
+	public function checkLinea($linea_accion_id)
+	{
+		$linea_accion_escuela = $this->lineas_accion_escuelas_model->get_m(
+			array(
+				'linea_accion_id' => $linea_accion_id,
+				'linea_periodo_escuela_id' => $this->input->post('linea_periodo_escuela_id')));
+		if(count($linea_accion_escuela) > 0){
+			$this->form_validation->set_message('checkLinea', 'La linea de acci&oacute;n elegida ya ha sido asignada al mes seleccionado.');
+			return FALSE;
+		}else{
+			return TRUE;
+		}
 	}
 }

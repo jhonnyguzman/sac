@@ -14,7 +14,7 @@ class Lineas_accion_docentes_Controller extends CI_Controller {
 		parent::__construct();
 		if($this->session->userdata('logged_in') == true) { 
 			$this->load->model('lineas_accion_docentes_model');
-			$this->load->model('docentes_perfiles_model');
+			$this->load->model('lineas_accion_escuelas_model');
 			$this->load->model('docentes_model');
 			$this->load->model('perfiles_model');
 			$this->config->load('lineas_accion_docentes_settings');
@@ -59,48 +59,31 @@ class Lineas_accion_docentes_Controller extends CI_Controller {
 		$data['title_header'] = $this->config->item('recordAddTitle');
 		
 		$this->form_validation->set_rules('linea_accion_escuela_id', 'linea_accion_escuela_id', 'trim|required|integer|xss_clean');
-		$this->form_validation->set_rules('docente_id', 'docente_id', 'trim|required|integer|xss_clean');
+		$this->form_validation->set_rules('docente_id', 'docente_id', 'trim|required|integer|callback_checkDocente|xss_clean');
 		$this->form_validation->set_rules('perfil_id', 'perfil_id', 'trim|required|integer|xss_clean');
 		$this->form_validation->set_rules('cantidad_horas', 'cantidad_horas', 'trim|required|integer|xss_clean');
 		
 		if($this->form_validation->run())
 		{	
-			//primero damos de alta el docente con el perfil en la tabla 'docentes_perfiles'
-			$data_docentes_perfiles = array();
-			$data_docentes_perfiles['docente_id'] = $this->input->post('docente_id');
-			$data_docentes_perfiles['perfil_id'] = $this->input->post('perfil_id');
-			$data_docentes_perfiles['updated_at'] = $this->basicrud->formatDateToBD();
-			$id_docente_perfil = $this->docentes_perfiles_model->add_m($data_docentes_perfiles);
-			
-			if($id_docente_perfil)
-			{ 
-				//segundo damos de alta una linea de accion docentes con el perfil docente creado
-				//anteriormente
-				$data_lineas_accion_docentes  = array();
-				$data_lineas_accion_docentes['linea_accion_escuela_id'] = $this->input->post('linea_accion_escuela_id');
-				$data_lineas_accion_docentes['docente_perfil_id'] = $id_docente_perfil;
-				$data_lineas_accion_docentes['updated_at'] = $this->basicrud->formatDateToBD();
-				$data_lineas_accion_docentes['cantidad_horas'] = $this->input->post('cantidad_horas');
+			$data_lineas_accion_docentes  = array();
+			$data_lineas_accion_docentes['linea_accion_escuela_id'] = $this->input->post('linea_accion_escuela_id');
+			$data_lineas_accion_docentes['docente_id'] = $this->input->post('docente_id');
+			$data_lineas_accion_docentes['updated_at'] = $this->basicrud->formatDateToBD();
+			$data_lineas_accion_docentes['cantidad_horas'] = $this->input->post('cantidad_horas');
+			$data_lineas_accion_docentes['perfil_id'] = $this->input->post('perfil_id');
 
-				$id_lineas_accion_docentes = $this->lineas_accion_docentes_model->add_m($data_lineas_accion_docentes);
-				if($id_lineas_accion_docentes){ 
-					$this->session->set_flashdata('flashConfirmModal', $this->config->item('lineas_accion_docentes_flash_add_message')); 
-					redirect('lineas_accion_docentes_controller/show_c/'.$linea_accion_escuela_id,'location');
-				}else{
-					$this->session->set_flashdata('flashErrorModal', $this->config->item('lineas_accion_docentes_flash_error_message')); 
-					redirect('lineas_accion_docentes_controller/show_c/'.$linea_accion_escuela_id,'location');
-				}
+			$id_lineas_accion_docentes = $this->lineas_accion_docentes_model->add_m($data_lineas_accion_docentes);
+			if($id_lineas_accion_docentes){ 
+				$this->session->set_flashdata('flashConfirmModal', $this->config->item('lineas_accion_docentes_flash_add_message')); 
+				redirect('lineas_accion_docentes_controller/show_c/'.$linea_accion_escuela_id,'location');
 			}else{
 				$this->session->set_flashdata('flashErrorModal', $this->config->item('lineas_accion_docentes_flash_error_message')); 
 				redirect('lineas_accion_docentes_controller/show_c/'.$linea_accion_escuela_id,'location');
 			}
-
-			
 		}else{
 			$data['linea_accion_escuela_id']= $linea_accion_escuela_id;
 			$data['docentes'] = $this->docentes_model->get_m(array('habilitado' => 1));
 			$data['perfiles'] = $this->perfiles_model->get_m(array('habilitado' => 1));
-			$data['escuela_id'] = $this->getEscuelaId($linea_accion_escuela_id);
 			$this->load->view('lineas_accion_docentes_view/form_add_lineas_accion_docentes',$data);
 		}
 	}
@@ -114,7 +97,7 @@ class Lineas_accion_docentes_Controller extends CI_Controller {
 	 * @access public
 	 * @return void
 	 */
-	function edit_c($id)
+	function edit_c($id, $linea_accion_escuela_id='')
 	{
 		//code here
 		if(!$this->flagU){
@@ -126,26 +109,34 @@ class Lineas_accion_docentes_Controller extends CI_Controller {
 		$data['title_header'] = $this->config->item('recordEditTitle');
 		$data['lineas_accion_docentes'] = $this->lineas_accion_docentes_model->get_m(array('id' => $id),$flag=1);
 		
-		$this->form_validation->set_rules('id', 'id', 'trim|integer|xss_clean');
-		$this->form_validation->set_rules('linea_accion_escuela_id', 'linea_accion_escuela_id', 'trim|integer|xss_clean');
-		$this->form_validation->set_rules('docente_perfil_id', 'docente_perfil_id', 'trim|integer|xss_clean');
+		$this->form_validation->set_rules('id', 'id', 'trim|required|integer|xss_clean');
+		$this->form_validation->set_rules('linea_accion_escuela_id', 'linea_accion_escuela_id', 'trim|required|integer|xss_clean');
+		$this->form_validation->set_rules('docente_id', 'docente_id', 'trim|required|integer|xss_clean');
+		$this->form_validation->set_rules('perfil_id', 'perfil_id', 'trim|required|integer|xss_clean');
+		$this->form_validation->set_rules('cantidad_horas', 'cantidad_horas', 'trim|required|integer|xss_clean');
 
 		if($this->form_validation->run()){
 			$data_lineas_accion_docentes  = array();
 			$data_lineas_accion_docentes['id'] = $this->input->post('id');
 			$data_lineas_accion_docentes['linea_accion_escuela_id'] = $this->input->post('linea_accion_escuela_id');
-			$data_lineas_accion_docentes['docente_perfil_id'] = $this->input->post('docente_perfil_id');
+			$data_lineas_accion_docentes['docente_id'] = $this->input->post('docente_id');
 			$data_lineas_accion_docentes['updated_at'] = $this->basicrud->formatDateToBD();
+			$data_lineas_accion_docentes['cantidad_horas'] = $this->input->post('cantidad_horas');
+			$data_lineas_accion_docentes['perfil_id'] = $this->input->post('perfil_id');
 
 			if($this->lineas_accion_docentes_model->edit_m($data_lineas_accion_docentes)){ 
-				$this->session->set_flashdata('flashConfirm', $this->config->item('lineas_accion_docentes_flash_edit_message')); 
-				redirect('lineas_accion_docentes_controller','location');
+				$this->session->set_flashdata('flashConfirmModal', $this->config->item('lineas_accion_docentes_flash_edit_message')); 
+				redirect('lineas_accion_docentes_controller/show_c/'.$linea_accion_escuela_id,'location');
 			}else{
-				$this->session->set_flashdata('flashError', $this->config->item('lineas_accion_docentes_flash_error_message')); 
-				redirect('lineas_accion_docentes_controller','location');
+				$this->session->set_flashdata('flashErrorModal', $this->config->item('lineas_accion_docentes_flash_error_message')); 
+				redirect('lineas_accion_docentes_controller/show_c/'.$linea_accion_escuela_id,'location');
 			}
+		}else{
+			$data['linea_accion_escuela_id']= $linea_accion_escuela_id;
+			$data['perfiles'] = $this->perfiles_model->get_m(array('habilitado' => 1));
+			//$data['escuela_id'] = $this->getEscuelaId($linea_accion_escuela_id);
+			$this->load->view('lineas_accion_docentes_view/form_edit_lineas_accion_docentes',$data);
 		}
-		$this->load->view('lineas_accion_docentes_view/form_edit_lineas_accion_docentes',$data);
 
 	}
 
@@ -189,6 +180,7 @@ class Lineas_accion_docentes_Controller extends CI_Controller {
 	{
 		$data['escuela_id'] = $this->getEscuelaId($linea_accion_escuela_id);
 		$data['linea_accion_escuela_id'] = $linea_accion_escuela_id; 
+		$data['linea_accion_escuela'] = $this->lineas_accion_escuelas_model->get_m(array('id' => $linea_accion_escuela_id));
 		$this->load->view("lineas_accion_docentes_view/form_show_lineas_accion_docentes",$data);
 	}
 
@@ -238,12 +230,28 @@ class Lineas_accion_docentes_Controller extends CI_Controller {
 
 	private function getEscuelaId($linea_accion_escuela_id)
 	{	
-		$this->load->model('lineas_accion_escuelas_model');
 		$this->load->model('lineas_periodos_escuelas_model');
 		$this->load->model('periodos_escuelas_model');
+		
 		$linea_accion_escuela = $this->lineas_accion_escuelas_model->get_m(array('id' =>$linea_accion_escuela_id));
 		$linea_periodo_escuela = $this->lineas_periodos_escuelas_model->get_m(array('id' => $linea_accion_escuela[0]->linea_periodo_escuela_id));
 		$periodo_escuela = $this->periodos_escuelas_model->get_m(array('id' => $linea_periodo_escuela[0]->periodo_escuela_id));
 		return $periodo_escuela[0]->escuelas_id;
+	}
+
+
+	public function checkDocente($docente_id)
+	{
+		$linea_accion_docente = $this->lineas_accion_docentes_model->get_m(
+			array(
+				'linea_accion_escuela_id' => $this->input->post('linea_accion_escuela_id'),
+				'docente_id' => $docente_id));
+
+		if(count($linea_accion_docente) > 0){
+			$this->form_validation->set_message('checkDocente', 'El Docente seleccionado ya ha sido asignado a esta linea de acci&oacute;n');
+			return FALSE;
+		}else{
+			return TRUE;
+		}
 	}
 }

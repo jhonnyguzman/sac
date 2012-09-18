@@ -1,4 +1,5 @@
- <?=$this->load->view("default/_result_messages_modal")?>
+<?=$this->load->view("default/_result_messages_modal")?>
+
 <ul class="nav nav-tabs">
   <li class="active"><a href="#docentesPerfilAsignados" data-toggle="tab">Docentes Asignados</a></li>
   <li><a href="#asignarDocentePerfil" data-toggle="tab"
@@ -25,5 +26,9 @@
 		$("#contentModalFooter").find(".btnBack").remove();
         var a = $("<a href=\"#\" onClick=\"updateContent('<?=base_url()?>lineas_accion_escuelas_controller/show_c/<?=$escuela_id?>','contentModal')\" class=\"btnBack\">Volver</a> ");  
         $("#contentModalFooter").append(a);
+
+        $("#extraContentHeader").find(".extraContentHeaderP").remove();
+        var sp = $("<span class=\"extraContentHeaderP\"><br>Linea de acci&oacute;n:&nbsp;<strong><?=$linea_accion_escuela[0]->linea_accion_nombre?></strong>&nbsp;&nbsp;&nbsp;Mes:&nbsp;<strong><?=$linea_accion_escuela[0]->mes_descripcion?>&nbsp;del&nbsp;<?=$linea_accion_escuela[0]->anio?></strong></span>");
+        $("#extraContentHeader").append(sp);
 	});
 </script>

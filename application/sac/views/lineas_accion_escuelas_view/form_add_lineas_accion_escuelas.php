@@ -29,6 +29,8 @@
 	</div>
 	
 	<p class="stdformbutton">
+		<a href="javascript:void(0)" 
+    	onClick="updateContent('<?=base_url()?>lineas_accion_escuelas_controller/show_c/<?=$escuela_id?>','contentModal')" class="btn" >Cancelar</a>
     	<button type="submit" class="btn" onClick="submitData('formAddlineas_accion_escuelas','contentModal')">Guardar</button>
     </p>
 
