@@ -1,0 +1,35 @@
+Log de cambios:
+
+- Se agrego campo 'anio' a la tabla 'lineas_periodos_escuelas'
+- Se cambio el nombre de la tabla docentes_perfiles a 'docentes_perfiles_escuelas'
+- Se quito la relacion entre las tablas docentes_perfiles y docentes_escuelas
+- La tabla docentes escuelas esta relacionado con la tabla docentes
+- Se quito la relacion entre las tablas docentes_perfiles y docentes.
+- Campo docente_id de la tabla docentes_perfiles_escuelas se renombro a 'docente_escuela_id'
+- Se relaciono la tabla docentes_escuelas con la tabla docentes_perfiles_escuelas
+- Se ha agregado una nueva tabla llamada "lineas_accion_escuelas".Esta tabla permite relacionar facilmente lineas de acciones con escuelas.
+-  Se ha eliminado la relacion entre las tablas "lineas_accion" y "lineas_accion_docentes".
+- Se ha agregado una relacion entras las tablas "lineas_accion_escuelas" y "lineas_accion_docentes".
+- Se ha eliminado la relacion entre las tablas "periodos_escuelas" y "horas_institucionales".
+- Se ha  agregado una relacion entre las tablas "lineas_accion_escuelas" y "periodos_escuelas"
+- Se ha agregado una relacion entre las tablas "lineas_accion" y "lineas_accion_escuelas"
+
+- Se ha agrehado un atributo a la tabla "docentes_perfiles_escuelas" llamado "linea_periodo_escuela_id"
+- Se ha agregado una relacion entre las tablas "lineas_periodos_escuelas" y "docentes_perfiles_escuelas"
+- Se ha eliminado la tabla "docentes_escuelas"
+- Tabla "docentes_perfiles_escuelas" renombrada a "docentes_perfiles"
+- Renombrado atributo "docente_escuela_id" a "docente_id" de la tabla "docentes_perfiles"
+- Se ha creado una relacion entre las tablas "docentes_perfiles" y "docentes"
+- Se ha eliminado la relacion entre las tablas "lineas_accion_escuelas" y "periodos_escuelas"
+- Se ha renombrado el atributo "periodo_escuela_id" a "linea_periodo_escuela_id" de la tabla "lineas_accion_escuelas"
+- Se agrego una relacion entre las tablas "lineas_accion_escuelas" y "lineas_periodos_escuelas"
+- Se elimino la relacion horas_institucionales
+- Se renombro el atributo "docente_perfil_escuela_id" a "docente_perfil_id" de la tabla "lineas_accion_docentes"
+- Se elimino la relacion entre las tablas "docentes_perfiles" y "lineas_periodos_escuelas"
+- Se elimino el atributo "linea_periodo_escuela_id" de la tabla "docentes_perfiles"
+
+- Se elimino tabla 'docentes_perfiles'
+- Se cambio el atributo 'docente_perfil_id' a 'docente_id' de la tabla 'lineas_accion_docentes'
+- Se agrego el atributo 'perfil_id' a la tabla 'lineas_accion_escuelas'
+- Se agrego una relacion entre las tablas 'lineas_accion_docentes' y 'docentes'
+- Se agrego una relacion entre las tablas 'lineas_accion_docentes' y 'perfiles'

@@ -1,0 +1,8 @@
+#myModal {
+    width: 700px;
+    margin-left: -350px;
+}
+
+.tab-content {
+	overflow: visible;
+}
