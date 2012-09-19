@@ -26,7 +26,7 @@
 			<?php endforeach; ?>
 		</select>
 	</div>
-	<div class="control-group">
+	<div class="control-group">    
 		<h5>Horas:</h5>
 		<input type="text" name="cantidad_horas" id="cantidad_horas" class="input-small">
 	</div>
