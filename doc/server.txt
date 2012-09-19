@@ -1,0 +1,23 @@
+DATOS DEL SERVER:
+
+elektrainformatica.com.ar/cpanel
+  
+user: noainfoc
+  
+pass: d18c6ee161
+
+
+
+
+DATOS SERVER PRODUCCION:
+
+http://sac.elektrainformatica.com.ar/
+
+FTP
+SERVER:	sac.elektrainformatica.com.ar
+USER:	jhonny@elektrainformatica.com.ar
+PASS:	LFm5Z138qpcg
+
+MYSQL
+USER:	noainfoc_sac
+PASS:	3ZDDlT&ixJeD
