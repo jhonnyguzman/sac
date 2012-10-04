@@ -1,6 +1,6 @@
 
 		<?php if(isset($escuelas) && is_array($escuelas) && count($escuelas)>0):?>
-			<table class="table table-striped">
+			<table class="table table-hover">
 				<thead>
 					<tr>
 						<th>Cue</th>
@@ -19,7 +19,7 @@
 							<td><?=$f->email?></td>
 							<td>
 								<div class="btn-group">
-								  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+								  <a class="btn btn-link dropdown-toggle" data-toggle="dropdown" href="#">
 								    Acciones
 								    <span class="caret"></span>
 								  </a>
@@ -56,6 +56,6 @@
 
 <script>
 	$(document).ready(function(){ 
-		setPagination('pag-escuelas','result-list'); 
+		setPagination('pag-escuelas','contentescuelas'); 
 	});
 </script>

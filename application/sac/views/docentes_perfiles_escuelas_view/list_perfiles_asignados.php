@@ -1,5 +1,5 @@
 <?php if(isset($perfiles_asignados) && is_array($perfiles_asignados) && count($perfiles_asignados)>0):?>
-	<table class="table table-striped">
+	<table class="table table-hover">
 		<thead>
 			<tr>
 				<th>Id</th>

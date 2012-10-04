@@ -1,6 +1,6 @@
 
 		<?php if(isset($departamentos) && is_array($departamentos) && count($departamentos)>0):?>
-			<table class="table table-striped">
+			<table class="table table-hover">
 				<thead>
 					<tr>
 						<th>Nombre</th>
@@ -23,10 +23,10 @@
 							</td>
 							<td>
 								<?php if($flag['u']):?>
-									<a href="<?=base_url()?>departamentos_controller/edit_c/<?=$f->id?>" title="Modificar" class="btn boton_rojo">Modificar</a>
+									<a href="<?=base_url()?>departamentos_controller/edit_c/<?=$f->id?>" title="Modificar" >Modificar</a>
 								<?php endif;?>
 								<?php if($flag['d']):?>
-									<a href="#"  onClick="deleteRow('<?=base_url()?>departamentos_controller/delete_c/<?=$f->id?>')" title="Eliminar" class="btn boton_rojo">Eliminar</a>
+									<a href="#"  onClick="deleteRow('<?=base_url()?>departamentos_controller/delete_c/<?=$f->id?>')" title="Eliminar" >Eliminar</a>
 								<?php endif;?>
 							</td>
 						</tr>

@@ -1,8 +1,8 @@
 <?=$this->load->view('default/_header_admin')?>
 
-<div class="span10">
+<div class="span16">
 	<div class="page-header">
-	  <h1><?=$title_header?></h1>
+	  <h3><?=$title_header?></h3>
 	</div>
 	<?php if(validation_errors() || isset($error)): ?>
 		<div class="alert alert-error">
@@ -11,7 +11,7 @@
 			
 		</div>		
 	<?php endif; ?>
-	<form action="<?=base_url()?>docentes_controller/add_c" method="post" name="formAdddocentes" id="formAdddocentes" class="stdform">
+	<form action="<?=base_url()?>docentes_controller/add_c" method="post" name="formAdddocentes" id="formAdddocentes" class="form-horizontal">
 		<div class="control-group">
 			<label class="control-label" for="dni"><?=$this->config->item('dni')?>:</label>
 			<div class="controls">
@@ -56,21 +56,12 @@
 			</div>
 		</div>
 	
-		<p class="stdformbutton">
+		<div class="form-actions">
 	    	<a href="<?=base_url()?>docentes_controller/index" class="btn" >Cancelar</a>
-	    	<button type="submit" class="submit radius2">Guardar</button>
-	    </p>
+	    	<button type="submit" class="btn btn-primary" >Guardar</button>
+	    </div>
 
 		</form>
 </div><!--/span10-->
-
-<SCRIPT LANGUAGE='JavaScript'>
-	var dni = new LiveValidation('dni'); dni.add( Validate.Presence ); dni.add( Validate.Numericality ); dni.add( Validate.Length, { is: 8 } );
-	var apellido = new LiveValidation('apellido'); apellido.add( Validate.Presence ); apellido.add( Validate.Length, { maximum: 10 } );
-	var nombre = new LiveValidation('nombre'); nombre.add( Validate.Presence ); nombre.add( Validate.Length, { maximum: 15 } );
-	var telefono = new LiveValidation('telefono'); telefono.add( Validate.Numericality ); telefono.add( Validate.Length, { maximum: 15 } );
-	var email = new LiveValidation('email'); email.add( Validate.Email ); email.add( Validate.Length, { maximum: 45 } );
-	var titulo = new LiveValidation('titulo'); titulo.add( Validate.Presence ); titulo.add( Validate.Length, { maximum: 50 } );
-</SCRIPT>
 
 <?=$this->load->view('default/_footer_admin')?>

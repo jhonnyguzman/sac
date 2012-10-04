@@ -54,8 +54,9 @@ class Usuarios_Controller extends CI_Controller {
 		$data['estados'] = $this->tabgral_model->get_m(array("grupos_tabgral_id" => 1));
 		$data['perfiles'] = $this->sys_perfiles_model->get_m();
 
-		$this->form_validation->set_rules('username', 'username', 'trim|required|alpha_numeric|xss_clean');
-		$this->form_validation->set_rules('password', 'password', 'trim|required|alpha_numeric|md5|xss_clean');
+		$this->form_validation->set_rules('username', 'username', 'trim|required|alpha_numeric|callback_checkExistsUsername|xss_clean');
+		$this->form_validation->set_rules('password', 'password', 'trim|required|alpha_numeric|matches[passwordconf]|md5|xss_clean');
+		$this->form_validation->set_rules('passwordconf', 'passwordconf', 'trim|required|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('nombre', 'nombre', 'trim|required|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('apellido', 'apellido', 'trim|required|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('email', 'email', 'trim|required|valid_email|xss_clean');
@@ -115,7 +116,8 @@ class Usuarios_Controller extends CI_Controller {
 		
 		$this->form_validation->set_rules('id', 'id', 'trim|required|integer|xss_clean');
 		$this->form_validation->set_rules('username', 'username', 'trim|required|alpha_numeric|xss_clean');
-		$this->form_validation->set_rules('password', 'password', 'trim|required|alpha_numeric|md5|xss_clean');
+		$this->form_validation->set_rules('password', 'password', 'trim|alpha_numeric|matches[passwordconf]|md5|xss_clean');
+		$this->form_validation->set_rules('passwordconf', 'passwordconf', 'trim|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('nombre', 'nombre', 'trim|required|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('apellido', 'apellido', 'trim|required|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('email', 'email', 'trim|alpha_numeric|xss_clean');
@@ -264,5 +266,23 @@ class Usuarios_Controller extends CI_Controller {
 		//code here
 		$this->basicauth->logout();
 		redirect('welcome/index');	
+	}
+
+
+	/**
+	 * This function check if the entered username is correct 
+	 *
+	 * @param string $username
+	 * @return boolean true 	if Not exists the username	 
+	 */	 
+	function checkExistsUsername($username) 
+	{
+		$data = array();
+		$this->form_validation->set_message('checkExistsUsername','El Nombre de usuario ingresado ya existe. Ingrese otro por favor.');
+		
+		$data['usuario'] = $this->usuarios_model->get_m(array('username' => $username));	    
+	   
+	   if($data['usuario']) return false;
+	   else return true;	
 	}
 }

@@ -1,5 +1,5 @@
 <?php if(isset($periodos) && is_array($periodos) && count($periodos)>0):?>
-	<table class="table table-striped">
+	<table class="table table-hover">
 		<thead>
 			<tr>
 				<th>Fecha de inicio</th>

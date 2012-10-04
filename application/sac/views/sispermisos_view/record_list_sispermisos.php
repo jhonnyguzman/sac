@@ -1,6 +1,6 @@
 
 		<?php if(isset($syspermisos) && is_array($syspermisos) && count($syspermisos)>0):?>
-			<table class="table table-striped">
+			<table class="table table-hover">
 				<thead>
 					<tr>
 						<th>Tabla</th>
@@ -69,7 +69,7 @@
 
 <script>
 	$(document).ready(function(){ 
-		setPagination('pag-syspermisos','result-list'); 
+		setPagination('pag-syspermisos','contentsyspermisos'); 
 	});
 </script>
 

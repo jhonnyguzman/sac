@@ -1,5 +1,5 @@
 		<?php if(isset($menusinasignar) && is_array($menusinasignar) && count($menusinasignar)>0):?>
-			<table class="table table-striped">
+			<table class="table table-hover">
 				<thead>
 					<tr>
 						<th>Id</th>

@@ -6,7 +6,7 @@
 	</div>		
 <?php endif; ?>
 <form action="<?=base_url()?>docentes_perfiles_controller/add_c/<?=$perfil->id?>/<?=$docente->id?>" method="post" 
-	name="formAdddocentes_perfiles" id="formAdddocentes_perfiles" class="stdform">
+	name="formAdddocentes_perfiles" id="formAdddocentes_perfiles" class="form-horizontal">
 	<div class="control-group">
 		<label class="control-label" for="docente_id"><?=$this->config->item('docente_id')?>:</label>
 		<div class="controls">
@@ -22,7 +22,7 @@
 		</div>
 	</div>
 
-	<p class="stdformbutton">
+	<div class="form-actions">
     	<a href="javascript:void(0)" 
     	onClick="updateContent('<?=base_url()?>docentes_perfiles_controller/show_c/<?=$docente->id?>','contentModal')" class="btn" >Cancelar</a>
     	<button type="submit" class="submit radius2" onClick="submitData('formAdddocentes_perfiles','contentModal')">Asignar</button>

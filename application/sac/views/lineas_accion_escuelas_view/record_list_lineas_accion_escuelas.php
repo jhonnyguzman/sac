@@ -1,6 +1,6 @@
 
 <?php if(isset($lineas_accion_escuelas) && is_array($lineas_accion_escuelas) && count($lineas_accion_escuelas)>0):?>
-	<table class="table table-striped">
+	<table class="table table-hover">
 		<thead>
 			<tr>
 				<th>Id</th>

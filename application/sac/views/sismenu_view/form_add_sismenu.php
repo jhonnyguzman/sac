@@ -1,8 +1,8 @@
 <?=$this->load->view('default/_header_admin')?>
 
-<div class="span10">
+<div class="span16">
 	<div class="page-header">
-	  <h1><?=$title_header?></h1>
+	  <h3><?=$title_header?></h3>
 	</div>
 
 	<?php if(validation_errors() || isset($error)): ?>
@@ -12,7 +12,7 @@
 			
 		</div>		
 	<?php endif; ?>
-	<form action="<?=base_url()?>index.php/sismenu_controller/add_c" method="post" name="formAddsismenu" id="formAddsismenu" class="stdform">
+	<form action="<?=base_url()?>index.php/sismenu_controller/add_c" method="post" name="formAddsismenu" id="formAddsismenu" class="form-horizontal">
 		<div class="control-group">
 			<label class="control-label" for="descripcion"><?=$this->config->item('descripcion')?>:</label>
 			<div class="controls">
@@ -47,9 +47,9 @@
 			</div>
 		</div>
 		
-		<p class="stdformbutton">
+		<div class="form-actions">
 	    	<a href="<?=base_url()?>sismenu_controller/index" class="btn" >Cancelar</a>
-	    	<button type="submit" class="submit radius2">Guardar</button>
+	    	<button type="submit" class="btn btn-primary" >Guardar</button>
 	    </p>
 
 	</form>

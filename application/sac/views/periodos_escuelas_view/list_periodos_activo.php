@@ -1,5 +1,5 @@
 <?php if(isset($periodos_activos) && is_array($periodos_activos) && count($periodos_activos)>0):?>
-	<table class="table table-striped">
+	<table class="table table-hover">
 		<thead>
 			<tr>
 				<th>Periodo</th>

@@ -1,10 +1,17 @@
 <?=$this->load->view('default/_header_admin')?>
 
-<div class="span10">
+<div class="span16">
 	<div class="page-header">
-	  <h1><?=$title_header?></h1>
+	  <h3><?=$title_header?></h3>
 	</div>
-	<form action="<?=base_url()?>usuarios_controller/edit_c/<?=$usuarios->id?>" method="post" name="formEditusuarios" id="formEditusuarios" class="stdform">
+	<?php if(validation_errors() || isset($error)): ?>
+		<div class="alert alert-error">
+			<a class="close" data-dismiss="alert" href="#">×</a>
+			<?=validation_errors()?>
+			
+		</div>		
+	<?php endif; ?>
+	<form action="<?=base_url()?>usuarios_controller/edit_c/<?=$usuarios->id?>" method="post" name="formEditusuarios" id="formEditusuarios" class="form-horizontal">
 		<div class="control-group">
 			<label class="control-label" for="id"><?=$this->config->item('id')?>:</label>
 			<div class="controls">
@@ -21,6 +28,12 @@
 			<label class="control-label" for="password"><?=$this->config->item('password')?>:</label>
 			<div class="controls">
 				<input type="password" name="password" id="password" />
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="passwordconf">Repite contraseña:</label>
+			<div class="controls">
+				<input type="password" name="passwordconf" id="passwordconf" ></input>
 			</div>
 		</div>
 		<div class="control-group">
@@ -88,9 +101,9 @@
 				<input type="text" value="<?=$usuarios->created_at?>" name="created_at" id="created_at" readonly="true" />
 			</div>
 		</div>
-		<p class="stdformbutton">
+		<div class="form-actions">
 	    	<a href="<?=base_url()?>usuarios_controller/index" class="btn" >Cancelar</a>
-	    	<button type="submit" class="submit radius2">Guardar</button>
+	    	<button type="submit" class="btn btn-primary" >Guardar</button>
 	    </p>
 
 </div><!--/span10-->

@@ -169,7 +169,7 @@ class Basicauth {
 	 * 
 	 * @return string data
 	 */
-	function getMenu($parent=0,$ul_start="<ul class='nav nav-pills nav-stacked'>")
+	function getMenu($parent=0,$ul_start="<ul class='nav' >")
 	{
 		
 		$query_str = "select s.id, s.descripcion, s.parent,s.iconpath, sv.link from sys_menu as s 
@@ -188,11 +188,14 @@ class Basicauth {
 			foreach($query_a->result() as $field)
 			{
 				if($field->link == "#"){
-					echo " <li><a href='#' >".$field->descripcion."</a>";		
+					echo " <li class='dropdown'><a href='#' class='dropdown-toggle' data-toggle='dropdown' >".$field->descripcion."<b class='caret'></b></a>";		
 				}else{
-			   		echo " <li><a href='".base_url()."".$field->link."'>".$field->descripcion."</a>";
+					if($this->getParents($field->id))
+			   			echo " <li class='dropdown-submenu'><a href='".base_url()."".$field->link."'>".$field->descripcion."</a>";
+			   		else
+			   			echo " <li><a  href='".base_url()."".$field->link."'>".$field->descripcion."</a>";
 			    }	
-				$this->getMenu($field->id,$ul_start="<ul>"); 	
+				$this->getMenu($field->id,$ul_start="<ul class='dropdown-menu' >"); 	
 			}
 			echo "</ul>";
 		}
@@ -201,6 +204,25 @@ class Basicauth {
 	}
 	
 	
+	function getParents($parent)
+	{
+		$query_str = "select s.id, s.descripcion, s.parent,s.iconpath, sv.link from sys_menu as s 
+		inner join sys_perfil as sp on s.id = sp.sismenu_id inner join
+		sys_vinculos as sv on s.id = sv.sismenu_id where 
+		s.parent = $parent and 
+		s.estado=1
+		and sp.perfiles_id = ".$this->CI->session->userdata('perfil_id')."
+		ORDER BY s.parent, s.descripcion";
+		
+		$query_a = $this->CI->db->query($query_str);
+		
+		if($query_a->num_rows()>0)
+			return true;
+		else
+			return false;
+	}
+
+
 	/**
 	 * This function checks the permissions that a profile has on a table
 	 *

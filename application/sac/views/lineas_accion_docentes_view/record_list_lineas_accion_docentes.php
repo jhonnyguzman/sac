@@ -1,5 +1,5 @@
 <?php if(isset($lineas_accion_docentes) && is_array($lineas_accion_docentes) && count($lineas_accion_docentes)>0):?>
-	<table class="table table-striped">
+	<table class="table table-hover">
 		<thead>
 			<tr>
 				<th>Id</th>

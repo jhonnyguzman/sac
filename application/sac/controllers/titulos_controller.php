@@ -56,9 +56,10 @@ class Titulos_Controller extends CI_Controller {
 
 		$data = array();
 		$data['title_header'] = $this->config->item('recordAddTitle');
-		$this->form_validation->set_rules('id', 'id', 'trim|integer|xss_clean');
-		$this->form_validation->set_rules('nombre', 'nombre', 'trim|alpha_numeric|xss_clean');
+		
+		$this->form_validation->set_rules('nombre', 'nombre', 'trim|required|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('tipo', 'tipo', 'trim|integer|xss_clean');
+		
 		if($this->form_validation->run())
 		{	
 			$data_titulos  = array();
@@ -102,8 +103,8 @@ class Titulos_Controller extends CI_Controller {
 		$data['titulos'] = $this->titulos_model->get_m(array('id' => $id),$flag=1);
 		$data['tipos'] = $this->tabgral_model->get_m(array('grupos_tabgral_id' => 4));
 		
-		$this->form_validation->set_rules('id', 'id', 'trim|integer|xss_clean');
-		$this->form_validation->set_rules('nombre', 'nombre', 'trim|alpha_numeric|xss_clean');
+		$this->form_validation->set_rules('id', 'id', 'trim|required|integer|xss_clean');
+		$this->form_validation->set_rules('nombre', 'nombre', 'trim|required|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('tipo', 'tipo', 'trim|integer|xss_clean');
 		if($this->form_validation->run()){
 			$data_titulos  = array();

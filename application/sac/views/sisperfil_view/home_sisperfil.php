@@ -1,14 +1,14 @@
 <?=$this->load->view('default/_header_admin')?>
 
-<div class="span10">
+<div class="span16">
 	<div class="page-header">
-	  <h1><?=$title_header?></h1>
+	  <h3><?=$title_header?></h3>
 	</div>
 	
 	<?=$this->load->view("default/_result_messages")?>
 
 	 <div class="row-fluid">
-	 	<div class="span12">
+	 	<div class="span16">
 	        <form action="<?=base_url()?>sispermisos_controller/add_c" method="post" name="formAddsispermisos" 
 			id="formAddsispermisos" >
 	  			<legend>Seleccione un perfil:</legend>
@@ -24,7 +24,7 @@
 		</div>
 	</div>
 	<div class="row-fluid">
-		<div class="span12">
+		<div class="span16">
 			<ul class="nav nav-tabs" id="tabMenus">
 			  <li class="active"><a href="#menusAsignados" data-toggle="tab" 
 			  	onClick="showContentTabMenu('<?=base_url()?>sisperfil_controller/getMenuAsignados_c/','menusAsignados')">Menus Asignados</a></li>

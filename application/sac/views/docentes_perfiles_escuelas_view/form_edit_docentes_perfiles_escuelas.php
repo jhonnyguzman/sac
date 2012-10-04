@@ -6,7 +6,7 @@
 	</div>		
 <?php endif; ?>
 <form action="<?=base_url()?>docentes_perfiles_controller/edit_c/<?=$docentes_perfiles->id?>" 
-	method="post" name="formEditdocentes_perfiles" id="formEditdocentes_perfiles" class="stdform">
+	method="post" name="formEditdocentes_perfiles" id="formEditdocentes_perfiles" class="form-horizontal">
 	
 	<input type="hidden" value="<?=$docentes_perfiles->id?>" name="id" id="id"/>
 	
@@ -23,7 +23,7 @@
 		</div>
 	</div>
 
-	<p class="stdformbutton">
+	<div class="form-actions">
     	<a href="javascript:void(0)" 
     	onClick="updateContent('<?=base_url()?>docentes_perfiles_controller/show_c/<?=$docentes_perfiles->docente_id?>','contentModal')" class="btn" >Cancelar</a>
     	<button type="submit" class="submit radius2" onClick="submitData('formEditdocentes_perfiles','contentModal')">Modificar</button>

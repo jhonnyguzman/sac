@@ -1,8 +1,8 @@
 <?=$this->load->view('default/_header_admin')?>
 
-<div class="span10">
+<div class="span16">
 	<div class="page-header">
-	  <h1><?=$title_header?></h1>
+	  <h3><?=$title_header?></h3>
 	</div>
 
 	<?php if(validation_errors() || isset($error)): ?>
@@ -13,7 +13,7 @@
 		</div>		
 	<?php endif; ?>
 	<form action="<?=base_url()?>sismenu_controller/edit_c/<?=$sismenu->id?>" 
-		method="post" name="formEditsismenu" id="formEditsismenu" class="stdform">
+		method="post" name="formEditsismenu" id="formEditsismenu" class="form-horizontal">
 		
 		<input type="hidden" value="<?=$sismenu->id?>" name="id" id="id"></input>
 		
@@ -75,7 +75,7 @@
 			</div>
 		</div>
 
-		<p class="stdformbutton">
+		<div class="form-actions">
 	    	<a href="<?=base_url()?>sismenu_controller/index" class="btn" >Cancelar</a>
 	    	<button type="submit" class="submit radius2">Modificar</button>
 	    </p>

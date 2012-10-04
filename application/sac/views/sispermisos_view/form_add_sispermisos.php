@@ -1,8 +1,8 @@
 <?=$this->load->view('default/_header_admin')?>
 
-<div class="span10">
+<div class="span16">
 	<div class="page-header">
-	  <h1><?=$title_header?></h1>
+	  <h3><?=$title_header?></h3>
 	</div>
 
 	<?php if(validation_errors() || isset($error)): ?>
@@ -14,7 +14,7 @@
 	<?php endif; ?>
 
 	<form action="<?=base_url()?>sispermisos_controller/add_c" method="post" name="formAddsispermisos" 
-		id="formAddsispermisos" class="stdform">
+		id="formAddsispermisos" class="form-horizontal">
 		<div class="control-group">
 			<label class="control-label" for="perfiles_id"><?=$this->config->item('perfiles_id')?>:</label>
 			<div class="controls">
@@ -80,10 +80,10 @@
 			</div>
 		</div>
 		
-		<p class="stdformbutton">
+		<div class="form-actions">
 	    	<a href="<?=base_url()?>sispermisos_controller/index" class="btn" >Cancelar</a>
-	    	<button type="submit" class="submit radius2">Guardar</button>
-	    </p>
+	    	<button type="submit" class="btn btn-primary" >Guardar</button>
+	    </div>
 
 	</form>
 

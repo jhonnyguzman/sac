@@ -2,7 +2,7 @@
 <?php $i = 1;?>
 
 <div class="row-fluid">
-    <div class="span12">
+    <div class="span16">
       <div class="well sidebar-nav">
         <ul class="nav nav-list">
           <li class="nav-header">

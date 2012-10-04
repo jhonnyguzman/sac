@@ -1,6 +1,6 @@
 
 		<?php if(isset($menuasignados) && is_array($menuasignados) && count($menuasignados)>0):?>
-			<table class="table table-striped">
+			<table class="table table-hover">
 				<thead>
 					<tr>
 						<th>Id</th>

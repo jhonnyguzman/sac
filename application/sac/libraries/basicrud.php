@@ -166,7 +166,8 @@ class BasiCrud {
 	{
 		//code here
 		$CI = & get_instance();	
-		
+		$data = "";
+
 		$config['base_url'] = base_url().$CI->router->class."/".$CI->router->method;
 		
 		if(isset($fieldSearch) && count($fieldSearch)>0){
@@ -180,11 +181,11 @@ class BasiCrud {
 	   
 	   	$config['per_page'] = $options['perpage'];
 	   
-			//firt page	   	
+		//firt page	   	
 	   	$config['first_link'] = 'Primero';
 	   	$config['first_tag_open'] = '<li>';
 	   	$config['first_tag_close'] = '</li>';
-			//next page	   	
+		//next page	   	
 	   	$config['next_link'] = 'Siguiente';
 	   	$config['next_tag_open'] = '<li>';
 	   	$config['next_tag_close'] = '</li>';
@@ -192,10 +193,14 @@ class BasiCrud {
 	   	$config['prev_link'] = 'Atr&aacute;s';
 	   	$config['prev_tag_open'] = '<li>';
 		$config['prev_tag_close'] = '</li>';
-			//last page	   	
+		//last page	   	
 	   	$config['last_link'] = '&Uacute;ltimo';
 	   	$config['last_tag_open'] = '<li>';
 	   	$config['last_tag_close'] = '</li>';
+
+	   	//num tag 	   	
+	   	$config['num_tag_open'] = '<li>';
+	   	$config['num_tag_close'] = '</li>';
 	   	
 	   	$config['full_tag_open'] = "<ul>";
 	   	$config['full_tag_close'] = "</ul>";
@@ -212,8 +217,8 @@ class BasiCrud {
 	   	if($links) {
 	   		//$data= "Registros encontrados:&nbsp;".$config['total_rows']."&nbsp;|&nbsp;P&aacute;gina ".$CI->pagination->cur_page."&nbsp;de&nbsp;".$num_pages."&nbsp;|&nbsp;".$links;  
 	   		$data = $links;  
-	   	}
-	   	else $data = null;
+	   	} else $data = null;
+
 	   	return $data; 
 
 	}

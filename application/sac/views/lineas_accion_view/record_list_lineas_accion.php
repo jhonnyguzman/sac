@@ -1,6 +1,6 @@
 
 		<?php if(isset($lineas_accion) && is_array($lineas_accion) && count($lineas_accion)>0):?>
-			<table class="table table-striped">
+			<table class="table table-hover">
 				<thead>
 					<tr>
 						<th>Nombre</th>
@@ -25,10 +25,10 @@
 							<td><?=$f->ciclo_descripcion?></td>
 							<td>
 								<?php if($flag['u']):?>
-									<a href="<?=base_url()?>lineas_accion_controller/edit_c/<?=$f->id?>" title="Modificar" class="btn boton_rojo">Modificar</a>
+									<a href="<?=base_url()?>lineas_accion_controller/edit_c/<?=$f->id?>" title="Modificar" >Modificar</a>
 								<?php endif;?>
 								<?php if($flag['d']):?>
-									<a href="#"  onClick="deleteRow('<?=base_url()?>lineas_accion_controller/delete_c/<?=$f->id?>')" title="Eliminar" class="btn boton_rojo">Eliminar</a>
+									<a href="#"  onClick="deleteRow('<?=base_url()?>lineas_accion_controller/delete_c/<?=$f->id?>')" title="Eliminar" >Eliminar</a>
 								<?php endif;?>
 							</td>
 						</tr>

@@ -1,10 +1,10 @@
 <?=$this->load->view('default/_header_admin')?>
 
-<div class="span10">
+<div class="span16">
 	<div class="page-header">
-	  <h1><?=$title_header?></h1>
+	  <h3><?=$title_header?></h3>
 	</div>
-	<form action="<?=base_url()?>periodos_controller/edit_c/<?=$periodos->id?>" method="post" name="formEditperiodos" id="formEditperiodos" class="stdform">
+	<form action="<?=base_url()?>periodos_controller/edit_c/<?=$periodos->id?>" method="post" name="formEditperiodos" id="formEditperiodos" class="form-horizontal">
 		<input type="hidden" value="<?=$periodos->id?>" name="id" id="id"/>
 		<div class="control-group">
 			<label class="control-label" for="fecha_inicio"><?=$this->config->item('fecha_inicio')?>:</label>
@@ -31,10 +31,10 @@
 			</div>
 		</div>
 		
-		<p class="stdformbutton">
+		<div class="form-actions">
 	    	<a href="<?=base_url()?>periodos_controller/index" class="btn" >Cancelar</a>
-	    	<button type="submit" class="submit radius2">Guardar</button>
-	    </p>
+	    	<button type="submit" class="btn btn-primary" >Guardar</button>
+	    </div>
 	</form>
 </div><!--/span10-->
 

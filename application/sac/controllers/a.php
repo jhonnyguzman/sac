@@ -21,8 +21,8 @@ class A extends CI_Controller {
 		$this->load->model('usuarios_model');
 		$data = array();
 		$data['title_header'] = 'Ingreso';
-		$this->form_validation->set_rules('username', 'username', 'trim|required|alpha_numeric|xss_clean');
-		$this->form_validation->set_rules('password', 'password', 'trim|required|alpha_numeric|md5|xss_clean');
+		$this->form_validation->set_rules('username', 'Usuario', 'trim|required|alpha_numeric|xss_clean');
+		$this->form_validation->set_rules('password', 'Contraseña', 'trim|required|alpha_numeric|md5|xss_clean');
 		if($this->form_validation->run())
 		{	
 			$reponse = $this->basicauth->login(array('username'=>$this->input->post('username'),'password'=>$this->input->post('password')));

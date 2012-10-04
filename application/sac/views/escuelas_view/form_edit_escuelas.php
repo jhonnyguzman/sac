@@ -1,8 +1,8 @@
 <?=$this->load->view('default/_header_admin')?>
 
-<div class="span10">
+<div class="span16">
 	<div class="page-header">
-	  <h1><?=$title_header?></h1>
+	  <h3><?=$title_header?></h3>
 	</div>
 
 	<?php if(validation_errors() || isset($error)): ?>
@@ -13,7 +13,7 @@
 		</div>		
 	<?php endif; ?>
 
-	<form action="<?=base_url()?>escuelas_controller/edit_c/<?=$escuelas->id?>" method="post" name="formEditescuelas" id="formEditescuelas"  class="stdform">
+	<form action="<?=base_url()?>escuelas_controller/edit_c/<?=$escuelas->id?>" method="post" name="formEditescuelas" id="formEditescuelas"  class="form-horizontal">
 		<input type="hidden" value="<?=$escuelas->id?>" name="id" id="id"/>
 		<div class="control-group">
 			<label class="control-label" for="cue"><?=$this->config->item('cue')?>:</label>
@@ -90,9 +90,9 @@
 				</select>
 			</div>
 		</div>
-		<p class="stdformbutton">
+		<div class="form-actions">
 	    	<a href="<?=base_url()?>escuelas_controller/index" class="btn" >Cancelar</a>
-	    	<button type="submit" class="submit radius2">Guardar</button>
+	    	<button type="submit" class="btn btn-primary" >Guardar</button>
 	    </p>
 	</form>
 
@@ -104,12 +104,6 @@
 		$(".chzn-select").chosen();
 	});
 
-	var cue = new LiveValidation('cue'); cue.add( Validate.Presence ); cue.add( Validate.Numericality ); cue.add( Validate.Numericality, { minimum: 900000000, maximum: 999999999 } );
-	var nombre = new LiveValidation('nombre'); nombre.add( Validate.Presence ); nombre.add( Validate.Length, { maximum: 80 } );
-	var direccion = new LiveValidation('direccion'); direccion.add( Validate.Presence ); direccion.add( Validate.Length, { maximum: 40 } );
-	var telefono = new LiveValidation('telefono'); telefono.add( Validate.Numericality ); telefono.add( Validate.Length, { maximum: 15 } );
-	var email = new LiveValidation('email'); email.add( Validate.Email ); email.add( Validate.Length, { maximum: 50 } );
-	var habilitado = new LiveValidation('habilitado'); habilitado.add( Validate.Presence );
 </script>
 
 

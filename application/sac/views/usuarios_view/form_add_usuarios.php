@@ -1,50 +1,63 @@
 <?=$this->load->view('default/_header_admin')?>
 
-<div class="span10">
+<div class="span16">
 	<div class="page-header">
-	  <h1><?=$title_header?></h1>
+	  <h3><?=$title_header?></h3>
 	</div>
-	<form action="<?=base_url()?>usuarios_controller/add_c" method="post" name="formAddusuarios" id="formAddusuarios" class="stdform">
+	<?php if(validation_errors() || isset($error)): ?>
+		<div class="alert alert-error">
+			<a class="close" data-dismiss="alert" href="#">×</a>
+			<?=validation_errors()?>
+			
+		</div>		
+	<?php endif; ?>
+	<form action="<?=base_url()?>usuarios_controller/add_c" method="post" name="formAddusuarios" id="formAddusuarios" class="form-horizontal">
 		<div class="control-group">
 			<label class="control-label" for="username"><?=$this->config->item('username')?>:</label>
 			<div class="controls">
-				<input type="text" name="username" id="username" ></input>
+				<input type="text" name="username" id="username" value="<?php echo set_value('username'); ?>"></input>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="password"><?=$this->config->item('password')?>:</label>
 			<div class="controls">
-				<input type="password" name="password" id="password" ></input>
+				<input type="password" name="password" id="password" value="<?php echo set_value('password'); ?>"></input>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="passwordconf">Repite contraseña:</label>
+			<div class="controls">
+				<input type="password" name="passwordconf" id="passwordconf" value="<?php echo set_value('passwordconf'); ?>"></input>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label"  for="nombre"><?=$this->config->item('nombre')?>:</label>
 			<div class="controls">
-				<input type="text" name="nombre" id="nombre" ></input>
+				<input type="text" name="nombre" id="nombre" value="<?php echo set_value('nombre'); ?>"></input>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="apellido"><?=$this->config->item('apellido')?>:</label>
 			<div class="controls">
-				<input type="text" name="apellido" id="apellido" ></input>
+				<input type="text" name="apellido" id="apellido" value="<?php echo set_value('apellido'); ?>"></input>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="email"><?=$this->config->item('email')?>:</label>
 			<div class="controls">
-				<input type="text" name="email" id="email" ></input>
+				<input type="text" name="email" id="email" value="<?php echo set_value('email'); ?>"></input>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="direccion"><?=$this->config->item('direccion')?>:</label>
 			<div class="controls">
-				<input type="text" name="direccion" id="direccion" ></input>
+				<input type="text" name="direccion" id="direccion" value="<?php echo set_value('direccion'); ?>"></input>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="telefono"><?=$this->config->item('telefono')?>:</label>
 			<div class="controls">
-				<input type="text" name="telefono" id="telefono" ></input>
+				<input type="text" name="telefono" id="telefono" value="<?php echo set_value('telefono'); ?>"></input>
 			</div>
 		</div>
 		<div class="control-group">
@@ -52,7 +65,7 @@
 			<div class="controls">
 				<select name="estado" id="estado" >
 					<?php foreach ($estados as $f): ?>
-						<option value="<?=$f->id?>"><?=$f->descripcion?></option>
+						<option value="<?=$f->id?>" <?=set_select('estado',$f->id)?> ><?=$f->descripcion?></option>
 					<?php endforeach; ?>
 				</select>
 			</div>
@@ -62,24 +75,17 @@
 			<div class="controls">
 				<select name="perfiles_id" id="perfiles_id" >
 					<?php foreach ($perfiles as $f): ?>
-						<option value="<?=$f->id?>"><?=$f->descripcion?></option>
+						<option value="<?=$f->id?>" <?=set_select('perfiles_id',$f->id)?> ><?=$f->descripcion?></option>
 					<?php endforeach; ?>
 				</select>
 			</div>
 		</div>
-		<p class="stdformbutton">
+		<div class="form-actions">
 	    	<a href="<?=base_url()?>usuarios_controller/index" class="btn" >Cancelar</a>
-	    	<button type="submit" class="submit radius2">Guardar</button>
+	    	<button type="submit" class="btn btn-primary" >Guardar</button>
 	    </p>
 	</form>
 
 </div><!--/span10-->
-<SCRIPT LANGUAGE='JavaScript'>
-	var username = new LiveValidation('username'); username.add( Validate.Presence );
-	var password = new LiveValidation('password'); password.add( Validate.Presence );
-	var nombre = new LiveValidation('nombre'); nombre.add( Validate.Presence );
-	var apellido = new LiveValidation('apellido'); apellido.add( Validate.Presence );
-	var email = new LiveValidation('email'); email.add( Validate.Email ); email.add( Validate.Presence );
-	var telefono = new LiveValidation('telefono'); telefono.add( Validate.Numericality );
-</SCRIPT>
+
 <?=$this->load->view('default/_footer_admin')?>

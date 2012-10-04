@@ -1,10 +1,10 @@
 <?=$this->load->view('default/_header_admin')?>
 
-<div class="span10">
+<div class="span16">
 	<div class="page-header">
-	  <h1><?=$title_header?></h1>
+	  <h3><?=$title_header?></h3>
 	</div>
-	<form action="<?=base_url()?>localidades_controller/edit_c/<?=$localidades->id?>" method="post" name="formEditlocalidades" id="formEditlocalidades" class="stdform">
+	<form action="<?=base_url()?>localidades_controller/edit_c/<?=$localidades->id?>" method="post" name="formEditlocalidades" id="formEditlocalidades" class="form-horizontal">
 		<input type="hidden" value="<?=$localidades->id?>" name="id" id="id"/>
 		<p>
 	    	<label for="nombre"><?=$this->config->item('nombre')?></label>
@@ -21,9 +21,9 @@
 	    	<label for="departamento_id"><?=$this->config->item('departamento_id')?></label>
 			<span class="field"><input type="text" value="<?=$localidades->departamento_id?>" name="departamento_id" id="departamento_id"></input></span>
 		</p>
-		<p class="stdformbutton">
+		<div class="form-actions">
 	    	<a href="<?=base_url()?>localidades_controller/index" class="btn" >Cancelar</a>
-	    	<button type="submit" class="submit radius2">Guardar</button>
+	    	<button type="submit" class="btn btn-primary" >Guardar</button>
 	    </p>
 	</form>
 </div><!--/span10-->

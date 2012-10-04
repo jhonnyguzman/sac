@@ -1,6 +1,6 @@
 
 		<?php if(isset($perfiles) && is_array($perfiles) && count($perfiles)>0):?>
-			<table class="table table-striped">
+			<table class="table table-hover">
 				<thead>
 					<tr>
 						<th>Descripci&oacute;n</th>

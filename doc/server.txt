@@ -1,4 +1,4 @@
-DATOS DEL SERVER:
+DATOS DE ADMINISTRACION DEL SERVER:
 
 elektrainformatica.com.ar/cpanel
   
@@ -7,17 +7,40 @@ user: noainfoc
 pass: d18c6ee161
 
 
-
-
-DATOS SERVER PRODUCCION:
-
-http://sac.elektrainformatica.com.ar/
+ENTORNO DE TESTING
+URL http://sac-testing.elektrainformatica.com.ar/ 
 
 FTP
-SERVER:	sac.elektrainformatica.com.ar
-USER:	jhonny@elektrainformatica.com.ar
-PASS:	LFm5Z138qpcg
+user: sac-testing@elektrainformatica.com.ar
+pass: LFm5Z138qpcg
 
 MYSQL
-USER:	noainfoc_sac
-PASS:	3ZDDlT&ixJeD
+
+db: noainfoc_sac_testing
+user: noainfoc_sac
+pass: 3ZDDlT&ixJeD
+
+ENTORNO DE DESARROLLO
+URL http://sac-dev.elektrainformatica.com.ar/ 
+
+FTP
+user: sac-dev@elektrainformatica.com.ar
+pass: LFm5Z138qpcg
+
+MYSQL
+db: noainfoc_sac_dev
+user: noainfoc_sac
+pass: 3ZDDlT&ixJeD
+
+ENTORNO DE PRE-PRODUCCION
+URL  http://sac.elektrainformatica.com.ar/ 
+
+FTP
+user:  jhonny@elektrainformatica.com.ar
+pass: LFm5Z138qpcg
+
+MYSQL
+
+db: noainfoc_sac
+user: noainfoc_sac
+pass: 3ZDDlT&ixJeD

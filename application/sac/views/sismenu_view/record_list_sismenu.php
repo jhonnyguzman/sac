@@ -1,6 +1,6 @@
 
 		<?php if(isset($sismenu) && is_array($sismenu) && count($sismenu)>0):?>
-			<table class="table table-striped">
+			<table class="table table-hover">
 				<thead>
 					<tr>
 						<th>Descripci&oacute;n</th>
@@ -47,6 +47,6 @@
 
 <script>
 	$(document).ready(function(){ 
-		setPagination('pag-sismenu','result-list'); 
+		setPagination('pag-sismenu','contentsyspermisos'); 
 	});
 </script>
