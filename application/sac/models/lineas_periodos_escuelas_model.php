@@ -157,6 +157,7 @@ class Lineas_periodos_escuelas_Model extends CI_Model {
 		$fields[]='created_at';
 		$fields[]='updated_at';
 		$fields[]='horas_restantes';
+
 		return $fields;
 	}
 

@@ -30,3 +30,22 @@ label.error {
 	/*margin-top: 2px;*/
 	display: inline-block;
 }
+
+
+.extraSearch{
+  display: none;
+} 
+
+#formConsultasGenerales .form-horizontal .control-label {
+  float: left;
+  padding-top: 5px;
+  text-align: left;
+}
+
+#formConsultasGenerales .form-horizontal .controls {
+  margin-left: 150px;
+}
+
+#formConsultasGenerales .form-horizontal .control-group {
+  margin-bottom: 10px;
+}

@@ -8,7 +8,7 @@
 		<div class="control-group">
 			<label class="control-label" for="cue"><?=$this->config->item('cue')?>:</label>
 			<div class="controls">
-				<input type="text" name="cue" id="cue"></input>
+				<input type="text" name="cue" id="cue" ></input>
 			</div>
 		</div>
 		<div class="control-group">
@@ -74,7 +74,7 @@
 		<div class="form-actions">
 	    	<a href="<?=base_url()?>escuelas_controller/index" class="btn" >Cancelar</a>
 	    	<button type="submit" class="btn btn-primary" >Guardar</button>
-	    </p>
+	    </div>
 	</form>
 
 </div><!--/span10-->

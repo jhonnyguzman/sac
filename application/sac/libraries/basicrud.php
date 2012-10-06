@@ -654,4 +654,34 @@ class BasiCrud {
 		return $arrayR;
 
 	}
+
+
+
+	/**
+	 * Esta funcion obtiene los titulos sin asignar a un docentes 
+	 *
+	 * @param  array		$array1    array de todos los titulos de docentes cargados en el sistema
+	 * @param  array		$array2    array de los titulos asignados a un docente
+	 * @return array 		      	titulos sin asignar 
+	 */
+	function getTitulosSinAsignar($array1 = array(), $array2 = array())
+	{
+		$arrayR = $array1;
+		$indices = array();
+		foreach ($arrayR as $keyR => $valueR) {
+			foreach ($array2 as $key => $value) {
+				if($value->titulo_id == $valueR->id)
+				{
+					$indices[] = $keyR; 
+				}
+			}		
+		}
+
+		for ($i=0; $i < count($indices); $i++) { 
+			unset($arrayR[$indices[$i]]);
+		}
+
+		return $arrayR;
+
+	}
 }

@@ -9,9 +9,10 @@
 
 	 <div class="row-fluid">
             <div class="span14">
-            	<form action="<?=base_url()?>categorias_controller/search_c" method="post" name="formSearchcategorias" id="formSearchcategorias" class="well form-search">
-					<input type="search" name="descripcion" id="descripcion" placeholder="descripción" class="input-medium search-query"/>
-					<button type="submit" class="btn" onClick="searchData('formSearchcategorias','result-list')">Buscar</button>
+            	<form action="<?=base_url()?>docentes_titulos_controller/search_c" method="post" name="formSearchdocentes_titulos" id="formSearchdocentes_titulos" class="well form-search">
+					<input type="search" name="docente_id" id="docente_id" placeholder="docente_id" class="input-medium search-query"/>
+					<input type="search" name="titulo_id" id="titulo_id" placeholder="titulo_id" class="input-medium search-query"/>
+					<button type="submit" class="btn" onClick="searchData('formSearchdocentes_titulos','result-list')">Buscar</button>
 				</form>	    
 
             </div>
@@ -23,7 +24,7 @@
 				  </button>
 				  <ul class="dropdown-menu">
 				    <?php if($flag['i']):?>
-						<li><a href="<?=base_url()?>categorias_controller/add_c" title='Nuevo'>Nuevo</a></li>
+						<li><a href="<?=base_url()?>docentes_titulos_controller/add_c" title='Nuevo'>Nuevo</a></li>
 					<?php endif; ?>
 				  </ul>
 				</div>
@@ -36,7 +37,7 @@
 
  <script>
     $(document).ready(function(){ 
-        $("#result-list").load("<?=base_url()?>categorias_controller/search_c");
+        $("#result-list").load("<?=base_url()?>docentes_titulos_controller/search_c");
     });
 </script>
 

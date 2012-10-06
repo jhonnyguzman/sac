@@ -24,7 +24,6 @@
 								<?php if($flag['d']):?>
 									<a href="#"  onClick="deleteRow('<?=base_url()?>docentes_controller/delete_c/<?=$f->id?>')" title="Eliminar" >Eliminar</a>
 								<?php endif;?>
-								    <a href="javascript:void(0)" onClick="loadModal('<?=base_url()?>docentes_perfiles_controller/showModal_c/<?=$f->id?>','modalDocentesPerfiles')"  >Perfiles</a>
 							</td>
 						</tr>
 					<?php endforeach; ?>

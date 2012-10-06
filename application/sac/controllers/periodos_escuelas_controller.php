@@ -287,7 +287,7 @@ class Periodos_escuelas_Controller extends CI_Controller {
 
 
 
-	function cargarLineasPeriodosEscuelas($periodo_id,$periodo_escuela_id)
+	public function cargarLineasPeriodosEscuelas($periodo_id,$periodo_escuela_id)
 	{
 		$periodo = $this->periodos_model->get_m(array('id' => $periodo_id));
 		$periodo_escuela = $this->periodos_escuelas_model->get_m(array('id' => $periodo_escuela_id));

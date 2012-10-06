@@ -5,7 +5,7 @@
   
   Periodo:
   <select name="periodo_escuela_id" id="periodo_escuela_id"
-  	onChange="getMeses('<?=base_url()?>lineas_periodos_escuelas_controller/getMeses/')">
+  	onChange="getMeses('<?=base_url()?>lineas_periodos_escuelas_controller/getMeses/','','periodo_escuela_id','linea_periodo_escuela_id')">
   		<?php foreach($periodo_escuela_activo as $f):?>
   			<option value="<?=$f->id?>"><?=$f->periodo_fecha_inicio." - ".$f->periodo_fecha_fin?></option>
   		<?php endforeach; ?>
@@ -26,7 +26,7 @@
 <script type="text/javascript">
 	
 	$(document).ready(function(){
-		getMeses("<?=base_url()?>lineas_periodos_escuelas_controller/getMeses/");
+		getMeses("<?=base_url()?>lineas_periodos_escuelas_controller/getMeses/",'',"periodo_escuela_id", "linea_periodo_escuela_id");
 
 		$.ajax({
 	        type: 'POST',
