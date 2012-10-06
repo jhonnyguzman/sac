@@ -4,6 +4,13 @@
 	<div class="page-header">
 	  <h3><?=$title_header?></h3>
 	</div>
+	<?php if(validation_errors() || isset($error)): ?>
+		<div class="alert alert-error">
+			<a class="close" data-dismiss="alert" href="#">×</a>
+			<?=validation_errors()?>
+			
+		</div>		
+	<?php endif; ?>
 	<form action="<?=base_url()?>directores_controller/edit_c/<?=$directores->id?>" method="post" name="formEditdirectores" 
 		id="formEditdirectores" class="form-horizontal">
 		
@@ -12,7 +19,7 @@
 		<div class="control-group">
 			<label class="control-label" for="dni"><?=$this->config->item('dni')?></label>
 			<div class="controls">
-		    	<input type="text" value="<?=$directores->dni?>" name="dni" id="dni"></input>
+		    	<input type="text" value="<?=$directores->dni?>" name="dni" id="dni" readonly></input>
 		    </div>
         </div>
 		<div class="control-group">

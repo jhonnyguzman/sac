@@ -5,21 +5,21 @@
 /* Config general titles */
 
 $config['recordListTitle']=' Listado de directores';
-$config['recordAddTitle']=' Nuevo directores';
-$config['recordEditTitle']=' Editar directores';
+$config['recordAddTitle']=' Nuevo director';
+$config['recordEditTitle']=' Editar director';
 $config['accessTitle']='<div class="accessTitle"> No tienes permiso para realizar esta operaci&oacute;n </div>';
 
 /* Config labels of the form fields */
 
-$config['id']='id';
-$config['dni']='dni';
-$config['apellido']='apellido';
-$config['nombre']='nombre';
-$config['telefono']='telefono';
-$config['email']='email';
-$config['habilitado']='habilitado';
-$config['created_at']='created_at';
-$config['updated_at']='updated_at';
+$config['id']='Id';
+$config['dni']='Dni';
+$config['apellido']='Apellido';
+$config['nombre']='Nombre';
+$config['telefono']='Telefono';
+$config['email']='Email';
+$config['habilitado']='Habilitado';
+$config['created_at']='Fecha de alta';
+$config['updated_at']='Actualizado el';
 
 /* Config fields for search */
 

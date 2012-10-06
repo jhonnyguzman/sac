@@ -5,18 +5,18 @@
 /* Config general titles */
 
 $config['recordListTitle']=' Listado de localidades';
-$config['recordAddTitle']=' Nuevo localidades';
-$config['recordEditTitle']=' Editar localidades';
+$config['recordAddTitle']=' Nuevo localidad';
+$config['recordEditTitle']=' Editar localidad';
 $config['accessTitle']='<div class="accessTitle"> No tienes permiso para realizar esta operaci&oacute;n </div>';
 
 /* Config labels of the form fields */
 
-$config['id']='id';
-$config['nombre']='nombre';
-$config['habilitado']='habilitado';
-$config['departamento_id']='departamento_id';
-$config['created_at']='created_at';
-$config['updated_at']='updated_at';
+$config['id']='Id';
+$config['nombre']='Nombre';
+$config['habilitado']='Habilitado';
+$config['departamento_id']='Departamento';
+$config['created_at']='Fecha de alta';
+$config['updated_at']='Actualizado el';
 
 /* Config fields for search */
 

@@ -58,8 +58,8 @@ class Escuelas_Controller extends CI_Controller {
 		$data = array();
 		$data['title_header'] = $this->config->item('recordAddTitle');
 
-		$this->form_validation->set_rules('cue', 'cue', 'trim|integer|xss_clean');
-		$this->form_validation->set_rules('nombre', 'nombre', 'trim|alpha_numeric|xss_clean');
+		$this->form_validation->set_rules('cue', 'cue', 'trim|required|integer|callback_checkCue|xss_clean');
+		$this->form_validation->set_rules('nombre', 'nombre', 'trim|required|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('direccion', 'direccion', 'trim|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('telefono', 'telefono', 'trim|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('email', 'email', 'trim|alpha_numeric|xss_clean');
@@ -231,4 +231,15 @@ class Escuelas_Controller extends CI_Controller {
 
 	}
 
+
+	function checkCue($cue)
+	{
+		$escuela = $this->escuelas_model->get_m(array('cue' => $cue));
+		if(count($escuela) > 0){
+			$this->form_validation->set_message('checkCue','El CUE de la escuela ingresada ya existe en el sistema.');
+			return false;
+		}else{
+			return true;
+		}
+	}
 }

@@ -135,7 +135,7 @@
       <Cl au="0" df="" nm="updated_at" nu="1">
         <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Fk deAc="3" nm="fk_docentes_titulos_docentes" prLkCl="id" upAc="3">
+      <Fk deAc="0" nm="fk_docentes_titulos_docentes" prLkCl="id" upAc="0">
         <PrTb mn="0" nm="docentes" oe="1" sch="public" zr="0"/>
         <CdTb mn="1" nm="docentes_titulos" oe="0" sch="public" zr="1"/>
         <ClPr cdCl="docente_id" prCl="id"/>
@@ -328,34 +328,6 @@
         <PrTb mn="0" nm="lineas_accion" oe="1" sch="public" zr="0"/>
         <CdTb mn="1" nm="lineas_accion_escuelas" oe="0" sch="public" zr="1"/>
         <ClPr cdCl="linea_accion_id" prCl="id"/>
-      </Fk>
-      <SchTrHis/>
-    </Tbl>
-    <Tbl UsSo="1" nm="lineas_periodos">
-      <TblOpts/>
-      <Pk ClNs="id" nm="pklineas_periodos"/>
-      <Cl au="1" df="" nm="id" nu="0">
-        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="periodo_id" nu="1">
-        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="mes" nu="1">
-        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="anio" nu="1">
-        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="now()" nm="created_at" nu="1">
-        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="updated_at" nu="1">
-        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Fk deAc="1" nm="lineas_periodos_periodo_id" prLkCl="id" upAc="1">
-        <PrTb mn="0" nm="periodos" oe="1" sch="public" zr="0"/>
-        <CdTb mn="1" nm="lineas_periodos" oe="1" sch="public" zr="0"/>
-        <ClPr cdCl="periodo_id" prCl="id"/>
       </Fk>
       <SchTrHis/>
     </Tbl>
@@ -940,7 +912,6 @@
     <TbGl bkCl="ffccccff" sch="public" tbl="titulos" x="1335" y="577"/>
     <TbGl bkCl="ffccccff" sch="public" tbl="docentes_titulos" x="1348" y="712"/>
     <TbGl bkCl="ffccccff" sch="public" tbl="lineas_accion_escuelas" x="162" y="921"/>
-    <TbGl bkCl="ffccccff" sch="public" tbl="lineas_periodos" x="1070" y="691"/>
     <FkGl bkCl="ff000000" nm="public.departamentos.departamentos_circuito_id"/>
     <FkGl bkCl="ff000000" nm="public.docentes_titulos.fk_docentes_titulos_docentes"/>
     <FkGl bkCl="ff000000" nm="public.docentes_titulos.fk_docentes_titulos_titulos"/>
@@ -953,7 +924,6 @@
     <FkGl bkCl="ff000000" nm="public.lineas_accion_docentes.lineas_accion_docentes_perfil_id"/>
     <FkGl bkCl="ff000000" nm="public.lineas_accion_escuelas.lineas_accion_escuelas_linea_periodo_escuela_id"/>
     <FkGl bkCl="ff000000" nm="public.lineas_accion_escuelas.lineas_accion_escuelas_lineas_accion_id"/>
-    <FkGl bkCl="ff000000" nm="public.lineas_periodos.lineas_periodos_periodo_id"/>
     <FkGl bkCl="ff000000" nm="public.lineas_periodos_escuelas.lineas_periodos_escuelas_periodo_escuela_id"/>
     <FkGl bkCl="ff000000" nm="public.localidades.fk_localidades_departamentos"/>
     <FkGl bkCl="ff000000" nm="public.periodos.periodos_estado_tabgral"/>
@@ -1794,6 +1764,6 @@
     <TreePath/>
     <TreePath>/Schemas (1)</TreePath>
     <TreePath>/Schemas (1)/public</TreePath>
-    <TreePath>/Schemas (1)/public/Tables (27)</TreePath>
+    <TreePath>/Schemas (1)/public/Tables (26)</TreePath>
   </TreePaths>
 </Db>

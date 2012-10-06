@@ -5,17 +5,17 @@
 /* Config general titles */
 
 $config['recordListTitle']=' Listado de circuitos';
-$config['recordAddTitle']=' Nuevo circuitos';
-$config['recordEditTitle']=' Editar circuitos';
+$config['recordAddTitle']=' Nuevo circuito';
+$config['recordEditTitle']=' Editar circuito';
 $config['accessTitle']='<div class="accessTitle"> No tienes permiso para realizar esta operaci&oacute;n </div>';
 
 /* Config labels of the form fields */
 
-$config['id']='id';
-$config['nombre']='nombre';
-$config['habilitado']='habilitado';
-$config['created_at']='created_at';
-$config['updated_at']='updated_at';
+$config['id']='Id';
+$config['nombre']='Nombre';
+$config['habilitado']='Habilitado';
+$config['created_at']='Fecha de alta';
+$config['updated_at']='Actualizado el';
 
 /* Config fields for search */
 

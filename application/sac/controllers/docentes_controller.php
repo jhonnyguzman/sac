@@ -58,7 +58,7 @@ class Docentes_Controller extends CI_Controller {
 		$data = array();
 		$data['title_header'] = $this->config->item('recordAddTitle');
 		
-		$this->form_validation->set_rules('dni', 'dni', 'trim|required|integer|xss_clean');
+		$this->form_validation->set_rules('dni', 'dni', 'trim|required|integer|callback_checkDni|xss_clean');
 		$this->form_validation->set_rules('apellido', 'apellido', 'trim|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('nombre', 'nombre', 'trim|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('telefono', 'telefono', 'trim|alpha_numeric|xss_clean');
@@ -290,5 +290,18 @@ class Docentes_Controller extends CI_Controller {
 		}
 
 		return true;
+	}
+
+
+
+	function checkDni($dni)
+	{
+		$docente = $this->docentes_model->get_m(array('dni' => $dni));
+		if(count($docente) > 0){
+			$this->form_validation->set_message('checkDni','El DNI del docente ingresado ya existe en el sistema.');
+			return false;
+		}else{
+			return true;
+		}
 	}
 }

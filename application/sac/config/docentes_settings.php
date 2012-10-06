@@ -5,22 +5,22 @@
 /* Config general titles */
 
 $config['recordListTitle']=' Listado de docentes';
-$config['recordAddTitle']=' Nuevo docentes';
-$config['recordEditTitle']=' Editar docentes';
+$config['recordAddTitle']=' Nuevo docente';
+$config['recordEditTitle']=' Editar docente';
 $config['accessTitle']='<div class="accessTitle"> No tienes permiso para realizar esta operaci&oacute;n </div>';
 
 /* Config labels of the form fields */
 
-$config['id']='id';
-$config['dni']='dni';
-$config['apellido']='apellido';
-$config['nombre']='nombre';
-$config['telefono']='telefono';
-$config['email']='email';
-$config['titulo']='titulo';
-$config['habilitado']='habilitado';
-$config['created_at']='created_at';
-$config['updated_at']='updated_at';
+$config['id']='Id';
+$config['dni']='Dni';
+$config['apellido']='Apellido';
+$config['nombre']='Nombre';
+$config['telefono']='Teléfono';
+$config['email']='Email';
+$config['titulo']='Titulo';
+$config['habilitado']='Habilitado';
+$config['created_at']='Fecha de alta';
+$config['updated_at']='Actualizado el';
 
 /* Config fields for search */
 

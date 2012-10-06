@@ -3,8 +3,8 @@ $(document).ready(function(){
 		$('#formAdddocentes').validate({
 		    rules: {
 		      dni: {
-		        minlength: 8,
 		        digits:true,
+		        minlength: 8,
 		        required: true
 		      },
 		      apellido: {
@@ -43,8 +43,8 @@ $(document).ready(function(){
 	   $('#formEditdocentes').validate({
 		    rules: {
 		      dni: {
-		        minlength: 8,
 		        digits:true,
+		        minlength: 8,
 		        required: true
 		      },
 		      apellido: {
@@ -83,8 +83,8 @@ $(document).ready(function(){
 	   $('#formAdddirectores').validate({
 		    rules: {
 		      dni: {
-		        minlength: 8,
 		        digits:true,
+		        minlength: 8,
 		        required: true
 		      },
 		      apellido: {
@@ -119,8 +119,8 @@ $(document).ready(function(){
 	   $('#formEditdirectores').validate({
 		    rules: {
 		      dni: {
-		        minlength: 8,
 		        digits:true,
+		        minlength: 8,
 		        required: true
 		      },
 		      apellido: {

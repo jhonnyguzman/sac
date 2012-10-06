@@ -16,7 +16,7 @@
 		<div class="control-group">
 			<label class="control-label" for="dni"></span><?=$this->config->item('dni')?>:</label>
 			<div class="controls">
-				<input type="text" value="<?=$docentes->dni?>" name="dni" id="dni"></input>
+				<input type="text" value="<?=$docentes->dni?>" name="dni" id="dni" readonly></input>
 			</div>
 		</div>
 		<div class="control-group">

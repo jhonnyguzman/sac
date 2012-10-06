@@ -18,7 +18,7 @@
 		<div class="control-group">
 			<label class="control-label" for="cue"><?=$this->config->item('cue')?>:</label>
 			<div class="controls">
-				<input type="text" value="<?=$escuelas->cue?>" name="cue" id="cue"></input>
+				<input type="text" value="<?=$escuelas->cue?>" name="cue" id="cue" readonly></input>
 			</div>
 		</div>
 		<div class="control-group">

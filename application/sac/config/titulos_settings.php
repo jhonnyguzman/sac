@@ -5,17 +5,17 @@
 /* Config general titles */
 
 $config['recordListTitle']=' Listado de titulos';
-$config['recordAddTitle']=' Nuevo titulos';
-$config['recordEditTitle']=' Editar titulos';
+$config['recordAddTitle']=' Nuevo titulo';
+$config['recordEditTitle']=' Editar titulo';
 $config['accessTitle']='<div class="accessTitle"> No tienes permiso para realizar esta operaci&oacute;n </div>';
 
 /* Config labels of the form fields */
 
-$config['id']='id';
-$config['nombre']='nombre';
-$config['tipo']='tipo';
-$config['created_at']='created_at';
-$config['updated_at']='updated_at';
+$config['id']='Id';
+$config['nombre']='Nombre';
+$config['tipo']='Tipo';
+$config['created_at']='Fecha de alta';
+$config['updated_at']='Actualizado el';
 
 /* Config fields for search */
 
