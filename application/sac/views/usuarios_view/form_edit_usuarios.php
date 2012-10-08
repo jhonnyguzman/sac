@@ -1,6 +1,6 @@
 <?=$this->load->view('default/_header_admin')?>
 
-<div class="span16">
+<div class="span28">
 	<div class="page-header">
 	  <h3><?=$title_header?></h3>
 	</div>
@@ -107,12 +107,5 @@
 	    </p>
 
 </div><!--/span10-->
-<SCRIPT LANGUAGE='JavaScript'>
-	var username = new LiveValidation('username'); username.add( Validate.Presence );
-	var password = new LiveValidation('password'); password.add( Validate.Presence );
-	var nombre = new LiveValidation('nombre'); nombre.add( Validate.Presence );
-	var apellido = new LiveValidation('apellido'); apellido.add( Validate.Presence );
-	var email = new LiveValidation('email'); email.add( Validate.Email ); email.add( Validate.Presence );
-	var telefono = new LiveValidation('telefono'); telefono.add( Validate.Numericality );
-</SCRIPT>
+
 <?=$this->load->view('default/_footer_admin')?>

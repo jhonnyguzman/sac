@@ -18,6 +18,7 @@
 					<td><?=$f->resolucion?></td>
 					<td><?=$f->cantidad_horas?></td>
 					<td><span class="label"><?=$f->estado_descripcion?></span></td>
+					<td><a href="#" onClick="updateContent('<?=base_url()?>lineas_periodos_escuelas_controller/show_c/<?=$f->id?>','contentModal')">Ver Meses</a></td>
 				</tr>
 			<?php endforeach; ?>
 		</tbody>

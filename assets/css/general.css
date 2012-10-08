@@ -1,6 +1,35 @@
 body {
     padding-top: 30px;
     padding-bottom: 40px;
+
+    /*background-image: linear-gradient(right top, #FAFAFA 17%, #C2C2C2 100%);
+    background-image: -o-linear-gradient(right top, #FAFAFA 17%, #C2C2C2 100%);
+    background-image: -moz-linear-gradient(right top, #FAFAFA 17%, #C2C2C2 100%);
+    background-image: -webkit-linear-gradient(right top, #FAFAFA 17%, #C2C2C2 100%);
+    background-image: -ms-linear-gradient(right top, #FAFAFA 17%, #C2C2C2 100%);
+
+    background-image: -webkit-gradient(
+      linear,
+      right top,
+      left bottom,
+      color-stop(0.17, #FAFAFA),
+      color-stop(1, #C2C2C2)
+    );*/
+
+/*background-image: linear-gradient(left bottom, #DBDBDB 0%, #FFFFFF 100%);
+background-image: -o-linear-gradient(left bottom, #DBDBDB 0%, #FFFFFF 100%);
+background-image: -moz-linear-gradient(left bottom, #DBDBDB 0%, #FFFFFF 100%);
+background-image: -webkit-linear-gradient(left bottom, #DBDBDB 0%, #FFFFFF 100%);
+background-image: -ms-linear-gradient(left bottom, #DBDBDB 0%, #FFFFFF 100%);
+
+background-image: -webkit-gradient(
+  linear,
+  left bottom,
+  right top,
+  color-stop(0, #DBDBDB),
+  color-stop(1, #FFFFFF)
+);*/
+
 }
 
 footer{
@@ -48,4 +77,12 @@ label.error {
 
 #formConsultasGenerales .form-horizontal .control-group {
   margin-bottom: 10px;
+}
+.page-header {
+  margin: 20px 0 30px;
+  border-bottom: 1px solid #EEE;
+}
+.page-header h3 {
+  font-size: 24px;
+  line-height: 25px;
 }

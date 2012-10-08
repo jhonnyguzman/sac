@@ -1,6 +1,6 @@
 <?=$this->load->view('default/_header_admin')?>
 
-<div class="span16">
+<div class="span28">
 	<div class="page-header">
 	  <h3><?=$title_header?></h3>
 	</div>
@@ -8,7 +8,7 @@
 	<?=$this->load->view("default/_result_messages")?>
 
 	 <div class="row-fluid">
-            <div class="span14">
+            <div class="span26">
             	<form action="<?=base_url()?>circuitos_controller/search_c" method="post" name="formSearchcircuitos" id="formSearchcircuitos" class="well form-search">
             		<?php foreach($fieldSearch as $field):?>
             			<input type="search" name="<?=$field?>" id="<?=$field?>" placeholder="<?=$this->config->item($field)?>" class="input-medium search-query"></input>

@@ -149,6 +149,46 @@ class Lineas_accion_docentes_Model extends CI_Model {
 	}
 
 
+
+	function getPeriodo($linea_accion_escuela_id)
+	{
+		$this->db->where('lae.id', $linea_accion_escuela_id);
+
+		$this->db->select("pe.periodo_id, lpe.id as linea_periodo_escuela_id");
+		$this->db->from("lineas_accion_escuelas as lae");
+		$this->db->join("lineas_periodos_escuelas as lpe", "lpe.id = lae.linea_periodo_escuela_id");
+		$this->db->join("periodos_escuelas as pe", "pe.id = lpe.periodo_escuela_id");
+
+		$query = $this->db->get();
+		if($query->num_rows()>0){
+			return $result = $query->result();
+		}
+	}
+
+
+	function getTotalHorasAsignadas($periodo_id, $mes, $docente_id)
+	{
+		$total = 0;
+		$this->db->where('pe.periodo_id', $periodo_id);
+		$this->db->where('lpe.mes', $mes);
+		$this->db->where('lad.docente_id', $docente_id);
+
+		$this->db->select("pe.periodo_id, lad.cantidad_horas as linea_accion_docente_cantidad_horas");
+		$this->db->from("periodos_escuelas as pe");
+		$this->db->join("lineas_periodos_escuelas as lpe", "lpe.periodo_escuela_id = pe.id");
+		$this->db->join("lineas_accion_escuelas as lae","lae.linea_periodo_escuela_id = lpe.id");
+		$this->db->join("lineas_accion_docentes as lad", "lad.linea_accion_escuela_id = lae.id");
+
+		$query = $this->db->get();
+		if($query->num_rows() > 0){
+			foreach ($query->result() as $f) {
+				$total+= $f->linea_accion_docente_cantidad_horas; 
+			}
+		}
+
+		return $total;
+	}
+
 	/**
 	 * This function getting all the fields of the table
 	 *

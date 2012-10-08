@@ -1,6 +1,6 @@
 <?=$this->load->view('default/_header_admin')?>
 
-<div class="span16">
+<div class="span28">
 	<div class="page-header">
 	  <h3><?=$title_header?></h3>
 	</div>

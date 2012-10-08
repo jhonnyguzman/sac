@@ -1,6 +1,6 @@
 <?=$this->load->view('default/_header_admin')?>
 
-<div class="span16">
+<div class="span28">
 	<div class="page-header">
 	  <h3><?=$title_header?></h3>
 	</div>
@@ -90,9 +90,8 @@
  </div><!--/span10-->
 
 
- <script>
+<script type="text/javascript">
     $(document).ready(function(){ 
-        //$("#result-list").load("<?=base_url()?>docentes_controller/search_c");
         getMesesConsultas("<?=base_url()?>lineas_periodos_escuelas_controller/getMeses/","","periodo_id","linea_periodo_escuela_id");
         $("#periodo_id").change(function(){
         	getMesesConsultas("<?=base_url()?>lineas_periodos_escuelas_controller/getMeses/","","periodo_id","linea_periodo_escuela_id");

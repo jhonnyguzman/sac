@@ -34,13 +34,31 @@
 	<p class="stdformbutton">
 		<a href="javascript:void(0)" 
     	onClick="updateContent('<?=base_url()?>lineas_accion_docentes_controller/show_c/<?=$linea_accion_escuela_id?>','contentModal')" class="btn" >Cancelar</a>
-    	<button type="submit" class="btn"  onClick="submitData('formAddlineas_accion_docentes','contentModal')">Guardar</button>
+    	<button type="submit" class="btn" >Guardar</button>
     </p>
 
 </form>
 
  <script>
     $(document).ready(function(){ 
-        
+        $('#formAddlineas_accion_docentes').validate({
+        	submitHandler: function(form) {
+			   submitDataTwo('formAddlineas_accion_docentes','contentModal');
+			},
+		    rules: {
+		      cantidad_horas: {
+		        required: true,
+		        digits: true
+		      }
+		    },
+		    highlight: function(label) {
+		    	$(label).closest('.control-group').addClass('error');
+		    },
+		    success: function(label) {
+		    	label
+		    		.text('OK!').addClass('valid')
+		    		.closest('.control-group').addClass('success');
+		    }
+	   });
     });
 </script>

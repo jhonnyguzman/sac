@@ -1,11 +1,11 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Periodos de Escuela </h3>
+    <h4 id="myModalLabel">Periodos de Escuela </h4>
  </div>
 <div class="modal-body" id="contentModal">
    
 </div>
-<div class="modal-footer">
+<div class="modal-footer" id="contentModalFooter">
 </div>
 
 <script type="text/javascript">

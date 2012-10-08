@@ -1,6 +1,6 @@
 <?=$this->load->view('default/_header_admin')?>
 
-<div class="span16">
+<div class="span28">
 	<div class="page-header">
 	  <h3><?=$title_header?></h3>
 	</div>
@@ -42,7 +42,7 @@
 		<div class="form-actions">
 	    	<a href="<?=base_url()?>perfiles_controller/index" class="btn" >Cancelar</a>
 	    	<button type="submit" class="btn btn-primary" >Guardar</button>
-	    </p>
+	    </div>
 
 	</form>
 

@@ -1,6 +1,6 @@
 <?=$this->load->view('default/_header_admin')?>
 
-<div class="span16">
+<div class="span28">
 	<div class="page-header">
 	  <h3><?=$title_header?></h3>
 	</div>
@@ -8,7 +8,7 @@
 	<?=$this->load->view("default/_result_messages")?>
 
 	 <div class="row-fluid">
-            <div class="span14">
+            <div class="span26">
             	<form action="<?=base_url()?>periodos_controller/search_c" method="post" name="formSearchperiodos" id="formSearchperiodos" class="well form-search">
 					<input type="search" name="fecha_inicio" id="fecha_inicio" placeholder="Fecha de inicio" class="input-medium search-query"/>
 					<input type="search" name="fecha_fin" id="fecha_fin" placeholder="Fecha de fin" class="input-medium search-query"/>

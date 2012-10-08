@@ -1,6 +1,6 @@
 <?=$this->load->view('default/_header_admin')?>
 
-<div class="span16">
+<div class="span28">
 	<div class="page-header">
 	  <h3><?=$title_header?></h3>
 	</div>
@@ -8,7 +8,7 @@
 	<?=$this->load->view("default/_result_messages")?>
 
 	 <div class="row-fluid">
-            <div class="span14">
+            <div class="span26">
             	<form action="<?=base_url()?>docentes_titulos_controller/search_c" method="post" name="formSearchdocentes_titulos" id="formSearchdocentes_titulos" class="well form-search">
 					<input type="search" name="docente_id" id="docente_id" placeholder="docente_id" class="input-medium search-query"/>
 					<input type="search" name="titulo_id" id="titulo_id" placeholder="titulo_id" class="input-medium search-query"/>

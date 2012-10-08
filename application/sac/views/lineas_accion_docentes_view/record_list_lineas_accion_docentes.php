@@ -42,6 +42,7 @@
 
 <script>
 	$(document).ready(function(){ 
-		setPagination('pag-lineas_accion_docentes','result-list'); 
+		var myData = {"linea_accion_escuela_id": "<?=$linea_accion_escuela_id?>"};
+		setPaginationModal('pag-lineas_accion_docentes','docentesPerfilAsignados',myData); 
 	});
 </script>

@@ -8,6 +8,26 @@ function setPagination(pag,loader)
   	 });
 }
 
+// function to show data's pagination
+function setPaginationModal(pag, loader, p_data)
+{    
+     $("#"+ pag + " a").click(function(e)
+     {
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: $(this).attr("href"),
+            data: p_data,
+            success: function(data) {
+                    $('#'+loader).html(data);
+            }
+        }) ; 
+     });
+
+     
+    
+}
+
 function deleteRow(url)
 {
 	if(confirm("¿Estás seguro de eliminar este item?")){
@@ -67,6 +87,22 @@ function submitData(idform,loader_div)
     return false;
     }); 
 }
+
+// function to send form through ajax
+function submitDataTwo(idform,loader_div)
+{    
+    
+     $.ajax({
+        type: 'POST',
+        url: $("#"+idform).attr('action'),
+        data: $("#"+idform).serialize(),
+        success: function(data) {
+               $("#"+loader_div).html(data);
+        }
+    })        
+    
+}
+
 
 function getLocalidades(url, loc_selected)
 {

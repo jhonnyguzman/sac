@@ -49,7 +49,7 @@
   <div class="container-fluid">
     <div class="row-fluid">
       <div class="span2"></div>
-      <div class="span12">
+      <div class="span24">
       
  
 		
