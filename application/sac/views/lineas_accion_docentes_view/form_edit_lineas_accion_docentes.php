@@ -33,6 +33,7 @@
 	<div class="control-group">
 		<h5><?=$this->config->item('cantidad_horas')?>:</h5>
 		<input type="text" name="cantidad_horas" id="cantidad_horas" value="<?=$lineas_accion_docentes->cantidad_horas?>"  class="input-small">
+		<input type="hidden" name="cantidad_horas_old" id="cantidad_horas_old" value="<?=$lineas_accion_docentes->cantidad_horas?>" >
 	</div>
 	<div class="control-group">
 		<h5><?=$this->config->item('created_at')?>:</h5>
@@ -50,13 +51,31 @@
 	<p class="stdformbutton">
 		<a href="javascript:void(0)" 
     	onClick="updateContent('<?=base_url()?>lineas_accion_docentes_controller/show_c/<?=$linea_accion_escuela_id?>','contentModal')" class="btn" >Cancelar</a>
-    	<button type="submit" class="btn"  onClick="submitData('formEditlineas_accion_docentes','contentModal')">Guardar</button>
+    	<button type="submit" class="btn">Guardar</button>
     </p>
 
 </form>
 
  <script>
     $(document).ready(function(){ 
-        
+        $('#formEditlineas_accion_docentes').validate({
+        	submitHandler: function(form) {
+			   submitDataTwo('formEditlineas_accion_docentes','contentModal');
+			},
+		    rules: {
+		      cantidad_horas: {
+		        required: true,
+		        digits: true
+		      }
+		    },
+		    highlight: function(label) {
+		    	$(label).closest('.control-group').addClass('error');
+		    },
+		    success: function(label) {
+		    	label
+		    		.text('OK!').addClass('valid')
+		    		.closest('.control-group').addClass('success');
+		    }
+	   });
     });
 </script>

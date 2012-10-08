@@ -42,6 +42,6 @@
 
 <script>
 	$(document).ready(function(){ 
-		setPagination('pag-lineas_accion_docentes','result-list'); 
+		setPagination('pag-lineas_accion_docentes','docentesPerfilAsignados'); 
 	});
 </script>

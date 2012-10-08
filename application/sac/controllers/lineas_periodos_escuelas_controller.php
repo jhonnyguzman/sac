@@ -14,6 +14,7 @@ class Lineas_periodos_escuelas_Controller extends CI_Controller {
 		parent::__construct();
 		if($this->session->userdata('logged_in') == true) { 
 			$this->load->model('lineas_periodos_escuelas_model');
+			$this->load->model('periodos_escuelas_model');
 			$this->config->load('lineas_periodos_escuelas_settings');
 			$data['flags'] = $this->basicauth->getPermissions('lineas_periodos_escuelas');
 			$this->flagR = $data['flags']['flag-read'];
@@ -163,6 +164,15 @@ class Lineas_periodos_escuelas_Controller extends CI_Controller {
 
 	}
 
+
+	function show_c($periodo_escuela_id)
+	{
+		$data['periodo_escuela'] = $this->periodos_escuelas_model->get_m(array('id' => $periodo_escuela_id));
+		if(count($data['periodo_escuela']) > 0){
+			$data['lineas_periodos_escuelas'] = $this->lineas_periodos_escuelas_model->get_m(array('periodo_escuela_id' => $periodo_escuela_id));
+			$this->load->view("lineas_periodos_escuelas_view/record_list_lineas_periodos_escuelas", $data);
+		}
+	}
 
 	/**
 	 * This function filter and sends the data to the view

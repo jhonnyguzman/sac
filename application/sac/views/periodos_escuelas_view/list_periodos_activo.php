@@ -21,6 +21,7 @@
 					<td>
 						<a href="#" onClick="deleteItemModal('<?=base_url()?>periodos_escuelas_controller/delete_c/<?=$f->id?>/<?=$f->escuelas_id?>','contentModal')">Eliminar</a>
 						<a href="#" onClick="updateContent('<?=base_url()?>periodos_escuelas_controller/edit_c/<?=$f->id?>','contentModal')">Modificar</a>
+						<a href="#" onClick="updateContent('<?=base_url()?>lineas_periodos_escuelas_controller/show_c/<?=$f->id?>','contentModal')">Ver Meses</a>
 					</td>
 				</tr>
 			<?php endforeach; ?>

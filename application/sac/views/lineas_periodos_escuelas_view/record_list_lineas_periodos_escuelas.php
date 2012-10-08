@@ -1,40 +1,42 @@
-<script type="text/javascript">
-$(document).ready(function(){ setPagination('<?=base_url()?>lineas_periodos_escuelas_controller/search_c','result-list'); });
-</script>
-<div id="result-list">
+<p>
+	<strong>Periodo seleccionado:&nbsp;&nbsp;</strong><?=$periodo_escuela[0]->periodo_fecha_inicio." - ".$periodo_escuela[0]->periodo_fecha_fin?>
+	&nbsp;&nbsp;<strong>Estado:&nbsp;&nbsp;</strong>
+	<?php if($periodo_escuela[0]->estado == 3):  ?>
+		<span class="label label-success"><?=$periodo_escuela[0]->estado_descripcion?></span>
+	<?php elseif($periodo_escuela[0]->estado == 4):  ?>
+		<span class="label"><?=$periodo_escuela[0]->estado_descripcion?></span>
+	<?php endif;  ?>
+</p>
 <?php if(isset($lineas_periodos_escuelas) && is_array($lineas_periodos_escuelas) && count($lineas_periodos_escuelas)>0):?>
-<table id="result-set">
-	<tr>
-		<?php foreach($fieldShow as $field):?>
-		<th><?=$this->config->item($field)?></th>
-		<?php endforeach; ?>
-		<th></th>
-		<th></th>
-	</tr>
-	<?php foreach($lineas_periodos_escuelas as $f):?>
-		<tr>
-			<?php foreach($fieldShow as $field):?>
-			<td><?=$f->$field?></td>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>Año</th>
+				<th>Mes</th>
+				<th>Horas por mes</th>
+				<th>Horas restantes</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbodoy>
+			<?php foreach($lineas_periodos_escuelas as $f):?>
+				<tr>
+					<td><?=$f->anio?></td>
+					<td><?=$f->mes_descripcion?></td>
+					<td><?=$f->horas_por_mes?></td>
+					<td><?=$f->horas_restantes?></td>
+				</tr>
 			<?php endforeach; ?>
-			<?php if(!$flag['u']):?>
-				<td><div class='block-item'><a href="#" id="icon-edit">Modificar</a><div class='mask-item'></div></div></td>
-			<?php else: ?>
-				<td><a href="#" onClick="loadPage('<?=base_url()?>index.php/lineas_periodos_escuelas_controller/edit_c/<?=$f->id?>','right-content')" id="icon-edit">Modificar</a></td>
-			<?php endif;?>
-			<?php if(!$flag['d']):?>
-				<td><div class='block-item'><a href="#" id="icon-delete">Eliminar</a><div class='mask-item'></div></div></td>
-			<?php else: ?>
-				<td><a href="#" onClick="deleteData('<?=base_url()?>index.php/lineas_periodos_escuelas_controller/delete_c/<?=$f->id?>','right-content','¿Estás seguro de eliminar este item?')" id="icon-delete">Eliminar</a></td>
-			<?php endif;?>
-		</tr>
-	<?php endforeach; ?>
-</table>
-<?php if(isset($pagination)):?>
-<div class='pagination'>
-<?=$pagination?>
-</div>
-<?php endif; ?>
+		</tbody>
+	</table>
 <?php else: ?>
 	<p>No results!</p>
 <?php endif; ?>
-</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#contentModalFooter").find(".btnBack").remove();
+        var a = $("<a href=\"#\" onClick=\"updateContent('<?=base_url()?>periodos_escuelas_controller/show_c/<?=$periodo_escuela[0]->escuelas_id?>','contentModal')\" class=\"btn btn-primary btnBack\">Volver</a> ");  
+        $("#contentModalFooter").append(a);
+	});
+</script>

@@ -24,7 +24,7 @@
         });
 
 		$("#contentModalFooter").find(".btnBack").remove();
-        var a = $("<a href=\"#\" onClick=\"updateContent('<?=base_url()?>lineas_accion_escuelas_controller/show_c/<?=$escuela_id?>','contentModal')\" class=\"btnBack\">Volver</a> ");  
+        var a = $("<a href=\"#\" onClick=\"updateContent('<?=base_url()?>lineas_accion_escuelas_controller/show_c/<?=$escuela_id?>','contentModal')\" class=\"btn btn-primary btnBack\">Volver</a> ");  
         $("#contentModalFooter").append(a);
 
         $("#extraContentHeader").find(".extraContentHeaderP").remove();

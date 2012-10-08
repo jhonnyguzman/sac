@@ -1,6 +1,6 @@
 <?=$this->load->view('default/_header_admin')?>
 
-<div class="span16">
+<div class="span28">
 	<div class="page-header">
 	  <h3><?=$title_header?></h3>
 	</div>
@@ -8,7 +8,7 @@
 	<?=$this->load->view("default/_result_messages")?>
 
 	 <div class="row-fluid">
-            <div class="span14">
+            <div class="span26">
             	<form action="<?=base_url()?>departamentos_controller/search_c" method="post" name="formSearchdepartamentos" id="formSearchdepartamentos" class="well form-search">
 					<input type="search" name="nombre" id="nombre" placeholder="nombre" class="input-medium search-query"/>
 					<button type="submit" class="btn" onClick="searchData('formSearchdepartamentos','result-list')">Buscar</button>
