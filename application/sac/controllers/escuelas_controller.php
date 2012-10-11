@@ -159,6 +159,14 @@ class Escuelas_Controller extends CI_Controller {
 	}
 
 
+	public function showModal_c($id)
+	{
+		if($this->flagR){
+			$data['escuelas'] = $this->escuelas_model->get_m(array('id' => $id),$flag=1);
+			$this->load->view("escuelas_view/form_show_modal_escuelas",$data);
+		}
+	}
+
 	/**
 	 * This function sends the id of record to the
 	 * method of the model responsible for deleting 

@@ -16,7 +16,8 @@ $(document).ready(function(){
 		        required: true
 		      },
 		      telefono: {
-		        maxlength: 15,
+		        maxlength: 16,
+		        minlength: 7,
 		        digits: true,
 		        required: true
 		      },
@@ -56,7 +57,8 @@ $(document).ready(function(){
 		        required: true
 		      },
 		      telefono: {
-		        maxlength: 15,
+		        maxlength: 16,
+		        minlength: 7,
 		        digits: true,
 		        required: true
 		      },
@@ -96,7 +98,8 @@ $(document).ready(function(){
 		        required: true
 		      },
 		      telefono: {
-		        maxlength: 15,
+		        maxlength: 16,
+		        minlength: 7,
 		        digits: true,
 		        required: true
 		      },
@@ -132,7 +135,8 @@ $(document).ready(function(){
 		        required: true
 		      },
 		      telefono: {
-		        maxlength: 15,
+		       maxlength: 16,
+		        minlength: 7,
 		        digits: true,
 		        required: true
 		      },
@@ -169,7 +173,8 @@ $(document).ready(function(){
 		        required: true
 		      },
 		      telefono: {
-		        maxlength: 15,
+		        maxlength: 16,
+		        minlength: 7,
 		        digits:true,
 		        required: true
 		      },
@@ -205,7 +210,8 @@ $(document).ready(function(){
 		        required: true
 		      },
 		      telefono: {
-		        maxlength: 15,
+		        maxlength: 16,
+		        minlength: 7,
 		        digits:true,
 		        required: true
 		      },
@@ -227,11 +233,8 @@ $(document).ready(function(){
 	   $('#formAddlineas_accion').validate({
 		    rules: {
 		      nombre: {
-		      	maxlength: 50,
+		      	maxlength: 80,
 		        required: true
-		      },
-		      descripcion: {
-		        maxlength: 200
 		      }
 		    },
 		    highlight: function(label) {
@@ -250,9 +253,6 @@ $(document).ready(function(){
 		      nombre: {
 		      	maxlength: 50,
 		        required: true
-		      },
-		      descripcion: {
-		        maxlength: 200
 		      }
 		    },
 		    highlight: function(label) {

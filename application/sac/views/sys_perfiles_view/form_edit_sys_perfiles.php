@@ -49,7 +49,7 @@
 		
 		<div class="form-actions">
 			<a href="<?=base_url()?>sys_perfiles_controller/index" class="btn" >Cancelar</a>
-			<button type="submit" class="btn btn-primary">Modificar</button>
+			<button type="submit" class="btn btn-primary">Guardar</button>
 		</div>
 
 	</form>

@@ -14,8 +14,8 @@
         <div class="control-group">
         	<label class="control-label" for="habilitado"><?=$this->config->item('habilitado')?></label>
             <div class="controls">
-            	<input type="radio" name="habilitado" id='habilitado' value='1' /> Habilitado &nbsp;&nbsp;
-            	<input type="radio" name="habilitado" id='habilitado' value='0' checked='checked' /> No Habilitado
+            	<input type="radio" name="habilitado" id='habilitado' value='1' checked/> Habilitado &nbsp;&nbsp;
+            	<input type="radio" name="habilitado" id='habilitado' value='0' /> No Habilitado
             </div>
         </div>
 		<div class="form-actions">
@@ -23,11 +23,7 @@
         	<button type="submit" class="btn btn-primary" >Guardar</button>
         </div>
 	</form>
-</div><!--/span10-->
+</div><!--/span28-->
 
-<SCRIPT LANGUAGE='JavaScript'>
-	var nombre = new LiveValidation('nombre'); nombre.add( Validate.Presence ); nombre.add( Validate.Length, { maximum: 16 } );
-	var departamento_id = new LiveValidation('departamento_id'); departamento_id.add( Validate.Presence );
-</SCRIPT>
 
 <?=$this->load->view('default/_footer_admin')?>

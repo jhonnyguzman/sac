@@ -171,7 +171,10 @@ class BasiCrud {
 		$config['base_url'] = base_url().$CI->router->class."/".$CI->router->method;
 		
 		if(isset($fieldSearch) && count($fieldSearch)>0){
-			$config['total_rows'] = $CI->$options['nameModel']->get_m($fieldSearch);
+			if(isset($options['nameMethod']))
+				$config['total_rows'] = $CI->$options['nameModel']->$options['nameMethod']($fieldSearch);
+			else
+				$config['total_rows'] = $CI->$options['nameModel']->get_m($fieldSearch);
 		}else {
 			if(!$fieldSearch['count']) $fieldSearch['count'] = true; 
 			$config['total_rows'] = $CI->$options['nameModel']->get_m($fieldSearch);	
@@ -686,4 +689,26 @@ class BasiCrud {
 		return $arrayR;
 
 	}
+
+
+	/**
+	 * Esta funcion iguala un arreglo que contiene los caracteres 
+	 * de las columnas de excel
+	 *
+	 * @param  integer   contador de columna
+	 * @return integer   columna
+	 */
+	function entradaColumna($col_ent)
+	{
+		$hdc = array(
+			0 => "A", 1 => "B", 2 => "C", 3 => "D", 
+			4 => "E", 5 => "F", 6 => "G", 7 => "H", 
+			8 => "I", 9 => "J", 10 => "K", 11 => "L", 
+			12 => "M", 13 => "N", 14 => "O", 15 => "P", 
+			16 => "Q", 17 => "R", 18 => "S", 19 => "T", 
+			20 => "U", 21 => "V", 22 => "W", 23 => "X", 
+			24 => "Y", 25 => "Z");
+		return ($col_ent < 26) ? $hdc[$col_ent] : $hdc[(int)($col_ent/26)-1].$hdc[($col_ent % 26)];
+	}
+
 }

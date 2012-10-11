@@ -221,6 +221,32 @@ class Usuarios_Controller extends CI_Controller {
 
 	}
 
+
+	public function changePassword()
+	{
+		$data['title_header'] = "Cambiar la Contraseña";
+		$this->form_validation->set_rules('password', 'password', 'trim|required|alpha_numeric|matches[passwordconf]|md5|xss_clean');
+		$this->form_validation->set_rules('passwordconf', 'passwordconf', 'trim|required|alpha_numeric|xss_clean');
+		
+		if($this->form_validation->run()){
+			$data_usuarios  = array();
+			$data_usuarios['id'] = $this->input->post('id');
+			$data_usuarios['password'] = $this->input->post('password');
+			$data_usuarios['updated_at'] = $this->basicrud->formatDateToBD();
+
+			if($this->usuarios_model->edit_m($data_usuarios)){ 
+				$this->session->set_flashdata('flashConfirm',"La contraseña se ha cambiado correctamente."); 
+				redirect('usuarios_controller/changePassword/','location');
+			}else{
+				$this->session->set_flashdata('flashError', $this->config->item('flash_error_message')); 
+				redirect('usuarios_controller/changePassword','location');
+			}
+		}else{
+			$data['usuarios'] = $this->usuarios_model->get_m(array('id' => $this->session->userdata("usuario_id")),$flag=1);
+			$this->load->view('usuarios_view/form_change_password',$data);
+		}
+	}	
+
 	/**
 	 * This function check if the user is validate
 	 *

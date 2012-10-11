@@ -19,30 +19,30 @@
 							<td><?=$f->perfil_descripcion?></td>
 							<td>
 								<?php if($f->flag_read == 1 ): ?>
-									<i class="icon-ok"></i>
+									<img src="<?=base_url()?>assets/img/icon-ok.png">
 								<?php elseif($f->flag_read == 0 ): ?>
-									<i class="icon-remove"></i>
+									<img src="<?=base_url()?>assets/img/icon-cancel.png">
 								<?php endif; ?>
 							</td>
 							<td>
 								<?php if($f->flag_insert == 1 ): ?>
-									<i class="icon-ok"></i>
+									<img src="<?=base_url()?>assets/img/icon-ok.png">
 								<?php elseif($f->flag_insert == 0 ): ?>
-									<i class="icon-remove"></i>
+									<img src="<?=base_url()?>assets/img/icon-cancel.png">
 								<?php endif; ?>
 							</td>
 							<td>
 								<?php if($f->flag_update == 1 ): ?>
-									<i class="icon-ok"></i>
+									<img src="<?=base_url()?>assets/img/icon-ok.png">
 								<?php elseif($f->flag_update == 0 ): ?>
-									<i class="icon-remove"></i>
+									<img src="<?=base_url()?>assets/img/icon-cancel.png">
 								<?php endif; ?>
 							</td>
 							<td>
 								<?php if($f->flag_delete == 1 ): ?>
-									<i class="icon-ok"></i>
+									<img src="<?=base_url()?>assets/img/icon-ok.png">
 								<?php elseif($f->flag_delete == 0 ): ?>
-									<i class="icon-remove"></i>
+									<img src="<?=base_url()?>assets/img/icon-cancel.png">
 								<?php endif; ?>
 							</td>
 							<td>

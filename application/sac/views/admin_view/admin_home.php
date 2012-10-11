@@ -1,6 +1,5 @@
 <?=$this->load->view('default/_header_admin')?>
 <div class="span16">
-	<div class="page-header"><h2>Dashboard</h2></div>
 	<div class="row-fluid">
 		<div class="span12">
 			<div class="page-header linea_roja"><h3>Accesos Directos</h3></div>

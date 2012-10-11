@@ -86,3 +86,7 @@ label.error {
   font-size: 24px;
   line-height: 25px;
 }
+
+.result-header{
+  border-bottom: 1px solid #EEE;
+}
