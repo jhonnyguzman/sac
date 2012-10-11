@@ -37,10 +37,10 @@
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="habilitado"><?=$this->config->item('habilitado')?>:</label>
-			<span class="formwrapper">
+			<div class="controls">
 	        	<input type="radio" name="habilitado" id='habilitado' value='1' <?php if ($perfiles->habilitado=="1") { echo "checked='checked'"; } ?> /> Habilitado &nbsp;&nbsp;
 	        	<input type="radio" name="habilitado" id='habilitado' value='0' <?php if ($perfiles->habilitado=="0") { echo "checked='checked'"; } ?> /> No Habilitado
-        	</span>
+        	</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="created_at"><?=$this->config->item('created_at')?>:</label>
@@ -57,7 +57,7 @@
 		
 		<div class="form-actions">
 	    	<a href="<?=base_url()?>perfiles_controller/index" class="btn" >Cancelar</a>
-	    	<button type="submit" class="submit radius2">Modificar</button>
+	    	<button type="submit" class="btn btn-primary">Guardar</button>
 	    </div>
 
 	</form>

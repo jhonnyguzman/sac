@@ -1111,7 +1111,7 @@ class CI_Form_validation {
 	 */
 	public function alpha_numeric($str)
 	{
-		return ( ! preg_match("/^([a-zñáéíóú0-9_.()º%,#@\/\-\+\s])+$/i", $str)) ? FALSE : TRUE;
+		return ( ! preg_match("/^([a-zA-Zñáéíóú0-9_.()º°%,#@\/\-\+\s])+$/i", $str)) ? FALSE : TRUE;
 	}
 
 	// --------------------------------------------------------------------

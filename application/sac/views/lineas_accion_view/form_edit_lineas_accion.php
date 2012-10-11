@@ -15,7 +15,7 @@
 		<div class="control-group">
 			<label class="control-label" for="descripcion"><?=$this->config->item('descripcion')?>:</label>
 			<div class="controls">
-				<textarea name="descripcion" id="descripcion"><?=$lineas_accion->descripcion?></textarea>
+				<textarea name="descripcion" id="descripcion"  rows="8"><?=$lineas_accion->descripcion?></textarea>
 			</div>
 		</div>
 		<div class="control-group">

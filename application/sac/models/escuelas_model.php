@@ -128,9 +128,12 @@ class Escuelas_Model extends CI_Model {
 		if(isset($options['sortBy']) && isset($options['sortDirection']))
 			$this->db->order_by($options['sortBy'],$options['sortDirection']);
 
-		$this->db->select("e.*, d.nombre as departamento_nombre");
+		$this->db->select("e.*, d.nombre as departamento_nombre, l.nombre as localidad_nombre, di.apellido as director_apellido, di.nombre as director_nombre");
 		$this->db->from("escuelas as e");
 		$this->db->join("departamentos as d","d.id = e.departamento_id");
+		$this->db->join("localidades as l","l.id = e.localidad_id");
+		$this->db->join("directores as di","di.id = e.director_id");
+		
 		$query = $this->db->get();
 
 		if(isset($options['count'])) return $query->num_rows();
@@ -171,8 +174,12 @@ class Escuelas_Model extends CI_Model {
 		$fields[]='email';
 		$fields[]='habilitado';
 		$fields[]='localidad_id';
+		$fields[]='localidad_nombre';
 		$fields[]='departamento_id';
+		$fields[]='departamento_nombre';
 		$fields[]='director_id';
+		$fields[]='director_apellido';
+		$fields[]='director_nombre';
 		$fields[]='created_at';
 		$fields[]='updated_at';
 		return $fields;

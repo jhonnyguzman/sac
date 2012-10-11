@@ -156,29 +156,26 @@ function getMeses(url, mes_selected, select1, select2)
 function getMesesConsultas(url, mes_selected, select1, select2)
 {
     var options = '';
-    var a = $("#"+select1).val().split("-");
-    if(a[0] != "undefined")
-    {
-        var url_f = url + a[1];
-        $.getJSON(url_f, function(data) {
-            $("#"+select2).find("option").remove();
-            if(data != 'none'){
-                options = options + "<option value='' >Todos</option>";
-                $.each(data, function(key, val) {
-                    if(mes_selected){
-                        if(mes_selected == val.id){
-                            options = options + "<option value='"+val.id+"' selected>"+ val.mes_descripcion +"</option>";
-                        }else{
-                            options = options + "<option value='"+val.id+"'>"+ val.mes_descripcion +"</option>";
-                        }
+    var url_f = url + $("#"+select1).val();
+    
+    $.getJSON(url_f, function(data) {
+        $("#"+select2).find("option").remove();
+        if(data != 'none'){
+            options = options + "<option value='' >Todos</option>";
+            $.each(data, function(key, val) {
+                if(mes_selected){
+                    if(mes_selected == val.id){
+                        options = options + "<option value='"+val.mes+"' selected>"+ val.mes_descripcion +"</option>";
                     }else{
-                        options = options + "<option value='"+val.id+"'>"+ val.mes_descripcion +"</option>";
+                        options = options + "<option value='"+val.mes+"'>"+ val.mes_descripcion +"</option>";
                     }
-                });
-                $("#"+select2).append(options);
-            }
-        });
-    }
+                }else{
+                    options = options + "<option value='"+val.mes+"'>"+ val.mes_descripcion +"</option>";
+                }
+            });
+            $("#"+select2).append(options);
+        }
+    });
 
 
 }

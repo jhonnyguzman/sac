@@ -35,7 +35,7 @@
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="#">Profile</a></li>
+              <li><a href="<?=base_url()?>usuarios_controller/changePassword/">Cambiar contraseña</a></li>
               <li class="divider"></li>
               <li><a href="<?=base_url()?>a/logout">Salir</a></li>
             </ul>

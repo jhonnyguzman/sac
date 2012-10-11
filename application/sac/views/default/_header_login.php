@@ -43,6 +43,6 @@
 
   <div class="container-fluid">
     <div class="row-fluid">
-      <div class="span16" id="contentFormLogin"><br><br>
+      <div class="span28" id="contentFormLogin"><br><br>
             
         

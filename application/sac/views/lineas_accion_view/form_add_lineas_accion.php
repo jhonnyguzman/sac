@@ -14,14 +14,14 @@
 		<div class="control-group">
 			<label class="control-label" for="descripcion"><?=$this->config->item('descripcion')?>:</label>
 			<div class="controls">
-				<textarea name="descripcion" id="descripcion"></textarea>
+				<textarea name="descripcion" id="descripcion"  rows="8"></textarea>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="habilitado"><?=$this->config->item('habilitado')?>:</label>
 			<div class="controls">
-				Si <input type='radio' name='habilitado' id='habilitado' value='1' />
-            	No <input type='radio' name='habilitado' id='habilitado' value='0' checked='checked' />
+				Si <input type='radio' name='habilitado' id='habilitado' value='1' checked/>
+            	No <input type='radio' name='habilitado' id='habilitado' value='0' />
 			</div>
 		</div>
 		<div class="control-group">

@@ -23,8 +23,12 @@
 			<label class="control-label" for="estado"><?=$this->config->item('estado')?>:</label>
 			<div class="controls">
 				<span class="formwrapper">
-					<?php foreach($estados as $f): ?>
-						<?=$f->descripcion?><input type="radio" name="estado" value="<?=$f->id?>" checked>
+					<?php foreach($estados as $key => $f): ?>
+						<?php if($key == 0): ?>
+							<?=$f->descripcion?><input type="radio" name="estado" value="<?=$f->id?>" checked>
+						<?php else: ?>
+							<?=$f->descripcion?><input type="radio" name="estado" value="<?=$f->id?>" >
+						<?php endif; ?>
 					<?php endforeach; ?>
 				</span>
 			</div>

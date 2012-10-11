@@ -83,7 +83,7 @@
 		<div class="form-actions">
 	    	<a href="<?=base_url()?>usuarios_controller/index" class="btn" >Cancelar</a>
 	    	<button type="submit" class="btn btn-primary" >Guardar</button>
-	    </p>
+	    </div>
 	</form>
 
 </div><!--/span10-->

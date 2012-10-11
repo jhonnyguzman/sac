@@ -12,12 +12,9 @@
 		</div>		
 	<?php endif; ?>
 	<form action="<?=base_url()?>usuarios_controller/edit_c/<?=$usuarios->id?>" method="post" name="formEditusuarios" id="formEditusuarios" class="form-horizontal">
-		<div class="control-group">
-			<label class="control-label" for="id"><?=$this->config->item('id')?>:</label>
-			<div class="controls">
-				<input type="text" value="<?=$usuarios->id?>" name="id" id="id"  readonly="readonly" />
-			</div>
-		</div>
+		
+		<input type="hidden" value="<?=$usuarios->id?>" name="id" id="id"  readonly="readonly" />
+		
 		<div class="control-group">
 			<label class="control-label" for="username"><?=$this->config->item('username')?>:</label>
 			<div class="controls">
@@ -104,7 +101,7 @@
 		<div class="form-actions">
 	    	<a href="<?=base_url()?>usuarios_controller/index" class="btn" >Cancelar</a>
 	    	<button type="submit" class="btn btn-primary" >Guardar</button>
-	    </p>
+	    </div>
 
 </div><!--/span10-->
 

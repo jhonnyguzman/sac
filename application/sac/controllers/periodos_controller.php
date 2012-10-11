@@ -14,6 +14,7 @@ class Periodos_Controller extends CI_Controller {
 		parent::__construct();
 		if($this->session->userdata('logged_in') == true) { 
 			$this->load->model('periodos_model');
+			$this->load->model('lineas_periodos_model');
 			$this->config->load('periodos_settings');
 			$data['flags'] = $this->basicauth->getPermissions('periodos');
 			$this->flagR = $data['flags']['flag-read'];
@@ -71,8 +72,14 @@ class Periodos_Controller extends CI_Controller {
 			$id_periodos = $this->periodos_model->add_m($data_periodos);
 			if($id_periodos){
 				if($this->periodos_model->cambiarEstado_m($id_periodos)){
-					$this->session->set_flashdata('flashConfirm', $this->config->item('periodos_flash_add_message')); 
-					redirect('periodos_controller','location');
+					if($this->cargarLineasPeriodos($id_periodos))
+					{
+						$this->session->set_flashdata('flashConfirm', $this->config->item('periodos_flash_add_message')); 
+						redirect('periodos_controller','location');
+					}else{
+						$this->session->set_flashdata('flashError', $this->config->item('periodos_flash_error_change_state_message')); 
+						redirect('periodos_controller','location');
+					}
 				}else{
 					$this->session->set_flashdata('flashError', $this->config->item('periodos_flash_error_change_state_message')); 
 					redirect('periodos_controller','location');
@@ -204,4 +211,35 @@ class Periodos_Controller extends CI_Controller {
 
 	}
 
-}
+
+
+	public function cargarLineasPeriodos($periodo_id)
+	{
+		$periodo = $this->periodos_model->get_m(array('id' => $periodo_id));
+		if($periodo){
+			$meses = $this->basicrud->calcularMeses($periodo[0]->fecha_inicio_default, $periodo[0]->fecha_fin_default);
+			for($i=0; $i<count($meses); $i++){
+				$data['periodo_id'] = $periodo_id;
+				$data['mes'] = $meses[$i]['mes'];
+				$data['anio'] = $meses[$i]['anio'];
+				$data['updated_at'] = $this->basicrud->formatDateToBD();
+				$id_lineas_periodos = $this->lineas_periodos_model->add_m($data);
+			}
+			return true;
+		}
+
+		return false;
+
+	}
+
+
+	function getMeses($periodo_id)
+	{
+		$meses = $this->lineas_periodos_model->get_m(array('periodo_id' => $periodo_id));
+		if($meses){
+			echo json_encode($meses);
+		}else{
+			echo json_encode("none");
+		}
+	}
+}	

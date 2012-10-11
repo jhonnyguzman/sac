@@ -55,8 +55,8 @@
 		<div class="control-group">
 			<label class="control-label" for="habilitado"><?=$this->config->item('habilitado')?>:</label>
 			<div class="controls">
-				Si <input type='radio' name='habilitado' id='habilitado' value='1' />
-            	No <input type='radio' name='habilitado' id='habilitado' value='0' checked='checked' />
+				Si <input type='radio' name='habilitado' id='habilitado' value='1' checked/>
+            	No <input type='radio' name='habilitado' id='habilitado' value='0' />
 			</div>
 		</div>
 	

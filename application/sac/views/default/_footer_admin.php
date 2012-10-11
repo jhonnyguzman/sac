@@ -6,7 +6,7 @@
     </div>
 	
 	<footer>
-		<p>&copy; 2012 - Development by ElektraInformatica</p>
+		<p>&copy; 2012</p>
 	</footer>
 	
   </body>

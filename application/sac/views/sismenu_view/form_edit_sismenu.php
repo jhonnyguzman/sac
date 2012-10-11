@@ -12,7 +12,7 @@
 			
 		</div>		
 	<?php endif; ?>
-	<form action="<?=base_url()?>sismenu_controller/edit_c/<?=$sismenu->id?>" 
+	<form action="<?=base_url()?>sismenu_controller/edit_c/<?=$sismenu->id?>/" 
 		method="post" name="formEditsismenu" id="formEditsismenu" class="form-horizontal">
 		
 		<input type="hidden" value="<?=$sismenu->id?>" name="id" id="id"></input>
@@ -77,7 +77,7 @@
 
 		<div class="form-actions">
 	    	<a href="<?=base_url()?>sismenu_controller/index" class="btn" >Cancelar</a>
-	    	<button type="submit" class="submit radius2">Modificar</button>
+	    	<button type="submit" class="btn btn-primary" >Guardar</button>
 	    </div>
 
 	</form>
