@@ -21,15 +21,17 @@ class Consultas_Model extends CI_Model {
 	{
 		//code here
 		if(isset($options['docente_id']))
-			$this->db->where('lad.docente_id', $options['docente_id']);
+			$this->db->where('d.id', $options['docente_id']);
 		if(isset($options['docente_dni']))
 			$this->db->where('d.dni', $options['docente_dni']);
 		if(isset($options['escuela_id']))
 			$this->db->where('pe.escuelas_id', $options['escuela_id']);
 		if(isset($options['periodo_id']))
 			$this->db->where('p.id', $options['periodo_id']);
-		if(isset($options['mes']))
-			$this->db->where('lpe.mes', $options['mes']);
+		if(isset($options['mes_desde']))
+			$this->db->where('lpe.mes >=', $options['mes_desde']);
+		if(isset($options['mes_hasta']))
+			$this->db->where('lpe.mes <=', $options['mes_hasta']);
 		if(isset($options['circuito_id']))
 			$this->db->where('dep.circuito_id', $options['circuito_id']);
 		
@@ -118,8 +120,10 @@ class Consultas_Model extends CI_Model {
 			$this->db->where('pe.escuelas_id', $options['escuela_id']);
 		if(isset($options['periodo_id']))
 			$this->db->where('p.id', $options['periodo_id']);
-		if(isset($options['mes']))
-			$this->db->where('lpe.mes', $options['mes']);
+		if(isset($options['mes_desde']))
+			$this->db->where('lpe.mes >=', $options['mes_desde']);
+		if(isset($options['mes_hasta']))
+			$this->db->where('lpe.mes <=', $options['mes_hasta']);
 		if(isset($options['horas_restantes'])){
 			if($options['horas_restantes'] == 1) // escuelas que han utilizado la cantidad maxima de sus horas
 				$this->db->where('lpe.horas_restantes', 0);
@@ -220,6 +224,7 @@ class Consultas_Model extends CI_Model {
 		$fields[]='docente_apellido';
 		$fields[]='docente_nombre';
 		$fields[]='docente';
+		$fields[]='docente_id';
 		$fields[]='docente_dni';
 		$fields[]='perfil_nombre';
 		$fields[]='linea_accion_nombre';
@@ -234,6 +239,9 @@ class Consultas_Model extends CI_Model {
 		
 		$fields[]='periodo_fecha_inicio';
 		$fields[]='periodo_fecha_fin';
+
+		$fields[]='mes_desde';
+		$fields[]='mes_hasta';
 		
 		return $fields;
 

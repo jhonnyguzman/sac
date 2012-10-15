@@ -28,7 +28,8 @@ class Access_Hook {
 			'lineas_accion_escuelas_controller',
 			'docentes_titulos_controller',
 			'lineas_periodos_controller',
-			'consultas_controller');
+			'consultas_controller',
+			'alertas_controller');
 		if($CI->session->userdata('logged_in') == true && $CI->router->method == 'login') redirect('admin','location');
 		if($CI->session->userdata('logged_in') != true && $CI->router->method != 'login' && in_array($CI->router->class, $privatecontrollers))
 		{

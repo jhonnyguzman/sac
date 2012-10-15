@@ -29,7 +29,6 @@ $config['escuela_nombre']='Escuela';
 $config['localidad_nombre']='Localidad';
 $config['departamento_nombre']='Dpto.';
 $config['circuito_nombre']='Circuito';
-$config['docente_id']='Docente';
 $config['docente']='Docente';
 $config['docente_apellido']='Docente';
 $config['docente_nombre']='Docente';
@@ -38,16 +37,14 @@ $config['perfil_nombre']='Perfil';
 $config['linea_accion_nombre']='Linea de acción';
 $config['linea_accion_docente_cantidad_horas']='Horas Asignadas';
 
-$config['mes_desde']='';
-$config['mes_hasta']='';
+
 /* Config config for search */
 
 $config['search_by_docente_id']= 1;
 $config['search_by_docente_dni']= 1;
 $config['search_by_escuela_id']= 1;
 $config['search_by_periodo_id']= 1;
-$config['search_by_mes_desde']= 1;
-$config['search_by_mes_hasta']= 1;
+$config['search_by_mes']= 1;
 $config['search_by_circuito_id']= 1;
 $config['search_by_horas_restantes']= 1;
 

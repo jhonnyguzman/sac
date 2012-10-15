@@ -3,12 +3,6 @@
 
 class Consultas_Controller extends CI_Controller {
 
-	private $flagR;
-	private $flagI;
-	private $flagU;
-	private $flagD;
-	private $flags;
-
 	function __construct()
 	{
 		parent::__construct();
@@ -30,9 +24,6 @@ class Consultas_Controller extends CI_Controller {
 		$data['docentes'] = $this->docentes_model->get_m(array('habilitado' => 1));
 		$data['circuitos'] = $this->circuitos_model->get_m(array('habilitado' => 1));
 		$data['escuelas'] = $this->escuelas_model->get_m(array('habilitado' => 1));
-		//$data['periodo_escuela_activo'] = $this->periodos_escuelas_model->get_m(array('estado' => 3, 'limit' => 1, 'offset' => 0)); //periodo activo
-		//$data['periodos_escuela_historicos'] = $this->getPeriodosHistoricosUnicos($this->periodos_escuelas_model->get_m(array('estado' => 4))); //periodo historicos 
-
 		$data['periodo_activo'] = $this->periodos_model->get_m(array('estado' => 3, 'limit' => 1, 'offset' => 0)); //periodo activo
 		$data['periodos_historicos'] = $this->periodos_model->get_m(array('estado' => 4)); //periodo historicos 
 
@@ -41,7 +32,7 @@ class Consultas_Controller extends CI_Controller {
 	}
 
 
-	function getPeriodosHistoricosUnicos($periodos_escuela_historicos = array())
+	/*function getPeriodosHistoricosUnicos($periodos_escuela_historicos = array())
 	{
 
 		$array1 = array();$resultado = array();$flag=false;
@@ -61,7 +52,7 @@ class Consultas_Controller extends CI_Controller {
 		}
 
 		return $resultado;
-	}
+	}*/
 
 
 	/**

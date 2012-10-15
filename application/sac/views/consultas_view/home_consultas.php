@@ -19,7 +19,7 @@
 						  				<option value="<?=$f->id?>"><?=$f->apellido." ".$f->nombre?></option>
 						  			<?php endforeach; ?>
 						  		</select>
-							  <button class="btn" type="button"  onClick="searchDataCuston('result-list')">Buscar</button>
+							  <button class="btn" type="submit" >Buscar</button>
 							  <button class="btn" type="button" onClick="$('.extraSearch').toggle();">Opciones</button>	
 						</div>
 					</div>
@@ -58,7 +58,8 @@
 						<div class="control-group">
 							<label class="control-label" for="mes"><strong>Mes:</strong></label>
 						 	<div class="controls">
-						  		<select id="mes" name="mes"  class="span8"></select>
+						  		<select id="mes_desde" name="mes_desde"  class="span8"></select>&nbsp;Hasta:
+						  		<select id="mes_hasta" name="mes_hasta"  class="span8"></select>
 						  	</div>
 					  	</div>
 					  	<div class="control-group">
@@ -111,47 +112,72 @@
 
 
 <script type="text/javascript">
+
     $(document).ready(function(){ 
-        getMesesConsultas("<?=base_url()?>periodos_controller/getMeses/","","periodo_id","mes");
+        getMesesConsultas("<?=base_url()?>periodos_controller/getMeses/","","periodo_id","mes_desde","mes_hasta");
         $("#periodo_id").change(function(){
-        	getMesesConsultas("<?=base_url()?>periodos_controller/getMeses/","","periodo_id","mes");
+        	getMesesConsultas("<?=base_url()?>periodos_controller/getMeses/","","periodo_id","mes_desde","mes_hasta");
         });
 
         $("#btnUncheked").click(function(){
         	$("input:radio[name=horas_restantes]").attr("checked",false);
         });
-    });
 
-    
+
+        $('#formSearch').validate({
+	    	submitHandler: function(form) {
+			  searchDataCuston("result-list");
+			},
+		    rules: {
+		      docente_dni: {
+		      	digits: true,
+		      	minlength: 8,
+		      	maxlength: 8
+		      },
+		      mes_desde: {
+		      	compararMeses: ["#mes_desde","#mes_hasta"]
+		      },
+		      mes_hasta:{
+		      	compararMeses: ["#mes_desde","#mes_hasta"]
+		      }
+		    },
+		    highlight: function(label) {
+		    	$(label).closest('.control-group').addClass('error');
+		    },
+		    success: function(label) {
+		    	label
+		    		
+		    		.closest('.control-group').removeClass('error');
+		    }
+	   });
+
+    });
 
     function searchDataCuston(loader)
 	{   
-		
 		var check = $('input:radio[name=horas_restantes]:checked');
    	  	if(check.val()) {  
-          
-		   		$.ajax({
-			        type: 'POST',
-			        url: '<?=base_url()?>consultas_controller/searchHorasEscuelas_c/',
-			        data: $("#formSearch").serialize(),	
-			        success: function(data) {
-			        		$("#"+loader).html(data);
-			        }
-		    	});         
-		       
-        } else { 
-			
-		   		$.ajax({
-			        type: 'POST',
-			        url: $("#formSearch").attr('action'),
-			        data: $("#formSearch").serialize(),	
-			        success: function(data) {
-			        		$("#"+loader).html(data);
-			        }
-		    	});         
-		      
+	   		$.ajax({
+		        type: 'POST',
+		        url: '<?=base_url()?>consultas_controller/searchHorasEscuelas_c/',
+		        data: $("#formSearch").serialize(),	
+		        success: function(data) {
+		        		$("#"+loader).html(data);
+		        }
+	    	});               
+        } else { 	
+	   		$.ajax({
+		        type: 'POST',
+		        url: $("#formSearch").attr('action'),
+		        data: $("#formSearch").serialize(),	
+		        success: function(data) {
+		        		$("#"+loader).html(data);
+		        }
+	    	});         
 		}	  
 	}
+
+    
 </script>
 
 
