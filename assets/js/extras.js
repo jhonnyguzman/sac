@@ -153,15 +153,17 @@ function getMeses(url, mes_selected, select1, select2)
 }
 
 
-function getMesesConsultas(url, mes_selected, select1, select2)
+function getMesesConsultas(url, mes_selected, select1, select2, select3)
 {
     var options = '';
     var url_f = url + $("#"+select1).val();
     
     $.getJSON(url_f, function(data) {
         $("#"+select2).find("option").remove();
+        if(select3)
+            $("#"+select3).find("option").remove();
+        
         if(data != 'none'){
-            options = options + "<option value='' >Todos</option>";
             $.each(data, function(key, val) {
                 if(mes_selected){
                     if(mes_selected == val.id){
@@ -174,6 +176,8 @@ function getMesesConsultas(url, mes_selected, select1, select2)
                 }
             });
             $("#"+select2).append(options);
+            if(select3)
+                $("#"+select3).append(options);
         }
     });
 

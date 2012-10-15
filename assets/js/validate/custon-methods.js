@@ -19,3 +19,13 @@ jQuery.validator.addMethod(
 	}, 
 	jQuery.validator.messages.dateITA
 );
+
+jQuery.validator.addMethod("compararMeses", function(value, element, params) {
+  	var check = true;
+
+  	if($(params[0]).val() > $(params[1]).val()){
+  		check  = false; 
+  	}
+  	
+  	return this.optional(element) || check; 
+}, "Mes Desde debe ser menor que Mes Hasta");

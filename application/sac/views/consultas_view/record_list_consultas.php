@@ -24,7 +24,7 @@
 				<th>Resolución</th>
 				<th>Costo/Hora</th>
 				<th>Docente</th>
-				<th>DNI</th>
+				<th>D.N.I.</th>
 				<th>Perfil</th>
 				<th>Linea de acción</th>
 				<th>Horas Asignadas</th>

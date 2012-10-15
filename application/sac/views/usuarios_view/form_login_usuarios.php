@@ -14,7 +14,8 @@
 		    <label class="control-label" for="password">Contraseña</label>
 		    <div class="controls">
 		    	<div class="input-prepend">
-		      		<span class="add-on"><i class="icon-briefcase"></i></span><input class="span12" name="password" id="password" type="text" placeholder="Contraseña">
+		      		<span class="add-on"><i class="icon-briefcase"></i></span>
+		      		<input class="span12" name="password" id="password" type="password" placeholder="Contraseña">
 		      	</div>
 		    </div>
 		  </div>
