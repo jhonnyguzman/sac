@@ -45,7 +45,7 @@ $config['pag_perpage']= 10;
 $config['flash_add_message']= 'Registro agregado correctamente.';
 $config['flash_edit_message']= 'Registro editado correctamente.';
 $config['flash_delete_message']= 'Registro eliminado correctamente';
-$config['flash_error_delete_message']= 'The perfiles hasn\'t been deletedd';
+$config['flash_error_delete_message']= 'Error al eliminar registro.';
 $config['flash_error_message']= 'A database error has occured, please contact your administrator.';
 
 /* End of file settings.php */

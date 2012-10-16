@@ -51,10 +51,10 @@ $config['pag_perpage']= 10;
 
 /* Config flash messages */
 
-$config['lineas_accion_docentes_flash_add_message']= 'The lineas_accion_docentes has been successfully added.';
-$config['lineas_accion_docentes_flash_edit_message']= 'The lineas_accion_docentes has been successfully updated.';
-$config['lineas_accion_docentes_flash_delete_message']= 'The lineas_accion_docentes has been successfully deleted';
-$config['lineas_accion_docentes_flash_error_delete_message']= 'The lineas_accion_docentes hasn\'t been deletedd';
+$config['lineas_accion_docentes_flash_add_message']= 'Registro agregado correctamente.';
+$config['lineas_accion_docentes_flash_edit_message']= 'Registro actualizado correctamente.';
+$config['lineas_accion_docentes_flash_delete_message']= 'Registro eliminado correctamente.';
+$config['lineas_accion_docentes_flash_error_delete_message']= 'Error al eliminar registro.';
 $config['lineas_accion_docentes_flash_error_message']= 'A database error has occured, please contact your administrator.';
 
 /* End of file lineas_accion_docentes_settings.php */

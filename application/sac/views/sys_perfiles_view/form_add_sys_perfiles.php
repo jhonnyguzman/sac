@@ -1,6 +1,6 @@
 <?=$this->load->view('default/_header_admin')?>
 
-<div class="span10">
+<div class="span28">
 	<div class="page-header">
 	  <h1><?=$title_header?></h1>
 	</div>
@@ -36,6 +36,6 @@
 
 	</form>
 
-</div><!--/span10-->
+</div><!--/span28-->
 
 <?=$this->load->view('default/_footer_admin')?>

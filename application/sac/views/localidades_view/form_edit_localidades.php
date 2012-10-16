@@ -16,7 +16,7 @@
 	        </div>
 	    </div>
 	    <div class="control-group">
-	    	<label class="control-label" for="habilitado"><?=$this->config->item('habilitado')?></label>
+	    	<label class="control-label" for="habilitado">Estado</label>
 	         <div class="controls">
 	        	<input type="radio" name="habilitado" id='habilitado' value='1' <?php if ($localidades->habilitado=="1") { echo "checked='checked'"; } ?> /> Habilitado &nbsp;&nbsp;
 	        	<input type="radio" name="habilitado" id='habilitado' value='0' <?php if ($localidades->habilitado=="0") { echo "checked='checked'"; } ?> /> No Habilitado

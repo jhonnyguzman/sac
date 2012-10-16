@@ -43,10 +43,10 @@ $config['pag_perpage']= 4;
 
 /* Config flash messages */
 
-$config['lineas_periodos_flash_add_message']= 'The lineas_periodos has been successfully added.';
-$config['lineas_periodos_flash_edit_message']= 'The lineas_periodos has been successfully updated.';
-$config['lineas_periodos_flash_delete_message']= 'The lineas_periodos has been successfully deleted';
-$config['lineas_periodos_flash_error_delete_message']= 'The lineas_periodos hasn\'t been deletedd';
+$config['lineas_periodos_flash_add_message']= 'Registro agregado correctamente.';
+$config['lineas_periodos_flash_edit_message']= 'Registro actualizado correctamente.';
+$config['lineas_periodos_flash_delete_message']= 'Registro eliminado correctamente.';
+$config['lineas_periodos_flash_error_delete_message']= 'Error al eliminar registro.';
 $config['lineas_periodos_flash_error_message']= 'A database error has occured, please contact your administrator.';
 
 /* End of file lineas_periodos_settings.php */

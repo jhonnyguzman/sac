@@ -42,7 +42,7 @@ $config['pag_perpage']= 4;
 $config['titulos_flash_add_message']= 'Registro agregado correctamente.';
 $config['titulos_flash_edit_message']= 'Registro editado correctamente.';
 $config['titulos_flash_delete_message']= 'Registro eliminado correctamente';
-$config['titulos_flash_error_delete_message']= 'The titulos hasn\'t been deletedd';
+$config['titulos_flash_error_delete_message']= 'Error al eliminar registro.';
 $config['titulos_flash_error_message']= 'A database error has occured, please contact your administrator.';
 
 /* End of file titulos_settings.php */

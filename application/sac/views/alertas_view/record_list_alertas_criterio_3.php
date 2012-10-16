@@ -30,7 +30,6 @@
 		</div>
 	<?php endif; ?>
 
-	
 	<script>
 		$(document).ready(function(){ 
 			setPagination('pag-alertas','result-list'); 

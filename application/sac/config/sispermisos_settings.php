@@ -53,10 +53,10 @@ $config['pag_perpage']= 20;
 
 /* Config flash messages */
 
-$config['flash_add_message']= 'The sispermisos has been successfully added.';
-$config['flash_edit_message']= 'The sispermisos has been successfully updated.';
-$config['flash_delete_message']= 'The sispermisos has been successfully deleted';
-$config['flash_error_delete_message']= 'The sispermisos hasn\'t been deletedd';
+$config['flash_add_message']= 'Registro agregado correctamente.';
+$config['flash_edit_message']= 'Registro actualizado correctamente.';
+$config['flash_delete_message']= 'Registro eliminado correctamente.';
+$config['flash_error_delete_message']= 'Error al eliminar registro.';
 $config['flash_error_message']= 'A database error has occured, please contact your administrator.';
 
 /* End of file settings.php */

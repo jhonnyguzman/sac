@@ -45,10 +45,10 @@ $config['pag_perpage']= 4;
 
 /* Config flash messages */
 
-$config['perfiles_flash_add_message']= 'The perfiles has been successfully added.';
-$config['perfiles_flash_edit_message']= 'The perfiles has been successfully updated.';
-$config['perfiles_flash_delete_message']= 'The perfiles has been successfully deleted';
-$config['perfiles_flash_error_delete_message']= 'The perfiles hasn\'t been deletedd';
+$config['perfiles_flash_add_message']= 'Registro agregado correctamente.';
+$config['perfiles_flash_edit_message']= 'Registro actualizado correctamente.';
+$config['perfiles_flash_delete_message']= 'Registro eliminado correctamente.';
+$config['perfiles_flash_error_delete_message']= 'Error al eliminar registro.';
 $config['perfiles_flash_error_message']= 'A database error has occured, please contact your administrator.';
 
 /* End of file perfiles_settings.php */

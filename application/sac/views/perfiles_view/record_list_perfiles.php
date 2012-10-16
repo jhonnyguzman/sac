@@ -47,6 +47,6 @@
 
 <script>
 	$(document).ready(function(){ 
-		setPagination('pag-perfiles','result-list'); 
+		setPagination('pag-perfiles','contentsyspermisos'); 
 	});
 </script>

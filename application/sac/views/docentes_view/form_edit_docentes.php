@@ -57,10 +57,10 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="habilitado"><?=$this->config->item('habilitado')?>:</label>
+			<label class="control-label" for="habilitado">Estado:</label>
 			<div class="controls">
-				Si <input type='radio' name='habilitado' id='habilitado' value='1' <?php if ($docentes->habilitado=="1") { echo "checked='checked'"; } ?> />
-            	No <input type='radio' name='habilitado' id='habilitado' value='0' <?php if ($docentes->habilitado=="0") { echo "checked='checked'"; } ?> />
+				Habilitado <input type='radio' name='habilitado' id='habilitado' value='1' <?php if ($docentes->habilitado=="1") { echo "checked='checked'"; } ?> />
+            	No Habilitado <input type='radio' name='habilitado' id='habilitado' value='0' <?php if ($docentes->habilitado=="0") { echo "checked='checked'"; } ?> />
 			</div>
 		</div>
 		

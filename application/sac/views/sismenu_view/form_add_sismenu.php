@@ -22,7 +22,6 @@
 		<div class="control-group">
 			<label class="control-label" for="estado"><?=$this->config->item('estado')?>:</label>
 			<div class="controls">
-				<span class="formwrapper">
 					<?php foreach($estados as $key => $f): ?>
 						<?php if($key == 0): ?>
 							<?=$f->descripcion?><input type="radio" name="estado" value="<?=$f->id?>" checked>
@@ -30,7 +29,6 @@
 							<?=$f->descripcion?><input type="radio" name="estado" value="<?=$f->id?>" >
 						<?php endif; ?>
 					<?php endforeach; ?>
-				</span>
 			</div>
 		</div>
 		<div class="control-group">

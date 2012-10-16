@@ -51,7 +51,7 @@ $config['pag_perpage']= 10;
 $config['periodos_flash_add_message']= 'Registro agregado correctamente.';
 $config['periodos_flash_edit_message']= 'Registro editado correctamente.';
 $config['periodos_flash_delete_message']= 'Registro eliminado correctamente';
-$config['periodos_flash_error_delete_message']= 'The periodos hasn\'t been deletedd';
+$config['periodos_flash_error_delete_message']= 'Error al eliminar registro.';
 $config['periodos_flash_error_change_state_message']= 'El periodo se dio de alta  correctamente pero nose pudo 
 														cambiar el estado a historico de los periodos existentes previamente';
 
