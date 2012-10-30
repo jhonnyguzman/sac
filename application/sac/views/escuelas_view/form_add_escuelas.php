@@ -15,7 +15,8 @@
 		<div class="control-group">
 			<label class="control-label" for="cue"><?=$this->config->item('cue')?>:</label>
 			<div class="controls">
-				<input type="text" name="cue" id="cue" value="<?=set_value('cue')?>"></input>
+				<input type="text" name="cue" id="cue" value="<?=set_value('cue')?>"></input><span class="help-inline">-</span>
+				<input type="text" name="cue_anexo" id="cue_anexo" value="00"  maxlength="2" size="2" class="input-mini"></input>
 			</div>
 		</div>
 		<div class="control-group">

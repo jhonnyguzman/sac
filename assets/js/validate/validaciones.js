@@ -159,9 +159,14 @@ $(document).ready(function(){
 	   $('#formAddescuelas').validate({
 		    rules: {
 		      cue: {
-		        min: 900000000,
-		        max: 999999999,
+		        min: 9000000,
+		        max: 9999999,
 		        digits:true,
+		        required: true
+		      },
+		      cue_anexo: {
+		        digits:true,
+		        minlength:2,
 		        required: true
 		      },
 		      nombre: {
@@ -182,6 +187,16 @@ $(document).ready(function(){
 		        email: true
 		      }
 		    },
+		    groups: {
+			    cue_general: "cue cue_anexo"
+			},
+			errorPlacement: function(error, element) {
+			     if (element.attr("name") == "cue" 
+			                 || element.attr("name") == "cue_anexo" )
+			       error.insertAfter("#cue_anexo");
+			     else
+			       error.insertAfter(element);
+			},
 		    highlight: function(label) {
 		    	$(label).closest('.control-group').addClass('error');
 		    },
@@ -196,9 +211,14 @@ $(document).ready(function(){
 	   $('#formEditescuelas').validate({
 		    rules: {
 		      cue: {
-		        min: 900000000,
-		        max: 999999999,
+		        min: 9000000,
+		        max: 9999999,
 		        digits:true,
+		        required: true
+		      },
+		      cue_anexo: {
+		        digits:true,
+		        minlength:2,
 		        required: true
 		      },
 		      nombre: {
@@ -219,6 +239,16 @@ $(document).ready(function(){
 		        email: true
 		      }
 		    },
+		    groups: {
+			    cue_general: "cue cue_anexo"
+			},
+			errorPlacement: function(error, element) {
+			     if (element.attr("name") == "cue" 
+			                 || element.attr("name") == "cue_anexo" )
+			       error.insertAfter("#cue_anexo");
+			     else
+			       error.insertAfter(element);
+			},
 		    highlight: function(label) {
 		    	$(label).closest('.control-group').addClass('error');
 		    },

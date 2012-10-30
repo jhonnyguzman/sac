@@ -18,7 +18,8 @@
 		<div class="control-group">
 			<label class="control-label" for="cue"><?=$this->config->item('cue')?>:</label>
 			<div class="controls">
-				<input type="text" value="<?=$escuelas->cue?>" name="cue" id="cue" readonly></input>
+				<input type="text" value="<?=substr($escuelas->cue,0,7)?>" name="cue" id="cue"></input>
+				<input type="text" name="cue_anexo" id="cue_anexo" value="<?=substr($escuelas->cue,-2)?>"  maxlength="2" size="2" class="input-mini"></input>
 			</div>
 		</div>
 		<div class="control-group">

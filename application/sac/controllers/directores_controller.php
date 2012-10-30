@@ -56,8 +56,8 @@ class Directores_Controller extends CI_Controller {
 		$data = array();
 		$data['title_header'] = $this->config->item('recordAddTitle');
 
-		$this->form_validation->set_rules('dni', 'dni', 'trim|required|integer|callback_checkDni|xss_clean');
-		$this->form_validation->set_rules('apellido', 'apellido', 'trim|required|alpha_numeric|callback_checkDni|xss_clean');
+		$this->form_validation->set_rules('dni', 'D.N.I.', 'trim|required|integer|callback_checkDni|xss_clean');
+		$this->form_validation->set_rules('apellido', 'apellido', 'trim|required|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('nombre', 'nombre', 'trim|required|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('telefono', 'telefono', 'trim|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('email', 'email', 'trim|alpha_numeric|xss_clean');
@@ -108,9 +108,9 @@ class Directores_Controller extends CI_Controller {
 		$data['title_header'] = $this->config->item('recordEditTitle');
 		$data['directores'] = $this->directores_model->get_m(array('id' => $id),$flag=1);
 		$this->form_validation->set_rules('id', 'id', 'trim|integer|xss_clean');
-		$this->form_validation->set_rules('dni', 'dni', 'trim|integer|xss_clean');
-		$this->form_validation->set_rules('apellido', 'apellido', 'trim|alpha_numeric|xss_clean');
-		$this->form_validation->set_rules('nombre', 'nombre', 'trim|alpha_numeric|xss_clean');
+		$this->form_validation->set_rules('dni', 'D.N.I.', 'trim|required|integer|callback_checkDniEdit|xss_clean');
+		$this->form_validation->set_rules('apellido', 'apellido', 'trim|required|alpha_numeric|xss_clean');
+		$this->form_validation->set_rules('nombre', 'nombre', 'trim|required|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('telefono', 'telefono', 'trim|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('email', 'email', 'trim|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('habilitado', 'habilitado', 'trim|integer|xss_clean');
@@ -216,6 +216,18 @@ class Directores_Controller extends CI_Controller {
 		$director = $this->directores_model->get_m(array('dni' => $dni));
 		if(count($director) > 0){
 			$this->form_validation->set_message('checkDni','El DNI del director ingresado ya existe en el sistema.');
+			return false;
+		}else{
+			return true;
+		}
+	}
+
+
+	function checkDniEdit($dni)
+	{
+		$director = $this->directores_model->getExisteDni_m(array('id' => $this->input->post("id"), 'dni' => $dni));
+		if(count($director) > 0){
+			$this->form_validation->set_message('checkDniEdit','El DNI del director ingresado ya existe en el sistema.');
 			return false;
 		}else{
 			return true;

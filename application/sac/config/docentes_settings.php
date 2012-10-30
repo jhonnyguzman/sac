@@ -12,7 +12,7 @@ $config['accessTitle']='<div class="accessTitle"> No tienes permiso para realiza
 /* Config labels of the form fields */
 
 $config['id']='Id';
-$config['dni']='Dni';
+$config['dni']='D.N.I.';
 $config['apellido']='Apellido';
 $config['nombre']='Nombre';
 $config['telefono']='Teléfono';

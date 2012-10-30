@@ -225,8 +225,8 @@ class Usuarios_Controller extends CI_Controller {
 	public function changePassword()
 	{
 		$data['title_header'] = "Cambiar la Contraseña";
-		$this->form_validation->set_rules('password', 'password', 'trim|required|alpha_numeric|matches[passwordconf]|md5|xss_clean');
-		$this->form_validation->set_rules('passwordconf', 'passwordconf', 'trim|required|alpha_numeric|xss_clean');
+		$this->form_validation->set_rules('password', 'Contraseña', 'trim|required|alpha_numeric|matches[passwordconf]|md5|xss_clean');
+		$this->form_validation->set_rules('passwordconf', 'Repite Contraseña', 'trim|required|alpha_numeric|xss_clean');
 		
 		if($this->form_validation->run()){
 			$data_usuarios  = array();

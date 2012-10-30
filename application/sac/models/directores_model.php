@@ -138,6 +138,22 @@ class Directores_Model extends CI_Model {
 	}
 
 
+	function getExisteDni_m($options = array())
+	{
+		//code here
+		if(isset($options['id']))
+			$this->db->where_not_in('id', $options['id']);
+		if(isset($options['dni']))
+			$this->db->where('dni', $options['dni']);
+		
+		$query = $this->db->get("directores");
+
+		if($query->num_rows()>0){ 
+			return $query->result();
+		}
+	}
+
+
 	/**
 	 * This function getting all the fields of the table
 	 *

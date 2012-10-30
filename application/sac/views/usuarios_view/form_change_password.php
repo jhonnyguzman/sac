@@ -25,7 +25,7 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="passwordconf">Repite contraseña:</label>
+			<label class="control-label" for="passwordconf">Repite Contraseña:</label>
 			<div class="controls">
 				<input type="password" name="passwordconf" id="passwordconf" ></input>
 			</div>
