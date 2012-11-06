@@ -46,8 +46,10 @@
 		<div class="control-group">
 			<label class="control-label" for="habilitado">Estado:</label>
 			<div class="controls">
-				Habilitado <input type='radio' name='habilitado' id='habilitado' value='1' checked />
-            	No Habilitado <input type='radio' name='habilitado' id='habilitado' value='0' />
+				<select name="habilitado" id="habilitado">
+            		<option value="1" selected>Habilitado</option>
+            		<option value="0"> No habilitado</option>
+            	</select>
 			</div>
 		</div>
 		<div class="control-group">

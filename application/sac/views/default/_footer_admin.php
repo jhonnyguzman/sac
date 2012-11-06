@@ -6,7 +6,7 @@
     </div>
 	
 	<footer>
-		<p>&copy; 2012</p>
+		<p></p>
 	</footer>
 	
   </body>

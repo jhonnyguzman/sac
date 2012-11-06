@@ -84,7 +84,7 @@ class Consultas_Controller extends CI_Controller {
 		$data_search_pagination['count'] = true;
 		$data_search_consultas['limit'] = $this->config->item('pag_perpage');
 		$data_search_consultas['offset'] = $offset;
-		$data_search_consultas['sortBy'] = 'escuelas_id';
+		$data_search_consultas['sortBy'] = 'periodo_fecha_inicio';
 		$data_search_consultas['sortDirection'] = 'asc';
 
 		
@@ -128,7 +128,7 @@ class Consultas_Controller extends CI_Controller {
 		$data_search_pagination['count'] = true;
 		$data_search_consultas['limit'] = $this->config->item('pag_perpage');
 		$data_search_consultas['offset'] = $offset;
-		$data_search_consultas['sortBy'] = 'escuelas_id';
+		$data_search_consultas['sortBy'] = 'periodo_fecha_inicio';
 		$data_search_consultas['sortDirection'] = 'asc';
 
 		

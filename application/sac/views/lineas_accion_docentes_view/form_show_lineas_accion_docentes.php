@@ -28,7 +28,7 @@
         $("#contentModalFooter").append(a);
 
         $("#extraContentHeader").find(".extraContentHeaderP").remove();
-        var sp = $("<span class=\"extraContentHeaderP\"><br>Linea de acci&oacute;n:&nbsp;<strong><?=$linea_accion_escuela[0]->linea_accion_nombre?></strong>&nbsp;&nbsp;&nbsp;Mes:&nbsp;<strong><?=$linea_accion_escuela[0]->mes_descripcion?>&nbsp;del&nbsp;<?=$linea_accion_escuela[0]->anio?></strong></span>");
+        var sp = $("<span class=\"extraContentHeaderP\"><br>Linea de acci&oacute;n:&nbsp;<span class=\"label label-success\" id=\"lblDescripLineaAccion\"><?=$linea_accion_escuela[0]->linea_accion_nombre?></span>&nbsp;&nbsp;&nbsp;Mes:&nbsp;<strong><?=$linea_accion_escuela[0]->mes_descripcion?>&nbsp;del&nbsp;<?=$linea_accion_escuela[0]->anio?></strong></span>");
         $("#extraContentHeader").append(sp);
 	});
 </script>

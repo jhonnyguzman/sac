@@ -15,18 +15,23 @@
 				<th>Mes</th>
 				<th>Horas por mes</th>
 				<th>Horas restantes</th>
-				<th></th>
 			</tr>
 		</thead>
 		<tbodoy>
-			<?php foreach($lineas_periodos_escuelas as $f):?>
+			<?php $total = 0; foreach($lineas_periodos_escuelas as $f):?>
 				<tr>
 					<td><?=$f->anio?></td>
 					<td><?=$f->mes_descripcion?></td>
 					<td><?=$f->horas_por_mes?></td>
 					<td><?=$f->horas_restantes?></td>
 				</tr>
-			<?php endforeach; ?>
+			<?php $total+=$f->horas_restantes; endforeach; ?>
+			<tr class="success">
+				<td></td>
+				<td></td>
+				<td><strong>Total:</strong></td>
+				<td><strong><?=$total?></strong></td>
+			</tr>
 		</tbody>
 	</table>
 <?php else: ?>

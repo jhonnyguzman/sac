@@ -133,13 +133,13 @@
 		      	digits: true,
 		      	minlength: 8,
 		      	maxlength: 8
-		      },
-		      mes_desde: {
+		      }
+		      /*mes_desde: {
 		      	compararMeses: ["#mes_desde","#mes_hasta"]
 		      },
 		      mes_hasta:{
 		      	compararMeses: ["#mes_desde","#mes_hasta"]
-		      }
+		      }*/
 		    },
 		    highlight: function(label) {
 		    	$(label).closest('.control-group').addClass('error');

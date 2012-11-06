@@ -10,6 +10,7 @@
 
 	<input type="hidden" value="<?=$lineas_accion_docentes->id?>" name="id" id="id"></input>
 	<input type="hidden" value="<?=$lineas_accion_docentes->linea_accion_escuela_id?>" name="linea_accion_escuela_id" id="linea_accion_escuela_id"></input>
+	<input type="hidden" value="<?=$lineas_accion_docentes->fondo_comun_id?>" name="fondo_comun_id" id="fondo_comun_id"></input>
 	
 	<div class="control-group">
 		<h5><?=$this->config->item('docente_id')?>:</h5>

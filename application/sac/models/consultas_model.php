@@ -29,12 +29,13 @@ class Consultas_Model extends CI_Model {
 		if(isset($options['periodo_id']))
 			$this->db->where('p.id', $options['periodo_id']);
 		if(isset($options['mes_desde']))
-			$this->db->where('lpe.mes >=', $options['mes_desde']);
+			$this->db->where("UNIX_TIMESTAMP (STR_TO_DATE(CONCAT_WS('-',CAST(lpe.anio AS CHAR),CAST(lpe.mes AS CHAR),'01'),'%Y-%m-%d')) >= UNIX_TIMESTAMP(STR_TO_DATE(CONCAT('".$options['mes_desde']."','-01'),'%Y-%m-%d'))", NULL,FALSE);
 		if(isset($options['mes_hasta']))
-			$this->db->where('lpe.mes <=', $options['mes_hasta']);
+			$this->db->where("UNIX_TIMESTAMP (STR_TO_DATE(CONCAT_WS('-',CAST(lpe.anio AS CHAR),CAST(lpe.mes AS CHAR),'01'),'%Y-%m-%d')) <= UNIX_TIMESTAMP(STR_TO_DATE(CONCAT('".$options['mes_hasta']."','-01'),'%Y-%m-%d'))", NULL,FALSE);
 		if(isset($options['circuito_id']))
 			$this->db->where('dep.circuito_id', $options['circuito_id']);
 		
+
 
 		//limit / offset
 		if(isset($options['limit']) && isset($options['offset']))
@@ -121,14 +122,20 @@ class Consultas_Model extends CI_Model {
 		if(isset($options['periodo_id']))
 			$this->db->where('p.id', $options['periodo_id']);
 		if(isset($options['mes_desde']))
-			$this->db->where('lpe.mes >=', $options['mes_desde']);
+			$this->db->where("UNIX_TIMESTAMP (STR_TO_DATE(CONCAT_WS('-',CAST(lpe.anio AS CHAR),CAST(lpe.mes AS CHAR),'01'),'%Y-%m-%d')) >= UNIX_TIMESTAMP(STR_TO_DATE(CONCAT('".$options['mes_desde']."','-01'),'%Y-%m-%d'))", NULL,FALSE);
 		if(isset($options['mes_hasta']))
-			$this->db->where('lpe.mes <=', $options['mes_hasta']);
+			$this->db->where("UNIX_TIMESTAMP (STR_TO_DATE(CONCAT_WS('-',CAST(lpe.anio AS CHAR),CAST(lpe.mes AS CHAR),'01'),'%Y-%m-%d')) <= UNIX_TIMESTAMP(STR_TO_DATE(CONCAT('".$options['mes_hasta']."','-01'),'%Y-%m-%d'))", NULL,FALSE);
+
 		if(isset($options['horas_restantes'])){
 			if($options['horas_restantes'] == 1) // escuelas que han utilizado la cantidad maxima de sus horas
 				$this->db->where('lpe.horas_restantes', 0);
 			if($options['horas_restantes'] == 3) // escuelas que han utilizado menos de la cantidad maxima de sus horas
 				$this->db->where('lpe.horas_restantes < lpe.horas_por_mes', NULL, FALSE);
+			if($options['horas_restantes'] == 2) // Escuelas que han utilizado más de la cantidad máxima de sus horas.
+				$this->db->where("
+					(SELECT SUM(lad2.cantidad_horas) FROM lineas_accion_escuelas as lae2 
+				INNER JOIN lineas_accion_docentes as  lad2 ON lad2.linea_accion_escuela_id = lae2.id
+			WHERE lae2.linea_periodo_escuela_id = lpe.id) > lpe.horas_por_mes", NULL, FALSE);
 		}
 
 		if(isset($options['circuito_id']))
@@ -145,28 +152,54 @@ class Consultas_Model extends CI_Model {
 		if(isset($options['sortBy']) && isset($options['sortDirection']))
 			$this->db->order_by($options['sortBy'],$options['sortDirection']);
 
-		$this->db->select("
-			lpe.*,
-			pe.periodo_id,
-			pe.escuelas_id,
-			pe.matricula,
-			pe.resolucion,
-			pe.cantidad_horas,
-			lpe.horas_por_mes,
-			(lpe.horas_por_mes - lpe.horas_restantes) as horas_gastadas,
-			lpe.horas_restantes,
-			p.fecha_inicio as periodo_fecha_inicio,
-			p.fecha_fin as periodo_fecha_fin,
-			p.costo_hora as periodo_costo_hora,
-			lpe.mes as mes_descripcion,
-			e.nombre as escuela_nombre,
-			loc.nombre as localidad_nombre,
-			dep.nombre as departamento_nombre,
-			c.nombre as circuito_nombre
-			");
+		if($options['horas_restantes'] != 2)
+		{
+			$this->db->select("
+				lpe.*,
+				pe.periodo_id,
+				pe.escuelas_id,
+				pe.matricula,
+				pe.resolucion,
+				pe.cantidad_horas,
+				(lpe.horas_por_mes - lpe.horas_restantes) as horas_gastadas,
+				p.fecha_inicio as periodo_fecha_inicio,
+				p.fecha_fin as periodo_fecha_fin,
+				p.costo_hora as periodo_costo_hora,
+				lpe.mes as mes_descripcion,
+				e.nombre as escuela_nombre,
+				loc.nombre as localidad_nombre,
+				dep.nombre as departamento_nombre,
+				c.nombre as circuito_nombre
+				");
+		}else{
+
+			$this->db->select("
+				lpe.*,
+				pe.periodo_id,
+				pe.escuelas_id,
+				pe.matricula,
+				pe.resolucion,
+				pe.cantidad_horas,
+				
+				(SELECT SUM(lad2.cantidad_horas) FROM lineas_accion_escuelas as lae2 
+					INNER JOIN lineas_accion_docentes as  lad2 ON lad2.linea_accion_escuela_id = lae2.id
+				WHERE lae2.linea_periodo_escuela_id = lpe.id) as horas_gastadas,
+				
+				p.fecha_inicio as periodo_fecha_inicio,
+				p.fecha_fin as periodo_fecha_fin,
+				p.costo_hora as periodo_costo_hora,
+				lpe.mes as mes_descripcion,
+				e.nombre as escuela_nombre,
+				loc.nombre as localidad_nombre,
+				dep.nombre as departamento_nombre,
+				c.nombre as circuito_nombre
+				", FALSE);
+		}
+
 
 		$this->db->from("lineas_periodos_escuelas as lpe");
 		$this->db->join("periodos_escuelas as pe","pe.id = lpe.periodo_escuela_id");
+
 		$this->db->join("periodos as p","p.id = pe.periodo_id");
 		$this->db->join("escuelas as e","e.id = pe.escuelas_id");
 
@@ -191,7 +224,6 @@ class Consultas_Model extends CI_Model {
 		}
 
 	}
-
 
 
 	/**

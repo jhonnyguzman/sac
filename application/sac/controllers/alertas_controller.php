@@ -46,8 +46,13 @@ class Alertas_Controller extends CI_Controller {
 		{
 			if($this->input->post($field) != '') 
 			{
-				$data_search_alertas[$field] = $this->input->post($field);
-				$data_search_pagination[$field] = $this->input->post($field);
+				if($field == 'mes'){
+					$data_search_alertas[$field] = $this->getMes($this->input->post($field));
+					$data_search_pagination[$field] = $this->getMes($this->input->post($field));
+				}else{
+					$data_search_alertas[$field] = $this->input->post($field);
+					$data_search_pagination[$field] = $this->input->post($field);
+				}
 			}
 		}
 
@@ -89,8 +94,13 @@ class Alertas_Controller extends CI_Controller {
 		{
 			if($this->input->post($field) != '') 
 			{
-				$data_search_alertas[$field] = $this->input->post($field);
-				$data_search_pagination[$field] = $this->input->post($field);
+				if($field == 'mes'){
+					$data_search_alertas[$field] = $this->getMes($this->input->post($field));
+					$data_search_pagination[$field] = $this->getMes($this->input->post($field));
+				}else{
+					$data_search_alertas[$field] = $this->input->post($field);
+					$data_search_pagination[$field] = $this->input->post($field);
+				}
 			}
 		}
 
@@ -131,8 +141,13 @@ class Alertas_Controller extends CI_Controller {
 		{
 			if($this->input->post($field) != '') 
 			{
-				$data_search_alertas[$field] = $this->input->post($field);
-				$data_search_pagination[$field] = $this->input->post($field);
+				if($field == 'mes'){
+					$data_search_alertas[$field] = $this->getMes($this->input->post($field));
+					$data_search_pagination[$field] = $this->getMes($this->input->post($field));
+				}else{
+					$data_search_alertas[$field] = $this->input->post($field);
+					$data_search_pagination[$field] = $this->input->post($field);
+				}
 			}
 		}
 
@@ -149,5 +164,12 @@ class Alertas_Controller extends CI_Controller {
 
 		$this->load->view('alertas_view/record_list_alertas_criterio_3',$data);
 
+	}
+
+
+	private function getMes($aniomes)
+	{
+		$part1 = explode("-", $aniomes);
+		return $part1[1];
 	}
 }

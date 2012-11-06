@@ -172,6 +172,23 @@ class Periodos_escuelas_Model extends CI_Model {
 
 
 	/**
+	* Esta funcion obtiene el periodo con estado 'activo' el cual sera verificado
+	* si posee horas restantes sin usar para ser asignadas al fondo comun
+	*/
+	function getParaFondoComun($new_periodo_escuela_id, $escuelas_id)
+	{
+		$this->db->where('estado', 3); // estado 'activo'
+		$this->db->where('escuelas_id', $escuelas_id);
+		$this->db->where_not_in('id', $new_periodo_escuela_id);
+
+		$query = $this->db->get("periodos_escuelas");
+		if($query->num_rows()>0){ 
+			return $query->result();
+		}
+	}
+
+
+	/**
 	 * This function getting all the fields of the table
 	 *
 	 * @access public

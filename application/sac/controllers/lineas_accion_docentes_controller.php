@@ -19,6 +19,7 @@ class Lineas_accion_docentes_Controller extends CI_Controller {
 			$this->load->model('periodos_escuelas_model');
 			$this->load->model('docentes_model');
 			$this->load->model('perfiles_model');
+			$this->load->model('fondo_comun_model');
 			$this->config->load('lineas_accion_docentes_settings');
 			$data['flags'] = $this->basicauth->getPermissions('lineas_accion_docentes');
 			$this->flagR = $data['flags']['flag-read'];
@@ -63,7 +64,8 @@ class Lineas_accion_docentes_Controller extends CI_Controller {
 		$this->form_validation->set_rules('linea_accion_escuela_id', 'linea_accion_escuela_id', 'trim|required|integer|xss_clean');
 		$this->form_validation->set_rules('docente_id', 'docente_id', 'trim|required|integer|callback_checkDocente|callback_checkCiclo|xss_clean');
 		$this->form_validation->set_rules('perfil_id', 'perfil_id', 'trim|required|integer|xss_clean');
-		$this->form_validation->set_rules('cantidad_horas', 'cantidad_horas', 'trim|required|integer|callback_checkExisteHoras|callback_checkCantidadHoras|xss_clean');
+		$this->form_validation->set_rules('cantidad_horas', 'cantidad_horas', 'trim|required|is_natural|callback_checkExisteHoras|callback_checkCantidadHoras|xss_clean');
+		$this->form_validation->set_rules('fondo_comun_id', 'fondo_comun_id', 'trim|integer|callback_checkExisteHorasFondoComun|xss_clean');
 		
 		if($this->form_validation->run())
 		{	
@@ -73,15 +75,30 @@ class Lineas_accion_docentes_Controller extends CI_Controller {
 			$data_lineas_accion_docentes['updated_at'] = $this->basicrud->formatDateToBD();
 			$data_lineas_accion_docentes['cantidad_horas'] = $this->input->post('cantidad_horas');
 			$data_lineas_accion_docentes['perfil_id'] = $this->input->post('perfil_id');
+			if($this->input->post('fondo_comun_id'))
+				$data_lineas_accion_docentes['fondo_comun_id'] = $this->input->post('fondo_comun_id');
 
-			$id_lineas_accion_docentes = $this->lineas_accion_docentes_model->add_m($data_lineas_accion_docentes);
-			if($id_lineas_accion_docentes){ 
-				$this->actualizarHorasRestantes($this->input->post('linea_accion_escuela_id'),$this->input->post('cantidad_horas'));
-				$this->session->set_flashdata('flashConfirmModal', $this->config->item('lineas_accion_docentes_flash_add_message')); 
-				redirect('lineas_accion_docentes_controller/show_c/'.$linea_accion_escuela_id,'location');
+			//si se va a cargar las horas desde el fondo comun seguir por aqui
+			if($this->input->post('fondo_comun_id')){
+				$id_lineas_accion_docentes = $this->lineas_accion_docentes_model->add_m($data_lineas_accion_docentes);
+				if($id_lineas_accion_docentes){ 
+					$this->actualizarHorasRestantesFondoComun($this->input->post('fondo_comun_id'),$this->input->post('cantidad_horas'));
+					$this->session->set_flashdata('flashConfirmModal', $this->config->item('lineas_accion_docentes_flash_add_message')); 
+					redirect('lineas_accion_docentes_controller/show_c/'.$linea_accion_escuela_id,'location');
+				}else{
+					$this->session->set_flashdata('flashErrorModal', $this->config->item('lineas_accion_docentes_flash_error_message')); 
+					redirect('lineas_accion_docentes_controller/show_c/'.$linea_accion_escuela_id,'location');
+				}
 			}else{
-				$this->session->set_flashdata('flashErrorModal', $this->config->item('lineas_accion_docentes_flash_error_message')); 
-				redirect('lineas_accion_docentes_controller/show_c/'.$linea_accion_escuela_id,'location');
+				$id_lineas_accion_docentes = $this->lineas_accion_docentes_model->add_m($data_lineas_accion_docentes);
+				if($id_lineas_accion_docentes){ 
+					$this->actualizarHorasRestantes($this->input->post('linea_accion_escuela_id'),$this->input->post('cantidad_horas'));
+					$this->session->set_flashdata('flashConfirmModal', $this->config->item('lineas_accion_docentes_flash_add_message')); 
+					redirect('lineas_accion_docentes_controller/show_c/'.$linea_accion_escuela_id,'location');
+				}else{
+					$this->session->set_flashdata('flashErrorModal', $this->config->item('lineas_accion_docentes_flash_error_message')); 
+					redirect('lineas_accion_docentes_controller/show_c/'.$linea_accion_escuela_id,'location');
+				}
 			}
 		}else{
 			$data['linea_accion_escuela_id']= $linea_accion_escuela_id;
@@ -116,7 +133,8 @@ class Lineas_accion_docentes_Controller extends CI_Controller {
 		$this->form_validation->set_rules('linea_accion_escuela_id', 'linea_accion_escuela_id', 'trim|required|integer|xss_clean');
 		$this->form_validation->set_rules('docente_id', 'docente_id', 'trim|required|integer|xss_clean');
 		$this->form_validation->set_rules('perfil_id', 'perfil_id', 'trim|required|integer|xss_clean');
-		$this->form_validation->set_rules('cantidad_horas', 'cantidad_horas', 'trim|required|callback_checkEditExisteHoras|callback_checkEditCantidadHoras|integer|xss_clean');
+		$this->form_validation->set_rules('cantidad_horas', 'cantidad_horas', 'trim|required|is_natural|callback_checkEditExisteHoras|callback_checkEditCantidadHoras|xss_clean');
+		$this->form_validation->set_rules('fondo_comun_id', 'fondo_comun_id', 'trim|integer|callback_checkExisteHorasFondoComun|xss_clean');
 
 		if($this->form_validation->run()){
 			$data_lineas_accion_docentes  = array();
@@ -126,15 +144,28 @@ class Lineas_accion_docentes_Controller extends CI_Controller {
 			$data_lineas_accion_docentes['updated_at'] = $this->basicrud->formatDateToBD();
 			$data_lineas_accion_docentes['cantidad_horas'] = $this->input->post('cantidad_horas');
 			$data_lineas_accion_docentes['perfil_id'] = $this->input->post('perfil_id');
+			if($this->input->post('fondo_comun_id'))
+				$data_lineas_accion_docentes['fondo_comun_id'] = $this->input->post('fondo_comun_id');
 
 			if($this->lineas_accion_docentes_model->edit_m($data_lineas_accion_docentes)){
-				$this->actualizarHorasRestantes(
-					$this->input->post('linea_accion_escuela_id'),
-					$this->input->post('cantidad_horas'),
-					$this->input->post('cantidad_horas_old')
-					); 
-				$this->session->set_flashdata('flashConfirmModal', $this->config->item('lineas_accion_docentes_flash_edit_message')); 
-				redirect('lineas_accion_docentes_controller/show_c/'.$linea_accion_escuela_id,'location');
+				//si se va a cargar las horas desde el fondo comun seguir por aqui
+				if($this->input->post('fondo_comun_id')){
+					$this->actualizarHorasRestantesFondoComun(
+						$this->input->post('fondo_comun_id'),
+						$this->input->post('cantidad_horas'),
+						$this->input->post('cantidad_horas_old')
+						); 
+					$this->session->set_flashdata('flashConfirmModal', $this->config->item('lineas_accion_docentes_flash_edit_message')); 
+					redirect('lineas_accion_docentes_controller/show_c/'.$linea_accion_escuela_id,'location');
+				} else {
+					$this->actualizarHorasRestantes(
+						$this->input->post('linea_accion_escuela_id'),
+						$this->input->post('cantidad_horas'),
+						$this->input->post('cantidad_horas_old')
+						); 
+					$this->session->set_flashdata('flashConfirmModal', $this->config->item('lineas_accion_docentes_flash_edit_message')); 
+					redirect('lineas_accion_docentes_controller/show_c/'.$linea_accion_escuela_id,'location');
+				}
 			}else{
 				$this->session->set_flashdata('flashErrorModal', $this->config->item('lineas_accion_docentes_flash_error_message')); 
 				redirect('lineas_accion_docentes_controller/show_c/'.$linea_accion_escuela_id,'location');
@@ -167,15 +198,30 @@ class Lineas_accion_docentes_Controller extends CI_Controller {
 
 		$linea_accion_docente = $this->lineas_accion_docentes_model->get_m(array('id' => $id));
 		if(count($linea_accion_docente) > 0){
-			//actualizamos horas_restantes 
-			$this->actualizarHorasRestantes($linea_accion_escuela_id,0,$linea_accion_docente[0]->cantidad_horas);
-			//eliminamos registro
-			if($this->lineas_accion_docentes_model->delete_m($id)){ 
-				$this->session->set_flashdata('flashConfirmModal', $this->config->item('lineas_accion_docentes_flash_delete_message')); 
-				redirect('lineas_accion_docentes_controller/show_c/'.$linea_accion_escuela_id,'location');
+			//verificamos si las horas asignadas provienen del fondo comun
+			if($linea_accion_docente[0]->fondo_comun_id){
+				//actualizamos horas_restantes 
+				$this->actualizarHorasRestantesFondoComun($linea_accion_docente[0]->fondo_comun_id,0,$linea_accion_docente[0]->cantidad_horas);
+				//eliminamos registro
+				if($this->lineas_accion_docentes_model->delete_m($id)){ 
+					$this->session->set_flashdata('flashConfirmModal', $this->config->item('lineas_accion_docentes_flash_delete_message')); 
+					redirect('lineas_accion_docentes_controller/show_c/'.$linea_accion_escuela_id,'location');
+				}else{
+					$this->session->set_flashdata('flashErrorModal', $this->config->item('lineas_accion_docentes_flash_error_delete_message')); 
+					redirect('lineas_accion_docentes_controller/show_c/'.$linea_accion_escuela_id,'location');
+				}
+
 			}else{
-				$this->session->set_flashdata('flashErrorModal', $this->config->item('lineas_accion_docentes_flash_error_delete_message')); 
-				redirect('lineas_accion_docentes_controller/show_c/'.$linea_accion_escuela_id,'location');
+				//actualizamos horas_restantes 
+				$this->actualizarHorasRestantes($linea_accion_escuela_id,0,$linea_accion_docente[0]->cantidad_horas);
+				//eliminamos registro
+				if($this->lineas_accion_docentes_model->delete_m($id)){ 
+					$this->session->set_flashdata('flashConfirmModal', $this->config->item('lineas_accion_docentes_flash_delete_message')); 
+					redirect('lineas_accion_docentes_controller/show_c/'.$linea_accion_escuela_id,'location');
+				}else{
+					$this->session->set_flashdata('flashErrorModal', $this->config->item('lineas_accion_docentes_flash_error_delete_message')); 
+					redirect('lineas_accion_docentes_controller/show_c/'.$linea_accion_escuela_id,'location');
+				}
 			}
 		}
 	}
@@ -306,19 +352,24 @@ class Lineas_accion_docentes_Controller extends CI_Controller {
 	public function checkExisteHoras($cantidad_horas)
 	{
 		$linea_accion_escuela_id = $this->input->post("linea_accion_escuela_id");
-
-		$linea_accion_escuela = $this->lineas_accion_escuelas_model->get_m(array('id' => $linea_accion_escuela_id));
-		if(count($linea_accion_escuela) > 0){
-			$linea_periodo_escuela = $this->lineas_periodos_escuelas_model->get_m(array('id' => $linea_accion_escuela[0]->linea_periodo_escuela_id));
-			if(count($linea_periodo_escuela) > 0){
-				if( ($linea_periodo_escuela[0]->horas_restantes - $cantidad_horas) >= 0 ){
-					return TRUE;
-				}else{
-					$this->form_validation->set_message('checkExisteHoras', 
-						"La cantidad de horas por asignar supera a la cantidad de horas restantes (".$linea_periodo_escuela[0]->horas_restantes.") del mes en cuestión.");
-					return FALSE;
+		if(!$this->input->post("fondo_comun_id"))
+		{
+			$linea_accion_escuela = $this->lineas_accion_escuelas_model->get_m(array('id' => $linea_accion_escuela_id));
+			if(count($linea_accion_escuela) > 0){
+				$linea_periodo_escuela = $this->lineas_periodos_escuelas_model->get_m(array('id' => $linea_accion_escuela[0]->linea_periodo_escuela_id));
+				if(count($linea_periodo_escuela) > 0){
+					if( ($linea_periodo_escuela[0]->horas_restantes - $cantidad_horas) >= 0 ){
+						return TRUE;
+					}else{
+						$this->form_validation->set_message('checkExisteHoras', 
+							"La cantidad de horas por asignar supera a la cantidad de horas restantes (".$linea_periodo_escuela[0]->horas_restantes.") del mes en cuestión.");
+						return FALSE;
+					}
 				}
 			}
+		}
+		else{
+			return TRUE;
 		}
 	}
 
@@ -335,19 +386,54 @@ class Lineas_accion_docentes_Controller extends CI_Controller {
 	public function checkEditExisteHoras($cantidad_horas)
 	{
 		$linea_accion_escuela_id = $this->input->post("linea_accion_escuela_id");
-
-		$linea_accion_escuela = $this->lineas_accion_escuelas_model->get_m(array('id' => $linea_accion_escuela_id));
-		if(count($linea_accion_escuela) > 0){
-			$linea_periodo_escuela = $this->lineas_periodos_escuelas_model->get_m(array('id' => $linea_accion_escuela[0]->linea_periodo_escuela_id));
-			if(count($linea_periodo_escuela) > 0){
-				if( ($linea_periodo_escuela[0]->horas_restantes - ($cantidad_horas - $this->input->post("cantidad_horas_old")) ) >= 0 ){
-					return TRUE;
-				}else{
-					$this->form_validation->set_message('checkEditExisteHoras', 
-						"La cantidad de horas por asignar supera a la cantidad de horas restantes (".$linea_periodo_escuela[0]->horas_restantes.") del mes en cuestión.");
-					return FALSE;
+		if(!$this->input->post("fondo_comun_id"))
+		{
+			$linea_accion_escuela = $this->lineas_accion_escuelas_model->get_m(array('id' => $linea_accion_escuela_id));
+			if(count($linea_accion_escuela) > 0){
+				$linea_periodo_escuela = $this->lineas_periodos_escuelas_model->get_m(array('id' => $linea_accion_escuela[0]->linea_periodo_escuela_id));
+				if(count($linea_periodo_escuela) > 0){
+					if( ($linea_periodo_escuela[0]->horas_restantes - ($cantidad_horas - $this->input->post("cantidad_horas_old")) ) >= 0 ){
+						return TRUE;
+					}else{
+						$this->form_validation->set_message('checkEditExisteHoras', 
+							"La cantidad de horas por asignar supera a la cantidad de horas restantes (".$linea_periodo_escuela[0]->horas_restantes.") del mes en cuestión.");
+						return FALSE;
+					}
 				}
 			}
+		} else {
+			return TRUE;
+		}
+	}
+
+
+	/**
+	 * Esta función permite verificar si existen horas sin usar disponibles de un periodo_escuela dado 
+	 * Si no existe devuelve un mensaje de 
+	 * validación en el formulario de alta.
+	 *
+	 * @access public
+	 * @param integer $fondo_comun_id 			Id de fondo comun
+	 * @return true/false
+	 */
+	public function checkExisteHorasFondoComun($fondo_comun_id)
+	{
+		$cantidad_horas = $this->input->post("cantidad_horas");
+		if($fondo_comun_id)
+		{
+			$fondo_comun = $this->fondo_comun_model->get_m(array('id' => $fondo_comun_id));
+			if(count($fondo_comun) > 0)
+			{	
+				if( ($fondo_comun[0]->horas_sin_usar_restantes - $cantidad_horas) >= 0 ){
+					return TRUE;
+				}else{
+					$this->form_validation->set_message('checkExisteHorasFondoComun', 
+						"La cantidad de horas por asignar supera a la cantidad de horas restantes (".$fondo_comun[0]->horas_sin_usar_restantes.")");
+					return FALSE;
+				}	
+			}
+		}else{
+			return TRUE;
 		}
 	}
 
@@ -451,5 +537,58 @@ class Lineas_accion_docentes_Controller extends CI_Controller {
 				$this->lineas_periodos_escuelas_model->edit_m($data);
 			}
 		}	
+	}
+
+
+
+	/**
+	 * Esta función permite restar las horas sin usar restantes de una fila de la tabla fondo comun.
+	 * Cuando se asignan horas institucionales a un docente para una linea de acción
+	 * para un mes dado, esas horas asignadas se deben restar a la cantidad de horas 
+	 * sin usar de un periodo_escuela dado del fondo comun. Por ejemplo si a un periodo_escuela le sobraron 100 horas institucionales
+	 * y luego para una linea de accion X en un mes se asigna 5 horas a un docente Y, esas
+	 * 5 horas se deben restar de las 100 horas sin usar.
+	 *
+	 * @access public
+	 * @param integer $fondo_comun_id 	
+	 * @param integer $cantidad_horas 			Son las horas asignadas al docente
+	 * @param integer $cantidad_horas_old		Son las horas anterior a una modificación. 
+	 * @return void
+	 */
+	public function actualizarHorasRestantesFondoComun($fondo_comun_id="", $cantidad_horas="", $cantidad_horas_old = "")
+	{
+	
+			$fondo_comun = $this->fondo_comun_model->get_m(array('id' => $fondo_comun_id));
+			if(count($fondo_comun) > 0){
+				if($cantidad_horas_old != "")
+				{
+					$data['id'] = $fondo_comun[0]->id;
+					$data['horas_sin_usar_restantes'] = $fondo_comun[0]->horas_sin_usar_restantes  -  ($cantidad_horas - $cantidad_horas_old);
+					$data['updated_at'] = $this->basicrud->formatDateToBD();	
+				}else{
+					$data['id'] = $fondo_comun[0]->id;
+					$data['horas_sin_usar_restantes'] = $fondo_comun[0]->horas_sin_usar_restantes - $cantidad_horas;
+					$data['updated_at'] = $this->basicrud->formatDateToBD();				
+				}
+				$this->fondo_comun_model->edit_m($data);
+			}
+	}
+
+
+
+	public function checkHorasDisponibles_c($linea_accion_escuela_id)
+	{
+		$linea_accion_escuela = $this->lineas_accion_escuelas_model->get_m(array('id' => $linea_accion_escuela_id));
+		if(count($linea_accion_escuela) > 0){
+			$linea_periodo_escuela = $this->lineas_periodos_escuelas_model->get_m(array('id' => $linea_accion_escuela[0]->linea_periodo_escuela_id));
+			if(count($linea_periodo_escuela) > 0){
+				if( $linea_periodo_escuela[0]->horas_restantes > 0 ){
+					echo json_encode("1");
+				}else{
+					echo json_encode("0");
+				}
+			}
+		}
+
 	}
 }

@@ -89,7 +89,7 @@ $config['show_linea_accion_docente_cantidad_horas']		= 1;
 
 /* Config params of pagination */
 
-$config['pag_perpage']= 10;
+$config['pag_perpage']= 30;
 
 
 

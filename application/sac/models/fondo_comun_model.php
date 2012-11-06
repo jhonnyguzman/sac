@@ -1,7 +1,7 @@
 <?php
  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Lineas_periodos_escuelas_Model extends CI_Model {
+class Fondo_comun_Model extends CI_Model {
 
 	function __construct()
 	{
@@ -19,7 +19,7 @@ class Lineas_periodos_escuelas_Model extends CI_Model {
 	function add_m($options = array())
 	{
 		//code here
-		$this->db->insert('lineas_periodos_escuelas', $options);
+		$this->db->insert('fondo_comun', $options);
 		return $this->db->insert_id();
 	}
 
@@ -36,22 +36,18 @@ class Lineas_periodos_escuelas_Model extends CI_Model {
 		//code here
 		if(isset($options['periodo_escuela_id']))
 			$this->db->set('periodo_escuela_id', $options['periodo_escuela_id']);
-		if(isset($options['mes']))
-			$this->db->set('mes', $options['mes']);
-		if(isset($options['horas_por_mes']))
-			$this->db->set('horas_por_mes', $options['horas_por_mes']);
+		if(isset($options['horas_sin_usar']))
+			$this->db->set('horas_sin_usar', $options['horas_sin_usar']);
+		if(isset($options['horas_sin_usar_restantes']))
+			$this->db->set('horas_sin_usar_restantes', $options['horas_sin_usar_restantes']);
 		if(isset($options['created_at']))
 			$this->db->set('created_at', $options['created_at']);
 		if(isset($options['updated_at']))
 			$this->db->set('updated_at', $options['updated_at']);
-		if(isset($options['horas_restantes']))
-			$this->db->set('horas_restantes', $options['horas_restantes']);
-		if(isset($options['anio']))
-			$this->db->set('anio', $options['anio']);
 
 		$this->db->where('id', $options['id']);
 
-		$this->db->update('lineas_periodos_escuelas');
+		$this->db->update('fondo_comun');
 
 		if($this->db->affected_rows()>0) return $this->db->affected_rows();
 		else return $this->db->affected_rows() + 1;
@@ -69,7 +65,7 @@ class Lineas_periodos_escuelas_Model extends CI_Model {
 	{
 		//code here
 		$this->db->where('id', $id);
-		$this->db->delete('lineas_periodos_escuelas');
+		$this->db->delete('fondo_comun');
 		return $this->db->affected_rows();
 	}
 
@@ -86,21 +82,17 @@ class Lineas_periodos_escuelas_Model extends CI_Model {
 	{
 		//code here
 		if(isset($options['id']))
-			$this->db->where('id', $options['id']);
+			$this->db->where('fc.id', $options['id']);
 		if(isset($options['periodo_escuela_id']))
-			$this->db->where('periodo_escuela_id', $options['periodo_escuela_id']);
-		if(isset($options['mes']))
-			$this->db->where('mes', $options['mes']);
-		if(isset($options['horas_por_mes']))
-			$this->db->where('horas_por_mes', $options['horas_por_mes']);
+			$this->db->where('fc.periodo_escuela_id', $options['periodo_escuela_id']);
+		if(isset($options['horas_sin_usar']))
+			$this->db->where('fc.horas_sin_usar', $options['horas_sin_usar']);
+		if(isset($options['horas_sin_usar_restantes']))
+			$this->db->where('fc.horas_sin_usar_restantes', $options['horas_sin_usar_restantes']);
 		if(isset($options['created_at']))
-			$this->db->where('created_at', $options['created_at']);
+			$this->db->where('fc.created_at', $options['created_at']);
 		if(isset($options['updated_at']))
-			$this->db->where('updated_at', $options['updated_at']);
-		if(isset($options['horas_restantes']))
-			$this->db->where('horas_restantes', $options['horas_restantes']);
-		if(isset($options['anio']))
-			$this->db->where('anio', $options['anio']);
+			$this->db->where('fc.updated_at', $options['updated_at']);
 
 		//limit / offset
 		if(isset($options['limit']) && isset($options['offset']))
@@ -112,8 +104,12 @@ class Lineas_periodos_escuelas_Model extends CI_Model {
 		if(isset($options['sortBy']) && isset($options['sortDirection']))
 			$this->db->order_by($options['sortBy'],$options['sortDirection']);
 
-		$this->db->select("lpe.*, lpe.mes as mes_descripcion");
-		$this->db->from("lineas_periodos_escuelas as lpe");
+		$this->db->select("fc.*, p.fecha_inicio as periodo_fecha_inicio, p.fecha_fin as periodo_fecha_fin, e.nombre as escuela_nombre");
+		$this->db->from("fondo_comun as fc");
+		$this->db->join("periodos_escuelas as pe","pe.id = fc.periodo_escuela_id");
+		$this->db->join("periodos as p","pe.periodo_id = p.id");
+		$this->db->join("escuelas as e","pe.escuelas_id = e.id");
+
 		$query = $this->db->get();
 
 		if(isset($options['count'])) return $query->num_rows();
@@ -123,13 +119,15 @@ class Lineas_periodos_escuelas_Model extends CI_Model {
 			if(isset($options['id']) && $flag==1){
 				$query->row(0)->created_at = $this->basicrud->formatDateToHuman($query->row(0)->created_at);
 				$query->row(0)->updated_at = $this->basicrud->formatDateToHuman($query->row(0)->updated_at);
-				$query->row(0)->mes_descripcion = $this->basicrud->getMesDescripcion($query->row(0)->mes_descripcion);
+				$query->row(0)->periodo_fecha_inicio = $this->basicrud->formatDateToHuman($query->row(0)->periodo_fecha_inicio);
+				$query->row(0)->periodo_fecha_fin = $this->basicrud->formatDateToHuman($query->row(0)->periodo_fecha_fin);
 				return $query->row(0);
 			}else{
 				foreach($query->result() as $row){ 
 					$row->created_at = $this->basicrud->formatDateToHuman($row->created_at);
 					$row->updated_at = $this->basicrud->formatDateToHuman($row->updated_at);
-					$row->mes_descripcion = $this->basicrud->getMesDescripcion($row->mes_descripcion);
+					$row->periodo_fecha_inicio = $this->basicrud->formatDateToHuman($row->periodo_fecha_inicio);
+					$row->periodo_fecha_fin = $this->basicrud->formatDateToHuman($row->periodo_fecha_fin);
 				}
 				return $query->result();
 			}
@@ -137,25 +135,6 @@ class Lineas_periodos_escuelas_Model extends CI_Model {
 
 	}
 
-	/**
-	* Esta funcion permite obtener el total de horas sin usar de un periodo
-	*
-	*/
-	function getHorasSinUsar($periodo_escuela_id)
-	{
-		$horas_sin_usar = 0;
-		$this->db->where('periodo_escuela_id', $periodo_escuela_id); 
-		$query = $this->db->get("lineas_periodos_escuelas");
-
-		if($query->num_rows()>0){ 
-			foreach($query->result() as $row){ 
-				if($row->horas_restantes > 0)
-					$horas_sin_usar+= $row->horas_restantes;
-			}
-		}
-
-		return $horas_sin_usar;
-	}
 
 	/**
 	 * This function getting all the fields of the table
@@ -169,14 +148,10 @@ class Lineas_periodos_escuelas_Model extends CI_Model {
 		$fields=array();
 		$fields[]='id';
 		$fields[]='periodo_escuela_id';
-		$fields[]='mes';
-		$fields[]='mes_descripcion';
-		$fields[]='anio';
-		$fields[]='horas_por_mes';
+		$fields[]='horas_sin_usar';
+		$fields[]='horas_sin_usar_restantes';
 		$fields[]='created_at';
 		$fields[]='updated_at';
-		$fields[]='horas_restantes';
-
 		return $fields;
 	}
 

@@ -16,6 +16,7 @@ class Periodos_escuelas_Controller extends CI_Controller {
 			$this->load->model('periodos_escuelas_model');
 			$this->load->model('periodos_model');
 			$this->load->model('escuelas_model');
+			$this->load->model('fondo_comun_model');
 			$this->load->model('lineas_periodos_escuelas_model');
 			$this->config->load('periodos_escuelas_settings');
 			$data['flags'] = $this->basicauth->getPermissions('periodos_escuelas');
@@ -79,17 +80,25 @@ class Periodos_escuelas_Controller extends CI_Controller {
 
 			$id_periodos_escuelas = $this->periodos_escuelas_model->add_m($data_periodos_escuelas);
 			if($id_periodos_escuelas){
-				if($this->periodos_escuelas_model->cambiarEstado_m($id_periodos_escuelas,$this->input->post('escuelas_id'))){ 
-					if($this->cargarLineasPeriodosEscuelas($this->input->post('periodo_id'),$id_periodos_escuelas)){
-						$this->session->set_flashdata('flashConfirmModal', $this->config->item('periodos_escuelas_flash_add_message')); 
-						redirect('periodos_escuelas_controller/show_c/'.$escuela_id,'location');
+				if($this->cargarFondoComun($id_periodos_escuelas,$this->input->post('escuelas_id')))
+				{
+					if($this->periodos_escuelas_model->cambiarEstado_m($id_periodos_escuelas,$this->input->post('escuelas_id')))
+					{ 
+						if($this->cargarLineasPeriodosEscuelas($this->input->post('periodo_id'),$id_periodos_escuelas))
+						{
+							$this->session->set_flashdata('flashConfirmModal', $this->config->item('periodos_escuelas_flash_add_message')); 
+							redirect('periodos_escuelas_controller/show_c/'.$escuela_id,'location');
+						}else{
+							$this->session->set_flashdata('flashErrorModal', $this->config->item('periodos_escuelas_flash_error_message')); 
+							redirect('periodos_escuelas_controller/show_c/'.$escuela_id,'location');
+						}
 					}else{
 						$this->session->set_flashdata('flashErrorModal', $this->config->item('periodos_escuelas_flash_error_message')); 
-						redirect('periodos_escuelas_controller/show_c/'.$escuela_id,'location');
+						redirect('periodos_escuelas_controller/show_c/'.$escuela_id,'location');	
 					}
 				}else{
 					$this->session->set_flashdata('flashErrorModal', $this->config->item('periodos_escuelas_flash_error_message')); 
-					redirect('periodos_escuelas_controller/show_c/'.$escuela_id,'location');	
+					redirect('periodos_escuelas_controller/show_c/'.$escuela_id,'location');
 				}
 			}else{
 				$this->session->set_flashdata('flashErrorModal', $this->config->item('periodos_escuelas_flash_error_message')); 
@@ -302,19 +311,34 @@ class Periodos_escuelas_Controller extends CI_Controller {
 				$data['horas_restantes'] = $data['horas_por_mes'];
 				$id_lineas_periodos_escuelas = $this->lineas_periodos_escuelas_model->add_m($data);
 			}
-			/*echo "<pre>";
-			print_r($meses);
-			echo "</pre>";
-
-			echo "<pre>";
-			print_r($periodo);
-			echo "</pre>";*/
 
 			return true;
 		}
 
 		return false;
 
+	}
+
+	/**
+	* Esta funcion permite cargar un registro en la tabla fondo_comun con las horas
+	* sin asignar del periodo dado.
+	*/
+	public function cargarFondoComun($new_periodo_escuela_id, $escuela_id)
+	{
+		$periodo_escuela = $this->periodos_escuelas_model->getParaFondoComun($new_periodo_escuela_id, $escuela_id);
+		if($periodo_escuela){
+			$horas_sin_usar = $this->lineas_periodos_escuelas_model->getHorasSinUsar($periodo_escuela[0]->id);
+			if($horas_sin_usar > 0){
+				$data['periodo_escuela_id'] = $periodo_escuela[0]->id;
+				$data['horas_sin_usar'] = $horas_sin_usar;
+				$data['horas_sin_usar_restantes'] = $horas_sin_usar;
+				$data['updated_at'] = $this->basicrud->formatDateToBD();
+				$id_fondo_comun = $this->fondo_comun_model->add_m($data);
+				if($id_fondo_comun) return true;
+				else return false;
+			}
+		}
+		return true;
 	}
 
 	function verMeses(){

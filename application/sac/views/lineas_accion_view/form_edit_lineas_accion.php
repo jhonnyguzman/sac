@@ -21,8 +21,10 @@
 		<div class="control-group">
 			<label class="control-label" for="habilitado">Estado:</label>
 			<div class="controls">
-				Habilitado <input type='radio' name='habilitado' id='habilitado' value='1' <?php if ($lineas_accion->habilitado=="1") { echo "checked='checked'"; } ?> />
-            	No Habilitado <input type='radio' name='habilitado' id='habilitado' value='0' <?php if ($lineas_accion->habilitado=="0") { echo "checked='checked'"; } ?> />
+				<select name="habilitado" id='habilitado'>
+            		<option value="1" <?php if ($lineas_accion->habilitado=="1") { echo "selected"; } ?>>Habilitado</option>
+            		<option value="0" <?php if ($lineas_accion->habilitado=="0") { echo "selected"; } ?>>No Habilitado</option>
+            	</select>
 			</div>
 		</div>
 		<div class="control-group">

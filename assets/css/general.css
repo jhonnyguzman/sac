@@ -90,3 +90,9 @@ label.error {
 .result-header{
   border-bottom: 1px solid #EEE;
 }
+#step2,#step3{
+  display: none;
+}
+#lblDescripLineaAccion{
+  font-size: 14px;
+}

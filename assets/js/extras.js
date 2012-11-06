@@ -23,9 +23,6 @@ function setPaginationModal(pag, loader, p_data)
             }
         }) ; 
      });
-
-     
-    
 }
 
 function deleteRow(url)
@@ -83,7 +80,8 @@ function submitData(idform,loader_div)
         success: function(data) {
                $("#"+loader_div).html(data);
         }
-        })        
+        });
+
     return false;
     }); 
 }
@@ -99,7 +97,7 @@ function submitDataTwo(idform,loader_div)
         success: function(data) {
                $("#"+loader_div).html(data);
         }
-    })        
+    });        
     
 }
 
@@ -167,12 +165,12 @@ function getMesesConsultas(url, mes_selected, select1, select2, select3)
             $.each(data, function(key, val) {
                 if(mes_selected){
                     if(mes_selected == val.id){
-                        options = options + "<option value='"+val.mes+"' selected>"+ val.mes_descripcion +"</option>";
+                        options = options + "<option value='"+val.anio+'-'+val.mes+"' selected>"+ val.mes_descripcion +"</option>";
                     }else{
-                        options = options + "<option value='"+val.mes+"'>"+ val.mes_descripcion +"</option>";
+                        options = options + "<option value='"+val.anio+'-'+val.mes+"'>"+ val.mes_descripcion +"</option>";
                     }
                 }else{
-                    options = options + "<option value='"+val.mes+"'>"+ val.mes_descripcion +"</option>";
+                    options = options + "<option value='"+val.anio+'-'+val.mes+"'>"+ val.mes_descripcion +"</option>";
                 }
             });
             $("#"+select2).append(options);
@@ -209,3 +207,56 @@ function asignMenu(url)
     document.location.href =url + $("#perfiles_id").val();
 }
 
+function checkExisteHoras(base_url,linea_accion_escuela_id)
+{
+      $.ajax({
+        url: base_url + "lineas_accion_docentes_controller/checkHorasDisponibles_c/" + linea_accion_escuela_id,
+        dataType:'json',
+        success:function(data)
+        {
+            if(data == 1) submitDataTwo('formAddlineas_accion_docentes','contentModal');
+            else getHorasSobrantes(base_url);
+        },
+        error:function(data)
+        {
+            alert('Sorry an error has ocurred. Please try again later.');
+            return false;
+        }
+    });
+}
+
+function getHorasSobrantes(base_url)
+{
+    $.ajax({
+        url: base_url + "fondo_comun_controller/searchJson_c",
+        dataType:'json',
+        success:function(data)
+        {
+            if(data != 0){
+                var lista = "<div class=\"wrapperStep3\"><h5>Seleccione el Origen de las horas sobrantes</h5>";
+                var i = 1;
+                var check = "";
+                 $.each(data, function(key, val) {
+                    if(i == 1) check = "checked";
+                    lista+="<label class=\"radio\"><input type=\"radio\" name=\"fondo_comun_id\" value=\"" + val.id +"\" "+check+"> Escuela: " + val.escuela_nombre + " | " + val.periodo_fecha_inicio + " - " + val.periodo_fecha_fin + " | Horas: <span class=\"label label-important\">" + val.horas_sin_usar_restantes +"</span></label>";
+                    check = "";
+                    i+=1;
+                 });
+
+                lista+= "<p class=\"stdformbutton\"><input type=\"button\" class=\"btn\" id=\"actBack\" value=\"Atras\"/><input type=\"submit\" class=\"btn\" id=\"actFinalizar\" value=\"Finalizar\" onClick=\"submitData('formAddlineas_accion_docentes','contentModal');\"/></p></div>";
+                $("#step1").hide(500);
+                $("#step2").show(500);
+                $("#step3 > .wrapperStep3").remove();
+                $("#step3").append(lista);
+            }else if(data == 0){
+                alert("No existen horas disponibles para asignar");
+            }
+   
+        },
+        error:function(data)
+        {
+            alert('Sorry an error has ocurred. Please try again later.');
+        }
+    });
+
+}

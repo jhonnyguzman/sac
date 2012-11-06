@@ -202,6 +202,7 @@ class Sispermisos_Controller extends CI_Controller {
 		$tables[] = "docentes";
 		$tables[] = "docentes_perfiles_escuelas";
 		$tables[] = "escuelas";
+		$tables[] = "fondo_comun";
 		$tables[] = "lineas_accion";
 		$tables[] = "lineas_accion_docentes";
 		$tables[] = "lineas_accion_escuelas";
