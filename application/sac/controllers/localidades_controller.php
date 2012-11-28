@@ -14,6 +14,7 @@ class Localidades_Controller extends CI_Controller {
 		parent::__construct();
 		if($this->session->userdata('logged_in') == true) { 
 			$this->load->model('localidades_model');
+			$this->load->model('departamentos_model');
 			$this->config->load('localidades_settings');
 			$data['flags'] = $this->basicauth->getPermissions('localidades');
 			$this->flagR = $data['flags']['flag-read'];
@@ -76,9 +77,10 @@ class Localidades_Controller extends CI_Controller {
 				$this->session->set_flashdata('flashError', $this->config->item('localidades_flash_error_message')); 
 				redirect('localidades_controller','location');
 			}
+		}else{
+			$data['departamentos'] = $this->departamentos_model->get_m();
+			$this->load->view('localidades_view/form_add_localidades',$data);
 		}
-		$this->load->view('localidades_view/form_add_localidades',$data);
-
 	}
 
 
@@ -121,9 +123,10 @@ class Localidades_Controller extends CI_Controller {
 				$this->session->set_flashdata('flashError', $this->config->item('localidades_flash_error_message')); 
 				redirect('localidades_controller','location');
 			}
+		}else{
+			$data['departamentos'] = $this->departamentos_model->get_m();
+			$this->load->view('localidades_view/form_edit_localidades',$data);
 		}
-		$this->load->view('localidades_view/form_edit_localidades',$data);
-
 	}
 
 

@@ -82,17 +82,17 @@ class Departamentos_Model extends CI_Model {
 	{
 		//code here
 		if(isset($options['id']))
-			$this->db->where('id', $options['id']);
+			$this->db->where('d.id', $options['id']);
 		if(isset($options['nombre']))
-			$this->db->like('nombre', $options['nombre']);
+			$this->db->like('d.nombre', $options['nombre']);
 		if(isset($options['habilitado']))
-			$this->db->where('habilitado', $options['habilitado']);
+			$this->db->where('d.habilitado', $options['habilitado']);
 		if(isset($options['circuito_id']))
-			$this->db->where('circuito_id', $options['circuito_id']);
+			$this->db->where('d.circuito_id', $options['circuito_id']);
 		if(isset($options['created_at']))
-			$this->db->where('created_at', $options['created_at']);
+			$this->db->where('d.created_at', $options['created_at']);
 		if(isset($options['updated_at']))
-			$this->db->where('updated_at', $options['updated_at']);
+			$this->db->where('d.updated_at', $options['updated_at']);
 
 		//limit / offset
 		if(isset($options['limit']) && isset($options['offset']))
@@ -104,7 +104,10 @@ class Departamentos_Model extends CI_Model {
 		if(isset($options['sortBy']) && isset($options['sortDirection']))
 			$this->db->order_by($options['sortBy'],$options['sortDirection']);
 
-		$query = $this->db->get('departamentos');
+		$this->db->select("d.*, c.nombre as circuito_nombre");
+		$this->db->from("departamentos as d");
+		$this->db->join("circuitos as c","c.id = d.circuito_id");
+		$query = $this->db->get();
 
 		if(isset($options['count'])) return $query->num_rows();
 
@@ -140,6 +143,7 @@ class Departamentos_Model extends CI_Model {
 		$fields[]='nombre';
 		$fields[]='habilitado';
 		$fields[]='circuito_id';
+		$fields[]='circuito_nombre';
 		$fields[]='created_at';
 		$fields[]='updated_at';
 		return $fields;

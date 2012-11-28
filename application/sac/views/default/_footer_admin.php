@@ -1,9 +1,11 @@
-	  		</div> <!-- end span12 -->
-      		<div class="span2"></div>
 
-    	</div> <!-- end row-fluid -->
+
+		  </div> <!-- end span24 -->
+	      <div class="span2"></div>
+
+	    </div> <!-- end row-fluid -->
     
-    </div>
+	</div>
 	
 	<footer>
 		<p></p>

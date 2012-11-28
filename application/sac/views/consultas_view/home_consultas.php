@@ -105,7 +105,7 @@
             </div>
      </div>
      <div class="row-fluid"> 
-     	<div class="span28" id="result-list">
+     	<div class="span28" id="result-list"></div>
      </div>
 
  </div><!--/span28-->

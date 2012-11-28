@@ -25,9 +25,17 @@
 	        </div>
 	    </div>
 		<div class="control-group">
-	    	<label class="control-label" for="departamento_id"><?=$this->config->item('departamento_id')?></label>
+	    	<label class="control-label" for="departamento_id"><?=$this->config->item('departamento_nombre')?></label>
 	    	<div class="controls">
-				<span class="field"><input type="text" value="<?=$localidades->departamento_id?>" name="departamento_id" id="departamento_id"></input></span>
+				<select name="departamento_id" id="departamento_id">
+					<?php foreach($departamentos as $f): ?>
+						<?php if($f->id == $localidades->departamento_id): ?>
+							<option value="<?=$f->id?>" selected><?=$f->nombre?></option>
+						<?php else: ?>
+							<option value="<?=$f->id?>" ><?=$f->nombre?></option>
+						<?php endif; ?>
+					<?php endforeach; ?>
+				</select>
 			</div>
 		</div>
 		<div class="form-actions">

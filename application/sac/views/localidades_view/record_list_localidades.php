@@ -13,7 +13,7 @@
 					<?php foreach($localidades as $f):?>
 						<tr>
 							<td><?=$f->nombre?></td>
-							<td><?=$f->departamento_id?></td>
+							<td><?=$f->departamento_nombre?></td>
 							<td>
 								<?php if($f->habilitado == 1):  ?>
 									<span class="label label-success">Habilitado</span>

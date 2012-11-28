@@ -260,3 +260,34 @@ function getHorasSobrantes(base_url)
     });
 
 }
+
+
+function calcSubtotal()
+{
+    var costo = $("#costo").val();
+    var cantidad = $("#cantidad").val();
+    var subtotal;
+    if(costo != '' && cantidad != '')
+        subtotal = costo*cantidad;
+    else 
+        subtotal = 0;
+    return Math.round (subtotal*100) / 100;
+}
+
+function calcTotal()
+{
+    var total=0;
+    $(".subtotal").each(function(i,v){
+        if($(v).val() != '') total = parseFloat(total) + parseFloat($(v).val());
+    });
+    $("#monto").val(Math.round (total*100) / 100);
+    
+}
+
+function removeLinea(e,num_linea)
+{
+    var total = $("#monto").val();
+    var lineaSubtotal = $("#subtotal-"+num_linea).val();
+    $("#monto").val(total - lineaSubtotal);
+    $(e).closest('tr').remove();
+}

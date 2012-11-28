@@ -12,6 +12,16 @@
             </div>
         </div>
         <div class="control-group">
+            <label class="control-label"  for="departamento_id"><?=$this->config->item('departamento_nombre')?></label>
+            <div class="controls">
+                <select name="departamento_id" id="departamento_id">
+                    <?php foreach($departamentos as $f): ?>
+                        <option value="<?=$f->id?>"><?=$f->nombre?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
         	<label class="control-label" for="habilitado">Estado</label>
             <div class="controls">
             	<select name="habilitado" id="habilitado">

@@ -13,7 +13,7 @@
 					<?php foreach($departamentos as $f):?>
 						<tr>
 							<td><?=$f->nombre?></td>
-							<td><?=$f->circuito_id?></td>
+							<td><?=$f->circuito_nombre?></td>
 							<td>
 								<?php if($f->habilitado == 1):  ?>
 									<span class="label label-success">Habilitado</span>

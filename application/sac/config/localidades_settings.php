@@ -15,6 +15,7 @@ $config['id']='Id';
 $config['nombre']='Nombre';
 $config['habilitado']='Habilitado';
 $config['departamento_id']='Departamento';
+$config['departamento_nombre']='Departamento';
 $config['created_at']='Fecha de alta';
 $config['updated_at']='Actualizado el';
 
@@ -38,7 +39,7 @@ $config['show_updated_at']= 0;
 
 /* Config params of pagination */
 
-$config['pag_perpage']= 10;
+$config['pag_perpage']= 30;
 
 /* Config flash messages */
 

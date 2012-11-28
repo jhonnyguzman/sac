@@ -16,19 +16,19 @@ body {
       color-stop(1, #C2C2C2)
     );*/
 
-/*background-image: linear-gradient(left bottom, #DBDBDB 0%, #FFFFFF 100%);
-background-image: -o-linear-gradient(left bottom, #DBDBDB 0%, #FFFFFF 100%);
-background-image: -moz-linear-gradient(left bottom, #DBDBDB 0%, #FFFFFF 100%);
-background-image: -webkit-linear-gradient(left bottom, #DBDBDB 0%, #FFFFFF 100%);
-background-image: -ms-linear-gradient(left bottom, #DBDBDB 0%, #FFFFFF 100%);
+  /*background-image: linear-gradient(left bottom, #DBDBDB 0%, #FFFFFF 100%);
+  background-image: -o-linear-gradient(left bottom, #DBDBDB 0%, #FFFFFF 100%);
+  background-image: -moz-linear-gradient(left bottom, #DBDBDB 0%, #FFFFFF 100%);
+  background-image: -webkit-linear-gradient(left bottom, #DBDBDB 0%, #FFFFFF 100%);
+  background-image: -ms-linear-gradient(left bottom, #DBDBDB 0%, #FFFFFF 100%);
 
-background-image: -webkit-gradient(
-  linear,
-  left bottom,
-  right top,
-  color-stop(0, #DBDBDB),
-  color-stop(1, #FFFFFF)
-);*/
+  background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    right top,
+    color-stop(0, #DBDBDB),
+    color-stop(1, #FFFFFF)
+  );*/
 
 }
 
@@ -65,17 +65,20 @@ label.error {
   display: none;
 } 
 
-#formConsultasGenerales .form-horizontal .control-label {
+#formConsultasGenerales .form-horizontal .control-label,
+.form-aling-left .control-label {
   float: left;
   padding-top: 5px;
   text-align: left;
 }
 
-#formConsultasGenerales .form-horizontal .controls {
+#formConsultasGenerales .form-horizontal .controls,
+.form-aling-left .controls {
   margin-left: 150px;
 }
 
-#formConsultasGenerales .form-horizontal .control-group {
+#formConsultasGenerales .form-horizontal .control-group,
+.form-aling-left .control-group {
   margin-bottom: 10px;
 }
 .page-header {
@@ -95,4 +98,14 @@ label.error {
 }
 #lblDescripLineaAccion{
   font-size: 14px;
+}
+
+.adscripto,.contratado
+{
+  display:none;
+}
+
+#tbLineasFacturas tbody tr td input {
+  text-decoration: none;
+  padding: 2px 4px;
 }

@@ -2,11 +2,11 @@
 
 class A extends CI_Controller {
 
-	public function index()
+	/*public function index()
 	{
 		$data['title_header'] = 'Ingreso';
 		$this->load->view("admin_view/admin_login", $data);
-	}
+	}*/
 
 
 	/**
@@ -54,7 +54,7 @@ class A extends CI_Controller {
 	{
 		//code here
 		$this->basicauth->logout();
-		redirect('a');	
+		redirect('a/login');	
 	}
 
 }

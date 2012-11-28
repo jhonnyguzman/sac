@@ -416,7 +416,55 @@ $(document).ready(function(){
 	   });
 
 
-	    
+	   $('#formAddfacturas').validate({
+		    rules: {
+		      nro_factura: {
+		      	digits: true,
+		        required: true
+		      },
+		      fecha: {
+		      	dateITA: true,
+		        required: true
+		      },
+		      monto: {
+		        number: true,
+		        required: true
+		      }
+		    },
+		    highlight: function(label) {
+		    	$(label).closest('.control-group').addClass('error');
+		    },
+		    success: function(label) {
+		    	label
+		    		.text('OK!').addClass('valid')
+		    		.closest('.control-group').addClass('success');
+		    }
+	   });
 
-	   
+	   $('#formEditfacturas').validate({
+		    rules: {
+		      nro_factura: {
+		      	digits: true,
+		        required: true
+		      },
+		      fecha: {
+		      	dateITA: true,
+		        required: true
+		      },
+		      monto: {
+		        number: true,
+		        required: true
+		      }
+		    },
+		    highlight: function(label) {
+		    	$(label).closest('.control-group').addClass('error');
+		    },
+		    success: function(label) {
+		    	label
+		    		.text('OK!').addClass('valid')
+		    		.closest('.control-group').addClass('success');
+		    }
+	   });
+
+	
 });

@@ -14,6 +14,7 @@ class Departamentos_Controller extends CI_Controller {
 		parent::__construct();
 		if($this->session->userdata('logged_in') == true) { 
 			$this->load->model('departamentos_model');
+			$this->load->model('circuitos_model');
 			$this->config->load('departamentos_settings');
 			$data['flags'] = $this->basicauth->getPermissions('departamentos');
 			$this->flagR = $data['flags']['flag-read'];
@@ -75,9 +76,10 @@ class Departamentos_Controller extends CI_Controller {
 				$this->session->set_flashdata('flashError', $this->config->item('departamentos_flash_error_message')); 
 				redirect('departamentos_controller','location');
 			}
+		}else{
+			$data['circuitos'] = $this->circuitos_model->get_m();
+			$this->load->view('departamentos_view/form_add_departamentos',$data);
 		}
-		$this->load->view('departamentos_view/form_add_departamentos',$data);
-
 	}
 
 
@@ -119,9 +121,10 @@ class Departamentos_Controller extends CI_Controller {
 				$this->session->set_flashdata('flashError', $this->config->item('departamentos_flash_error_message')); 
 				redirect('departamentos_controller','location');
 			}
+		}else{
+			$data['circuitos'] = $this->circuitos_model->get_m();
+			$this->load->view('departamentos_view/form_edit_departamentos',$data);
 		}
-		$this->load->view('departamentos_view/form_edit_departamentos',$data);
-
 	}
 
 

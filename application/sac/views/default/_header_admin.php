@@ -31,7 +31,7 @@
           </div>
           <div class="btn-group pull-right">
             <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
-              <i class="icon-user"></i> <?=$this->session->userdata('username')?>
+              <i class="icon-user icon-white"></i> <?=$this->session->userdata('username')?>
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">

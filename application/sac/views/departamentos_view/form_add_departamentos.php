@@ -28,9 +28,13 @@
             </div>
         </div>
 		<div class="control-group">
-			<label class="control-label"  for="circuito_id"><?=$this->config->item('circuito_id')?></label>
+			<label class="control-label"  for="circuito_id"><?=$this->config->item('circuito_nombre')?></label>
 			<div class="controls">
-		    	<input type="text" name="circuito_id" id="circuito_id"></input>
+				<select name="circuito_id" id="circuito_id">
+					<?php foreach($circuitos as $f): ?>
+						<option value="<?=$f->id?>"><?=$f->nombre?></option>
+					<?php endforeach; ?>
+				</select>
 		    </div>
         </div>
 		<div class="form-actions">

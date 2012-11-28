@@ -195,6 +195,7 @@ class Sispermisos_Controller extends CI_Controller {
 
 	private function getTables()
 	{
+		//modulo de horas institucionales
 		$tables = array();
 		$tables[] = "circuitos";
 		$tables[] = "departamentos";
@@ -212,6 +213,29 @@ class Sispermisos_Controller extends CI_Controller {
 		$tables[] = "periodos_escuelas";
 		$tables[] = "titulos";
 		$tables[] = "docentes_titulos";
+
+		//modulo de pagos
+		$tables[] = "ejes";
+		$tables[] = "lineas";
+		$tables[] = "proyectos";
+		$tables[] = "eventos";
+		$tables[] = "personas";
+		$tables[] = "proyectos_personas";
+		$tables[] = "adscriptos";
+		$tables[] = "contratados";
+		$tables[] = "reintegros";
+		$tables[] = "proyectos_fuentes_lineas";
+		$tables[] = "fuentes_lineas";
+		$tables[] = "fuentes";
+		$tables[] = "fuentes_rubros";
+		$tables[] = "rubros";
+		$tables[] = "eventos_rubros";
+		$tables[] = "proveedores";
+		$tables[] = "proveedores_rubros";
+		$tables[] = "facturas";
+		$tables[] = "facturas_lineas";
+		
+		//modulo de administracion
 		$tables[] = "sys_menu";
 		$tables[] = "sys_perfil";
 		$tables[] = "sys_perfiles";
