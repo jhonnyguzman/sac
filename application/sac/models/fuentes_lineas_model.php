@@ -86,21 +86,21 @@ class Fuentes_lineas_Model extends CI_Model {
 	{
 		//code here
 		if(isset($options['id']))
-			$this->db->where('id', $options['id']);
+			$this->db->where('fl.id', $options['id']);
 		if(isset($options['fuente_id']))
-			$this->db->where('fuente_id', $options['fuente_id']);
+			$this->db->where('fl.fuente_id', $options['fuente_id']);
 		if(isset($options['anio']))
-			$this->db->where('anio', $options['anio']);
+			$this->db->where('fl.anio', $options['anio']);
 		if(isset($options['monto_global']))
-			$this->db->where('monto_global', $options['monto_global']);
+			$this->db->where('fl.monto_global', $options['monto_global']);
 		if(isset($options['monto_especial']))
-			$this->db->where('monto_especial', $options['monto_especial']);
+			$this->db->where('fl.monto_especial', $options['monto_especial']);
 		if(isset($options['estado']))
-			$this->db->where('estado', $options['estado']);
+			$this->db->where('fl.estado', $options['estado']);
 		if(isset($options['created_at']))
-			$this->db->where('created_at', $options['created_at']);
+			$this->db->where('fl.created_at', $options['created_at']);
 		if(isset($options['updated_at']))
-			$this->db->where('updated_at', $options['updated_at']);
+			$this->db->where('fl.updated_at', $options['updated_at']);
 
 		//limit / offset
 		if(isset($options['limit']) && isset($options['offset']))
@@ -112,7 +112,11 @@ class Fuentes_lineas_Model extends CI_Model {
 		if(isset($options['sortBy']) && isset($options['sortDirection']))
 			$this->db->order_by($options['sortBy'],$options['sortDirection']);
 
-		$query = $this->db->get('fuentes_lineas');
+		$this->db->select("fl.*, tg.descripcion as estado_descripcion");
+		$this->db->from("fuentes_lineas as fl");
+		$this->db->join("sys_tabgral as tg","tg.id = fl.estado");
+		
+		$query = $this->db->get();
 
 		if(isset($options['count'])) return $query->num_rows();
 
@@ -135,6 +139,29 @@ class Fuentes_lineas_Model extends CI_Model {
 
 
 	/**
+	 * Esta funcion cambia el estado de todos lineas de fuentes a 'historico'.
+	 * La unica linea que no cambia el estado es la pasado como parametro
+	 *
+	 * @access public
+	 * @param integer $id   fuente_linea_id que se acaba de dar de alta
+	 * @param integer $fuente_id   fuente de la cual se quiere cambiar el estado 
+	 * @return boolean true or false  
+	 */
+	function cambiarEstado_m($id,  $fuente_id)
+	{
+		$this->db->set('estado', 13); //estado 'historico'
+		$this->db->where('fuente_id', $fuente_id);
+		$this->db->where_not_in('id', $id);
+
+		$this->db->update('fuentes_lineas');
+
+		if($this->db->affected_rows()>0) return true;
+		else return true;
+
+	}
+
+
+	/**
 	 * This function getting all the fields of the table
 	 *
 	 * @access public
@@ -150,6 +177,7 @@ class Fuentes_lineas_Model extends CI_Model {
 		$fields[]='monto_global';
 		$fields[]='monto_especial';
 		$fields[]='estado';
+		$fields[]='estado_descripcion';
 		$fields[]='created_at';
 		$fields[]='updated_at';
 		return $fields;

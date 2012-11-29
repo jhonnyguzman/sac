@@ -4,7 +4,6 @@
 				<thead>
 					<tr>
 						<th>Id</th>
-						<th>Fuente Id</th>
 						<th>Año</th>
 						<th>Monto Global</th>
 						<th>Monto Especial</th>
@@ -16,17 +15,23 @@
 					<?php foreach($fuentes_lineas as $f):?>
 						<tr>
 							<td><?=$f->id?></td>
-							<td><?=$f->fuente_id?></td>
 							<td><?=$f->anio?></td>
-							<td><?=$f->monto_global?></td>
-							<td><?=$f->monto_especial?></td>
-							<td><?=$f->estado?></td>
+							<td>$ <?=$f->monto_global?></td>
+							<td>$ <?=$f->monto_especial?></td>
+							<td>
+								<?php if($f->estado == 12):  ?>
+									<span class="label label-success"><?=$f->estado_descripcion?></span>
+								<?php elseif($f->estado == 13):  ?>
+									<span class="label"><?=$f->estado_descripcion?></span>
+								<?php endif;  ?>
+							</td>
 							<td>
 								<?php if($flag['u']):?>
-									<a href="<?=base_url()?>fuentes_lineas_controller/edit_c/<?=$f->id?>" title="Modificar" >Modificar</a>
+									<a href="#" title="Modificar" 
+										onClick="updateContent('<?=base_url()?>fuentes_lineas_controller/edit_c/<?=$f->id?>/<?=$f->fuente_id?>','contentModal')">Modificar</a>
 								<?php endif;?>
 								<?php if($flag['d']):?>
-									<a href="#"  onClick="deleteRow('<?=base_url()?>fuentes_lineas_controller/delete_c/<?=$f->id?>')" title="Eliminar" >Eliminar</a>
+									<a href="#"  onClick="deleteItemModal('<?=base_url()?>fuentes_lineas_controller/delete_c/<?=$f->id?>/<?=$f->fuente_id?>','contentModal')" title="Eliminar" >Eliminar</a>
 								<?php endif;?>
 							</td>
 						</tr>

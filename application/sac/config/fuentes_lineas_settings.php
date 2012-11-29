@@ -11,14 +11,14 @@ $config['accessTitle']='<div class="accessTitle"> No tienes permiso para realiza
 
 /* Config labels of the form fields */
 
-$config['id']='id';
-$config['fuente_id']='fuente_id';
-$config['anio']='anio';
-$config['monto_global']='monto_global';
-$config['monto_especial']='monto_especial';
-$config['estado']='estado';
-$config['created_at']='created_at';
-$config['updated_at']='updated_at';
+$config['id']='Id';
+$config['fuente_id']='Fuente';
+$config['anio']='Año';
+$config['monto_global']='Monto Global';
+$config['monto_especial']='Monto Especial';
+$config['estado']='Estado';
+$config['created_at']='Fecha de alta';
+$config['updated_at']='Actualizado el';
 
 /* Config fields for search */
 

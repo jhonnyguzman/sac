@@ -5,16 +5,16 @@
 /* Config general titles */
 
 $config['recordListTitle']=' Listado de fuentes';
-$config['recordAddTitle']=' Nuevo fuentes';
-$config['recordEditTitle']=' Editar fuentes';
+$config['recordAddTitle']=' Nueva fuente';
+$config['recordEditTitle']=' Editar fuente';
 $config['accessTitle']='<div class="accessTitle"> No tienes permiso para realizar esta operaci&oacute;n </div>';
 
 /* Config labels of the form fields */
 
-$config['id']='id';
-$config['nombre']='nombre';
-$config['created_at']='created_at';
-$config['updated_at']='updated_at';
+$config['id']='Id';
+$config['nombre']='Nombre';
+$config['created_at']='Fecha de alta';
+$config['updated_at']='Actualizado el';
 
 /* Config fields for search */
 

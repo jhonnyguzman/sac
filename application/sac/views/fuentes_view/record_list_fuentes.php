@@ -21,6 +21,8 @@
 									<a href="#"  onClick="deleteRow('<?=base_url()?>fuentes_controller/delete_c/<?=$f->id?>')" title="Eliminar" >Eliminar</a>
 								<?php endif;?>
 								<a href="javascript:void(0)" onClick="loadModal('<?=base_url()?>fuentes_rubros_controller/showModal_c/<?=$f->id?>','myModal')">Rubros</a>
+								<a href="javascript:void(0)" onClick="loadModal('<?=base_url()?>fuentes_lineas_controller/showModal_c/<?=$f->id?>','myModal')">Lineas</a>
+							</td>
 							</td>
 						</tr>
 					<?php endforeach; ?>

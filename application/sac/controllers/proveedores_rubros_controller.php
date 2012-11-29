@@ -59,7 +59,7 @@ class Proveedores_rubros_Controller extends CI_Controller {
 		$data = array();
 		
 		$this->form_validation->set_rules('proveedor_id', 'proveedor_id', 'trim|required|integer|xss_clean');
-		$this->form_validation->set_rules('rubro_id', 'rubro_id', 'trim|required|integer|xss_clean');
+		$this->form_validation->set_rules('rubro_id', 'rubro_id', 'trim|required|integer|callback_checkRubro|xss_clean');
 	
 		if($this->form_validation->run())
 		{	
@@ -210,7 +210,7 @@ class Proveedores_rubros_Controller extends CI_Controller {
 			$data_search_pagination['count'] = true;
 			$data_search_proveedores_rubros['limit'] = $this->config->item('pag_perpage');
 			$data_search_proveedores_rubros['offset'] = $offset;
-			$data_search_proveedores_rubros['sortBy'] = 'proveedores_rubros_id';
+			$data_search_proveedores_rubros['sortBy'] = 'id';
 			$data_search_proveedores_rubros['sortDirection'] = 'asc';
 
 			if($flag==1){
@@ -224,6 +224,17 @@ class Proveedores_rubros_Controller extends CI_Controller {
 			$this->load->view('proveedores_rubros_view/record_list_proveedores_rubros',$data);
 		}
 
+	}
+
+	function checkRubro($rubro_id)
+	{
+		$proveedor_rubro = $this->proveedores_rubros_model->get_m(array('rubro_id' => $rubro_id, "proveedor_id" => $this->input->post("proveedor_id")));
+		if(count($proveedor_rubro) > 0){
+			$this->form_validation->set_message('checkRubro','El Rubro seleccionado ya ha sido asignado a este proveedor');
+			return false;
+		}else{
+			return true;
+		}
 	}
 
 }

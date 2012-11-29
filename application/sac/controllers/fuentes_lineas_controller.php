@@ -14,6 +14,7 @@ class Fuentes_lineas_Controller extends CI_Controller {
 		parent::__construct();
 		if($this->session->userdata('logged_in') == true) { 
 			$this->load->model('fuentes_lineas_model');
+			$this->load->model('fuentes_model');
 			$this->config->load('fuentes_lineas_settings');
 			$data['flags'] = $this->basicauth->getPermissions('fuentes_lineas');
 			$this->flagR = $data['flags']['flag-read'];
@@ -44,7 +45,7 @@ class Fuentes_lineas_Controller extends CI_Controller {
 	 * @access public
 	 * @return void
 	 */
-	function add_c()
+	function add_c($fuente_id="")
 	{
 		//code here
 		if(!$this->flagI){
@@ -56,7 +57,7 @@ class Fuentes_lineas_Controller extends CI_Controller {
 		$data['title_header'] = $this->config->item('recordAddTitle');
 		
 		$this->form_validation->set_rules('fuente_id', 'fuente_id', 'trim|required|integer|xss_clean');
-		$this->form_validation->set_rules('anio', 'anio', 'trim|required|integer|xss_clean');
+		$this->form_validation->set_rules('anio', 'anio', 'trim|required|integer|callback_checkAnio|xss_clean');
 		$this->form_validation->set_rules('monto_global', 'monto_global', 'trim|required|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('monto_especial', 'monto_especial', 'trim|required|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('estado', 'estado', 'trim|integer|xss_clean');
@@ -69,20 +70,28 @@ class Fuentes_lineas_Controller extends CI_Controller {
 			$data_fuentes_lineas['anio'] = $this->input->post('anio');
 			$data_fuentes_lineas['monto_global'] = $this->input->post('monto_global');
 			$data_fuentes_lineas['monto_especial'] = $this->input->post('monto_especial');
-			$data_fuentes_lineas['estado'] = $this->input->post('estado');
+			$data_fuentes_lineas['estado'] = 12; //estado 'Activa'
 			$data_fuentes_lineas['updated_at'] = $this->basicrud->formatDateToBD();
 
 			$id_fuentes_lineas = $this->fuentes_lineas_model->add_m($data_fuentes_lineas);
 			if($id_fuentes_lineas){ 
-				$this->session->set_flashdata('flashConfirm', $this->config->item('fuentes_lineas_flash_add_message')); 
-				redirect('fuentes_lineas_controller','location');
+				if($this->fuentes_lineas_model->cambiarEstado_m($id_fuentes_lineas,$this->input->post('fuente_id')))
+				{ 
+					$this->session->set_flashdata('flashConfirmModal', $this->config->item('fuentes_lineas_flash_add_message')); 
+					redirect('fuentes_lineas_controller/show_c/'.$fuente_id,'location');
+				}else{
+					$this->session->set_flashdata('flashErrorModal', $this->config->item('fuentes_lineas_flash_error_message')); 
+					redirect('fuentes_lineas_controller/show_c/'.$fuente_id,'location');
+				}
 			}else{
-				$this->session->set_flashdata('flashError', $this->config->item('fuentes_lineas_flash_error_message')); 
-				redirect('fuentes_lineas_controller','location');
+				$this->session->set_flashdata('flashErrorModal', $this->config->item('fuentes_lineas_flash_error_message')); 
+				redirect('fuentes_lineas_controller/show_c/'.$fuente_id,'location');
 			}
+		}else{
+			$data["fuente_id"] = $fuente_id;
+			$data["anios"] = $this->basicrud->getAnios();
+			$this->load->view('fuentes_lineas_view/form_add_fuentes_lineas',$data);
 		}
-		$this->load->view('fuentes_lineas_view/form_add_fuentes_lineas',$data);
-
 	}
 
 
@@ -94,7 +103,7 @@ class Fuentes_lineas_Controller extends CI_Controller {
 	 * @access public
 	 * @return void
 	 */
-	function edit_c($id)
+	function edit_c($id,$fuente_id)
 	{
 		//code here
 		if(!$this->flagU){
@@ -125,15 +134,39 @@ class Fuentes_lineas_Controller extends CI_Controller {
 			$data_fuentes_lineas['updated_at'] = $this->basicrud->formatDateToBD();
 
 			if($this->fuentes_lineas_model->edit_m($data_fuentes_lineas)){ 
-				$this->session->set_flashdata('flashConfirm', $this->config->item('fuentes_lineas_flash_edit_message')); 
-				redirect('fuentes_lineas_controller','location');
+				$this->session->set_flashdata('flashConfirmModal', $this->config->item('fuentes_lineas_flash_edit_message')); 
+				redirect('fuentes_lineas_controller/show_c/'.$fuente_id,'location');
 			}else{
-				$this->session->set_flashdata('flashError', $this->config->item('fuentes_lineas_flash_error_message')); 
-				redirect('fuentes_lineas_controller','location');
+				$this->session->set_flashdata('flashErrorModal', $this->config->item('fuentes_lineas_flash_error_message')); 
+				redirect('fuentes_lineas_controller/show_c/'.$fuente_id,'location');
 			}
+		}else{
+			$data["fuente_id"] = $fuente_id;
+			$data["anios"] = $this->basicrud->getAnios();
+			$this->load->view('fuentes_lineas_view/form_edit_fuentes_lineas',$data);
 		}
-		$this->load->view('fuentes_lineas_view/form_edit_fuentes_lineas',$data);
+	}
 
+
+	public function showModal_c($fuente_id = "")
+	{
+		if($fuente_id){
+			$data['flag'] = $this->flags;
+			$data['fuente'] = $this->fuentes_model->get_m(array('id' => $fuente_id), $flag=1);
+			$this->load->view("fuentes_lineas_view/modal_fuentes_lineas",$data);
+		}
+	}
+
+
+	public function show_c($fuente_id)
+	{
+		if($this->flagR)
+		{
+			$data['flag'] = $this->flags;
+			$data['fuente_id'] = $fuente_id;
+			$data['fuentes_lineas'] = $this->fuentes_lineas_model->get_m(array('fuente_id' => $fuente_id)); 
+			$this->load->view("fuentes_lineas_view/form_show_fuentes_lineas",$data);
+		}
 	}
 
 
@@ -146,7 +179,7 @@ class Fuentes_lineas_Controller extends CI_Controller {
 	 * @param $id id of record
 	 * @return void
 	 */
-	function delete_c($id)
+	function delete_c($id,$fuente_id)
 	{
 		//code here
 		if(!$this->flagD){
@@ -155,11 +188,11 @@ class Fuentes_lineas_Controller extends CI_Controller {
 		}
 
 		if($this->fuentes_lineas_model->delete_m($id)){ 
-			$this->session->set_flashdata('flashConfirm', $this->config->item('fuentes_lineas_flash_delete_message')); 
-			redirect('fuentes_lineas_controller','location');
+			$this->session->set_flashdata('flashConfirmModal', $this->config->item('fuentes_lineas_flash_delete_message')); 
+			redirect('fuentes_lineas_controller/show_c/'.$fuente_id,'location');
 		}else{
-			$this->session->set_flashdata('flashError', $this->config->item('fuentes_lineas_flash_error_delete_message')); 
-			redirect('fuentes_lineas_controller','location');
+			$this->session->set_flashdata('flashErrorModal', $this->config->item('fuentes_lineas_flash_error_delete_message')); 
+			redirect('fuentes_lineas_controller/show_c/'.$fuente_id,'location');
 		}
 
 	}
@@ -208,4 +241,15 @@ class Fuentes_lineas_Controller extends CI_Controller {
 
 	}
 
+
+	function checkAnio($anio)
+	{
+		$fuente_linea = $this->fuentes_lineas_model->get_m(array('anio' => $anio, "fuente_id" => $this->input->post("fuente_id")));
+		if(count($fuente_linea) > 0){
+			$this->form_validation->set_message('checkAnio','El Año seleccionado ya ha sido asignado a esta fuente');
+			return false;
+		}else{
+			return true;
+		}
+	}
 }

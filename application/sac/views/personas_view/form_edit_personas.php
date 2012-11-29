@@ -69,13 +69,13 @@
 		<div class="control-group">
 			<label class="control-label" for="nombre"><?=$this->config->item('created_at')?>:</label>
 			<div class="controls">
-				<input type="text" value="<?=$personas->created_at?>" name="created_at" id="created_at"></input>
+				<input type="text" value="<?=$personas->created_at?>" name="created_at" id="created_at" readonly></input>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="nombre"><?=$this->config->item('updated_at')?>:</label>
 			<div class="controls">
-				<input type="text" value="<?=$personas->updated_at?>" name="updated_at" id="updated_at"></input>
+				<input type="text" value="<?=$personas->updated_at?>" name="updated_at" id="updated_at" readonly></input>
 			</div>
 		</div>
 		

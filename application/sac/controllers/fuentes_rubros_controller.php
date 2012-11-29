@@ -57,7 +57,7 @@ class Fuentes_rubros_Controller extends CI_Controller {
 		$data = array();
 		$data['title_header'] = $this->config->item('recordAddTitle');
 		
-		$this->form_validation->set_rules('rubro_id', 'rubro_id', 'trim|required|integer|xss_clean');
+		$this->form_validation->set_rules('rubro_id', 'rubro_id', 'trim|required|integer|callback_checkRubro|xss_clean');
 		$this->form_validation->set_rules('fuente_id', 'fuente_id', 'trim|required|integer|xss_clean');
 		
 		
@@ -220,6 +220,17 @@ class Fuentes_rubros_Controller extends CI_Controller {
 			$this->load->view('fuentes_rubros_view/record_list_fuentes_rubros',$data);
 		}
 
+	}
+
+	function checkRubro($rubro_id)
+	{
+		$fuente_rubro = $this->fuentes_rubros_model->get_m(array('rubro_id' => $rubro_id, "fuente_id" => $this->input->post("fuente_id")));
+		if(count($fuente_rubro) > 0){
+			$this->form_validation->set_message('checkRubro','El Rubro seleccionado ya ha sido asignado a esta fuente');
+			return false;
+		}else{
+			return true;
+		}
 	}
 
 }

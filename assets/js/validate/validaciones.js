@@ -466,5 +466,168 @@ $(document).ready(function(){
 		    }
 	   });
 
+
+	   $('#formAddpersonas').validate({
+		    rules: {
+		      dni: {
+		        digits:true,
+		        minlength: 8,
+		        required: true
+		      },
+		      apellido: {
+		      	maxlength: 45,
+		        required: true
+		      },
+		      nombre: {
+		      	maxlength: 45,
+		        required: true
+		      },
+		      domicilio: {
+		        required: true
+		      },
+		      telefono: {
+		        maxlength: 16,
+		        minlength: 7,
+		        digits: true
+		      },
+		      celular: {
+		        maxlength: 18,
+		        minlength: 9,
+		        digits: true
+		      },
+		      email: {
+		        email: true
+		      }
+		    },
+		    highlight: function(label) {
+		    	$(label).closest('.control-group').addClass('error');
+		    },
+		    success: function(label) {
+		    	label
+		    		.text('OK!').addClass('valid')
+		    		.closest('.control-group').addClass('success');
+		    }
+	   });
+
+
+	    $('#formEditpersonas').validate({
+		    rules: {
+		      dni: {
+		        digits:true,
+		        minlength: 8,
+		        required: true
+		      },
+		      apellido: {
+		      	maxlength: 45,
+		        required: true
+		      },
+		      nombre: {
+		      	maxlength: 45,
+		        required: true
+		      },
+		      domicilio: {
+		        required: true
+		      },
+		      telefono: {
+		        maxlength: 16,
+		        minlength: 7,
+		        digits: true
+		      },
+		      celular: {
+		        maxlength: 18,
+		        minlength: 9,
+		        digits: true
+		      },
+		      email: {
+		        email: true
+		      }
+		    },
+		    highlight: function(label) {
+		    	$(label).closest('.control-group').addClass('error');
+		    },
+		    success: function(label) {
+		    	label
+		    		.text('OK!').addClass('valid')
+		    		.closest('.control-group').addClass('success');
+		    }
+	   });
+
+
+	   $('#formAddproveedores').validate({
+		    rules: {
+		      cuit: {
+		        digits:true,
+		        minlength: 11,
+		        required: true
+		      },
+		      razon_social: {
+		      	maxlength: 100,
+		        required: true
+		      },
+		      domicilio: {
+		        required: true
+		      },
+		      telefono: {
+		        maxlength: 16,
+		        minlength: 7,
+		        digits: true
+		      },
+		      celular: {
+		        maxlength: 18,
+		        minlength: 9,
+		        digits: true
+		      },
+		      email: {
+		        email: true
+		      }
+		    },
+		    highlight: function(label) {
+		    	$(label).closest('.control-group').addClass('error');
+		    },
+		    success: function(label) {
+		    	label
+		    		.text('OK!').addClass('valid')
+		    		.closest('.control-group').addClass('success');
+		    }
+	   });
+
+
+	   $('#formEditproveedores').validate({
+		    rules: {
+		      cuit: {
+		        digits:true,
+		        minlength: 11,
+		        required: true
+		      },
+		      razon_social: {
+		      	maxlength: 100,
+		        required: true
+		      },
+		      domicilio: {
+		        required: true
+		      },
+		      telefono: {
+		        maxlength: 16,
+		        minlength: 7,
+		        digits: true
+		      },
+		      celular: {
+		        maxlength: 18,
+		        minlength: 9,
+		        digits: true
+		      },
+		      email: {
+		        email: true
+		      }
+		    },
+		    highlight: function(label) {
+		    	$(label).closest('.control-group').addClass('error');
+		    },
+		    success: function(label) {
+		    	label
+		    		.text('OK!').addClass('valid')
+		    		.closest('.control-group').addClass('success');
+		    }
+	   });
 	
 });
