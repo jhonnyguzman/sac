@@ -60,8 +60,7 @@
 
 	<?=$this->load->view("consultas_view/_form_print_consultas_excel")?>
 	<?=$this->load->view("consultas_view/_form_print_consultas_pdf")?>
-	<div class="modal hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	</div>
+	<div class="modal hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
 
 	<script>
 		$(document).ready(function(){ 

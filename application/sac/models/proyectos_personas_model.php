@@ -126,6 +126,17 @@ class Proyectos_personas_Model extends CI_Model {
 
 	}
 
+	public function getRepetidos($persona_id,$proyecto_id,$tabla)
+	{
+		$this->db->where('proyecto_id', $proyecto_id);
+		$this->db->where('persona_id', $persona_id);
+		$this->db->select("pp.*");
+		$this->db->from("proyectos_personas as pp");
+		$this->db->join("{$tabla} as c","c.proyecto_persona_id = pp.id");
+		$query = $this->db->get();
+		return $query->result();
+	}
+
 
 	/**
 	 * This function getting all the fields of the table

@@ -61,7 +61,7 @@ class Proyectos_personas_Controller extends CI_Controller {
 		$data['title_header'] = $this->config->item('recordAddTitle');
 		
 		$this->form_validation->set_rules('proyecto_id', 'proyecto_id', 'trim|required|integer|xss_clean');
-		$this->form_validation->set_rules('persona_id', 'persona_id', 'trim|required|integer|xss_clean');
+		$this->form_validation->set_rules('persona_id', 'persona_id', 'trim|required|integer|callback_checkPersona|xss_clean');
 		$this->form_validation->set_rules('tipo', 'Tipo', 'trim|required|alpha_numeric|xss_clean');
 		
 		if($this->form_validation->run())
@@ -301,5 +301,23 @@ class Proyectos_personas_Controller extends CI_Controller {
 		}
 
 		return $estado;
+	}
+
+
+	function checkPersona($persona_id)
+	{
+		$tipo = $this->input->post('tipo');
+		if($tipo == "contratado"){
+			$proyecto_persona = $this->proyectos_personas_model->getRepetidos($persona_id,$this->input->post("proyecto_id"),"contratados");	
+		}elseif($tipo == "adscripto"){
+			$proyecto_persona = $this->proyectos_personas_model->getRepetidos($persona_id,$this->input->post("proyecto_id"),"adscriptos");
+		}
+		
+		if(count($proyecto_persona) > 0){
+			$this->form_validation->set_message('checkPersona','La persona ingresada ya ha sido asignada a este proyecto.');
+			return false;
+		}else{
+			return true;
+		}
 	}
 }
