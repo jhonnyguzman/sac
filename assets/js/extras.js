@@ -182,6 +182,30 @@ function getMesesConsultas(url, mes_selected, select1, select2, select3)
 
 }
 
+
+function getFuentesRubros(url, fuente_rubro_selected, select1, select2)
+{
+    var options = '';
+    var url_f = url + $("#"+select1).val()
+    $.getJSON(url_f, function(data) {
+        $("#"+select2).find("option").remove();
+        if(data != 'none'){
+            $.each(data, function(key, val) {
+                if(fuente_rubro_selected){
+                    if(fuente_rubro_selected == val.id){
+                        options = options + "<option value='"+val.id+"' selected>"+ val.fuente_nombre +"</option>";
+                    }else{
+                        options = options + "<option value='"+val.id+"'>"+ val.fuente_nombre +"</option>";
+                    }
+                }else{
+                    options = options + "<option value='"+val.id+"'>"+ val.fuente_nombre +"</option>";
+                }
+            });
+            $("#"+select2).append(options);
+        }
+    });
+}
+
 function loadModal(url,div)
 {
     $('div#'+div).load(url,function(){

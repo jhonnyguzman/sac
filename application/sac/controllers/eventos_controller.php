@@ -61,7 +61,7 @@ class Eventos_Controller extends CI_Controller {
 		$this->form_validation->set_rules('fecha', 'fecha', 'trim|required|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('lugar', 'lugar', 'trim|required|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('cantidad_asistentes', 'cantidad_asistentes', 'trim|required|integer|xss_clean');
-		$this->form_validation->set_rules('monto_total', 'monto_total', 'trim|alpha_numeric|xss_clean');
+		$this->form_validation->set_rules('monto_presupuestado', 'monto_presupuestado', 'trim|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('proyecto_id', 'proyecto_id', 'trim|required|integer|xss_clean');
 		
 		
@@ -73,9 +73,9 @@ class Eventos_Controller extends CI_Controller {
 			$data_eventos['fecha'] = $this->basicrud->getFormatDateToBD($this->input->post('fecha'));
 			$data_eventos['lugar'] = $this->input->post('lugar');
 			$data_eventos['cantidad_asistentes'] = $this->input->post('cantidad_asistentes');
-			$data_eventos['monto_total'] = $this->input->post('monto_total');
 			$data_eventos['proyecto_id'] = $this->input->post('proyecto_id');
 			$data_eventos['updated_at'] = $this->basicrud->formatDateToBD();
+			$data_eventos['monto_presupuestado'] = $this->input->post('monto_presupuestado');
 
 			$id_eventos = $this->eventos_model->add_m($data_eventos);
 			if($id_eventos){ 
@@ -119,6 +119,7 @@ class Eventos_Controller extends CI_Controller {
 		$this->form_validation->set_rules('lugar', 'lugar', 'trim|required|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('cantidad_asistentes', 'cantidad_asistentes', 'trim|required|integer|xss_clean');
 		$this->form_validation->set_rules('monto_total', 'monto_total', 'trim|alpha_numeric|xss_clean');
+		$this->form_validation->set_rules('monto_presupuestado', 'monto_presupuestado', 'trim|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('proyecto_id', 'proyecto_id', 'trim|required|integer|xss_clean');
 		
 		
@@ -131,6 +132,7 @@ class Eventos_Controller extends CI_Controller {
 			$data_eventos['lugar'] = $this->input->post('lugar');
 			$data_eventos['cantidad_asistentes'] = $this->input->post('cantidad_asistentes');
 			$data_eventos['monto_total'] = $this->input->post('monto_total');
+			$data_eventos['monto_presupuestado'] = $this->input->post('monto_presupuestado');
 			$data_eventos['proyecto_id'] = $this->input->post('proyecto_id');
 			$data_eventos['updated_at'] = $this->basicrud->formatDateToBD();
 

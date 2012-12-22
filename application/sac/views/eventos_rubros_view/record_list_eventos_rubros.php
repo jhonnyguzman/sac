@@ -5,6 +5,8 @@
 					<tr>
 						<th>Id</th>
 						<th>Rubro</th>
+						<th>Costo</th>
+						<th>Fuente de financiamiento</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -13,6 +15,13 @@
 						<tr>
 							<td><?=$f->id?></td>
 							<td><?=$f->rubro_nombre?></td>
+							<td>$ <?=$f->costo?></td>
+							<td><?=$f->fuente_nombre?></td>
+							<td>
+								<?php if($flag['u']):?>
+									<a href="#" onClick="updateContent('<?=base_url()?>eventos_rubros_controller/edit_c/<?=$f->id?>/<?=$f->evento_id?>/<?=$proyecto_id?>','contentModal')" title="Modificar" >Modificar</a>
+								<?php endif;?>
+							</td>
 							<td>
 								<?php if($flag['d']):?>
 									<a href="#"  onClick="deleteItemModal('<?=base_url()?>eventos_rubros_controller/delete_c/<?=$f->id?>/<?=$f->evento_id?>/<?=$proyecto_id?>','contentModal')" title="Eliminar" >Eliminar</a>

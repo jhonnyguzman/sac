@@ -36,12 +36,14 @@ class Eventos_rubros_Model extends CI_Model {
 		//code here
 		if(isset($options['evento_id']))
 			$this->db->set('evento_id', $options['evento_id']);
-		if(isset($options['rubro_id']))
-			$this->db->set('rubro_id', $options['rubro_id']);
+		if(isset($options['fuente_rubro_id']))
+			$this->db->set('fuente_rubro_id', $options['fuente_rubro_id']);
 		if(isset($options['created_at']))
 			$this->db->set('created_at', $options['created_at']);
 		if(isset($options['updated_at']))
 			$this->db->set('updated_at', $options['updated_at']);
+		if(isset($options['costo']))
+			$this->db->set('costo', $options['costo']);
 
 		$this->db->where('id', $options['id']);
 
@@ -80,15 +82,17 @@ class Eventos_rubros_Model extends CI_Model {
 	{
 		//code here
 		if(isset($options['id']))
-			$this->db->where('id', $options['id']);
+			$this->db->where('er.id', $options['id']);
 		if(isset($options['evento_id']))
-			$this->db->where('evento_id', $options['evento_id']);
-		if(isset($options['rubro_id']))
-			$this->db->where('rubro_id', $options['rubro_id']);
+			$this->db->where('er.evento_id', $options['evento_id']);
+		if(isset($options['fuente_rubro_id']))
+			$this->db->where('er.fuente_rubro_id', $options['fuente_rubro_id']);
 		if(isset($options['created_at']))
-			$this->db->where('created_at', $options['created_at']);
+			$this->db->where('er.created_at', $options['created_at']);
 		if(isset($options['updated_at']))
-			$this->db->where('updated_at', $options['updated_at']);
+			$this->db->where('er.updated_at', $options['updated_at']);
+		if(isset($options['costo']))
+			$this->db->where('er.costo', $options['costo']);
 
 		//limit / offset
 		if(isset($options['limit']) && isset($options['offset']))
@@ -100,9 +104,11 @@ class Eventos_rubros_Model extends CI_Model {
 		if(isset($options['sortBy']) && isset($options['sortDirection']))
 			$this->db->order_by($options['sortBy'],$options['sortDirection']);
 
-		$this->db->select("er.*, r.nombre as rubro_nombre, e.nombre as evento_nombre");
+		$this->db->select("er.*, r.id as rubro_id, r.nombre as rubro_nombre, f.nombre as fuente_nombre, e.nombre as evento_nombre");
 		$this->db->from("eventos_rubros as er");
-		$this->db->join("rubros as r","r.id = er.rubro_id");
+		$this->db->join("fuentes_rubros as fr","fr.id = er.fuente_rubro_id");
+		$this->db->join("rubros as r","r.id = fr.rubro_id");
+		$this->db->join("fuentes as f","f.id = fr.fuente_id");
 		$this->db->join("eventos as e","e.id = er.evento_id");
 		
 		$query = $this->db->get();
@@ -140,10 +146,12 @@ class Eventos_rubros_Model extends CI_Model {
 		$fields[]='id';
 		$fields[]='evento_id';
 		$fields[]='evento_nombre';
-		$fields[]='rubro_id';
+		$fields[]='fuente_rubro_id';
 		$fields[]='rubro_nombre';
+		$fields[]='fuente_nombre';
 		$fields[]='created_at';
 		$fields[]='updated_at';
+		$fields[]='costo';
 		return $fields;
 	}
 

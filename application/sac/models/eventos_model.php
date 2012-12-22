@@ -52,6 +52,8 @@ class Eventos_Model extends CI_Model {
 			$this->db->set('created_at', $options['created_at']);
 		if(isset($options['updated_at']))
 			$this->db->set('updated_at', $options['updated_at']);
+		if(isset($options['monto_presupuestado']))
+			$this->db->set('monto_presupuestado', $options['monto_presupuestado']);
 
 		$this->db->where('id', $options['id']);
 
@@ -109,6 +111,8 @@ class Eventos_Model extends CI_Model {
 			$this->db->where('created_at', $options['created_at']);
 		if(isset($options['updated_at']))
 			$this->db->where('updated_at', $options['updated_at']);
+		if(isset($options['monto_presupuestado']))
+			$this->db->where('monto_presupuestado', $options['monto_presupuestado']);
 
 		//limit / offset
 		if(isset($options['limit']) && isset($options['offset']))
@@ -161,6 +165,7 @@ class Eventos_Model extends CI_Model {
 		$fields[]='lugar';
 		$fields[]='cantidad_asistentes';
 		$fields[]='monto_total';
+		$fields[]='monto_presupuestado';
 		$fields[]='proyecto_id';
 		$fields[]='created_at';
 		$fields[]='updated_at';

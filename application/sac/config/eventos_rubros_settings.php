@@ -16,16 +16,20 @@ $config['evento_id']='Evento';
 $config['evento_nombre']='Evento';
 $config['rubro_id']='Rubro';
 $config['rubro_nombre']='Rubro';
+$config['fuente_nombre']='Fuente de financiamiento';
+$config['fuente_rubro_id']='Fuente de financiamiento';
 $config['created_at']='Fecha de alta';
 $config['updated_at']='Actualizado el';
+$config['costo']='Costo';
 
 /* Config fields for search */
 
 $config['search_by_id']= 1;
 $config['search_by_evento_id']= 1;
-$config['search_by_rubro_id']= 1;
+$config['search_by_fuente_rubro_id']= 1;
 $config['search_by_created_at']= 0;
 $config['search_by_updated_at']= 0;
+$config['search_by_costo']= 0;
 
 /* Config fields for show in the result list */
 

@@ -329,6 +329,9 @@
       <Cl au="0" df="" nm="proyecto_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
+      <Cl au="0" df="" nm="monto_presupuestado" nu="1">
+        <DT arr="0" ds="Float" en="" id="6" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
       <Cl au="0" df="now()" nm="created_at" nu="1">
         <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
@@ -351,8 +354,11 @@
       <Cl au="0" df="" nm="evento_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="rubro_id" nu="0">
+      <Cl au="0" df="" nm="fuente_rubro_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="costo" nu="1">
+        <DT arr="0" ds="Float" en="" id="6" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="now()" nm="created_at" nu="1">
         <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
@@ -365,10 +371,10 @@
         <CdTb mn="1" nm="eventos_rubros" oe="0" sch="public" zr="1"/>
         <ClPr cdCl="evento_id" prCl="id"/>
       </Fk>
-      <Fk deAc="1" nm="eventos_rubros_rubro_id" prLkCl="id" upAc="1">
-        <PrTb mn="0" nm="rubros" oe="1" sch="public" zr="0"/>
+      <Fk deAc="3" nm="eventos_rubros_fuente_rubro_id" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="fuentes_rubros" oe="1" sch="public" zr="0"/>
         <CdTb mn="1" nm="eventos_rubros" oe="0" sch="public" zr="1"/>
-        <ClPr cdCl="rubro_id" prCl="id"/>
+        <ClPr cdCl="fuente_rubro_id" prCl="id"/>
       </Fk>
       <SchTrHis/>
     </Tbl>
@@ -1567,7 +1573,7 @@
     <TbGl bkCl="ffccccff" sch="public" tbl="lineas" x="363" y="1369"/>
     <TbGl bkCl="ffccccff" sch="public" tbl="proyectos" x="595" y="1371"/>
     <TbGl bkCl="ffccccff" sch="public" tbl="eventos" x="828" y="1370"/>
-    <TbGl bkCl="ffccccff" sch="public" tbl="rubros" x="1023" y="1613"/>
+    <TbGl bkCl="ffccccff" sch="public" tbl="rubros" x="978" y="1576"/>
     <TbGl bkCl="ffccccff" sch="public" tbl="proveedores" x="1261" y="1372"/>
     <TbGl bkCl="ffccccff" sch="public" tbl="facturas" x="1446" y="1376"/>
     <TbGl bkCl="ffccccff" sch="public" tbl="facturas_lineas" x="1448" y="1552"/>
@@ -1593,7 +1599,7 @@
     <FkGl bkCl="ff000000" nm="public.escuelas.fk_escuelas_localidades"/>
     <FkGl bkCl="ff000000" nm="public.eventos.eventos_proyecto_id"/>
     <FkGl bkCl="ff000000" nm="public.eventos_rubros.eventos_rubros_evento_id"/>
-    <FkGl bkCl="ff000000" nm="public.eventos_rubros.eventos_rubros_rubro_id"/>
+    <FkGl bkCl="ff000000" nm="public.eventos_rubros.eventos_rubros_fuente_rubro_id"/>
     <FkGl bkCl="ff000000" nm="public.facturas.facturas_proveedor_id"/>
     <FkGl bkCl="ff000000" nm="public.facturas.facturas_tabgral_id"/>
     <FkGl bkCl="ff000000" nm="public.facturas_lineas.facturas_lineas_factura_id"/>
@@ -1645,7 +1651,7 @@
       <Zone bkCl="ffece9d8" h="1471" nm="Sección de autentificación de usuarios" w="394" x="131" y="7"/>
     </Zones>
   </Dgm>
-  <RnmMgr NxRnmId="345">
+  <RnmMgr NxRnmId="350">
     <RnmCh ObjCls="Schema" ParCls="Database" ParNme="callcenter" SupCls="" SupNme="">
       <Rnm id="1" nNm="public" oNm="schemaA"/>
     </RnmCh>
@@ -2479,6 +2485,7 @@
       <Rnm id="336" nNm="proyecto_id" oNm="created_at"/>
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="eventos" SupCls="Schema" SupNme="public">
+      <Rnm id="347" nNm="monto_presupuestado" oNm="created_at"/>
       <Rnm id="337" nNm="created_at" oNm="updated_at"/>
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="facturas_lineas" SupCls="Schema" SupNme="public">
@@ -2501,6 +2508,18 @@
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="contratados" SupCls="Schema" SupNme="public">
       <Rnm id="344" nNm="proyecto_persona_id" oNm="persona_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="eventos_rubros" SupCls="Schema" SupNme="public">
+      <Rnm id="345" nNm="costo" oNm="created_at"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="eventos_rubros" SupCls="Schema" SupNme="public">
+      <Rnm id="346" nNm="created_at" oNm="updated_at"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="eventos" SupCls="Schema" SupNme="public">
+      <Rnm id="348" nNm="created_at" oNm="updated_at"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="eventos_rubros" SupCls="Schema" SupNme="public">
+      <Rnm id="349" nNm="fuente_rubro_id" oNm="rubro_id"/>
     </RnmCh>
   </RnmMgr>
   <DbDocOptionMgr>

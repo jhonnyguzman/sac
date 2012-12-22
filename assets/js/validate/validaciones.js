@@ -5,6 +5,7 @@ $(document).ready(function(){
 		      dni: {
 		        digits:true,
 		        minlength: 8,
+		        maxlength:8,
 		        required: true
 		      },
 		      apellido: {
@@ -46,6 +47,7 @@ $(document).ready(function(){
 		      dni: {
 		        digits:true,
 		        minlength: 8,
+		        maxlength:8,
 		        required: true
 		      },
 		      apellido: {
@@ -87,6 +89,7 @@ $(document).ready(function(){
 		      dni: {
 		        digits:true,
 		        minlength: 8,
+		        maxlength:8,
 		        required: true
 		      },
 		      apellido: {
@@ -124,6 +127,7 @@ $(document).ready(function(){
 		      dni: {
 		        digits:true,
 		        minlength: 8,
+		        maxlength:8,
 		        required: true
 		      },
 		      apellido: {
@@ -472,6 +476,7 @@ $(document).ready(function(){
 		      dni: {
 		        digits:true,
 		        minlength: 8,
+		        maxlength:8,
 		        required: true
 		      },
 		      apellido: {
@@ -515,6 +520,7 @@ $(document).ready(function(){
 		      dni: {
 		        digits:true,
 		        minlength: 8,
+		        maxlength:8,
 		        required: true
 		      },
 		      apellido: {

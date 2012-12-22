@@ -48,6 +48,12 @@
 		</div>
 	</div>
 	<div class="control-group">
+		<label class="control-label" for="monto_presupuestado"><?=$this->config->item('monto_presupuestado')?>:</label>
+		<div class="controls">
+			<input type="text" value="<?=$eventos->monto_presupuestado?>" name="monto_presupuestado" id="monto_presupuestado"></input>
+		</div>
+	</div>
+	<div class="control-group">
 		<label class="control-label" for="created_at"><?=$this->config->item('created_at')?>:</label>
 		<div class="controls">
 			<input type="text" value="<?=$eventos->created_at?>" name="created_at" id="created_at"  readonly="readonly"></input>

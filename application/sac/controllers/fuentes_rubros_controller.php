@@ -222,6 +222,17 @@ class Fuentes_rubros_Controller extends CI_Controller {
 
 	}
 
+
+	function getFuentesByRubro($rubro_id)
+	{
+		$fuentes_rubro = $this->fuentes_rubros_model->get_m(array("rubro_id" => $rubro_id));
+		if(count($fuentes_rubro) > 0){
+			echo json_encode($fuentes_rubro);
+		}else{
+			echo json_encode("none");
+		}
+	}
+
 	function checkRubro($rubro_id)
 	{
 		$fuente_rubro = $this->fuentes_rubros_model->get_m(array('rubro_id' => $rubro_id, "fuente_id" => $this->input->post("fuente_id")));

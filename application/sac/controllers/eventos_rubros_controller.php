@@ -16,6 +16,7 @@ class Eventos_rubros_Controller extends CI_Controller {
 			$this->load->model('eventos_rubros_model');
 			$this->load->model('eventos_model');
 			$this->load->model('rubros_model');
+			$this->load->model('fuentes_rubros_model');
 			$this->config->load('eventos_rubros_settings');
 			$data['flags'] = $this->basicauth->getPermissions('eventos_rubros');
 			$this->flagR = $data['flags']['flag-read'];
@@ -57,15 +58,16 @@ class Eventos_rubros_Controller extends CI_Controller {
 		$data = array();
 		$data['title_header'] = $this->config->item('recordAddTitle');
 		$this->form_validation->set_rules('evento_id', 'evento_id', 'trim|required|integer|xss_clean');
-		$this->form_validation->set_rules('rubro_id', 'rubro_id', 'trim|required|integer|xss_clean');
-		
+		$this->form_validation->set_rules('fuente_rubro_id', 'fuente_rubro_id', 'trim|required|integer|xss_clean');
+		$this->form_validation->set_rules('costo', 'costo', 'trim|required|xss_clean');
 		
 		if($this->form_validation->run())
 		{	
 			$data_eventos_rubros  = array();
 			$data_eventos_rubros['evento_id'] = $this->input->post('evento_id');
-			$data_eventos_rubros['rubro_id'] = $this->input->post('rubro_id');
+			$data_eventos_rubros['fuente_rubro_id'] = $this->input->post('fuente_rubro_id');
 			$data_eventos_rubros['updated_at'] = $this->basicrud->formatDateToBD();
+			$data_eventos_rubros['costo'] = $this->input->post('costo');
 
 			$id_eventos_rubros = $this->eventos_rubros_model->add_m($data_eventos_rubros);
 			if($id_eventos_rubros){ 
@@ -102,18 +104,21 @@ class Eventos_rubros_Controller extends CI_Controller {
 
 		$data = array();
 		$data['title_header'] = $this->config->item('recordEditTitle');
+		
 		$data['eventos_rubros'] = $this->eventos_rubros_model->get_m(array('id' => $id),$flag=1);
+		
 		$this->form_validation->set_rules('id', 'id', 'trim|required|integer|xss_clean');
 		$this->form_validation->set_rules('evento_id', 'evento_id', 'trim|required|integer|xss_clean');
-		$this->form_validation->set_rules('rubro_id', 'rubro_id', 'trim|required|integer|xss_clean');
-		
+		$this->form_validation->set_rules('fuente_rubro_id', 'fuente_rubro_id', 'trim|required|integer|xss_clean');
+		$this->form_validation->set_rules('costo', 'costo', 'trim|required|xss_clean');
 		
 		if($this->form_validation->run()){
 			$data_eventos_rubros  = array();
 			$data_eventos_rubros['id'] = $this->input->post('id');
 			$data_eventos_rubros['evento_id'] = $this->input->post('evento_id');
-			$data_eventos_rubros['rubro_id'] = $this->input->post('rubro_id');
+			$data_eventos_rubros['fuente_rubro_id'] = $this->input->post('fuente_rubro_id');
 			$data_eventos_rubros['updated_at'] = $this->basicrud->formatDateToBD();
+			$data_eventos_rubros['costo'] = $this->input->post('costo');
 
 			if($this->eventos_rubros_model->edit_m($data_eventos_rubros)){ 
 				$this->session->set_flashdata('flashConfirmModal', $this->config->item('eventos_rubros_flash_edit_message')); 
@@ -123,7 +128,7 @@ class Eventos_rubros_Controller extends CI_Controller {
 				redirect('eventos_rubros_controller/show_c/'.$evento_id."/".$proyecto_id,'location');
 			}
 		}else{
-			$data["rubros"] = $this->rubros_model->get_m();
+			$data["fuentes_rubro"] = $this->fuentes_rubros_model->get_m(array("rubro_id" => $data['eventos_rubros']->rubro_id));
 			$data["evento_id"] = $evento_id;
 			$data["proyecto_id"] = $proyecto_id;
 			$this->load->view('eventos_rubros_view/form_edit_eventos_rubros',$data);

@@ -40,9 +40,9 @@
 		</div>
 	</div>
 	<div class="control-group">
-		<label class="control-label" for="monto_total"><?=$this->config->item('monto_total')?>:</label>
+		<label class="control-label" for="monto_presupuestado"><?=$this->config->item('monto_presupuestado')?>:</label>
 		<div class="controls">
-			<input type="text" name="monto_total" id="monto_total"></input>
+			<input type="text" name="monto_presupuestado" id="monto_presupuestado"></input>
 		</div>
 	</div>
 		

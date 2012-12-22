@@ -8,6 +8,7 @@
 						<th>Lugar</th>
 						<th>Cant. de Asistentes</th>
 						<th>Monto Total</th>
+						<th>Monto Presup.</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -18,7 +19,8 @@
 							<td><?=$f->fecha?></td>
 							<td><?=$f->lugar?></td>
 							<td><?=$f->cantidad_asistentes?></td>
-							<td><?=$f->monto_total?></td>
+							<td>$ <?=$f->monto_total?></td>
+							<td>$ <?=$f->monto_presupuestado?></td>
 							<td>
 								<?php if($flag['u']):?>
 									<a href="#" onClick="updateContent('<?=base_url()?>eventos_controller/edit_c/<?=$f->id?>/<?=$f->proyecto_id?>','contentModal')" title="Modificar" >Modificar</a>
